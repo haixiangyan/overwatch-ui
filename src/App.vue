@@ -12,6 +12,7 @@
         </div>
         <div>
             <ow-icon name="setting" color="#fff"></ow-icon>
+            <ow-icon name="loading" color="#fff" :is-loading="true"></ow-icon>
         </div>
     </div>
 </template>

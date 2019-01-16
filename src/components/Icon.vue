@@ -1,5 +1,5 @@
 <template>
-    <svg v-if="name" class="ow-icon" :style="style">
+    <svg v-if="name" class="ow-icon" :class="classes" :style="styles">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -14,18 +14,31 @@
             color: {
                 type: String,
                 default: '#00000'
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return {
-                style: {
+                styles: {
                     fill: this.color
-                }
+                },
+                classes: [
+                    {'ow-icon_loading': this.isLoading}
+                ]
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .ow-icon { height: 1em; width: 1em }
+    .ow-icon {
+        height: 1em;
+        width: 1em;
+        &_loading {
+            animation: spin .5s infinite linear;
+        }
+    }
 </style>

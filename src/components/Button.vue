@@ -1,5 +1,5 @@
 <template>
-    <button class="ow-button" :class="{[`ow-button-icon-${iconPosition}`]: true}">
+    <button class="ow-button" :class="{[`ow-button-icon_${iconPosition}`]: true}">
         <ow-icon class="ow-button-icon" color="#fff" :name="iconName"></ow-icon>
         <div class="ow-button-content">
             <slot></slot>
@@ -52,7 +52,7 @@
         &-content { order: 2; }
 
         // Right position
-        &-icon-right {
+        &-icon_right {
             > .ow-button-content { order: 1; }
             > .ow-button-icon { order: 2; margin-left: .3em; margin-right: 0; }
         }
