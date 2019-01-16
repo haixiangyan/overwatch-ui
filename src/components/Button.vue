@@ -1,8 +1,6 @@
 <template>
-    <button class="ow-button" :class="{[`ow-icon-${icon.position}`]: true}">
-        <svg v-if="icon.name" class="ow-icon">
-            <use :xlink:href="`#icon-${icon.name}`"></use>
-        </svg>
+    <button class="ow-button" :class="{[`ow-icon-${iconPosition}`]: true}">
+        <ow-icon :name="iconName"></ow-icon>
         <div class="ow-button-content">
             <slot></slot>
         </div>
@@ -10,16 +8,22 @@
 </template>
 
 <script>
+    import Icon from './Icon'
     export default {
         name: "ow-button",
         props: {
-            icon: {
-                type: Object,
-                default: {name: '', position: 'left'},
-                validator(iconObj) {
-                    return ['left', 'right'].indexOf(iconObj.position) > -1
+            iconName: {
+                type: String
+            },
+            iconPosition: {
+                type: String,
+                validator(iconPosition) {
+                    return ['left', 'right'].indexOf(iconPosition) > -1
                 }
             }
+        },
+        components: {
+            'ow-icon': Icon
         }
     }
 </script>
