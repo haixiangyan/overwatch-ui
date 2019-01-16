@@ -12,7 +12,9 @@
         name: "ow-icon",
         props: {
             name: {
-                type: String
+                type: String,
+                required: true,
+                default: 'setting'
             },
             color: {
                 type: String,
