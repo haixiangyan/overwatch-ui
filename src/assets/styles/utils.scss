@@ -1,0 +1,7 @@
+/* Middle
+-------------------------- */
+@mixin hvFlexCenter($flexType) {
+  display: $flexType;
+  justify-content: center;
+  align-items: center;
+}

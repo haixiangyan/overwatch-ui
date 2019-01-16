@@ -116,7 +116,7 @@ $--disabled-border-base: $--border-color-light !default;
 
 /* Icon
 -------------------------- */
-$--icon-color: #666 !default;
+$--icon-color: #2E3852 !default;
 $--icon-color-base: $--color-info !default;
 
 /* Checkbox
@@ -456,6 +456,7 @@ $--button-info-fill: $--color-info !default;
 $--button-hover-tint-percent: 20% !default;
 $--button-active-shade-percent: 10% !default;
 
+$--button-icon-color: $--color-white !default;
 
 /* cascader
 -------------------------- */
@@ -726,3 +727,7 @@ $--breakpoints-spec: (
 /* Animation
 --------------------------*/
 @import 'animation.scss';
+
+/* Utils
+--------------------------*/
+@import "utils.scss";

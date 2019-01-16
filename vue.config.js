@@ -5,7 +5,7 @@ module.exports = {
                 // @ -> /src
                 data: `
                     @import "@/assets/styles/global.scss";
-                    @import "@/assets/styles/test.scss";
+                    @import "@/assets/styles/dev.scss";
                 `
             }
         }
