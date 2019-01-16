@@ -11,7 +11,7 @@
             </ow-button>
         </div>
         <div>
-            <ow-icon name="setting"></ow-icon>
+            <ow-icon name="setting" color="#fff"></ow-icon>
         </div>
     </div>
 </template>

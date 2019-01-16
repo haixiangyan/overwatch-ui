@@ -1,6 +1,6 @@
 <template>
-    <button class="ow-button" :class="{[`ow-icon-${iconPosition}`]: true}">
-        <ow-icon :name="iconName"></ow-icon>
+    <button class="ow-button" :class="{[`ow-button-icon-${iconPosition}`]: true}">
+        <ow-icon class="ow-button-icon" color="#fff" :name="iconName"></ow-icon>
         <div class="ow-button-content">
             <slot></slot>
         </div>
@@ -47,14 +47,14 @@
         }
 
         // Icon
-        > .ow-icon { height: 1em; width: 1em; order: 1; margin-right: .3em; fill: $--button-icon-color; }
+        &-icon { height: 1em; width: 1em; order: 1; margin-right: .3em;}
         // Content
         &-content { order: 2; }
 
         // Right position
-        &.ow-icon-right {
+        &-icon-right {
             > .ow-button-content { order: 1; }
-            > .ow-icon { order: 2; margin-left: .3em; margin-right: 0; }
+            > .ow-button-icon { order: 2; margin-left: .3em; margin-right: 0; }
         }
     }
 </style>

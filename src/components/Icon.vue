@@ -1,5 +1,5 @@
 <template>
-    <svg v-if="name" class="ow-icon">
+    <svg v-if="name" class="ow-icon" :style="style">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -10,6 +10,17 @@
         props: {
             name: {
                 type: String
+            },
+            color: {
+                type: String,
+                default: '#00000'
+            }
+        },
+        data() {
+            return {
+                style: {
+                    fill: this.color
+                }
             }
         }
     }
