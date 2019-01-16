@@ -1,7 +1,6 @@
 <template>
     <button
-        class="ow-button"
-        :class="{[`ow-button-icon_${iconPosition}`]: true}"
+        :class="classes"
         @click="$emit('click')">
         <ow-icon
             class="ow-button-icon"
@@ -17,6 +16,7 @@
 
 <script>
     import Icon from './Icon'
+
     export default {
         name: "ow-button",
         props: {
@@ -32,6 +32,22 @@
             isLoading: {
                 type: Boolean,
                 default: false
+            },
+            type: {
+                type: String,
+                default: 'warning',
+                validator(type) {
+                    return ['primary', 'warning', 'danger', 'info'].indexOf(type) > -1
+                }
+            }
+        },
+        computed: {
+            classes() {
+                return [
+                    'ow-button',
+                    { [`ow-button-icon_${this.iconPosition}`]: true, },
+                    `ow-button-${this.type}`
+                ]
             }
         },
         components: {
@@ -42,7 +58,7 @@
 
 <style scoped lang="scss">
     .ow-button {
-        @include hvFlexCenter(inline-flex);
+        @include hvFlexCenterMx(inline-flex);
         font-size: $--button-font-size;
         padding: $--button-padding-vertical $--button-padding-horizontal;
         color: $--button-warning-color;
@@ -68,5 +84,11 @@
             > .ow-button-content { order: 1; }
             > .ow-button-icon { order: 2; margin-left: .3em; margin-right: 0; }
         }
+
+        // Types
+        &-primary { background: $--button-primary-fill; }
+        &-danger { background: $--button-danger-fill; }
+        &-warning { background: $--button-warning-fill; }
+        &-info { background: $--button-info-fill; }
     }
 </style>

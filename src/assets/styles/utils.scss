@@ -1,7 +1,12 @@
 /* Middle
 -------------------------- */
-@mixin hvFlexCenter($flexType) {
+@mixin hvFlexCenterMx($flexType) {
   display: $flexType;
   justify-content: center;
   align-items: center;
 }
+
+/* Types
+-------------------------- */
+$typeList: primary, warning, danger, info;
+

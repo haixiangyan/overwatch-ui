@@ -1,13 +1,28 @@
 <template>
     <div id="app">
         <div>
-            <ow-button icon-name="remove">
-                Remove
-            </ow-button>
+            <ow-button-group>
+                <ow-button icon-name="add" type="primary" icon-position="left">
+                    Prev
+                </ow-button>
+                <ow-button icon-name="subtract" type="primary" icon-position="right">
+                    Next
+                </ow-button>
+            </ow-button-group>
         </div>
         <div>
             <ow-button icon-name="setting" icon-position="right">
                 Setting
+            </ow-button>
+        </div>
+        <div>
+            <ow-button type="danger" icon-name="remove">
+                Remove
+            </ow-button>
+        </div>
+        <div>
+            <ow-button type="info" icon-name="notification">
+                Info
             </ow-button>
         </div>
         <div>
@@ -18,16 +33,6 @@
                 icon-position="right">
                 Loading...
             </ow-button>
-        </div>
-        <div>
-            <ow-button-group>
-                <ow-button icon-name="add" icon-position="left">
-                    Prev
-                </ow-button>
-                <ow-button icon-name="subtract" icon-position="right">
-                    Next
-                </ow-button>
-            </ow-button-group>
         </div>
         <div>
             <ow-icon name="setting" color="#fff"></ow-icon>
@@ -67,6 +72,6 @@
     }
 
     div {
-        @include hvFlexCenter(flex);
+        @include hvFlexCenterMx(flex);
     }
 </style>
