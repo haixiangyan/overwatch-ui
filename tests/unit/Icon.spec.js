@@ -1,34 +1,51 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import Icon from '@/components/Icon.vue'
+import {testProperty} from "../utils"
 
 const testData = {
-    name: 'setting',
-    color: '#ffaabb',
-    isLoading: true
+    names: ['setting', 'add'],
+    colors: ['#ffaabb', '#aabbff'],
+    isLoadings: [true]
 }
 
 describe('Icon.vue', () => {
     it('renders props.name when passed', () => {
-        const {name} = testData
+        const {names} = testData
         const IconVue = shallowMount(Icon, {
-            propsData: {name}
+            props: {name: names[0]}
         })
-        const useVue = IconVue.find('use')
-        expect(useVue.attributes().href).to.equal(`#icon-${name}`)
+
+        testProperty(names)
+            .then((name) => {
+                IconVue.setProps({name})
+                const useVue = IconVue.find('use')
+                expect(useVue.attributes().href).to.equal(`#icon-${name}`)
+            })
     })
     it('renders props.color when passed', () => {
-        const {name, color} = testData
+        const {names, colors} = testData
         const IconVue = shallowMount(Icon, {
-            propsData: {name, color}
+            props: {name: names[0]}
         })
-        expect(IconVue.element.style.fill).to.equal(color)
+
+        testProperty(colors)
+            .then((color) => {
+                IconVue.setProps({color})
+                console.log(IconVue.html())
+                expect(IconVue.element.style.fill).to.equal(color)
+            })
     })
     it('renders props.isLoading when passed', () => {
-        const {name, isLoading} = testData
+        const {names, isLoadings} = testData
         const IconVue = shallowMount(Icon, {
-            propsData: {name, isLoading}
+            props: {name: names[0]}
         })
-        expect(IconVue.classes()).contain('ow-icon_loading')
+
+        testProperty(isLoadings)
+            .then((isLoading) => {
+                IconVue.setProps({isLoading})
+                expect(IconVue.classes()).contain('ow-icon_loading')
+            })
     })
 })

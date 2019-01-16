@@ -8,7 +8,7 @@ module.exports = {
                 // @ -> /src
                 data: `
                     @import "@/assets/styles/global.scss";
-                    @import "@/assets/styles/dev.scss";
+                    @import "@/assets/styles/reset.scss";
                 `
             }
         }
