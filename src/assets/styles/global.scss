@@ -3,6 +3,7 @@
 /* Opacity
 -------------------------- */
 $--default-opacity: 0.9;
+$--trigger-opacity: 0.8;
 
 /* Transition
 -------------------------- */
@@ -33,6 +34,11 @@ $--color-success: #67c23a !default;
 $--color-warning: #FFC429 !default;
 $--color-danger: #f56c6c !default;
 $--color-info: #909399 !default;
+
+$--color-success-dark: darken($--color-success, 15%) !default;
+$--color-warning-dark: darken($--color-warning, 15%) !default;
+$--color-danger-dark: darken($--color-danger, 15%) !default;
+$--color-info-dark: darken($--color-info, 15%) !default;
 
 $--color-success-light: mix($--color-white, $--color-success, 80%) !default;
 $--color-warning-light: mix($--color-white, $--color-warning, 80%) !default;
@@ -68,7 +74,7 @@ $--border-color-lighter: #ebeef5 !default;
 $--border-color-extra-light: #f2f6fc !default;
 $--border-color-hover: $--color-text-placeholder !default;
 $--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
-$--border-radius-base: 0px !default;
+$--border-radius-base: 4px !default;
 $--border-radius-small: 2px !default;
 $--border-radius-circle: 100% !default;
 
@@ -716,3 +722,7 @@ $--breakpoints-spec: (
   'lg-and-down': (max-width: $--xl - 1),
   'xl-only' : (min-width: $--xl),
 );
+
+/* Animation
+--------------------------*/
+@import 'animation.scss';

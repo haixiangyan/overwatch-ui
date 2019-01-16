@@ -4,9 +4,8 @@ module.exports = {
             sass: {
                 // @ -> /src
                 data: `
-                    @import "@/assets/styles/test.scss";
-                    @import "@/assets/styles/animation.scss";
                     @import "@/assets/styles/global.scss";
+                    @import "@/assets/styles/test.scss";
                 `
             }
         }

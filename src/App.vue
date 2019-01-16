@@ -15,4 +15,11 @@
 </script>
 
 <style lang="scss">
+    #app {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: black;
+    }
 </style>
