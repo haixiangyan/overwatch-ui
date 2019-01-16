@@ -15,7 +15,10 @@
         props: {
             icon: {
                 type: Object,
-                default: {name: '', position: 'none'}
+                default: {name: '', position: 'left'},
+                validator(iconObj) {
+                    return ['left', 'right'].indexOf(iconObj.position) > -1
+                }
             }
         }
     }
