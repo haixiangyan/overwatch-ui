@@ -10,7 +10,7 @@
                 Setting
             </ow-button>
         </div>
-        <div >
+        <div>
             <ow-button
                 @click="isLoading = !isLoading"
                 icon-name="loading"
@@ -40,6 +40,7 @@
     import Icon from './components/Icon'
     import Button from './components/Button'
     import ButtonGroup from './components/ButtonGroup'
+
     export default {
         name: 'app',
         data() {
@@ -64,6 +65,7 @@
             margin-right: 4px;
         }
     }
+
     div {
         @include hvFlexCenter(flex);
     }
