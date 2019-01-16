@@ -16,18 +16,18 @@ const testData = {
 describe('Button.vue', () => {
     it('renders props.iconName when passed', () => {
         const {iconNames} = testData
-        const ButtonVue = shallowMount(Button, {})
+        const ButtonVue = shallowMount(Button)
+        const IconVue = ButtonVue.find(Icon)
 
         testProperty(iconNames)
             .then((iconName) => {
                 ButtonVue.setProps({iconName})
-                const IconVue = ButtonVue.find(Icon)
                 expect(IconVue.attributes().name).to.equal(iconName)
             })
     })
     it('renders props.iconPosition when passed', () => {
         const {iconNames, iconPositions} = testData
-        const ButtonVue = shallowMount(Button, {})
+        const ButtonVue = shallowMount(Button)
         testProperty(iconPositions)
             .then((iconPosition) => {
                 ButtonVue.setProps({
@@ -39,26 +39,26 @@ describe('Button.vue', () => {
     })
     it('renders props.isLoading when passed', () => {
         const {isLoadings} = testData
-        const ButtonVue = shallowMount(Button, {})
+        const ButtonVue = shallowMount(Button)
+        const IconVue = ButtonVue.find(Icon)
         testProperty(isLoadings)
             .then((isLoading) => {
                 ButtonVue.setProps({
                     isLoading
                 })
-                const IconVue = ButtonVue.find(Icon)
                 expect(IconVue.attributes().isloading).to.equal('true')
             })
     })
     it('renders props.type when passed', () => {
         const {types} = testData
-        const ButtonVue = shallowMount(Button, {})
+        const ButtonVue = shallowMount(Button)
         testProperty(types).then((type) => {
             ButtonVue.setProps({type})
             expect(ButtonVue.classes()).contain(`ow-button-${type}`)
         })
     })
     it('handles click event', () => {
-        const ButtonVue = shallowMount(Button, {})
+        const ButtonVue = shallowMount(Button)
         const {events} = testData
         testProperty(events).then((event) => {
             const eventHandler = sinon.stub()

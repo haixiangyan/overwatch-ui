@@ -13,7 +13,9 @@ describe('Icon.vue', () => {
     it('renders props.name when passed', () => {
         const {names} = testData
         const IconVue = shallowMount(Icon, {
-            props: {name: names[0]}
+            props: {
+                name: names[0]
+            }
         })
 
         testProperty(names)
@@ -26,20 +28,19 @@ describe('Icon.vue', () => {
     it('renders props.color when passed', () => {
         const {names, colors} = testData
         const IconVue = shallowMount(Icon, {
-            props: {name: names[0]}
+            propsData: {name: names[0]}
         })
 
         testProperty(colors)
             .then((color) => {
                 IconVue.setProps({color})
-                console.log(IconVue.html())
                 expect(IconVue.element.style.fill).to.equal(color)
             })
     })
     it('renders props.isLoading when passed', () => {
         const {names, isLoadings} = testData
         const IconVue = shallowMount(Icon, {
-            props: {name: names[0]}
+            propsData: {name: names[0]}
         })
 
         testProperty(isLoadings)
