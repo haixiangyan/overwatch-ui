@@ -1,6 +1,14 @@
 <template>
-    <button class="ow-button" :class="{[`ow-button-icon_${iconPosition}`]: true}">
-        <ow-icon class="ow-button-icon" color="#fff" :name="iconName"></ow-icon>
+    <button
+        class="ow-button"
+        :class="{[`ow-button-icon_${iconPosition}`]: true}"
+        @click="$emit('click')">
+        <ow-icon
+            class="ow-button-icon"
+            color="#fff"
+            :is-loading="isLoading"
+            :name="iconName">
+        </ow-icon>
         <div class="ow-button-content">
             <slot></slot>
         </div>
@@ -20,6 +28,10 @@
                 validator(iconPosition) {
                     return ['left', 'right'].indexOf(iconPosition) > -1
                 }
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
             }
         },
         components: {

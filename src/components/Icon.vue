@@ -1,5 +1,8 @@
 <template>
-    <svg v-if="name" class="ow-icon" :class="classes" :style="styles">
+    <svg
+        v-if="name"
+        :class="classes"
+        :style="styles">
         <use :xlink:href="`#icon-${name}`"></use>
     </svg>
 </template>
@@ -20,12 +23,15 @@
                 default: false
             }
         },
-        data() {
-            return {
-                styles: {
+        computed: {
+            styles() {
+                return {
                     fill: this.color
-                },
-                classes: [
+                }
+            },
+            classes() {
+                return [
+                    'ow-icon',
                     {'ow-icon_loading': this.isLoading}
                 ]
             }
