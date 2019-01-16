@@ -22,7 +22,7 @@
         transition: all .5s;
         &:hover, &:active {
             opacity: $--trigger-opacity;
-            animation: button-breathe 2s infinite;
+            animation: button-breathe 1.5s infinite;
         }
     }
 </style>

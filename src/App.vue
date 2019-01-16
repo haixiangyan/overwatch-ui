@@ -20,6 +20,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: black;
+        background-size: 100%;
+        background: url("./assets/images/bg.jpg") no-repeat center center;
     }
 </style>
