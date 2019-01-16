@@ -1,13 +1,13 @@
 <template>
     <div id="app">
         <div>
-            <ow-button icon-name="add">
-                寻找队伍
+            <ow-button icon-name="remove">
+                Remove
             </ow-button>
         </div>
         <div>
-            <ow-button icon-name="subtract" icon-position="right">
-                不找队伍
+            <ow-button icon-name="setting" icon-position="right">
+                Setting
             </ow-button>
         </div>
         <div >
@@ -16,8 +16,18 @@
                 icon-name="loading"
                 :is-loading="isLoading"
                 icon-position="right">
-                加载中...
+                Loading...
             </ow-button>
+        </div>
+        <div>
+            <ow-button-group>
+                <ow-button icon-name="add" icon-position="left">
+                    Prev
+                </ow-button>
+                <ow-button icon-name="subtract" icon-position="right">
+                    Next
+                </ow-button>
+            </ow-button-group>
         </div>
         <div>
             <ow-icon name="setting" color="#fff"></ow-icon>
@@ -29,6 +39,7 @@
 <script>
     import Icon from './components/Icon'
     import Button from './components/Button'
+    import ButtonGroup from './components/ButtonGroup'
     export default {
         name: 'app',
         data() {
@@ -38,7 +49,8 @@
         },
         components: {
             'ow-button': Button,
-            'ow-icon': Icon
+            'ow-icon': Icon,
+            'ow-button-group': ButtonGroup
         }
     }
 </script>
