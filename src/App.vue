@@ -1,6 +1,11 @@
 <template>
     <div id="app">
         <div>
+            <ow-button type="danger">
+                Danger
+            </ow-button>
+        </div>
+        <div>
             <ow-button-group>
                 <ow-button icon-name="add" type="primary" icon-position="left">
                     Prev

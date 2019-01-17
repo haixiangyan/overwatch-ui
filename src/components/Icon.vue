@@ -14,7 +14,7 @@
             name: {
                 type: String,
                 required: true,
-                default: 'setting'
+                default: ''
             },
             color: {
                 type: String,
