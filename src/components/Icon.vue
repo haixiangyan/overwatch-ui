@@ -1,6 +1,5 @@
 <template>
     <svg
-        v-if="name"
         :class="classes"
         :style="styles">
         <use :xlink:href="`#icon-${name}`"></use>
