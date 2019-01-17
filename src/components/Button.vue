@@ -71,7 +71,7 @@
         vertical-align: middle;
         &:hover, &:active {
             opacity: $--trigger-opacity;
-            animation: button-breathe 1.5s infinite;
+            animation: button-breathe 1.5s infinite ease-out;
         }
 
         // Icon
