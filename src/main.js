@@ -1,13 +1,8 @@
 import Vue from 'vue'
-
-import OwButtonGroup from './components/ButtonGroup'
-import OwButton from './components/Button'
-import OwIcon from './components/Icon'
+import App from './App.vue'
 
 Vue.config.productionTip = false
 
-export default {
-    OwButtonGroup,
-    OwButton,
-    OwIcon
-}
+new Vue({
+    render: h => h(App),
+}).$mount('#app')
