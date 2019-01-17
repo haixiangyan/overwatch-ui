@@ -65,11 +65,11 @@ buttons for next page and prev page.
 </ow-button-group>
 ```
 
-## Attributes
+## Properties
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| iconName | Set name of icon in Button | String | - |
-| iconPosition | Set position of icon in Button | String | | "left" |
-| isLoading | Set the loading status of Button | Boolean | false |
+| icon-name | Set name of icon in Button | String | - |
+| icon-position | Set position of icon in Button | String | | "left" |
+| is-loading | Set the loading status of Button | Boolean | false |
 | type | Set type of Button | String | "warning" |
