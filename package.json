@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "A UI library of Overwatch, built with Vue.js",
     "main": "./src/main.js",
-    "private": true,
+    "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
