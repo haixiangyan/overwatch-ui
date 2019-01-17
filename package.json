@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit",
   },
   "dependencies": {
     "vue": "^2.5.21"
