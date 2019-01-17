@@ -1,10 +1,18 @@
 # overwatch-ui
 
-A UI library of Overwatch, built with Vue.js
+A UI library of game Overwatch, built with Vue.js.
 
-## Install
+## Documentation
 
-Place enable styles below before using this UI library.
+For now, I haven't built the documentation website, 
+so if all the docs are placed in directory `./docs/*`.
+(Click here to view)[./docs].
+
+## Note
+
+**This UI library will reset some styles as followed. 
+I strongly recommend you to add these styles to all of your projects :), 
+because some CSS bugs can't be found without them.**
 
 ```css
 * {
@@ -12,34 +20,4 @@ Place enable styles below before using this UI library.
     padding: 0;
     box-sizing: border-box;
 }
-```
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Run your unit tests
-```
-yarn run test:unit
 ```
