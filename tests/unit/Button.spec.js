@@ -21,7 +21,8 @@ describe('Button.vue', () => {
     })
 
     describe(('props'), () => {
-        let ButtonVue = shallowMount(Button)
+        const ButtonVue = shallowMount(Button)
+        const IconVue = ButtonVue.find(Icon)
 
         afterEach(() => {
             ButtonVue.setProps({})
@@ -29,7 +30,6 @@ describe('Button.vue', () => {
 
         it('renders props.iconName when passed', () => {
             const {iconNames} = testData
-            const IconVue = ButtonVue.find(Icon)
 
             testProperty(iconNames, (iconName) => {
                 ButtonVue.setProps({iconName})
@@ -52,7 +52,6 @@ describe('Button.vue', () => {
                 isLoading
             })
 
-            const IconVue = ButtonVue.find(Icon)
             expect(IconVue.attributes('isloading')).to.equal('true')
         })
         it('renders props.type when passed', () => {

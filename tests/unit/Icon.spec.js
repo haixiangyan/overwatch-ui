@@ -10,7 +10,7 @@ const testData = {
 }
 
 describe('Icon.vue', () => {
-    let IconVue = shallowMount(Icon)
+    const IconVue = shallowMount(Icon)
 
     afterEach(() => {
         IconVue.setProps({})
