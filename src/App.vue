@@ -1,55 +1,17 @@
 <template>
     <div id="app">
         <div>
-            <ow-button type="danger">
-                Danger
-            </ow-button>
-        </div>
-        <div>
-            <ow-button-group>
-                <ow-button icon-name="add" type="primary" icon-position="left">
-                    Prev
-                </ow-button>
-                <ow-button icon-name="subtract" type="primary" icon-position="right">
-                    Next
-                </ow-button>
-            </ow-button-group>
-        </div>
-        <div>
-            <ow-button icon-name="setting" icon-position="right">
-                Setting
-            </ow-button>
-        </div>
-        <div>
-            <ow-button type="danger" icon-name="remove">
-                Remove
-            </ow-button>
-        </div>
-        <div>
-            <ow-button type="info" icon-name="notification">
-                Info
-            </ow-button>
-        </div>
-        <div>
-            <ow-button
-                @click="isLoading = !isLoading"
-                icon-name="loading"
-                :is-loading="isLoading"
-                icon-position="right">
-                Loading...
-            </ow-button>
-        </div>
-        <div>
-            <ow-icon name="setting" color="#fff"></ow-icon>
-            <ow-icon name="loading" color="#fff" :is-loading="isLoading"></ow-icon>
+            <ow-button icon-name="add" icon-position="left">Add</ow-button>
+            <ow-button type="primary" icon-name="add" >添加</ow-button>
+            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="danger" icon-name="cancel"></ow-input>
+            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="warning" icon-name="warning"></ow-input>
+            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="info" icon-name="notification"></ow-input>
         </div>
     </div>
 </template>
 
 <script>
-    import Icon from './components/Icon'
-    import Button from './components/Button'
-    import ButtonGroup from './components/ButtonGroup'
+    import Components from './components/index'
 
     export default {
         name: 'app',
@@ -59,24 +21,16 @@
             }
         },
         components: {
-            'ow-button': Button,
-            'ow-icon': Icon,
-            'ow-button-group': ButtonGroup
+            ...Components
         }
     }
 </script>
 
 <style lang="scss">
     #app {
+        @include hvFlexCenterMx(flex);
         height: 100vh;
         background-size: 100%;
         background: url("./assets/images/bg.jpg") no-repeat center center;
-        div {
-            margin-right: 4px;
-        }
-    }
-
-    div {
-        @include hvFlexCenterMx(flex);
     }
 </style>
