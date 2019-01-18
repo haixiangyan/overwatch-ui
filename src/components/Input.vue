@@ -5,7 +5,10 @@
             :disabled="disabled"
             :readonly="readonly"
             :placeholder="placeholder"
-            @change="$emit('change')"
+            @change="$emit('change', $event)"
+            @focus="$emit('focus', $event)"
+            @blur="$emit('focus', $event)"
+            @input="$emit('focus', $event)"
             :type="type">
         <p class="ow-input-hint"v-if="hint">
             <ow-icon class="ow-input-hint-icon" :name="iconName" :color="iconColor"></ow-icon>
@@ -23,7 +26,7 @@ export default {
             type: String
         },
         iconName: {
-
+            type: String
         },
         placeholder: {
             type: String
@@ -108,9 +111,7 @@ export default {
     &-hint {
         @include hvFlexCenterMx(flex);
 
-        &-icon {
-            margin-right: 4px;
-        }
+        &-icon { margin-right: 4px; }
     }
 }
 </style>

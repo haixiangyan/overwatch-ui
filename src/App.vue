@@ -3,7 +3,14 @@
         <div>
             <ow-button icon-name="add" icon-position="left">Add</ow-button>
             <ow-button type="primary" icon-name="add" >添加</ow-button>
-            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="danger" icon-name="cancel"></ow-input>
+            <ow-input
+                value="Hello"
+                placeholder="World"
+                hint="Error: Invalid Password."
+                hintType="danger"
+                @change="inputChange"
+                icon-name="cancel">
+            </ow-input>
             <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="warning" icon-name="warning"></ow-input>
             <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="info" icon-name="notification"></ow-input>
         </div>
@@ -22,6 +29,11 @@
         },
         components: {
             ...Components
+        },
+        methods: {
+            inputChange(event) {
+                console.log(event)
+            }
         }
     }
 </script>
