@@ -71,7 +71,6 @@
         opacity: $--more-opacity;
         &:hover, &:active {
             animation: border-breathe 1.5s infinite ease-out;
-            z-index: 1;
         }
 
         // Icon

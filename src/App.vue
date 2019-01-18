@@ -1,18 +1,31 @@
 <template>
     <div id="app">
         <div>
-            <ow-button icon-name="add" icon-position="left">Add</ow-button>
-            <ow-button type="primary" icon-name="add" >添加</ow-button>
+            <ow-button @click="increase" icon-name="add" icon-position="left">Add</ow-button>
+            <ow-button @click="increase" type="primary" icon-name="add" >添加</ow-button>
             <ow-input
                 value="Hello"
                 placeholder="World"
                 hint="Error: Invalid Password."
                 hintType="danger"
-                @change="inputChange"
                 icon-name="cancel">
             </ow-input>
-            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="warning" icon-name="warning"></ow-input>
-            <ow-input value="Hello" placeholder="World" hint="Error: Invalid Password." hintType="info" icon-name="notification"></ow-input>
+            <ow-input
+                value="Hello"
+                placeholder="World"
+                hint="Error: Invalid Password."
+                hintType="warning"
+                icon-name="warning">
+            </ow-input>
+            <ow-input
+                placeholder="World"
+                hint="Error: Invalid Password."
+                hintType="info"
+                v-model="counter"
+                icon-name="notification">
+            </ow-input>
+            <p>{{counter}}</p>
+            <ow-icon name="loading" :is-loading="true"></ow-icon>
         </div>
     </div>
 </template>
@@ -24,15 +37,15 @@
         name: 'app',
         data() {
             return {
-                isLoading: true
+                counter: 1
             }
         },
         components: {
             ...Components
         },
         methods: {
-            inputChange(event) {
-                console.log(event)
+            increase() {
+                this.counter += 1
             }
         }
     }

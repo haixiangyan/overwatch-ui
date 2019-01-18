@@ -5,10 +5,10 @@
             :disabled="disabled"
             :readonly="readonly"
             :placeholder="placeholder"
-            @change="$emit('change', $event)"
-            @focus="$emit('focus', $event)"
-            @blur="$emit('focus', $event)"
-            @input="$emit('focus', $event)"
+            @change="$emit('change', $event.target.value)"
+            @focus="$emit('focus', $event.target.value)"
+            @blur="$emit('blur', $event.target.value)"
+            @input="$emit('input', $event.target.value)"
             :type="type">
         <p class="ow-input-hint" v-if="hint">
             <ow-icon class="ow-input-hint-icon" :name="iconName" :color="iconColor"></ow-icon>
@@ -23,7 +23,7 @@ export default {
     name: "ow-input",
     props: {
         value: {
-            type: String
+            type: [String, Number]
         },
         iconName: {
             type: String
