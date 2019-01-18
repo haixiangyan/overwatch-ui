@@ -2,8 +2,8 @@
 
 /* Opacity
 -------------------------- */
-$--default-opacity: 0.9;
-$--trigger-opacity: 0.75;
+$--more-opacity: 0.9;
+$--less-opacity: 0.75;
 
 /* Transition
 -------------------------- */
@@ -63,6 +63,10 @@ $--link-hover-color: $--color-primary !default;
 /* Background
 -------------------------- */
 $--background-color-base: #f5f7fa !default;
+
+/* Height
+-------------------------- */
+$--height-base: 32px !default;
 
 /* Border
 -------------------------- */
@@ -227,7 +231,6 @@ $--select-close-hover-color: $--color-text-secondary !default;
 
 $--select-input-color: $--color-text-placeholder !default;
 $--select-multiple-input-color: #666 !default;
-$--select-input-focus-background: $--color-primary !default;
 $--select-input-font-size: 14px !default;
 
 $--select-option-color: $--color-text-regular !default;
@@ -323,10 +326,11 @@ $--notification-danger-color: $--color-danger !default;
 
 /* Input
 -------------------------- */
+$--input-padding-horizontal: 15px !default;
 $--input-font-size: $--font-size-base !default;
 $--input-color: $--color-text-regular !default;
 $--input-width: 140px !default;
-$--input-height: 40px !default;
+$--input-height: $--height-base !default;
 $--input-border: $--border-base !default;
 $--input-border-color: $--border-color-base !default;
 $--input-border-radius: $--border-radius-base !default;
@@ -408,7 +412,6 @@ $--button-font-weight: $--font-weight-primary !default;
 $--button-border-radius: $--border-radius-base !default;
 $--button-padding-vertical: 6px !default;
 $--button-padding-horizontal: 12px !default;
-$--button-opacity: $--default-opacity !default;
 
 $--button-medium-font-size: 14px !default;
 $--button-medium-border-radius: $--border-radius-base !default;

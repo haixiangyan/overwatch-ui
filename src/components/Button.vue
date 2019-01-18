@@ -3,7 +3,6 @@
         :class="classes"
         @click="$emit('click')">
         <ow-icon
-            v-if="iconName"
             class="ow-button-icon"
             color="#fff"
             :is-loading="isLoading"
@@ -62,17 +61,17 @@
         @include hvFlexCenterMx(inline-flex);
         font-size: $--button-font-size;
         padding: $--button-padding-vertical $--button-padding-horizontal;
+        height: $--height-base;
         color: $--button-warning-color;
         border-radius: $--border-radius-small;
-        border: 1px solid transparent;
+        border: none;
         background: $--button-warning-fill;
-        opacity: $--default-opacity;
         outline: none;
-        transition: all .5s;
         vertical-align: middle;
+        opacity: $--more-opacity;
         &:hover, &:active {
-            opacity: $--trigger-opacity;
-            animation: button-breathe 1.5s infinite ease-out;
+            animation: border-breathe 1.5s infinite ease-out;
+            z-index: 1;
         }
 
         // Icon

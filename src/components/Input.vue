@@ -1,0 +1,111 @@
+<template>
+    <div class="ow-input-wrapper" :class="wrapperClasses" >
+        <input
+            :value="value"
+            :disabled="disabled"
+            :readonly="readonly"
+            :placeholder="placeholder"
+            type="text">
+        <p class="ow-input-hint"v-if="hint">
+            <ow-icon class="ow-input-hint-icon" :name="iconName" :color="iconColor"></ow-icon>
+            <small>{{hint}}</small>
+        </p>
+    </div>
+</template>
+
+<script>
+import Icon from './Icon'
+export default {
+    name: "ow-input",
+    props: {
+        value: {
+            type: String
+        },
+        iconName: {
+
+        },
+        placeholder: {
+            type: String
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        hint: {
+            type: String
+        },
+        hintType: {
+            type: String,
+            validator(hintType) {
+                return ['info', 'warning', 'danger'].indexOf(hintType) > -1
+            }
+        }
+    },
+    computed: {
+        wrapperClasses() {
+            return [
+                `ow-input-wrapper-${this.hintType}`
+            ]
+        },
+        iconColor() {
+            const colors = {
+                info: '#909399',
+                warning: '#FFC429',
+                danger: '#BD2830'
+            }
+            return colors[this.hintType]
+        }
+    },
+    components: {
+        'ow-icon': Icon
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.ow-input {
+    &-wrapper {
+        > input {
+            padding: $--input-padding-horizontal;
+            height: $--input-height;
+            outline: none;
+            border: 1px solid $--input-border-color;
+            border-radius: $--border-radius-base;
+            transition: opacity .3s;
+            opacity: $--less-opacity;
+
+            &:hover, &:active, &:focus {
+                opacity: $--more-opacity;
+                z-index: 1;
+            }
+            &[disabled], &[readonly] {
+                opacity: $--less-opacity;
+            }
+        }
+
+        &-danger  {
+            > input { border-color: $--color-danger; }
+            & small { color: $--color-danger; }
+        }
+        &-warning  {
+            > input { border-color: $--color-warning; }
+            & small { color: $--color-warning; }
+        }
+        &-info {
+            > input { border-color: $--color-info; }
+            & small { color: $--color-info; }
+        }
+    }
+    &-hint {
+        @include hvFlexCenterMx(flex);
+
+        &-icon {
+            margin-right: 4px;
+        }
+    }
+}
+</style>
