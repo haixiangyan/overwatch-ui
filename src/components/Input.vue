@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-input-wrapper" :class="wrapperClasses" >
+    <div class="ow-input-wrapper" :class="wrapperClasses">
         <input
             :value="value"
             :disabled="disabled"
@@ -10,7 +10,7 @@
             @blur="$emit('focus', $event)"
             @input="$emit('focus', $event)"
             :type="type">
-        <p class="ow-input-hint"v-if="hint">
+        <p class="ow-input-hint" v-if="hint">
             <ow-icon class="ow-input-hint-icon" :name="iconName" :color="iconColor"></ow-icon>
             <small>{{hint}}</small>
         </p>
