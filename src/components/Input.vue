@@ -5,7 +5,8 @@
             :disabled="disabled"
             :readonly="readonly"
             :placeholder="placeholder"
-            type="text">
+            @change="$emit('change')"
+            :type="type">
         <p class="ow-input-hint"v-if="hint">
             <ow-icon class="ow-input-hint-icon" :name="iconName" :color="iconColor"></ow-icon>
             <small>{{hint}}</small>
@@ -43,6 +44,10 @@ export default {
             validator(hintType) {
                 return ['info', 'warning', 'danger'].indexOf(hintType) > -1
             }
+        },
+        type: {
+            type: String,
+            default: 'text'
         }
     },
     computed: {
