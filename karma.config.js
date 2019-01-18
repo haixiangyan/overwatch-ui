@@ -7,7 +7,13 @@ module.exports = {
     client: {
         chai: {
             includeStack: true
-        }
+        },
+        captureConsole: true
+    },
+    browserConsoleLogOptions: {
+        level: 'log',
+        format: '%b %T: %m',
+        terminal: true
     },
     /**
      * Files containing tests. These will be preprocessed with webpack and

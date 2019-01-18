@@ -5,7 +5,7 @@ import {testProperty} from "../utils"
 
 const testData = {
     names: ['setting', 'add'],
-    colors: ['#ffaabb', '#aabbff'],
+    colors: ['rgb(189, 40, 48)'],
     isLoadings: [true]
 }
 
@@ -18,12 +18,11 @@ describe('Icon.vue', () => {
             }
         })
 
-        testProperty(names)
-            .then((name) => {
-                IconVue.setProps({name})
-                const useVue = IconVue.find('use')
-                expect(useVue.attributes().href).to.equal(`#icon-${name}`)
-            })
+        testProperty(names, (name) => {
+            IconVue.setProps({name})
+            const useVue = IconVue.find('use')
+            expect(useVue.attributes().href).to.equal(`#icon-${name}`)
+        })
     })
     it('renders props.color when passed', () => {
         const {names, colors} = testData
@@ -31,11 +30,10 @@ describe('Icon.vue', () => {
             propsData: {name: names[0]}
         })
 
-        testProperty(colors)
-            .then((color) => {
-                IconVue.setProps({color})
-                expect(IconVue.element.style.fill).to.equal(color)
-            })
+        testProperty(colors, (color) => {
+            IconVue.setProps({color})
+            expect(IconVue.element.style.fill).to.equal(color)
+        })
     })
     it('renders props.isLoading when passed', () => {
         const {names, isLoadings} = testData
@@ -43,10 +41,9 @@ describe('Icon.vue', () => {
             propsData: {name: names[0]}
         })
 
-        testProperty(isLoadings)
-            .then((isLoading) => {
-                IconVue.setProps({isLoading})
-                expect(IconVue.classes()).contain('ow-icon_loading')
-            })
+        testProperty(isLoadings, (isLoading) => {
+            IconVue.setProps({isLoading})
+            expect(IconVue.classes()).contain('ow-icon_loading')
+        })
     })
 })

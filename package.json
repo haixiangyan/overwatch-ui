@@ -7,7 +7,7 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build --target lib --name overwatch-ui ./src/components/index.js",
-        "test": "vue-cli-service test:unit"
+        "test": "vue-cli-service test:unit --log-level debug"
     },
     "repository": {
         "type": "git",

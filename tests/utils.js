@@ -1,5 +1,3 @@
-export function testProperty(values) {
-    return new Promise((resolve, reject) => {
-        values.forEach((value) => resolve(value))
-    })
+export function testProperty(values, callback) {
+    values.forEach(callback)
 }
