@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "ow-button-group",
+        name: "OwButtonGroup",
         mounted() {
             for (let node of this.$el.children) {
                 let name = node.nodeName.toLowerCase()

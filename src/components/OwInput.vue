@@ -20,7 +20,7 @@
 <script>
 import OwIcon from './OwIcon'
 export default {
-    name: "ow-input",
+    name: "OwInput",
     props: {
         value: {
             type: [String, Number]

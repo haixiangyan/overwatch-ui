@@ -1,4 +1,4 @@
-/* Middle
+/* Center
 -------------------------- */
 @mixin hvFlexCenterMx($flexType) {
   display: $flexType;
@@ -9,3 +9,15 @@
 /* Types
 -------------------------- */
 $typeList: primary, warning, danger, info;
+
+
+/* Grid System
+-------------------------- */
+@mixin gridSystem() {
+  $class: ow-col;
+  @for $n from 1 through 24 {
+    .#{$class}.#{$class}-#{$n} {
+      width: ($n / 24) * 100%;
+    }
+  }
+}

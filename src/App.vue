@@ -1,8 +1,28 @@
 <template>
     <div id="app">
-        <div class="row">
-
-        </div>
+        <ow-row>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+        </ow-row>
+        <ow-row>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+        </ow-row>
+        <ow-row>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+            <ow-col></ow-col>
+        </ow-row>
+        <ow-row>
+            <ow-col span="2"></ow-col>
+            <ow-col span="22"></ow-col>
+        </ow-row>
+        <ow-row>
+            <ow-col span="4"></ow-col>
+            <ow-col span="20"></ow-col>
+        </ow-row>
     </div>
 </template>
 
@@ -29,18 +49,12 @@
 
 <style lang="scss">
     #app {
-        @include hvFlexCenterMx(flex);
+        padding: 100px;
         height: 100vh;
         background-size: 100%;
         /*background: url("./assets/images/bg.jpg") no-repeat center center;*/
         .item {
             margin: 10px;
-        }
-
-        .col {
-            height: 100px;
-            width: 50%;
-            background: $--color-primary;
         }
     }
 </style>

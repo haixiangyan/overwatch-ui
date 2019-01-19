@@ -18,7 +18,7 @@
     import OwIcon from './OwIcon'
 
     export default {
-        name: "ow-button",
+        name: "OwButton",
         props: {
             iconName: {
                 type: String

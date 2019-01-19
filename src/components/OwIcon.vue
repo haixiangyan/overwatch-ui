@@ -11,7 +11,7 @@
     // Import icons svg
     import '../assets/icons/index'
     export default {
-        name: "ow-icon",
+        name: "OwIcon",
         props: {
             name: {
                 type: String,
