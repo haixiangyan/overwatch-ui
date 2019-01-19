@@ -69,8 +69,10 @@
         outline: none;
         vertical-align: middle;
         opacity: $--more-opacity;
+        transition: opacity .3s;
         &:hover, &:active {
-            animation: border-breathe 1.5s infinite ease-out;
+            opacity: $--less-opacity;
+            animation: border-breathe 1.5s infinite;
         }
 
         // Icon
