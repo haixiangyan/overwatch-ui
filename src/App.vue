@@ -2,31 +2,34 @@
     <div id="app">
         <div class="item">
             <ow-row gutter="20">
-                <ow-col>
-                   <div style="border: 1px solid green; height: 100%"></div>
+                <ow-col span="2">
+                   <div class="col-item">
+                       英雄列表
+                   </div>
                 </ow-col>
-                <ow-col>
-                    <div style="border: 1px solid green; height: 100%"></div>
+                <ow-col span="4">
+                    <div class="col-item">
+                        我的技能
+                    </div>
                 </ow-col>
             </ow-row>
+
             <ow-row gutter="20">
-                <ow-col></ow-col>
-                <ow-col></ow-col>
-                <ow-col></ow-col>
-            </ow-row>
-            <ow-row gutter="20">
-                <ow-col></ow-col>
-                <ow-col></ow-col>
-                <ow-col></ow-col>
-                <ow-col></ow-col>
-            </ow-row>
-            <ow-row gutter="20">
-                <ow-col span="2"></ow-col>
-                <ow-col offset="2" span="20"></ow-col>
-            </ow-row>
-            <ow-row gutter="20">
-                <ow-col span="2"></ow-col>
-                <ow-col span="22"></ow-col>
+                <ow-col span="2">
+                    <div class="col-item">
+                        英雄列表
+                    </div>
+                </ow-col>
+                <ow-col span="4">
+                    <div class="col-item">
+                        我的技能
+                    </div>
+                </ow-col>
+                <ow-col span="4">
+                    <div class="col-item">
+                        我的技能
+                    </div>
+                </ow-col>
             </ow-row>
         </div>
     </div>
@@ -59,9 +62,9 @@
         height: 100vh;
         background-size: 100%;
         background: url("./assets/images/ow-bg.jpg") no-repeat center center;
-        .item {
-            margin: 10px;
-            border: 1px solid black;
+        .col-item {
+            height: 100px;
+            background: $--color-warning;
         }
     }
 </style>

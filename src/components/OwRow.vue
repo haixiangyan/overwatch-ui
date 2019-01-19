@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-row" :style="styles">
+    <div :style="styles" :class="classes">
         <slot></slot>
     </div>
 </template>
@@ -11,6 +11,12 @@
             gutter: {
                 type: [String, Number],
                 default: 0
+            },
+            rowAlign: {
+                type: String,
+                validator(rowAlign) {
+                    return ['left', 'right', 'center'].indexOf(rowAlign) > -1
+                }
             }
         },
         mounted() {
@@ -20,6 +26,12 @@
             })
         },
         computed: {
+            classes() {
+                return [
+                    'ow-row',
+                    this.rowAlign && `ow-row-align-${this.rowAlign}`
+                ]
+            },
             styles() {
                 return {
                     marginLeft: `${-this.gutter / 2}px`,
@@ -33,5 +45,15 @@
 <style scoped lang="scss">
 .ow-row {
     display: flex;
+
+    &-align-left {
+        justify-content: flex-start;
+    }
+    &-align-right {
+        justify-content: flex-end;
+    }
+    &-align-center {
+        justify-content: center;
+    }
 }
 </style>

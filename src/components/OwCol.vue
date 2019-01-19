@@ -41,9 +41,4 @@
     // Grid System
     @include gridSpans;
     @include gridOffsets;
-
-    .ow-col {
-        height: 100px;
-        width: 50%;
-    }
 </style>
