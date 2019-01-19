@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import Icon from './Icon'
+    import OwIcon from './OwIcon'
 
     export default {
         name: "ow-button",
@@ -51,7 +51,7 @@
             }
         },
         components: {
-            'ow-icon': Icon
+            OwIcon
         }
     }
 </script>

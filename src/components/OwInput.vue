@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Icon from './Icon'
+import OwIcon from './OwIcon'
 export default {
     name: "ow-input",
     props: {
@@ -69,7 +69,7 @@ export default {
         }
     },
     components: {
-        'ow-icon': Icon
+        OwIcon
     }
 }
 </script>
