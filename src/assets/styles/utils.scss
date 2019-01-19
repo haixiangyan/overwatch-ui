@@ -10,80 +10,66 @@
 -------------------------- */
 $typeList: primary, warning, danger, info;
 
-
 /* Grid System
 -------------------------- */
-@mixin gridSpans() {
-  $class: ow-col;
-  @for $n from 1 through 24 {
-    .#{$class}.#{$class}-#{$n} {
+@mixin gridSpans($class) {
+  @for $n from 0 through 24 {
+    .ow-col.#{$class}-#{$n} {
       width: ($n / 24) * 100%;
     }
   }
+}
+
+@mixin gridPcSpans() {
+  @include gridSpans(ow-col-pc)
 }
 
 @mixin gridPhoneSpans() {
-  $class-prefix: ow-col;
-  $phoneClass: ow-col-phone;
-  @for $n from 1 through 24 {
-    .#{$class-prefix}.#{$phoneClass}-#{$n} {
-      width: ($n / 24) * 100%;
-    }
-  }
+  @include gridSpans(ow-col-phone);
 }
+
 @mixin gridTabletSpans() {
-  $class-prefix: ow-col;
-  $tabletClass: ow-col-tablet;
-  @for $n from 1 through 24 {
-    .#{$class-prefix}.#{$tabletClass}-#{$n} {
-      width: ($n / 24) * 100%;
-    }
-  }
+  @include gridSpans(ow-col-tablet);
 }
 
 // Offset
-@mixin gridOffsets() {
-  $class-prefix: ow-col;
-  $class: ow-col-offset;
-  @for $n from 1 through 24 {
-    .#{$class-prefix}.#{$class}-#{$n} {
+@mixin gridOffsets($class) {
+  @for $n from 0 through 24 {
+    .ow-col.#{$class}-#{$n} {
       margin-left: ($n / 24) * 100%;
     }
   }
 }
 
+@mixin gridPcOffsets() {
+  @include gridOffsets(ow-col-pc-offset);
+}
+
 @mixin gridPhoneOffsets() {
-  $class-prefix: ow-col;
-  $class: ow-col-phone-offset;
-  @for $n from 1 through 24 {
-    .#{$class-prefix}.#{$class}-#{$n} {
-      margin-left: ($n / 24) * 100%;
-    }
-  }
+  @include gridOffsets(ow-col-phone-offset);
 }
+
 @mixin gridTabletOffsets() {
-  $class-prefix: ow-col;
-  $class: ow-col-tablet-offset;
-  @for $n from 1 through 24 {
-    .#{$class-prefix}.#{$class}-#{$n} {
-      margin-left: ($n / 24) * 100%;
-    }
-  }
+  @include gridOffsets(ow-col-tablet-offset);
 }
+
 // Responsive
 @mixin phone {
-  @media (max-width: 576px) {
+  // 0 -> Infinite
+  @media all {
     @content;
   }
 }
 
 @mixin tablet {
-  @media (min-width: 577px) and (max-width: 1024px) {
+  // 577 -> Infinite
+  @media (min-width: 577px) {
     @content;
   }
 }
 
 @mixin pc {
+  // 1025 -> Infinite
   @media (min-width: 1025px) {
     @content;
   }

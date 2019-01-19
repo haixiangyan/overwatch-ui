@@ -19,12 +19,7 @@
     export default {
         name: "OwCol",
         props: {
-            span: {
-                type: [Number, String],
-            },
-            offset: {
-                type: [Number, String],
-            },
+            pc: { type: Object, validator: responsiveValidator },
             phone: { type: Object, validator: responsiveValidator },
             tablet: { type: Object, validator: responsiveValidator }
         },
@@ -33,14 +28,19 @@
         },
         computed: {
             classes() {
-                return [
-                    this.span && `ow-col-${this.span}`,
-                    this.offset && `ow-col-offset-${this.offset}`,
-                    this.phone && this.phone.span && `ow-col-phone-${this.phone.span}`,
-                    this.phone && this.phone.offset && `ow-col-phone-offset-${this.phone.offset}`,
-                    this.tablet && this.tablet.span && `ow-col-tablet-${this.tablet.span}`,
-                    this.tablet && this.tablet.offset && `ow-col-tablet-offset-${this.tablet.offset}`
-                ]
+                const devices = ['pc', 'tablet', 'phone']
+                const classes = []
+                devices.forEach((device) => {
+                    if (this[device]) {
+                        if (typeof this[device].span === 'number') {
+                            classes.push(`ow-col-${device}-${this[device].span}`)
+                        }
+                        if (typeof this[device].offset === 'number') {
+                            classes.push(`ow-col-${device}-offset-${this[device].offset}`)
+                        }
+                    }
+                })
+                return classes
             },
             styles() {
                 return {
@@ -54,9 +54,6 @@
 
 <style scoped lang="scss">
     // Grid System
-    @include gridSpans;
-    @include gridOffsets;
-
     @include phone {
         @include gridPhoneSpans;
         @include gridPhoneOffsets;
@@ -65,6 +62,11 @@
     @include tablet {
         @include gridTabletSpans;
         @include gridTabletOffsets;
+    }
+
+    @include pc {
+        @include gridPcSpans;
+        @include gridPcOffsets;
     }
 
     .ow-col {

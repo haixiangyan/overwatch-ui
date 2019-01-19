@@ -1,12 +1,24 @@
 <template>
     <div id="app">
         <div class="item">
-            <ow-row gutter="10">
-                <ow-col span="2">
+            <ow-row gutter="5">
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
                    <div class="col-item"> 英雄列表 </div>
                 </ow-col>
-                <ow-col span="2" :tablet="{offset: 8}" :phone="{offset: 16}">
-                    <div class="col-item"> 我的技能 </div>
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
+                    <div class="col-item"> 英雄列表 </div>
+                </ow-col>
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
+                    <div class="col-item"> 英雄列表 </div>
+                </ow-col>
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
+                    <div class="col-item"> 英雄列表 </div>
+                </ow-col>
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
+                    <div class="col-item"> 英雄列表 </div>
+                </ow-col>
+                <ow-col :pc="{span: 8}" :phone="{span: 24}">
+                    <div class="col-item"> 英雄列表 </div>
                 </ow-col>
             </ow-row>
         </div>
