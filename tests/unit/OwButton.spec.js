@@ -1,8 +1,8 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import sinon from 'sinon'
-import Button from '@/components/Button.vue'
-import Icon from '@/components/Icon.vue'
+import OwButton from '../../src/components/OwButton.vue'
+import OwIcon from '../../src/components/OwIcon.vue'
 import {testProperty} from "../utils"
 
 const testData = {
@@ -13,42 +13,42 @@ const testData = {
     events: ['click']
 }
 
-describe('Button.vue', () => {
+describe('OwButton.vue', () => {
 
     it('exists', () => {
-        const ButtonVue = shallowMount(Button)
-        expect(ButtonVue).to.exist
+        const OwButtonVue = shallowMount(OwButton)
+        expect(OwButtonVue).to.exist
     })
 
     describe(('props'), () => {
-        const ButtonVue = shallowMount(Button)
-        const IconVue = ButtonVue.find(Icon)
+        const OwButtonVue = shallowMount(OwButton)
+        const IconVue = OwButtonVue.find(OwIcon)
 
         afterEach(() => {
-            ButtonVue.setProps({})
+            OwButtonVue.setProps({})
         })
 
         it('renders props.iconName when passed', () => {
             const {iconNames} = testData
 
             testProperty(iconNames, (iconName) => {
-                ButtonVue.setProps({iconName})
+                OwButtonVue.setProps({iconName})
                 expect(IconVue.attributes('name')).to.equal(iconName)
             })
         })
         it('renders props.iconPosition when passed', () => {
             const {iconNames, iconPositions} = testData
             testProperty(iconPositions, (iconPosition) => {
-                ButtonVue.setProps({
+                OwButtonVue.setProps({
                     iconName: iconNames[0],
                     iconPosition
                 })
-                expect(ButtonVue.classes()).contain(`ow-button-icon_${iconPosition}`)
+                expect(OwButtonVue.classes()).contain(`ow-button-icon_${iconPosition}`)
             })
         })
         it('renders props.isLoading when passed', () => {
             const {isLoading} = testData
-            ButtonVue.setProps({
+            OwButtonVue.setProps({
                 isLoading
             })
 
@@ -57,8 +57,8 @@ describe('Button.vue', () => {
         it('renders props.type when passed', () => {
             const {types} = testData
             testProperty(types, (type) => {
-                ButtonVue.setProps({type})
-                expect(ButtonVue.classes()).contain(`ow-button-${type}`)
+                OwButtonVue.setProps({type})
+                expect(OwButtonVue.classes()).contain(`ow-button-${type}`)
             })
         })
     })
@@ -67,13 +67,13 @@ describe('Button.vue', () => {
         it('handles click event', () => {
             const {events} = testData
             const eventHandler = sinon.stub()
-            const ButtonVue = shallowMount(Button, {
+            const OwButtonVue = shallowMount(OwButton, {
                 listeners: {
                     click: eventHandler
                 }
             })
 
-            ButtonVue.trigger(events[0])
+            OwButtonVue.trigger(events[0])
 
             expect(eventHandler.called).to.equal(true)
         })

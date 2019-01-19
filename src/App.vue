@@ -1,43 +1,7 @@
 <template>
     <div id="app">
-        <div>
-            <div class="item">
-                <ow-button @click="increase" icon-name="add" icon-position="left">Add</ow-button>
-            </div>
-            <div class="item">
-                <ow-button @click="increase" type="primary" icon-name="add" >添加</ow-button>
-            </div>
-            <div class="item">
-                <ow-input
-                    value="Hello"
-                    placeholder="World"
-                    hint="Error: Invalid Password."
-                    hintType="danger"
-                    icon-name="cancel">
-                </ow-input>
-            </div>
-            <div class="item">
-                <ow-input
-                    value="Hello"
-                    placeholder="World"
-                    hint="Error: Invalid Password."
-                    hintType="warning"
-                    icon-name="warning">
-                </ow-input>
-            </div>
-            <div class="item">
-                <ow-input
-                    placeholder="World"
-                    hint="Error: Invalid Password."
-                    hintType="info"
-                    v-model="counter"
-                    icon-name="notification">
-                </ow-input>
-                <p>{{counter}}</p>
-            </div>
-            <div class="item">
-                <ow-icon color="#000" name="loading" :is-loading="true"></ow-icon>
-            </div>
+        <div class="row">
+
         </div>
     </div>
 </template>
@@ -71,6 +35,12 @@
         /*background: url("./assets/images/bg.jpg") no-repeat center center;*/
         .item {
             margin: 10px;
+        }
+
+        .col {
+            height: 100px;
+            width: 50%;
+            background: $--color-primary;
         }
     }
 </style>
