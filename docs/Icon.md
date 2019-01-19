@@ -1,4 +1,4 @@
-# Icon
+# OwIcon
 
 ### Name
 
@@ -32,6 +32,6 @@ The Icon will be rotated if you enable the loading state.
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| name | Set name of Icon | String | 'setting' |
-| color | Set stroke color of Icon | String | '000000' |
-| is-loading | Set loading state of Icon | Boolean | false |
+| name | Set name of OwIcon | String | 'setting' |
+| color | Set stroke color of OwIcon | String | '000000' |
+| is-loading | Set loading state of OwIcon | Boolean | false |

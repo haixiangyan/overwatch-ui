@@ -1,6 +1,6 @@
-# Button
+# OwButton
 
-## Button Types
+## OwButton Types
 
 There are 4 button types: `primary`, `warning`, `info`, `danger`.
 ```html
@@ -10,7 +10,7 @@ There are 4 button types: `primary`, `warning`, `info`, `danger`.
 <ow-button type="danger">Danger</ow-button>
 ```
 
-## Button with Icon
+## OwButton with Icon
 
 You can add an icon inside the button.
 
@@ -49,7 +49,7 @@ You can add a click event handler to this component.
 </ow-button>
 ```
 
-## Button Group
+## OwButton Group
 
 Sometimes, you may want to group several buttons like: 
 buttons for next page and prev page.
@@ -69,7 +69,7 @@ buttons for next page and prev page.
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| icon-name | Set name of icon in Button | String | - |
-| icon-position | Set position of icon in Button | String | | "left" |
-| is-loading | Set the loading status of Button | Boolean | false |
-| type | Set type of Button | String | "warning" |
+| icon-name | Set name of icon in OwButton | String | - |
+| icon-position | Set position of icon in OwButton | String | | "left" |
+| is-loading | Set the loading status of OwButton | Boolean | false |
+| type | Set type of OwButton | String | "warning" |
