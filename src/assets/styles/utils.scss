@@ -22,6 +22,26 @@ $typeList: primary, warning, danger, info;
   }
 }
 
+@mixin gridPhoneSpans() {
+  $class-prefix: ow-col;
+  $phoneClass: ow-col-phone;
+  @for $n from 1 through 24 {
+    .#{$class-prefix}.#{$phoneClass}-#{$n} {
+      width: ($n / 24) * 100%;
+    }
+  }
+}
+@mixin gridTabletSpans() {
+  $class-prefix: ow-col;
+  $tabletClass: ow-col-tablet;
+  @for $n from 1 through 24 {
+    .#{$class-prefix}.#{$tabletClass}-#{$n} {
+      width: ($n / 24) * 100%;
+    }
+  }
+}
+
+// Offset
 @mixin gridOffsets() {
   $class-prefix: ow-col;
   $class: ow-col-offset;
@@ -29,5 +49,42 @@ $typeList: primary, warning, danger, info;
     .#{$class-prefix}.#{$class}-#{$n} {
       margin-left: ($n / 24) * 100%;
     }
+  }
+}
+
+@mixin gridPhoneOffsets() {
+  $class-prefix: ow-col;
+  $class: ow-col-phone-offset;
+  @for $n from 1 through 24 {
+    .#{$class-prefix}.#{$class}-#{$n} {
+      margin-left: ($n / 24) * 100%;
+    }
+  }
+}
+@mixin gridTabletOffsets() {
+  $class-prefix: ow-col;
+  $class: ow-col-tablet-offset;
+  @for $n from 1 through 24 {
+    .#{$class-prefix}.#{$class}-#{$n} {
+      margin-left: ($n / 24) * 100%;
+    }
+  }
+}
+// Responsive
+@mixin phone {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 577px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media (min-width: 1025px) {
+    @content;
   }
 }
