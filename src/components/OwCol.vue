@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-col" :class="classes">
+    <div class="ow-col" :class="classes" :style="styles">
         <slot></slot>
     </div>
 </template>
@@ -9,25 +9,41 @@
         name: "OwCol",
         props: {
             span: {
-                type: [Number, String]
+                type: [Number, String],
+            },
+            offset: {
+                type: [Number, String],
+            }
+        },
+        data() {
+            return {
+                gutter: 0
             }
         },
         computed: {
             classes() {
-                return [`ow-col-${this.span}`]
+                return [
+                    this.span && `ow-col-${this.span}`,
+                    this.offset && `ow-col-offset-${this.offset}`
+                ]
+            },
+            styles() {
+                return {
+                    paddingLeft: `${this.gutter / 2}px`,
+                    paddingRight: `${this.gutter / 2}px`
+                }
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-// Grid System
-@include gridSystem;
+    // Grid System
+    @include gridSpans;
+    @include gridOffsets;
 
-.ow-col {
-    height: 100px;
-    width: 50%;
-    background: $--color-warning;
-    border: 1px solid $--border-color-light;
-}
+    .ow-col {
+        height: 100px;
+        width: 50%;
+    }
 </style>

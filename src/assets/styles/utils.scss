@@ -13,11 +13,21 @@ $typeList: primary, warning, danger, info;
 
 /* Grid System
 -------------------------- */
-@mixin gridSystem() {
+@mixin gridSpans() {
   $class: ow-col;
   @for $n from 1 through 24 {
     .#{$class}.#{$class}-#{$n} {
       width: ($n / 24) * 100%;
+    }
+  }
+}
+
+@mixin gridOffsets() {
+  $class-prefix: ow-col;
+  $class: ow-col-offset;
+  @for $n from 1 through 24 {
+    .#{$class-prefix}.#{$class}-#{$n} {
+      margin-left: ($n / 24) * 100%;
     }
   }
 }
