@@ -20,8 +20,8 @@
             showToast(type) {
                 this.$owToast({
                     type: type,
-                    title: 'Searching For Game',
-                    message: 'Estimate Time: 0:0:2',
+                    title: 'SEARCHING FOR GAME',
+                    message: 'ESTIMATE TIME: 0:0:2',
                     closeButton: {
                         text: 'OK',
                         callback(vm) {

@@ -9,8 +9,8 @@
                 </ow-icon>
             </span>
             <div :class="textClasses">
-                <p><strong>{{title}}</strong></p>
-                <p>{{message}}</p>
+                <p><strong class="ow-toast-content-title">{{title}}</strong></p>
+                <p class="ow-toast-content-message">{{message}}</p>
             </div>
         </div>
         <div v-if="!autoClose" class="ow-toast-cancel">
@@ -84,13 +84,16 @@
             }
         },
         mounted() {
-            if (this.autoClose) {
-                setTimeout(() => {
-                    this.close()
-                }, this.autoCloseDelay * 1000)
-            }
+            this.execAutoClose()
         },
         methods: {
+            execAutoClose() {
+                if (this.autoClose) {
+                    setTimeout(() => {
+                        this.close()
+                    }, this.autoCloseDelay * 1000)
+                }
+            },
             close() {
                 this.$el.remove()
                 this.$destroy()
@@ -134,6 +137,13 @@
             &-danger { border-left: 2px solid $--color-danger; }
             &-success { border-left: 2px solid $--color-success; }
             &-warning { border-left: 2px solid $--color-warning; }
+        }
+        &-title {
+            font-size: 1.1em;
+        }
+        &-message {
+            color: $--color-text-placeholder;
+            font-size: 0.8em;
         }
     }
 
