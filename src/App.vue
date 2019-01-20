@@ -18,7 +18,7 @@
         },
         methods: {
             showToast(type) {
-                this.$owToast({
+                this.$owAlert({
                     type: type,
                     title: 'SEARCHING FOR GAME',
                     message: 'ESTIMATE TIME: 0:0:2',

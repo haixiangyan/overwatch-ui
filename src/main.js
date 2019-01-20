@@ -4,7 +4,7 @@ import OwUI from './entry'
 
 Vue.config.productionTip = false
 
-Vue.use(OwUI.plugins.$owToast)
+Vue.use(OwUI.plugins.$owAlert)
 
 new Vue({
     components: {

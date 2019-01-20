@@ -10,7 +10,7 @@ import OwHeader from './OwHeader.vue'
 import OwContent from './OwContent.vue'
 import OwFooter from './OwFooter.vue'
 import OwSider from './OwSider.vue'
-import OwToast from './OwToast.vue'
+import OwToast from './OwAlert.vue'
 
 export default {
     OwButton,

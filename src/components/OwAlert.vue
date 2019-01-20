@@ -1,7 +1,7 @@
 <template>
-    <div class="ow-toast">
-        <div class="ow-toast-content">
-            <span class="ow-toast-content-icon">
+    <div class="ow-alert">
+        <div class="ow-alert-content">
+            <span class="ow-alert-content-icon">
                 <ow-icon
                     :name="iconName"
                     :is-loading="isLoading"
@@ -9,14 +9,14 @@
                 </ow-icon>
             </span>
             <div :class="textClasses">
-                <p><strong class="ow-toast-content-title">{{title}}</strong></p>
-                <p class="ow-toast-content-message">{{message}}</p>
+                <p><strong class="ow-alert-content-title">{{title}}</strong></p>
+                <p class="ow-alert-content-message">{{message}}</p>
             </div>
         </div>
-        <div v-if="!autoClose" class="ow-toast-cancel">
+        <div v-if="!autoClose" class="ow-alert-cancel">
             <ow-button
                 @click="onClickClose"
-                class="ow-toast-cancel-button"
+                class="ow-alert-cancel-button"
                 :type="buttonType">{{closeButton.text}}
             </ow-button>
         </div>
@@ -27,7 +27,7 @@
     import OwIcon from './OwIcon'
     import OwButton from './OwButton'
     export default {
-        name: "OwToast",
+        name: "OwAlert",
         props: {
             title: {
                 type: String,
@@ -78,8 +78,8 @@
             },
             textClasses() {
                 return [
-                    'ow-toast-content-text',
-                    `ow-toast-content-text-${this.type}`
+                    'ow-alert-content-text',
+                    `ow-alert-content-text-${this.type}`
                 ]
             }
         },
@@ -112,7 +112,7 @@
 </script>
 
 <style scoped lang="scss">
-.ow-toast {
+.ow-alert {
     position: fixed;
     top: 30px;
     left: 50%;

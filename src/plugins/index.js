@@ -1,7 +1,7 @@
 // Import Plugins
-import $owToast from './owToast'
+import $owAlert from './owAlert'
 
 // Plugins
 export default {
-    $owToast
+    $owAlert
 }
