@@ -13,11 +13,12 @@
                 <p class="ow-alert-content-message">{{message}}</p>
             </div>
         </div>
-        <div v-if="!autoClose" class="ow-alert-cancel">
+        <div v-if="autoCloseDelay < 0" class="ow-alert-cancel">
             <ow-button
                 @click="onClickClose"
                 class="ow-alert-cancel-button"
-                :type="buttonType">{{closeButton.text}}
+                :type="buttonType">
+                {{closeButton.text}}
             </ow-button>
         </div>
     </div>
@@ -44,13 +45,9 @@
                     return ['info', 'danger', 'warning', 'success', 'loading'].indexOf(type) > -1
                 }
             },
-            autoClose: {
-                type: Boolean,
-                default: false
-            },
             autoCloseDelay: {
                 type: Number,
-                default: 3
+                default: -1,
             },
             closeButton: {
                 type: Object,
@@ -88,7 +85,7 @@
         },
         methods: {
             execAutoClose() {
-                if (this.autoClose) {
+                if (this.autoCloseDelay > 0) {
                     setTimeout(() => {
                         this.close()
                     }, this.autoCloseDelay * 1000)
@@ -118,7 +115,7 @@
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: fade-in .3s;
+    animation: owAlert-fade-in .3s;
 
     &-content {
         display: flex;
