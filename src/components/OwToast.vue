@@ -55,12 +55,7 @@
             closeButton: {
                 type: Object,
                 default: () => {
-                    return {
-                        text: 'CANCEL',
-                        callback: () => {
-                            this.close()
-                        }
-                    }
+                    return { text: 'CANCEL', callback: () => { } }
                 }
             }
         },
@@ -102,20 +97,21 @@
             },
             onClickClose() {
                 this.close()
-                this.closeButton.callback()
+                // Check if callback exist
+                if (this.closeButton && typeof this.closeButton.callback === 'function') {
+                    // this -> OwToast Instance
+                    this.closeButton.callback(this)
+                }
             }
         },
-        components: {
-            OwIcon,
-            OwButton
-        }
+        components: { OwIcon, OwButton }
     }
 </script>
 
 <style scoped lang="scss">
 .ow-toast {
     position: fixed;
-    top: 0;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
 
