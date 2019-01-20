@@ -16,39 +16,39 @@ const testData = {
 describe('OwButton.vue', () => {
 
     it('exists', () => {
-        const OwButtonVue = shallowMount(OwButton)
-        expect(OwButtonVue).to.exist
+        const OwButtonWrapper = shallowMount(OwButton)
+        expect(OwButtonWrapper).to.exist
     })
 
     describe(('props'), () => {
-        const OwButtonVue = shallowMount(OwButton)
-        const IconVue = OwButtonVue.find(OwIcon)
+        const OwButtonWrapper = shallowMount(OwButton)
+        const IconVue = OwButtonWrapper.find(OwIcon)
 
         afterEach(() => {
-            OwButtonVue.setProps({})
+            OwButtonWrapper.setProps({})
         })
 
         it('renders props.iconName when passed', () => {
             const {iconNames} = testData
 
             testProperty(iconNames, (iconName) => {
-                OwButtonVue.setProps({iconName})
+                OwButtonWrapper.setProps({iconName})
                 expect(IconVue.attributes('name')).to.equal(iconName)
             })
         })
         it('renders props.iconPosition when passed', () => {
             const {iconNames, iconPositions} = testData
             testProperty(iconPositions, (iconPosition) => {
-                OwButtonVue.setProps({
+                OwButtonWrapper.setProps({
                     iconName: iconNames[0],
                     iconPosition
                 })
-                expect(OwButtonVue.classes()).contain(`ow-button-icon_${iconPosition}`)
+                expect(OwButtonWrapper.classes()).contain(`ow-button-icon_${iconPosition}`)
             })
         })
         it('renders props.isLoading when passed', () => {
             const {isLoading} = testData
-            OwButtonVue.setProps({
+            OwButtonWrapper.setProps({
                 isLoading
             })
 
@@ -57,8 +57,8 @@ describe('OwButton.vue', () => {
         it('renders props.type when passed', () => {
             const {types} = testData
             testProperty(types, (type) => {
-                OwButtonVue.setProps({type})
-                expect(OwButtonVue.classes()).contain(`ow-button-${type}`)
+                OwButtonWrapper.setProps({type})
+                expect(OwButtonWrapper.classes()).contain(`ow-button-${type}`)
             })
         })
     })
@@ -67,13 +67,13 @@ describe('OwButton.vue', () => {
         it('handles click event', () => {
             const {events} = testData
             const eventHandler = sinon.stub()
-            const OwButtonVue = shallowMount(OwButton, {
+            const OwButtonWrapper = shallowMount(OwButton, {
                 listeners: {
                     click: eventHandler
                 }
             })
 
-            OwButtonVue.trigger(events[0])
+            OwButtonWrapper.trigger(events[0])
 
             expect(eventHandler.called).to.equal(true)
         })

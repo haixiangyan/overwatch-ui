@@ -10,17 +10,17 @@ const testData = {
     rowAligns: ['left', 'right', 'center']
 }
 
-describe('OwIcon.vue', () => {
+describe('OwRow.vue', () => {
 
     it('exists', () => {
-        const OwRowVue = shallowMount(OwRow)
-        expect(OwRowVue).to.exist
+        const OwRowWrapper = shallowMount(OwRow)
+        expect(OwRowWrapper).to.exist
     })
 
     describe('props', () => {
         it('renders props.gutter when passed', (done) => {
             const {gutter} = testData
-            const OwRowVue = mount(OwRow, {
+            const OwRowWrapper = mount(OwRow, {
                 attachToDocument: true,
                 slots: {
                     default: `
@@ -35,13 +35,13 @@ describe('OwIcon.vue', () => {
             })
 
             Vue.nextTick(() => {
-                expect(OwRowVue.find(OwCol).element.style.paddingLeft).to.equal(`${gutter / 2}px`)
+                expect(OwRowWrapper.find(OwCol).element.style.paddingLeft).to.equal(`${gutter / 2}px`)
                 done()
             })
         })
         it('renders props.rowAlign when passed', () => {
             const {rowAligns} = testData
-            const OwRowVue = mount(OwRow, {
+            const OwRowWrapper = mount(OwRow, {
                 attachToDocument: true,
                 slots: {
                     default: `
@@ -55,8 +55,8 @@ describe('OwIcon.vue', () => {
             })
 
             testProperty(rowAligns, (rowAlign) => {
-                OwRowVue.setProps({ rowAlign })
-                expect(OwRowVue.classes()).contains(`ow-row-align-${rowAlign}`)
+                OwRowWrapper.setProps({ rowAlign })
+                expect(OwRowWrapper.classes()).contains(`ow-row-align-${rowAlign}`)
             })
         })
     })

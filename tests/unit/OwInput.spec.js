@@ -18,57 +18,57 @@ const testData = {
 describe('OwInputVue.vue', () => {
 
     it('exists', () => {
-        const OwInputVue = shallowMount(OwInput)
-        expect(OwInputVue.exists()).to.equal(true)
+        const OwInputWrapper = shallowMount(OwInput)
+        expect(OwInputWrapper.exists()).to.equal(true)
     })
 
     describe('props', () => {
-        const OwInputVue = shallowMount(OwInput)
+        const OwInputWrapper = shallowMount(OwInput)
         afterEach(() => {
-            OwInputVue.setProps({})
+            OwInputWrapper.setProps({})
         })
 
         it('renders props.value when passed', () => {
             const {values} = testData
 
             testProperty(values, (value) => {
-                OwInputVue.setProps({value})
-                expect(OwInputVue.find('input').attributes('type'))
+                OwInputWrapper.setProps({value})
+                expect(OwInputWrapper.find('input').attributes('type'))
                     .to.equal(value)
             })
         })
         it('renders props.disabled when passed', () => {
             const {disabled} = testData
-            OwInputVue.setProps({ disabled })
+            OwInputWrapper.setProps({ disabled })
 
-            expect(OwInputVue.find('input').element.getAttribute('disabled'))
+            expect(OwInputWrapper.find('input').element.getAttribute('disabled'))
                 .to.equal('disabled')
         })
         it('renders props.readonly when passed', () => {
             const {readonly} = testData
-            OwInputVue.setProps({ readonly })
+            OwInputWrapper.setProps({ readonly })
 
-            expect(OwInputVue.find('input').element.getAttribute('readonly'))
+            expect(OwInputWrapper.find('input').element.getAttribute('readonly'))
                 .to.equal('readonly')
         })
         it('renders props.hint when passed', () => {
             const {hints} = testData
 
             hints.forEach((hint) => {
-                OwInputVue.setProps({ hint })
-                expect(OwInputVue.find('small').text())
+                OwInputWrapper.setProps({ hint })
+                expect(OwInputWrapper.find('small').text())
                     .to.equal(hint)
             })
         })
         it('renders props.hintType when passed', () => {
             const {hints, hintTypes} = testData
 
-            OwInputVue.setProps({ hint: hints[0] })
+            OwInputWrapper.setProps({ hint: hints[0] })
 
             hintTypes.forEach((hintType) => {
-                OwInputVue.setProps({ hintType})
+                OwInputWrapper.setProps({ hintType})
 
-                expect(OwInputVue.classes()).contain(`ow-input-wrapper-${hintType}`)
+                expect(OwInputWrapper.classes()).contain(`ow-input-wrapper-${hintType}`)
             })
         })
     })
@@ -79,13 +79,13 @@ describe('OwInputVue.vue', () => {
             const eventHandler = sinon.stub()
 
             testProperty(events, (eventName) => {
-                const OwInputVue = shallowMount(OwInput, {
+                const OwInputWrapper = shallowMount(OwInput, {
                     listeners: {
                         [`${eventName}`]: eventHandler
                     }
                 })
 
-                OwInputVue.find('input').trigger(eventName)
+                OwInputWrapper.find('input').trigger(eventName)
 
                 expect(eventHandler.called).to.equal(true)
             })
