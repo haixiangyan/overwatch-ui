@@ -9,16 +9,16 @@
                 </ow-icon>
             </span>
             <div :class="textClasses">
-                <p>
-                    <strong><slot name="title"></slot></strong>
-                </p>
-                <p>
-                    <slot name="message"></slot>
-                </p>
+                <p><strong>{{title}}</strong></p>
+                <p>{{message}}</p>
             </div>
         </div>
-        <div class="ow-toast-cancel">
-            <ow-button class="ow-toast-cancel-button" :type="buttonType">CANCEL</ow-button>
+        <div v-if="!autoClose" class="ow-toast-cancel">
+            <ow-button
+                @click="onClickClose"
+                class="ow-toast-cancel-button"
+                :type="buttonType">{{closeButton.text}}
+            </ow-button>
         </div>
     </div>
 </template>
@@ -29,11 +29,38 @@
     export default {
         name: "OwToast",
         props: {
+            title: {
+                type: String,
+                default: ''
+            },
+            message: {
+                type: String,
+                default: ''
+            },
             type: {
                 type: String,
                 default: 'info',
                 validator(type) {
                     return ['info', 'danger', 'warning', 'success', 'loading'].indexOf(type) > -1
+                }
+            },
+            autoClose: {
+                type: Boolean,
+                default: false
+            },
+            autoCloseDelay: {
+                type: Number,
+                default: 3
+            },
+            closeButton: {
+                type: Object,
+                default: () => {
+                    return {
+                        text: 'CANCEL',
+                        callback: () => {
+                            this.close()
+                        }
+                    }
                 }
             }
         },
@@ -59,6 +86,23 @@
                     'ow-toast-content-text',
                     `ow-toast-content-text-${this.type}`
                 ]
+            }
+        },
+        mounted() {
+            if (this.autoClose) {
+                setTimeout(() => {
+                    this.close()
+                }, this.autoCloseDelay * 1000)
+            }
+        },
+        methods: {
+            close() {
+                this.$el.remove()
+                this.$destroy()
+            },
+            onClickClose() {
+                this.close()
+                this.closeButton.callback()
             }
         },
         components: {

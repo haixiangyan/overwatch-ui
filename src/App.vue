@@ -1,7 +1,10 @@
 <template>
     <div id="app">
-        <ow-button @click="showToast">Show</ow-button>
-        <ow-button type="success" @click="showToast">Show</ow-button>
+        <ow-button type="info" @click="showToast('info')">Show</ow-button>
+        <ow-button type="primary" @click="showToast('loading')">Show</ow-button>
+        <ow-button type="warning" @click="showToast('warning')">Show</ow-button>
+        <ow-button type="danger" @click="showToast('danger')">Show</ow-button>
+        <ow-button type="success" @click="showToast('success')">Show</ow-button>
     </div>
 </template>
 
@@ -14,11 +17,17 @@
             }
         },
         methods: {
-            showToast() {
+            showToast(type) {
                 this.$owToast({
-                    type: 'success',
+                    type: type,
                     title: 'Searching For Game',
-                    message: 'Estimate Time: 0:0:2'
+                    message: 'Estimate Time: 0:0:2',
+                    closeButton: {
+                        text: 'OK',
+                        callback(vm) {
+                            console.log('Yes')
+                        }
+                    }
                 })
             }
         }
