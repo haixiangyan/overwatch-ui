@@ -69,10 +69,13 @@
         outline: none;
         vertical-align: middle;
         opacity: $--more-opacity;
-        transition: opacity .3s;
-        &:hover, &:active {
+        transition: all .3s;
+        &:hover {
             opacity: $--less-opacity;
             animation: border-breathe 1.5s infinite;
+        }
+        &:active {
+            transform: $--pressed-scale;
         }
 
         // Icon

@@ -3,7 +3,7 @@
         <ow-layout style="height: 100vh;">
             <ow-sider :visible="visible" class="sider">
                 Sider
-                <ow-button @click="visible = !visible">Close</ow-button>
+                <ow-button @click="visible = visible">Close</ow-button>
             </ow-sider>
             <ow-layout>
                 <ow-header class="header">Header</ow-header>

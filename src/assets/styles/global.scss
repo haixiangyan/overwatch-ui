@@ -5,6 +5,11 @@
 $--more-opacity: 0.9;
 $--less-opacity: 0.75;
 
+
+/* Transform
+-------------------------- */
+$--pressed-scale: scale(0.85) !default;
+
 /* Transition
 -------------------------- */
 $--all-transition: all .3s cubic-bezier(.645,.045,.355,1) !default;
