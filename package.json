@@ -1,12 +1,12 @@
 {
     "name": "overwatch-ui",
-    "version": "0.0.10",
+    "version": "0.1.1",
     "description": "A UI library of Overwatch, built with Vue.js",
     "main": "./dist/overwatch-ui.common.js",
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build --target lib --name overwatch-ui ./src/components/index.js",
+        "build": "vue-cli-service build --target lib --name overwatch-ui ./src/entry.js",
         "test": "vue-cli-service test:unit"
     },
     "repository": {

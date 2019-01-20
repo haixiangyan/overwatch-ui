@@ -1,23 +1,11 @@
 <template>
     <div id="app">
-        <ow-layout style="height: 100vh;">
-            <ow-sider :visible="visible" class="sider">
-                Sider
-                <ow-button @click="visible = visible">Close</ow-button>
-                <ow-button type="danger" >Close</ow-button>
-            </ow-sider>
-            <ow-layout>
-                <ow-header class="header">Header</ow-header>
-                <ow-content class="content">Content</ow-content>
-                <ow-footer class="footer">Footer</ow-footer>
-            </ow-layout>
-        </ow-layout>
+        <ow-button @click="showToast">Show</ow-button>
+        <ow-button type="success" @click="showToast">Show</ow-button>
     </div>
 </template>
 
 <script>
-    import Components from './components/index'
-
     export default {
         name: 'app',
         data() {
@@ -25,12 +13,13 @@
                 visible: true
             }
         },
-        components: {
-            ...Components
-        },
         methods: {
-            increase() {
-                this.counter += 1
+            showToast() {
+                this.$owToast({
+                    type: 'success',
+                    title: 'Searching For Game',
+                    message: 'Estimate Time: 0:0:2'
+                })
             }
         }
     }

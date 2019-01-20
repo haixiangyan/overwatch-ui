@@ -1,4 +1,4 @@
-import Vue from "vue"
+// Import Components
 import OwButton from "./OwButton.vue"
 import OwButtonGroup from "./OwButtonGroup.vue"
 import OwIcon from './OwIcon.vue'
@@ -10,8 +10,9 @@ import OwHeader from './OwHeader.vue'
 import OwContent from './OwContent.vue'
 import OwFooter from './OwFooter.vue'
 import OwSider from './OwSider.vue'
+import OwToast from './OwToast.vue'
 
-const Components = {
+export default {
     OwButton,
     OwButtonGroup,
     OwIcon,
@@ -22,11 +23,6 @@ const Components = {
     OwHeader,
     OwContent,
     OwFooter,
-    OwSider
-};
-
-Object.keys(Components).forEach(name => {
-    Vue.component(name, Components[name]);
-});
-
-export default Components;
+    OwSider,
+    OwToast
+}

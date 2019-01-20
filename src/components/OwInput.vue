@@ -45,7 +45,7 @@ export default {
         hintType: {
             type: String,
             validator(hintType) {
-                return ['info', 'warning', 'danger'].indexOf(hintType) > -1
+                return ['info', 'warning', 'danger', 'success'].indexOf(hintType) > -1
             }
         },
         type: {
@@ -63,7 +63,7 @@ export default {
             const colors = {
                 info: '#909399',
                 warning: '#FFC429',
-                danger: '#BD2830'
+                danger: '#DE4561'
             }
             return colors[this.hintType]
         }
@@ -106,6 +106,10 @@ export default {
         &-info {
             > input { border-color: $--color-info; }
             & small { color: $--color-info; }
+        }
+        &-success {
+            > input { border-color: $--color-success; }
+            & small { color: $--color-success; }
         }
     }
     &-hint {

@@ -37,7 +37,7 @@
                 type: String,
                 default: 'warning',
                 validator(type) {
-                    return ['primary', 'warning', 'danger', 'info'].indexOf(type) > -1
+                    return ['primary', 'warning', 'danger', 'info', 'success'].indexOf(type) > -1
                 }
             }
         },
@@ -91,6 +91,7 @@
 
         // Types
         &-primary { background: $--button-primary-fill; }
+        &-success { background: $--button-success-fill; }
         &-danger { background: $--button-danger-fill; }
         &-warning { background: $--button-warning-fill; }
         &-info { background: $--button-info-fill; }
