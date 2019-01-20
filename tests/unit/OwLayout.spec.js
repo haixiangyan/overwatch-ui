@@ -8,7 +8,7 @@ const testData = {
     slot: 'Hello',
 }
 
-describe('OwIcon.vue', () => {
+describe('OwLayout.vue', () => {
     it('should exist', () => {
         const OwLayoutWrapper = shallowMount(OwLayout)
         expect(OwLayoutWrapper).to.exist
