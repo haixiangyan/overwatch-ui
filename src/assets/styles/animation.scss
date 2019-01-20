@@ -1,37 +1,22 @@
-/* Button
+/* OwButton
 --------------------------*/
 @keyframes border-breathe {
-  0% {
-    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 1);;
-  }
-
-  33% {
-    box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 1);
-  }
-
-  100% {
-    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 1);
-  }
+  0% { box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 1);; }
+  33% { box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 1); }
+  100% { box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 1); }
 }
 
-/* Icon
+/* OwIcon
 --------------------------*/
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 
-/* Fade animation
+/* OwAlert
 --------------------------*/
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+@keyframes fade-in {
+  0% { opacity: 0; transform: translate(-50%, -50%);}
+  100% { opacity: 1; transform: translate(-50%, 0);}
 }

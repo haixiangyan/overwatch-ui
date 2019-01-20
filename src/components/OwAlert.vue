@@ -117,6 +117,7 @@
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
+    animation: fade-in .3s;
 
     &-content {
         display: flex;
