@@ -5,6 +5,11 @@ import OwIcon from './OwIcon.vue'
 import OwInput from './OwInput.vue'
 import OwRow from './OwRow.vue'
 import OwCol from'./OwCol.vue'
+import OwLayout from './OwLayout.vue'
+import OwHeader from './OwHeader.vue'
+import OwContent from './OwContent.vue'
+import OwFooter from './OwFooter.vue'
+import OwSider from './OwSider.vue'
 
 const Components = {
     OwButton,
@@ -12,7 +17,12 @@ const Components = {
     OwIcon,
     OwInput,
     OwRow,
-    OwCol
+    OwCol,
+    OwLayout,
+    OwHeader,
+    OwContent,
+    OwFooter,
+    OwSider
 };
 
 Object.keys(Components).forEach(name => {

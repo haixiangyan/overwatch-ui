@@ -1,27 +1,13 @@
 <template>
     <div id="app">
-        <div class="item">
-            <ow-row gutter="5">
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                   <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                    <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                    <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                    <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                    <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-                <ow-col :pc="{span: 8}" :phone="{span: 24}">
-                    <div class="col-item"> 英雄列表 </div>
-                </ow-col>
-            </ow-row>
-        </div>
+        <ow-layout style="height: 100vh;">
+            <ow-sider class="demo">Sider</ow-sider>
+            <ow-layout>
+                <ow-header class="demo">Header</ow-header>
+                <ow-content class="demo">Content</ow-content>
+                <ow-footer class="demo">Footer</ow-footer>
+            </ow-layout>
+        </ow-layout>
     </div>
 </template>
 
@@ -48,13 +34,12 @@
 
 <style lang="scss">
     #app {
-        padding: 100px;
         height: 100vh;
         background-size: 100%;
         background: url("./assets/images/ow-bg.jpg") no-repeat center center;
-        .col-item {
+        .demo {
             height: 100px;
-            background: $--color-warning;
+            border: 1px solid black;
         }
     }
 </style>

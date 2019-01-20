@@ -1,5 +1,7 @@
 <template>
-    <div class="ow-footer"></div>
+    <div class="ow-footer">
+        <slot></slot>
+    </div>
 </template>
 
 <script>

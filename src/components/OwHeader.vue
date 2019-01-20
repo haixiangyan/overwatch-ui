@@ -1,5 +1,7 @@
 <template>
-    <div class="ow-header"></div>
+    <div class="ow-header">
+        <slot></slot>
+    </div>
 </template>
 
 <script>
