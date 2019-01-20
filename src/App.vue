@@ -1,11 +1,14 @@
 <template>
     <div id="app">
         <ow-layout style="height: 100vh;">
-            <ow-sider class="demo">Sider</ow-sider>
+            <ow-sider :visible="visible" class="sider">
+                Sider
+                <ow-button @click="visible = !visible">Close</ow-button>
+            </ow-sider>
             <ow-layout>
-                <ow-header class="demo">Header</ow-header>
-                <ow-content class="demo">Content</ow-content>
-                <ow-footer class="demo">Footer</ow-footer>
+                <ow-header class="header">Header</ow-header>
+                <ow-content class="content">Content</ow-content>
+                <ow-footer class="footer">Footer</ow-footer>
             </ow-layout>
         </ow-layout>
     </div>
@@ -18,7 +21,7 @@
         name: 'app',
         data() {
             return {
-                counter: 1
+                visible: true
             }
         },
         components: {
@@ -37,9 +40,18 @@
         height: 100vh;
         background-size: 100%;
         background: url("./assets/images/ow-bg.jpg") no-repeat center center;
-        .demo {
+        .sider {
+            width: 200px;
+            background: $--color-primary;
+        }
+        
+        .content {
+            background: $--color-danger;
+        }
+        
+        .header, .footer {
             height: 100px;
-            border: 1px solid black;
+            background: $--color-warning;
         }
     }
 </style>
