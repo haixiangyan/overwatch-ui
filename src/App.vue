@@ -1,10 +1,26 @@
 <template>
     <div id="app">
-        <ow-button type="info" @click="showToast('info')">Show</ow-button>
-        <ow-button type="primary" @click="showToast('loading')">Show</ow-button>
-        <ow-button type="warning" @click="showToast('warning')">Show</ow-button>
-        <ow-button type="danger" @click="showToast('danger')">Show</ow-button>
-        <ow-button type="success" @click="showToast('success')">Show</ow-button>
+        <ow-tabs :selected.sync="selectedTab">
+            <ow-tabs-head>
+                <template slot="actions">
+                    <ow-button>设置</ow-button>
+                </template>
+                <ow-tabs-item name="social">
+                    <ow-icon name="setting"></ow-icon>
+                    <span>社交</span>
+                </ow-tabs-item>
+                <ow-tabs-item name="data" disabled>数据</ow-tabs-item>
+                <ow-tabs-item name="career">生涯</ow-tabs-item>
+                <ow-tabs-item name="avatar">头像</ow-tabs-item>
+            </ow-tabs-head>
+
+            <ow-tabs-body>
+                <ow-tabs-pane name="social">我的社交</ow-tabs-pane>
+                <ow-tabs-pane name="data">我的数据</ow-tabs-pane>
+                <ow-tabs-pane name="career">我的生涯</ow-tabs-pane>
+                <ow-tabs-pane name="avatar">我的头像</ow-tabs-pane>
+            </ow-tabs-body>
+        </ow-tabs>
     </div>
 </template>
 
@@ -13,7 +29,7 @@
         name: 'app',
         data() {
             return {
-                visible: true
+                selectedTab: 'data'
             }
         },
         methods: {

@@ -11,6 +11,11 @@ import OwContent from './OwContent.vue'
 import OwFooter from './OwFooter.vue'
 import OwSider from './OwSider.vue'
 import OwToast from './OwAlert.vue'
+import OwTabs from './OwTabs.vue'
+import OwTabsBody from './OwTabsBody.vue'
+import OwTabsHead from './OwTabsHead.vue'
+import OwTabsItem from './OwTabsItem.vue'
+import OwTabsPane from './OwTabsPane.vue'
 
 export default {
     OwButton,
@@ -24,5 +29,10 @@ export default {
     OwContent,
     OwFooter,
     OwSider,
-    OwToast
+    OwToast,
+    OwTabs,
+    OwTabsBody,
+    OwTabsItem,
+    OwTabsHead,
+    OwTabsPane,
 }
