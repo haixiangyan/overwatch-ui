@@ -35,7 +35,6 @@
 <style scoped lang="scss">
 .ow-tabs-pane {
     &_active {
-        background: red;
     }
 }
 </style>

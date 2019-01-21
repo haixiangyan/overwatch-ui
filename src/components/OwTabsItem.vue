@@ -1,6 +1,9 @@
 <template>
     <div class="ow-tabs-item" :class="classes" @click="xxx">
-        <slot></slot>
+        <div class="ow-tabs-item-content">
+            <slot></slot>
+        </div>
+        <div class="ow-tabs-item-line"></div>
     </div>
 </template>
 
@@ -43,18 +46,49 @@
 
 <style scoped lang="scss">
 .ow-tabs-item {
-    @include hvFlexCenterMx(flex);
+    position: relative;
     height: 100%;
-    padding: 0 1.2em;
     flex-shrink: 0;
-    border-left: 1px solid #323D5B;
-    border-right: 1px solid #323D5B;
-    transition: all .3s;
+
+    &-content {
+        @include hvFlexCenterMx(flex);
+        height: 45px;
+        padding: 0 1.2em;
+        border-right: 1px solid #323D5B;
+    }
+
+    &-line {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        height: 3px;
+        width: 0;
+        transform: translateX(-50%);
+        background: #01FFFF;
+        transition: width .2s;
+    }
+
+    // OwIcon
+    svg {
+        fill: $--color-primary;
+    }
 
     &:hover, &_active {
         color: $--color-white;
         background: $--tab-item-bg-active;
-        border-color: $--tab-item-bg-active;
+
+        .ow-tabs-item-content {
+            border-right: 1px solid $--tab-item-bg-active;
+        }
+
+        .ow-tabs-item-line {
+            width: 100%;
+        }
+
+        // OwIcon
+        svg {
+            fill: $--color-white;
+        }
     }
 }
 </style>
