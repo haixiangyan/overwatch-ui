@@ -3,6 +3,7 @@
 /* Opacity
 -------------------------- */
 $--more-opacity: 0.9;
+$--middle-opacity: 0.8;
 $--less-opacity: 0.75;
 
 /* Transform
@@ -43,6 +44,7 @@ $--color-warning: #FFC429 !default;
 $--color-danger: #DE4561 !default;
 $--color-info: #909399 !default;
 $--color-bg: #464F6A !default;
+$--color-bg-dark: #2B3753 !default;;
 
 $--color-success-dark: darken($--color-success, 15%) !default;
 $--color-warning-dark: darken($--color-warning, 15%) !default;
@@ -414,7 +416,9 @@ $--tab-header-fill-hover: rgba($--color-black, 0.06) !default;
 $--tab-vertical-header-width: 90px !default;
 $--tab-vertical-header-count-color: $--color-white !default;
 $--tab-vertical-header-count-fill: $--color-text-secondary !default;
-
+$--tab-bg: $--color-bg-dark !default;
+$--tab-item-bg: $--color-primary !default;
+$--tab-item-bg-active: $--color-primary !default;
 /* Button
 -------------------------- */
 $--button-font-size: 14px !default;

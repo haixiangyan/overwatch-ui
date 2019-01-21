@@ -6,7 +6,8 @@
 
 <script>
     export default {
-        name: "OwTabsBody"
+        name: "OwTabsBody",
+        inject: ['eventHub']
     }
 </script>
 

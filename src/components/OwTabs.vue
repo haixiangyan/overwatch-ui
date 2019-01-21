@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     export default {
         name: "OwTab",
         props: {
@@ -19,10 +20,20 @@
                     return ['horizontal', 'vertical'].indexOf(direction) > -1
                 }
             }
+        },
+        data() {
+            return {
+                eventHub: new Vue()
+            }
+        },
+        provide() {
+            return {
+                eventHub: this.eventHub
+            }
+        },
+        mounted() {
+            this.eventHub.$emit('update:selected', this.selected)
         }
-        // created() {
-        //     this.$emit('update:selected', 'xxx')
-        // }
     }
 </script>
 
