@@ -16,6 +16,7 @@ import OwTabsBody from './OwTabsBody.vue'
 import OwTabsHead from './OwTabsHead.vue'
 import OwTabsItem from './OwTabsItem.vue'
 import OwTabsPane from './OwTabsPane.vue'
+import OwPopover from './OwPopover.vue'
 
 export default {
     OwButton,
@@ -35,4 +36,5 @@ export default {
     OwTabsItem,
     OwTabsHead,
     OwTabsPane,
+    OwPopover
 }
