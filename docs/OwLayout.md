@@ -55,3 +55,9 @@ You can also toggle sider with props `visible`.
     <ow-footer class="footer">Footer</ow-footer>
 </ow-layout>
 ```
+
+## Properties
+
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| visible | Set if OwHead is visible | Boolean | false |
