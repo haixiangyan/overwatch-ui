@@ -10,15 +10,8 @@
         name: "OwTab",
         props: {
             selected: {
-                type: String,
+                type: [String, Number],
                 required: true
-            },
-            direction: {
-                type: String,
-                default: 'horizontal',
-                validator(direction) {
-                    return ['horizontal', 'vertical'].indexOf(direction) > -1
-                }
             }
         },
         data() {
@@ -32,7 +25,18 @@
             }
         },
         mounted() {
-            this.eventHub.$emit('update:selected', this.selected)
+            this.initActiveTab()
+            this.checkChildComponent()
+        },
+        methods: {
+            initActiveTab() {
+                this.eventHub.$emit('update:selected', this.selected)
+            },
+            checkChildComponent() {
+                if (this.$children.length === 0) {
+                    console && console.warn && console.warn('OwTabs children should only be OwTabsHead or OwTabsBody')
+                }
+            }
         }
     }
 </script>

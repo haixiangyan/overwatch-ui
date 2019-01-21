@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-tabs-item" :class="classes" @click="xxx">
+    <div class="ow-tabs-item" :class="classes" @click="onClickItem">
         <div class="ow-tabs-item-content">
             <slot></slot>
         </div>
@@ -12,10 +12,6 @@
         name: "OwTabsItem",
         inject: ['eventHub'],
         props: {
-            disabled: {
-                type: Boolean,
-                default: false
-            },
             name: {
                 type: [String, Number],
                 required: true
@@ -32,13 +28,15 @@
             }
         },
         created() {
-            this.eventHub.$on('update:selected', (name) => {
-                this.active = (name === this.name)
-            })
+            if (this.eventHub) {
+                this.eventHub.$on('update:selected', (name) => {
+                    this.active = (name === this.name)
+                })
+            }
         },
         methods: {
-            xxx() {
-                this.eventHub.$emit('update:selected', this.name)
+            onClickItem() {
+                this.eventHub && this.eventHub.$emit('update:selected', this.name)
             }
         }
     }

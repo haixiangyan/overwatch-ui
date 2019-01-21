@@ -1,0 +1,50 @@
+import {expect} from 'chai'
+import {shallowMount, mount} from '@vue/test-utils'
+import OwTabs from '../../src/components/OwTabs.vue'
+import OwTabsHead from '../../src/components/OwTabsHead.vue'
+import OwTabsBody from '../../src/components/OwTabsBody.vue'
+import OwTabsItem from '../../src/components/OwTabsItem.vue'
+import OwTabsPane from '../../src/components/OwTabsPane.vue'
+
+const testData = {
+    selected: 'career',
+    slot: `<ow-tabs-head>
+                <ow-tabs-item name="data">Data</ow-tabs-item>
+                <ow-tabs-item name="career">Career</ow-tabs-item>
+                <ow-tabs-item name="avatar">Avatar</ow-tabs-item>
+            </ow-tabs-head>
+
+            <ow-tabs-body>
+                <ow-tabs-pane name="data">Data</ow-tabs-pane>
+                <ow-tabs-pane name="career">Career</ow-tabs-pane>
+                <ow-tabs-pane name="avatar">Avatar</ow-tabs-pane>
+            </ow-tabs-body>`
+}
+
+describe('OwTabs.vue', () => {
+
+    it('exists', () => {
+        const {selected, slot} = testData
+        const OwTabsWrapper = shallowMount(OwTabs, {
+            propsData: {selected},
+            slots: {default: slot},
+            stubs: { OwTabsHead, OwTabsBody, OwTabsItem, OwTabsPane }
+        })
+        expect(OwTabsWrapper).to.exist
+    })
+
+    describe('props', () => {
+        it('should pass props.selected', () => {
+            const {slot, selected} = testData
+
+            const OwTabsWrapper = mount(OwTabs, {
+                propsData: {selected},
+                slots: { default: slot },
+                stubs: { OwTabsHead, OwTabsBody, OwTabsItem, OwTabsPane }
+            })
+
+            OwTabsWrapper.find(OwTabsItem).trigger('click')
+            expect(OwTabsWrapper.find(OwTabsPane).text()).to.equal('Data')
+        })
+    })
+})
