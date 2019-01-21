@@ -57,3 +57,13 @@ You can specify different styles for 3 device: PC, Tablet and Phone.
     </ow-col>
 </ow-row>
 ```
+
+## Properties
+
+| Property | Description | Type | Default |
+| --- | --- | --- | --- |
+| pc | Set span and offset for PC device | Object | - |
+| tablet | Set span and offset for tablet device | Object | - |
+| phone | Set span and offset for phone device | Object | - |
+| span | Set span of OwCol | Object | - |
+| offset | Set offset of OwCol | Object | - |
