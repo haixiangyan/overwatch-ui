@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-tabs :selected.sync="selectedTab">
+        <ow-tabs :selected="selectedTab">
             <ow-tabs-head>
                 <template slot="actions">
                     <ow-button>设置</ow-button>

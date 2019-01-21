@@ -43,23 +43,18 @@
 
 <style scoped lang="scss">
 .ow-tabs-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
+    @include hvFlexCenterMx(flex);
+    height: 100%;
+    padding: 0 1.2em;
     flex-shrink: 0;
     border-left: 1px solid #323D5B;
     border-right: 1px solid #323D5B;
     transition: all .3s;
 
-    &:hover {
+    &:hover, &_active {
         color: $--color-white;
         background: $--tab-item-bg-active;
         border-color: $--tab-item-bg-active;
-    }
-    
-    &_active {
-        background: red;
     }
 }
 </style>
