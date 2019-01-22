@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-popover" @click.stop="onClick">
+    <div ref="popover" class="ow-popover" @click="onPopoverClick">
         <!--Content-->
         <span ref="contentWrapper" v-if="visible" class="ow-popover-content-wrapper">
             <slot name="content"></slot>
@@ -19,32 +19,44 @@
                 visible: false
             }
         },
-        mounted() {
-            console.log(this.$refs.triggerWrapper)
-        },
         methods: {
-            onClick() {
-                this.visible = !this.visible
-                if (this.visible) {
-                    // Avoid clicking twice
-                    this.$nextTick(() => {
-                        // Append content to document .body
-                        document.body.appendChild(this.$refs.contentWrapper)
-                        // Get button wrapper styles
-                        let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-                        console.log(width, height, top, left)
-                        this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-                        this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
-                        let eventHandler = () => {
-                            this.visible = false
-                            // Remove event listener after closing OwPopover
-                            document.removeEventListener('click', eventHandler)
-                        }
-                        document.addEventListener('click', eventHandler)
-                    })
+            setContentPosition() {
+                // Append content to document .body
+                document.body.appendChild(this.$refs.contentWrapper)
+                // Get button wrapper styles
+                let {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
+                this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+                this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+            },
+            onDocClick(event) {
+                // Click outside of OwPopover, then close it
+                if (!this.$refs.contentWrapper.contains(event.target)) {
+                    this.close()
                 }
-                else {
-                    console.log('vm hide')
+            },
+            open() {
+                this.visible = true
+                this.$nextTick(() => {
+                    // Set content position
+                    this.setContentPosition()
+                    // Set event handler to listen to document click event
+                    document.addEventListener('click', this.onDocClick)
+                })
+            },
+            close() {
+                this.visible = false
+                // Remove event listener after closing OwPopover
+                document.removeEventListener('click', this.onDocClick)
+            },
+            onPopoverClick(event) {
+                // If click the trigger part
+                if (this.$refs.triggerWrapper.contains(event.target)) {
+                    if (this.visible) {
+                        this.close()
+                    }
+                    else {
+                        this.open()
+                    }
                 }
             }
         }

@@ -1,13 +1,11 @@
 <template>
     <div id="app">
-        <div style="border: 1px solid blue;">
-            <ow-popover>
-                <template slot="content">
-                    <div>Popover Content</div>
-                </template>
-                <ow-button >Click Me</ow-button>
-            </ow-popover>
-        </div>
+        <ow-popover @click="yyy">
+            <template slot="content">
+                <div>Popover Content</div>
+            </template>
+            <ow-button>Click Me</ow-button>
+        </ow-popover>
 
         <ow-button type="danger">Cancel</ow-button>
     </div>
@@ -17,7 +15,11 @@
     export default {
         name: 'app',
         data() {
-            return {
+            return {}
+        },
+        methods: {
+            yyy() {
+                console.log('yyy')
             }
         }
     }
@@ -29,5 +31,6 @@
         padding: 150px;
         background-size: 100%;
         background: url("./assets/images/ow-bg.jpg") no-repeat center center;
+        border: 1px solid blue;
     }
 </style>
