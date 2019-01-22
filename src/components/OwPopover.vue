@@ -1,13 +1,15 @@
 <template>
     <div ref="popover" class="ow-popover">
         <!--Content-->
-        <span
-            ref="contentWrapper"
-            v-if="visible"
-            class="ow-popover-content-wrapper"
-            :class="contentClasses">
-            <slot name="content"></slot>
-        </span>
+        <transition name="fade">
+            <span
+                ref="contentWrapper"
+                v-if="visible"
+                class="ow-popover-content-wrapper"
+                :class="contentClasses">
+                <slot name="content"></slot>
+            </span>
+        </transition>
         <!--Trigger-->
         <span ref="triggerWrapper" class="ow-popover-trigger-wrapper">
             <slot></slot>
@@ -169,6 +171,7 @@
                 &::before {
                     top: 100%;
                     border-top-color: $--color-bg;
+                    border-bottom: none;
                 }
             }
             &-bottom {
@@ -176,6 +179,7 @@
                 &::before {
                     bottom: 100%;
                     border-bottom-color: $--color-bg;
+                    border-top: none;
                 }
             }
             &-left {
@@ -186,6 +190,7 @@
                     left: 100%;
                     transform: translateY(-50%);
                     border-left-color: $--color-bg;
+                    border-right: none;
                 }
             }
             &-right {
@@ -195,6 +200,7 @@
                     right: 100%;
                     transform: translateY(-50%);
                     border-right-color: $--color-bg;
+                    border-left: none;
                 }
             }
         }
