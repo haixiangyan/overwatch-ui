@@ -3,8 +3,9 @@
         <div class="item">
             <div>
                 <ow-popover position="top">
-                    <template slot="content">
+                    <template slot="content" slot-scope="{close}">
                         <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <ow-button @click="close">Cancel</ow-button>
                     </template>
                     <ow-button>Top</ow-button>
                 </ow-popover>

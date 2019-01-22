@@ -7,7 +7,7 @@
                 v-if="visible"
                 class="ow-popover-content-wrapper"
                 :class="contentClasses">
-                <slot name="content"></slot>
+                <slot name="content" :close="close"></slot>
             </span>
         </transition>
         <!--Trigger-->
