@@ -6,6 +6,7 @@
 
 <script>
     import Vue from 'vue'
+
     export default {
         name: "OwTab",
         props: {
@@ -42,5 +43,8 @@
 </script>
 
 <style scoped lang="scss">
-
+.ow-tabs {
+    flex-shrink: 0;
+    flex-grow: 1;
+}
 </style>

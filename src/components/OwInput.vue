@@ -18,8 +18,9 @@
 </template>
 
 <script>
-import OwIcon from './OwIcon'
-export default {
+    import OwIcon from './OwIcon'
+
+    export default {
     name: "OwInput",
     props: {
         value: {
@@ -63,7 +64,8 @@ export default {
             const colors = {
                 info: '#909399',
                 warning: '#FFC429',
-                danger: '#DE4561'
+                danger: '#DE4561',
+                success: '#33A03D'
             }
             return colors[this.hintType]
         }

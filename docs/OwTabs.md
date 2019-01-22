@@ -26,13 +26,13 @@ You can place any elements in the right hand side with `<template>`.
 
 ```html
 <ow-tabs :selected="selectedTab">
-    <template>
-        <ow-button>Setting</ow-button>
-    </template>
     <ow-tabs-head>
-        <ow-tabs-item name="social">Data</ow-tabs-item>
+        <ow-tabs-item name="data">Data</ow-tabs-item>
         <ow-tabs-item name="career">Career</ow-tabs-item>
         <ow-tabs-item name="avatar">Avatar</ow-tabs-item>
+        <template slot="actions">
+            <ow-button>Setting</ow-button>
+        </template>
     </ow-tabs-head>
 
     <ow-tabs-body>
