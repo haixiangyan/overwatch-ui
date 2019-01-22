@@ -47,6 +47,15 @@
         mounted() {
             this.bindTrigger()
         },
+        beforeDestroy() {
+            if (this.trigger === 'click') {
+                this.$refs.popover.removeEventListener('click', this.onPopoverClick)
+            }
+            else {
+                this.$refs.popover.removeEventListener('mouseenter', this.open)
+                this.$refs.popover.removeEventListener('mouseleave', this.close)
+            }
+        },
         methods: {
             bindTrigger() {
                 if (this.trigger === 'click') {
