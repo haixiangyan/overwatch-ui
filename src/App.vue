@@ -2,7 +2,7 @@
     <div id="app">
         <ow-popover @click="yyy">
             <template slot="content">
-                <div>Popover Content</div>
+                <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
             </template>
             <ow-button>Click Me</ow-button>
         </ow-popover>

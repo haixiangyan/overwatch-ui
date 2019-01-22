@@ -25,14 +25,14 @@
             }
         },
         mounted() {
+            this.checkChildren()
             this.initActiveTab()
-            this.checkChildComponent()
         },
         methods: {
             initActiveTab() {
                 this.eventHub.$emit('update:selected', this.selected)
             },
-            checkChildComponent() {
+            checkChildren() {
                 if (this.$children.length === 0) {
                     console && console.warn && console.warn('OwTabs children should only be OwTabsHead or OwTabsBody')
                 }

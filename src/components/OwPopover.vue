@@ -5,7 +5,7 @@
             <slot name="content"></slot>
         </span>
         <!--Trigger-->
-        <span ref="triggerWrapper">
+        <span ref="triggerWrapper" class="ow-popover-trigger-wrapper">
             <slot></slot>
         </span>
     </div>
@@ -71,8 +71,31 @@
 
         &-content-wrapper {
             position: absolute;
-            border: 1px solid red;
+            padding: 1em;
+            margin-top: -12px;
             transform: translateY(-100%);
+            border-radius: $--border-radius-small;
+            background: $--color-primary;
+            filter: drop-shadow(0 1px 4px $--color-primary);
+            color: $--color-white;
+            max-width: 20em;
+            word-break: break-all;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                top: 100%;
+                left: 10px;
+                border: 10px solid transparent;
+                border-top-color: $--color-primary;
+            }
+        }
+
+        &-trigger-wrapper {
+            display: inline-block;
         }
     }
 </style>
