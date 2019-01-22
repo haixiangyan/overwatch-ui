@@ -4,7 +4,7 @@
             <div>
                 <ow-popover position="top">
                     <template slot="content" slot-scope="{close}">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                         <ow-button @click="close">Cancel</ow-button>
                     </template>
                     <ow-button>Top</ow-button>
@@ -13,7 +13,7 @@
             <div>
                 <ow-popover position="bottom" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="primary">Bottom</ow-button>
                 </ow-popover>
@@ -21,7 +21,7 @@
             <div>
                 <ow-popover position="left" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="info">Left</ow-button>
                 </ow-popover>
@@ -29,7 +29,7 @@
             <div>
                 <ow-popover position="right" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="danger">Right</ow-button>
                 </ow-popover>
@@ -39,7 +39,7 @@
             <div>
                 <ow-popover trigger="hover" position="top" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button>Top</ow-button>
                 </ow-popover>
@@ -47,7 +47,7 @@
             <div>
                 <ow-popover trigger="hover" position="bottom" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="primary">Bottom</ow-button>
                 </ow-popover>
@@ -55,7 +55,7 @@
             <div>
                 <ow-popover trigger="hover" position="left" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="info">Left</ow-button>
                 </ow-popover>
@@ -63,7 +63,7 @@
             <div>
                 <ow-popover trigger="hover" position="right" @click="yyy">
                     <template slot="content">
-                        <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                        <div>Popover Content, Hello World</div>
                     </template>
                     <ow-button type="danger">Right</ow-button>
                 </ow-popover>
