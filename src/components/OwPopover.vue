@@ -1,10 +1,13 @@
 <template>
     <div class="ow-popover" @click.stop="onClick">
-        <div v-if="visible" class="ow-popover-content-wrapper" @click.stop>
+        <!--Content-->
+        <span ref="contentWrapper" v-if="visible" class="ow-popover-content-wrapper">
             <slot name="content"></slot>
-        </div>
+        </span>
         <!--Trigger-->
-        <slot></slot>
+        <span ref="triggerWrapper">
+            <slot></slot>
+        </span>
     </div>
 </template>
 
@@ -16,16 +19,24 @@
                 visible: false
             }
         },
+        mounted() {
+            console.log(this.$refs.triggerWrapper)
+        },
         methods: {
             onClick() {
                 this.visible = !this.visible
                 if (this.visible) {
                     // Avoid clicking twice
                     this.$nextTick(() => {
-                        console.log('add')
+                        // Append content to document .body
+                        document.body.appendChild(this.$refs.contentWrapper)
+                        // Get button wrapper styles
+                        let {width, height, top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
+                        console.log(width, height, top, left)
+                        this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
+                        this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
                         let eventHandler = () => {
                             this.visible = false
-                            console.log('document hide')
                             // Remove event listener after closing OwPopover
                             document.removeEventListener('click', eventHandler)
                         }
@@ -48,9 +59,8 @@
 
         &-content-wrapper {
             position: absolute;
-            bottom: 100%;
-            left: 0;
             border: 1px solid red;
+            transform: translateY(-100%);
         }
     }
 </style>
