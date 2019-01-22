@@ -1,5 +1,5 @@
 <template>
-    <div ref="popover" class="ow-popover" @click="onPopoverClick">
+    <div ref="popover" class="ow-popover">
         <!--Content-->
         <span
             ref="contentWrapper"
@@ -25,6 +25,13 @@
                 validator(position) {
                     return ['top', 'bottom', 'left', 'right'].indexOf(position) > -1
                 }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator(trigger) {
+                    return ['click', 'hover'].indexOf(trigger) > -1
+                }
             }
         },
         data() {
@@ -37,7 +44,19 @@
                 return [ `ow-popover-content-wrapper-${this.position}` ]
             }
         },
+        mounted() {
+            this.bindTrigger()
+        },
         methods: {
+            bindTrigger() {
+                if (this.trigger === 'click') {
+                    this.$refs.popover.addEventListener('click', this.onPopoverClick)
+                }
+                else {
+                    this.$refs.popover.addEventListener('mouseenter', this.open)
+                    this.$refs.popover.addEventListener('mouseleave', this.close)
+                }
+            },
             setContentPosition() {
                 // Append content to document .body
                 document.body.appendChild(this.$refs.contentWrapper)
@@ -69,9 +88,17 @@
             },
             onDocClick(event) {
                 // Click outside of OwPopover, then close it
-                if (!this.$refs.contentWrapper.contains(event.target)) {
-                    this.close()
+                if (this.$refs.popover &&
+                    (this.$refs.popover === event.target ||
+                        this.$refs.popover.contains(event.target))) {
+                    return;
                 }
+                if (this.$refs.contentWrapper &&
+                    (this.$refs.contentWrapper === event.target ||
+                        this.$refs.contentWrapper.contains(event.target))) {
+                    return;
+                }
+                this.close();
             },
             open() {
                 this.visible = true
