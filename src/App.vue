@@ -1,13 +1,37 @@
 <template>
     <div id="app">
-        <ow-popover @click="yyy">
-            <template slot="content">
-                <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
-            </template>
-            <ow-button>Click Me</ow-button>
-        </ow-popover>
-
-        <ow-button type="danger">Cancel</ow-button>
+        <div>
+            <ow-popover position="top" @click="yyy">
+                <template slot="content">
+                    <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                </template>
+                <ow-button>Top</ow-button>
+            </ow-popover>
+        </div>
+        <div>
+            <ow-popover position="bottom" @click="yyy">
+                <template slot="content">
+                    <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                </template>
+                <ow-button type="primary">Bottom</ow-button>
+            </ow-popover>
+        </div>
+        <div>
+            <ow-popover position="left" @click="yyy">
+                <template slot="content">
+                    <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                </template>
+                <ow-button type="info">Left</ow-button>
+            </ow-popover>
+        </div>
+        <div>
+            <ow-popover position="right" @click="yyy">
+                <template slot="content">
+                    <div>Popoverjklajdklfjaklsfjlkasjfkljaslkfjlksjfljsdlfjlskjdf</div>
+                </template>
+                <ow-button type="danger">Right</ow-button>
+            </ow-popover>
+        </div>
     </div>
 </template>
 
@@ -27,10 +51,13 @@
 
 <style lang="scss">
     #app {
-        /*height: 100vh;*/
+        display: flex;
+        height: 100vh;
         padding: 150px;
         background-size: 100%;
         background: url("./assets/images/ow-bg.jpg") no-repeat center center;
-        border: 1px solid blue;
+        > div {
+            margin: 0 30px;
+        }
     }
 </style>

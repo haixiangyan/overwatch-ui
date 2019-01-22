@@ -1,7 +1,11 @@
 <template>
     <div ref="popover" class="ow-popover" @click="onPopoverClick">
         <!--Content-->
-        <span ref="contentWrapper" v-if="visible" class="ow-popover-content-wrapper">
+        <span
+            ref="contentWrapper"
+            v-if="visible"
+            class="ow-popover-content-wrapper"
+            :class="contentClasses">
             <slot name="content"></slot>
         </span>
         <!--Trigger-->
@@ -14,9 +18,23 @@
 <script>
     export default {
         name: "OwPopover",
+        props: {
+            position: {
+                type: String,
+                default: 'top',
+                validator(position) {
+                    return ['top', 'bottom', 'left', 'right'].indexOf(position) > -1
+                }
+            }
+        },
         data() {
             return {
                 visible: false
+            }
+        },
+        computed: {
+            contentClasses() {
+                return [ `ow-popover-content-wrapper-${this.position}` ]
             }
         },
         methods: {
@@ -24,9 +42,26 @@
                 // Append content to document .body
                 document.body.appendChild(this.$refs.contentWrapper)
                 // Get button wrapper styles
-                let {top, left} = this.$refs.triggerWrapper.getBoundingClientRect()
-                this.$refs.contentWrapper.style.left = left + window.scrollX + 'px'
-                this.$refs.contentWrapper.style.top = top + window.scrollY + 'px'
+                const { contentWrapper, triggerWrapper } = this.$refs
+                const {top, left, height, width} = triggerWrapper.getBoundingClientRect()
+                if (this.position === 'top') {
+                    contentWrapper.style.left = left + window.scrollX + 'px'
+                    contentWrapper.style.top = top + window.scrollY + 'px'
+                }
+                else if (this.position === 'bottom') {
+                    contentWrapper.style.left = left + window.scrollX + 'px'
+                    contentWrapper.style.top = top + height + window.scrollY + 'px'
+                }
+                else if (this.position === 'left') {
+                    let {height: height2} = contentWrapper.getBoundingClientRect()
+                    contentWrapper.style.left = left + window.scrollX + 'px'
+                    contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
+                }
+                else if (this.position === 'right') {
+                    let {height: height2} = contentWrapper.getBoundingClientRect()
+                    contentWrapper.style.left = left + window.scrollX + width + 'px'
+                    contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
+                }
             },
             onDocClick(event) {
                 // Click outside of OwPopover, then close it
@@ -72,25 +107,55 @@
         &-content-wrapper {
             position: absolute;
             padding: 1em;
-            margin-top: -12px;
-            transform: translateY(-100%);
             border-radius: $--border-radius-small;
-            background: $--color-primary;
-            filter: drop-shadow(0 1px 4px $--color-primary);
+            background: $--color-bg;
+            filter: drop-shadow(0 1px 4px $--color-bg);
             color: $--color-white;
             max-width: 20em;
             word-break: break-all;
-
             &::before {
                 content: '';
+                position: absolute;
                 display: block;
                 width: 0px;
                 height: 0px;
-                position: absolute;
-                top: 100%;
-                left: 10px;
                 border: 10px solid transparent;
-                border-top-color: $--color-primary;
+            }
+
+            /*Position*/
+            &-top {
+                margin-top: -12px;
+                transform: translateY(-100%);
+                &::before {
+                    top: 100%;
+                    border-top-color: $--color-bg;
+                }
+            }
+            &-bottom {
+                margin-top: 12px;
+                &::before {
+                    bottom: 100%;
+                    border-bottom-color: $--color-bg;
+                }
+            }
+            &-left {
+                transform: translateX(-100%);
+                margin-left: -12px;
+                &::before {
+                    top: 50%;
+                    left: 100%;
+                    transform: translateY(-50%);
+                    border-left-color: $--color-bg;
+                }
+            }
+            &-right {
+                margin-left: 12px;
+                &::before {
+                    top: 50%;
+                    right: 100%;
+                    transform: translateY(-50%);
+                    border-right-color: $--color-bg;
+                }
             }
         }
 
