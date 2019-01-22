@@ -41,27 +41,31 @@
             setContentPosition() {
                 // Append content to document .body
                 document.body.appendChild(this.$refs.contentWrapper)
+
                 // Get button wrapper styles
                 const { contentWrapper, triggerWrapper } = this.$refs
                 const {top, left, height, width} = triggerWrapper.getBoundingClientRect()
-                if (this.position === 'top') {
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    contentWrapper.style.top = top + window.scrollY + 'px'
+                const {height: contentHeight} = contentWrapper.getBoundingClientRect()
+                const positions = {
+                    top: {
+                        top: top + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    bottom: {
+                        top: top + height + window.scrollY,
+                        left: left + window.scrollX
+                    },
+                    left: {
+                        top: top + window.scrollY + (height - contentHeight)/2,
+                        left: left + window.scrollX
+                    },
+                    right: {
+                        top: top + window.scrollY + (height - contentHeight)/2,
+                        left: left + window.scrollX + width
+                    }
                 }
-                else if (this.position === 'bottom') {
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    contentWrapper.style.top = top + height + window.scrollY + 'px'
-                }
-                else if (this.position === 'left') {
-                    let {height: height2} = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.left = left + window.scrollX + 'px'
-                    contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
-                }
-                else if (this.position === 'right') {
-                    let {height: height2} = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.left = left + window.scrollX + width + 'px'
-                    contentWrapper.style.top = top + window.scrollY + (height - height2)/2 + 'px'
-                }
+                contentWrapper.style.left = positions[this.position].left + 'px'
+                contentWrapper.style.top = positions[this.position].top + 'px'
             },
             onDocClick(event) {
                 // Click outside of OwPopover, then close it
