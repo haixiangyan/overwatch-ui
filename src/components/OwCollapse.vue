@@ -1,10 +1,15 @@
 <template>
     <div class="ow-collapse">
-        <div class="ow-collapse-title" @click="open = !open">
+        <div class="ow-collapse-title">
             <span class="ow-collapse-title-text">{{title}}</span>
-            <ow-button type="primary" class="ow-collapse-title-button" icon-name="add"></ow-button>
+            <ow-button
+                @click="toggle"
+                type="primary"
+                class="ow-collapse-title-button"
+                icon-name="add">
+            </ow-button>
         </div>
-        <div v-if="open" class="ow-collapse-content">
+        <div v-if="isOpen" class="ow-collapse-content">
             <slot></slot>
         </div>
     </div>
@@ -13,15 +18,46 @@
 <script>
     export default {
         name: "OwCollapse",
+        inject: ['eventHub'],
         props: {
             title: {
                 type: String,
+                required: true
+            },
+            name: {
+                type: [String, Number],
                 required: true
             }
         },
         data() {
             return {
-                open: false
+                isOpen: false
+            }
+        },
+        mounted() {
+            this.eventHub && this.eventHub.$on('update:selected', (name) => {
+                if (name !== this.name) {
+                    this.close()
+                }
+                else {
+                    this.open()
+                }
+            })
+        },
+        methods: {
+            toggle() {
+                if (this.isOpen) {
+                    this.close()
+                }
+                else {
+                    this.eventHub && this.eventHub.$emit('update:selected', this.name)
+                }
+            },
+            open() {
+                this.isOpen = true
+            },
+            close() {
+                this.isOpen = false
             }
         }
     }

@@ -22,11 +22,12 @@
 
         <h1>Collapse</h1>
         <div >
-            <ow-collapse-group>
-                <ow-collapse title="Title1" > <div>Content 1</div> </ow-collapse>
-                <ow-collapse title="Title2" > <div>Content 2</div> </ow-collapse>
-                <ow-collapse title="Title3" > <div>Content 3</div> </ow-collapse>
+            <ow-collapse-group :selected.sync="selectedCollapse" multiSelect>
+                <ow-collapse title="Title1" name="1"> <div>Content 1</div> </ow-collapse>
+                <ow-collapse title="Title2" name="2"> <div>Content 2</div> </ow-collapse>
+                <ow-collapse title="Title3" name="3"> <div>Content 3</div> </ow-collapse>
             </ow-collapse-group>
+            {{selectedCollapse}}
         </div>
 
         <h1>Alert</h1>
@@ -220,7 +221,8 @@
         data() {
             return {
                 visible: true,
-                selectedTab: 'data'
+                selectedTab: 'data',
+                selectedCollapse: "2"
             }
         },
         methods: {
