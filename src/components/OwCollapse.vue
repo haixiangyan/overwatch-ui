@@ -21,12 +21,10 @@
         inject: ['eventHub'],
         props: {
             title: {
-                type: String,
-                required: true
+                type: String
             },
             name: {
-                type: [String, Number],
-                required: true
+                type: [String, Number]
             }
         },
         data() {
@@ -35,30 +33,20 @@
             }
         },
         mounted() {
-            this.eventHub && this.eventHub.$on('update:selected', (name) => {
-                if (name !== this.name) {
-                    this.close()
-                }
-                else {
-                    this.open()
-                }
+            this.eventHub.$on('update:selected', (names) => {
+                // Check if this Collapse is selected
+                this.isOpen = names.indexOf(this.name) > -1;
             })
         },
         methods: {
             toggle() {
                 if (this.isOpen) {
-                    this.close()
+                    this.eventHub.$emit('remove:selected', this.name)
                 }
                 else {
-                    this.eventHub && this.eventHub.$emit('update:selected', this.name)
+                    this.eventHub.$emit('add:selected', this.name)
                 }
             },
-            open() {
-                this.isOpen = true
-            },
-            close() {
-                this.isOpen = false
-            }
         }
     }
 </script>

@@ -6,6 +6,7 @@
 
 <script>
     import Vue from 'vue'
+    import Utils from '../assets/scripts/utils'
 
     export default {
         name: "OwCollapseGroup",
@@ -20,7 +21,7 @@
                 default: true
             },
             selected: {
-                type: [String, Number]
+                type: [Array]
             }
         },
         data() {
@@ -29,10 +30,66 @@
             }
         },
         mounted() {
-            this.eventHub.$emit('update:selected', this.selected)
-            this.eventHub.$on('update:selected', (name) => {
-                this.$emit('update:selected', name)
-            })
+            this.checkSelected()
+
+            this.initSelected()
+
+            this.bindUpdateSelected()
+        },
+        methods: {
+            checkSelected() {
+                if (this.multiSelect && this.selected.length > 1) {
+                    console.error('Single select mode should only contain 1 selected item')
+                }
+            },
+            initSelected() {
+                this.eventHub.$emit('update:selected', this.selected)
+            },
+            bindAddSelected() {
+                this.eventHub.$on('add:selected', (name) => {
+                    let selectedCopy = Utils.deepClone(this.selected)
+
+                    // Add the selected item
+                    selectedCopy = this.addSelectedItem(selectedCopy, name)
+
+                    // Update selected items array
+                    this.updateSelected(selectedCopy)
+                })
+            },
+            bindRemoveSelected() {
+                this.eventHub.$on('remove:selected', (name) => {
+                    let selectedCopy = Utils.deepClone(this.selected)
+
+                    // Remove the selected item
+                    selectedCopy = this.removeSelectedItem(selectedCopy, name)
+
+                    // Update selected items array
+                    this.updateSelected(selectedCopy)
+                })
+            },
+            bindUpdateSelected() {
+                this.bindAddSelected()
+                this.bindRemoveSelected()
+            },
+            updateSelected(selectedCopy) {
+                this.$emit('update:selected', selectedCopy)
+                this.eventHub.$emit('update:selected', selectedCopy)
+            },
+            addSelectedItem(selectedCopy, name) {
+                if (this.multiSelect) {
+                    selectedCopy.push(name)
+                }
+                else {
+                    selectedCopy = [name]
+                }
+                return selectedCopy
+            },
+            removeSelectedItem(selectedCopy, name) {
+                const index = selectedCopy.indexOf(name)
+                selectedCopy.splice(index, 1)
+
+                return selectedCopy
+            }
         }
     }
 </script>
