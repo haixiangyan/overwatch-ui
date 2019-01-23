@@ -4,7 +4,7 @@ import OwButtonGroup from "./OwButtonGroup.vue"
 import OwIcon from './OwIcon.vue'
 import OwInput from './OwInput.vue'
 import OwRow from './OwRow.vue'
-import OwCol from'./OwCol.vue'
+import OwCol from './OwCol.vue'
 import OwLayout from './OwLayout.vue'
 import OwHeader from './OwHeader.vue'
 import OwContent from './OwContent.vue'
@@ -17,6 +17,8 @@ import OwTabsHead from './OwTabsHead.vue'
 import OwTabsItem from './OwTabsItem.vue'
 import OwTabsPane from './OwTabsPane.vue'
 import OwPopover from './OwPopover.vue'
+import OwCollapse from './OwCollapse.vue'
+import OwCollapseItem from './OwCollapseItem.vue'
 
 export default {
     OwButton,
@@ -36,5 +38,7 @@ export default {
     OwTabsItem,
     OwTabsHead,
     OwTabsPane,
-    OwPopover
+    OwPopover,
+    OwCollapse,
+    OwCollapseItem
 }

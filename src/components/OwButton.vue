@@ -3,14 +3,15 @@
         :class="classes"
         @click="$emit('click')">
         <ow-icon
+            v-if="iconName"
             class="ow-button-icon"
             color="#fff"
             :is-loading="isLoading"
             :name="iconName">
         </ow-icon>
-        <div class="ow-button-content">
+        <span class="ow-button-content">
             <slot></slot>
-        </div>
+        </span>
     </button>
 </template>
 
@@ -79,14 +80,14 @@
         }
 
         // Icon
-        &-icon { height: 1em; width: 1em; order: 1; margin-right: .3em;}
+        &-icon { height: 1em; width: 1em; order: 1}
         // Content
-        &-content { order: 2; }
+        &-content { order: 2}
 
         // Right position
         &-icon_right {
             > .ow-button-content { order: 1; }
-            > .ow-button-icon { order: 2; margin-left: .3em; margin-right: 0; }
+            > .ow-button-icon { order: 2; }
         }
 
         // Types

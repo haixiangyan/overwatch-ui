@@ -20,6 +20,15 @@
             </ow-tabs>
         </div>
 
+        <h1>Collapse</h1>
+        <div class="item">
+            <ow-collapse selected="title1">
+                <ow-collapse-item title="title1">Content 1</ow-collapse-item>
+                <ow-collapse-item title="title2">Content 2</ow-collapse-item>
+                <ow-collapse-item title="title3">Content 3</ow-collapse-item>
+            </ow-collapse>
+        </div>
+
         <h1>Alert</h1>
         <div class="item">
             <div class="buttons">
@@ -44,11 +53,11 @@
         <h1>Button</h1>
         <div class="item">
             <div class="buttons">
-                <ow-button class="button" type="primary">Primary</ow-button>
+                <ow-button icon-name="setting" class="button" type="primary">Primary</ow-button>
                 <ow-button class="button" type="warning">Warning</ow-button>
                 <ow-button class="button" type="info">Info</ow-button>
                 <ow-button class="button" type="danger">Danger</ow-button>
-                <ow-button class="button" type="success">Success</ow-button>
+                <ow-button icon-name="loading" :is-loading="true" icon-position="right" class="button" type="success">Success</ow-button>
             </div>
         </div>
 

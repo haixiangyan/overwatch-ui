@@ -6,7 +6,8 @@
     "private": false,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build --target lib --name overwatch-ui ./src/entry.js",
+        "build": "vue-cli-service build",
+        "build:ui": "vue-cli-service build --target lib --name overwatch-ui ./src/entry.js",
         "test": "vue-cli-service test:unit"
     },
     "repository": {
