@@ -3,7 +3,6 @@
         :class="classes"
         @click="$emit('click')">
         <ow-icon
-            v-if="iconName"
             class="ow-button-icon"
             color="#fff"
             :is-loading="isLoading"

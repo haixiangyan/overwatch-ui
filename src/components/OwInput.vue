@@ -93,7 +93,7 @@
                 z-index: 1;
             }
             &[disabled], &[readonly] {
-                opacity: $--less-opacity;
+                opacity: $--half-opacity;
             }
         }
 
