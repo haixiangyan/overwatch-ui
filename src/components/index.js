@@ -18,7 +18,6 @@ import OwTabsItem from './OwTabsItem.vue'
 import OwTabsPane from './OwTabsPane.vue'
 import OwPopover from './OwPopover.vue'
 import OwCollapse from './OwCollapse.vue'
-import OwCollapseItem from './OwCollapseItem.vue'
 
 export default {
     OwButton,
@@ -40,5 +39,4 @@ export default {
     OwTabsPane,
     OwPopover,
     OwCollapse,
-    OwCollapseItem
 }

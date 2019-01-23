@@ -27,6 +27,7 @@
 <script>
     import OwIcon from './OwIcon'
     import OwButton from './OwButton'
+
     export default {
         name: "OwAlert",
         props: {
@@ -115,7 +116,7 @@
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    animation: owAlert-fade-in .3s;
+    animation: owAlert-slide-down .3s;
 
     &-content {
         display: flex;

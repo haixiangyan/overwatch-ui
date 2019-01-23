@@ -21,11 +21,11 @@
         </div>
 
         <h1>Collapse</h1>
-        <div class="item">
-            <ow-collapse selected="title1">
-                <ow-collapse-item class="collapse-item" title="title1">Content 1</ow-collapse-item>
-                <ow-collapse-item class="collapse-item" title="title2">Content 2</ow-collapse-item>
-                <ow-collapse-item class="collapse-item" title="title3">Content 3</ow-collapse-item>
+        <div >
+            <ow-collapse title="Title1" >
+                <div>
+                    Hello World
+                </div>
             </ow-collapse>
         </div>
 
