@@ -22,11 +22,11 @@
 
         <h1>Collapse</h1>
         <div >
-            <ow-collapse title="Title1" >
-                <div>
-                    Hello World
-                </div>
-            </ow-collapse>
+            <ow-collapse-group>
+                <ow-collapse title="Title1" > <div>Content 1</div> </ow-collapse>
+                <ow-collapse title="Title2" > <div>Content 2</div> </ow-collapse>
+                <ow-collapse title="Title3" > <div>Content 3</div> </ow-collapse>
+            </ow-collapse-group>
         </div>
 
         <h1>Alert</h1>
