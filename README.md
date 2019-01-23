@@ -9,6 +9,10 @@
 
 A UI library of game Overwatch, built with Vue.js.
 
+## Demo
+
+[Click here to view the demo](https://haixiang6123.github.io/overwatch-ui/index.html)
+
 
 ## Documentation
 
