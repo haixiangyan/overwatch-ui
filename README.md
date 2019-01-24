@@ -16,9 +16,9 @@ A UI library of game Overwatch, built with Vue.js.
 
 ## Documentation
 
-For now, I haven't built the documentation website, 
-so if all the docs are placed in directory `./docs/*`.
-(Click here to view)[./docs].
+[Documentations(Building...)](https://haixiang6123.github.io/ow-ui-doc/#/)
+
+For now, I am working on building the official documentation website.
 
 ## Note
 
