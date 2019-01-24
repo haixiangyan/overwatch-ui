@@ -5,7 +5,6 @@
 [![Build Status](https://travis-ci.org/Haixiang6123/overwatch-ui.svg?branch=master)](https://travis-ci.org/Haixiang6123/overwatch-ui)
 ![](https://img.shields.io/npm/dw/overwatch-ui.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![](https://img.shields.io/david/Haixiang6123/overwatch-ui.svg)
 
 A UI library of game Overwatch, built with Vue.js.
 
