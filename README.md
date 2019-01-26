@@ -11,7 +11,7 @@ A UI library of game Overwatch, built with Vue.js.
 ## Documentation
 For now, I have released the first version. Click link below to check it.
 
-[Official doc](https://haixiang6123.github.io/ow-ui-doc/#/)
+[Official doc](https://haixiang6123.github.io/overwatch-ui-doc/#/)
 
 ![Doc](./screenshot/home.png)
 
