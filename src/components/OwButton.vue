@@ -35,7 +35,7 @@
             },
             type: {
                 type: String,
-                default: 'warning',
+                default: 'primary',
                 validator(type) {
                     return ['primary', 'warning', 'danger', 'info', 'success'].indexOf(type) > -1
                 }
@@ -76,7 +76,7 @@
         }
         &:active {
             backface-visibility: hidden;
-            transform: $--pressed-scale translateZ(0);;
+            transform: $--pressed-scale;
         }
 
         // Icon
