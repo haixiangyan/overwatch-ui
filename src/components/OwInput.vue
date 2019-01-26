@@ -116,8 +116,8 @@
         }
     }
     &-hint {
-        @include hvFlexCenterMx(flex);
-
+        display: flex;
+        align-items: center;
         &-icon { margin-right: 4px; }
     }
 }
