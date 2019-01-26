@@ -43,7 +43,7 @@ describe('OwButton.vue', () => {
                     iconName: iconNames[0],
                     iconPosition
                 })
-                expect(OwButtonWrapper.classes()).contain(`ow-button-icon_${iconPosition}`)
+                expect(OwButtonWrapper.classes()).contain(`ow-button-icon-${iconPosition}`)
             })
         })
         it('renders props.isLoading when passed', () => {
