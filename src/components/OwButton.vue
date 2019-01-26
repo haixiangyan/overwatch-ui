@@ -75,7 +75,8 @@
             box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 1);
         }
         &:active {
-            transform: $--pressed-scale;
+            backface-visibility: hidden;
+            transform: $--pressed-scale translateZ(0);;
         }
 
         // Icon
