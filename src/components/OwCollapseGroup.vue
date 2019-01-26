@@ -38,7 +38,7 @@
         },
         methods: {
             checkSelected() {
-                if (this.multiSelect && this.selected.length > 1) {
+                if (this.multiSelect && this.multiSelect.length > 1) {
                     console.error('Single select mode should only contain 1 selected item')
                 }
             },
