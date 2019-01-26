@@ -79,6 +79,7 @@
 <style scoped lang="scss">
 .ow-input {
     &-wrapper {
+        display: inline-block;
         > input {
             padding: $--input-padding-horizontal;
             height: $--input-height;

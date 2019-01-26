@@ -45,7 +45,7 @@
             classes() {
                 return [
                     'ow-button',
-                    { [`ow-button-icon_${this.iconPosition}`]: true, },
+                    { [`ow-button-icon-${this.iconPosition}`]: true, },
                     `ow-button-${this.type}`
                 ]
             }
@@ -72,7 +72,7 @@
         transition: all .3s;
         &:hover {
             opacity: $--less-opacity;
-            animation: border-breathe 1.5s infinite;
+            box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 1);
         }
         &:active {
             transform: $--pressed-scale;
@@ -84,7 +84,7 @@
         &-content { order: 2}
 
         // Right position
-        &-icon_right {
+        &-icon-right {
             > .ow-button-content { order: 1; }
             > .ow-button-icon { order: 2; }
         }
