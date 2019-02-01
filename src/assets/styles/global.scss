@@ -46,7 +46,7 @@ $--color-warning: #FFC429 !default;
 $--color-danger: #DE4561 !default;
 $--color-info: #909399 !default;
 $--color-bg: #464F6A !default;
-$--color-bg-dark: #2B3753 !default;;
+$--color-bg-dark: #2B3753 !default;
 
 $--color-success-dark: darken($--color-success, 15%) !default;
 $--color-warning-dark: darken($--color-warning, 15%) !default;
@@ -382,9 +382,9 @@ $--input-mini-height: 28px !default;
 -------------------------- */
 $--cascader-menu-fill: $--fill-base !default;
 $--cascader-menu-font-size: $--font-size-base !default;
-$--cascader-menu-radius: $--border-radius-base !default;
+$--cascader-menu-radius: $--border-radius-small !default;
 $--cascader-menu-border: $--border-base !default;
-$--cascader-menu-border-color: $--border-color-base !default;
+$--cascader-menu-border-color: $--color-bg !default;
 $--cascader-menu-border-width: $--border-width-base !default;
 $--cascader-menu-color: $--color-text-regular !default;
 $--cascader-menu-option-color-active: $--color-text-secondary !default;

@@ -66,6 +66,8 @@
         padding: .3em 0;
         &-item {
             display: flex;
+            width: 120px;
+            justify-content: space-between;
             align-items: center;
             padding: .3em .5em;
             margin: 0 .5em;
