@@ -20,7 +20,7 @@ import OwPopover from './OwPopover.vue'
 import OwCollapse from './OwCollapse.vue'
 import OwCollapseGroup from './OwCollapseGroup.vue'
 import OwCascader from './OwCascader.vue'
-import OwCascaderItem from './OwCascaderItem.vue'
+import OwCascaderItem from './OwCascaderList.vue'
 
 export default {
     OwButton,

@@ -1,18 +1,14 @@
 <template>
     <div class="ow-cascader">
-        <div class="ow-cascader-trigger">
-            <slot></slot>
-        </div>
-        <div class="ow-cascader-popover">
-            <div v-for="item in source">
-                <ow-cascader-item :source-item="item"></ow-cascader-item>
-            </div>
+        <div class="ow-cascader-trigger" @click="isPopoverShow = !isPopoverShow"></div>
+        <div class="ow-cascader-popover" v-if="isPopoverShow">
+            <ow-cascader-list :source="source"></ow-cascader-list>
         </div>
     </div>
 </template>
 
 <script>
-    import OwCascaderItem from './OwCascaderItem'
+    import OwCascaderList from './OwCascaderList'
 
     export default {
         name: "OwCascader",
@@ -21,15 +17,27 @@
                 type: Array
             }
         },
+        data() {
+            return {
+                isPopoverShow: true
+            }
+        },
         components: {
-            OwCascaderItem
+            OwCascaderList
         }
     }
 </script>
 
 <style scoped lang="scss">
 .ow-cascader {
-    background: $--color-bg-dark;
-    color: $--color-primary;
+    &-trigger {
+        border: 1px solid red;
+        height: $--input-height;
+        width: 100px;
+    }
+    &-popover {
+        border: 1px solid red;
+        height: 200px;
+    }
 }
 </style>
