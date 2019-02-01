@@ -1,6 +1,8 @@
 <template>
     <div id="app">
+        <p>1111111</p>
         <ow-cascader :source="source"></ow-cascader>
+        <p>1111111</p>
     </div>
 </template>
 
