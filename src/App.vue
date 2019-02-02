@@ -1,10 +1,18 @@
 <template>
     <div id="app">
-        <ow-cascader :source="source" :selected="selected" @update:selected="selected = $event"></ow-cascader>
+        <ow-cascader
+            :source="source"
+            :selected.sync="selected"
+            placeholder="请输入">
+        </ow-cascader>
     </div>
 </template>
 
 <script>
+    function ajax(name, level) {
+        if (!name && !level) {
+        }
+    }
     export default {
         name: 'app',
         data() {

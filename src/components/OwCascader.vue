@@ -2,6 +2,7 @@
     <div class="ow-cascader">
         <div class="ow-cascader-trigger" @click="togglePopover">
             <ow-input
+                :placeholder="placeholder"
                 :disabled="isInputDisabled"
                 class="ow-cascader-input"
                 :value="selectedResult">
@@ -34,6 +35,9 @@
             height: {
                 type: [String, Number],
                 default: 200
+            },
+            placeholder: {
+                type: String
             }
         },
         data() {
