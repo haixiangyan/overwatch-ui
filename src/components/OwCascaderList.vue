@@ -1,6 +1,5 @@
 <template>
     <div class="ow-cascader-list">
-        {{selected && selected[level] && selected[level].name}} {{level}}
         <ul class="ow-cascader-list-left">
             <li class="ow-cascader-list-left-item"
                 v-for="item in source"

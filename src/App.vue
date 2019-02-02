@@ -1,8 +1,6 @@
 <template>
     <div id="app">
-        <p>{{selected}}</p>
         <ow-cascader :source="source" :selected="selected" @update:selected="selected = $event"></ow-cascader>
-        <p>1111111</p>
     </div>
 </template>
 
@@ -57,7 +55,7 @@
 <style lang="scss">
     #app {
         height: 100vh;
-        padding: 20px 150px;
+        padding: 100px 150px;
         background: url("./assets/images/ow-bg.jpg") center center;
     }
 </style>

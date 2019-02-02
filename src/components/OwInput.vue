@@ -88,6 +88,7 @@
             border-radius: $--border-radius-base;
             transition: opacity .3s;
             opacity: $--less-opacity;
+            font-size: 1em;
 
             &:hover, &:active, &:focus {
                 opacity: $--more-opacity;

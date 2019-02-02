@@ -1,6 +1,12 @@
 <template>
     <div class="ow-cascader">
-        <div class="ow-cascader-trigger" @click="this.togglePopover"></div>
+        <div class="ow-cascader-trigger" @click="togglePopover">
+            <ow-input
+                :disabled="isInputDisabled"
+                class="ow-cascader-input"
+                :value="selectedResult">
+            </ow-input>
+        </div>
         <div v-if="isPopoverShow" class="ow-cascader-popover" :style="popoverStyles">
             <ow-cascader-list
                 :selected="selected"
@@ -12,6 +18,7 @@
 </template>
 
 <script>
+    import OwInput from './OwInput'
     import OwCascaderList from './OwCascaderList'
 
     export default {
@@ -31,7 +38,8 @@
         },
         data() {
             return {
-                isPopoverShow: true
+                isPopoverShow: true,
+                isInputDisabled: false
             }
         },
         computed: {
@@ -39,14 +47,19 @@
                 return {
                     height: `${this.height}px`
                 }
+            },
+            selectedResult() {
+                return this.selected.map((item) => item.name).join('/')
             }
         },
         components: {
-            OwCascaderList
+            OwCascaderList,
+            OwInput
         },
         methods: {
             togglePopover() {
                 this.isPopoverShow = !this.isPopoverShow
+                this.isInputDisabled = this.isPopoverShow
             },
             onUpdateSelected(updatedSelected) {
                 this.$emit('update:selected', updatedSelected)
@@ -58,14 +71,13 @@
 <style scoped lang="scss">
 .ow-cascader {
     position: relative;
-    &-trigger {
-        border: 1px solid red;
-        height: $--input-height;
-        width: 100px;
+    display: inline-flex;
+    &-input {
+        opacity: $--more-opacity;
     }
     &-popover {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 4px);
         left: 0;
         background: $--color-bg-dark;
         color: $--color-text-dark;
