@@ -2,7 +2,11 @@
     <div class="ow-cascader">
         <div class="ow-cascader-trigger" @click="this.togglePopover"></div>
         <div v-if="isPopoverShow" class="ow-cascader-popover" :style="popoverStyles">
-            <ow-cascader-list :source="source"></ow-cascader-list>
+            <ow-cascader-list
+                :selected="selected"
+                @update:selected="onUpdateSelected"
+                :source="source">
+            </ow-cascader-list>
         </div>
     </div>
 </template>
@@ -13,6 +17,10 @@
     export default {
         name: "OwCascader",
         props: {
+            selected: {
+                type: Array,
+                default: () => []
+            },
             source: {
                 type: Array
             },
@@ -39,6 +47,9 @@
         methods: {
             togglePopover() {
                 this.isPopoverShow = !this.isPopoverShow
+            },
+            onUpdateSelected(updatedSelected) {
+                this.$emit('update:selected', updatedSelected)
             }
         }
     }

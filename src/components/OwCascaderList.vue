@@ -1,8 +1,8 @@
 <template>
     <div class="ow-cascader-list">
+        {{selected && selected[level] && selected[level].name}} {{level}}
         <ul class="ow-cascader-list-left">
-            <li
-                class="ow-cascader-list-left-item"
+            <li class="ow-cascader-list-left-item"
                 v-for="item in source"
                 :key="item.name"
                 @click="selectLeftItem(item)">
@@ -11,12 +11,18 @@
             </li>
         </ul>
         <section v-if="rightSource" class="ow-cascader-list-right">
-            <ow-cascader-list :source="rightSource"></ow-cascader-list>
+            <ow-cascader-list
+                :level="level + 1"
+                :selected="selected"
+                @update:selected="onUpdateSelected"
+                :source="rightSource">
+            </ow-cascader-list>
         </section>
     </div>
 </template>
 
 <script>
+    import Utils from '../assets/scripts/utils'
     import OwIcon from './OwIcon'
 
     export default {
@@ -24,28 +30,30 @@
         props: {
             source: {
                 type: Array
-            }
-        },
-        data() {
-            return {
-                leftSelected: null,
-                iconColor: '#c0c4cc'
+            },
+            selected: {
+                type: Array,
+                default: () => []
+            },
+            level: {
+                type: Number,
+                default: 0
             }
         },
         computed: {
             rightSource() {
-                return this.leftSelected && this.leftSelected.children ? this.leftSelected.children : null
+                let currentSelected = this.selected[this.level]
+                return currentSelected && currentSelected.children ? currentSelected.children : null
             }
         },
         methods: {
             selectLeftItem(item) {
-                this.leftSelected = item
+                let selectedCopy = Utils.deepClone(this.selected)
+                selectedCopy[this.level] = item
+                this.$emit('update:selected', selectedCopy)
             },
-            mouseEnterItem() {
-                this.iconColor = '#FFF6FC'
-            },
-            mouseLeaveItem() {
-                this.iconColor = '#c0c4cc'
+            onUpdateSelected(updatedSelected) {
+                this.$emit('update:selected', updatedSelected)
             }
         },
         components: {

@@ -1,7 +1,7 @@
 <template>
     <div id="app">
-        <p>1111111</p>
-        <ow-cascader :source="source"></ow-cascader>
+        <p>{{selected}}</p>
+        <ow-cascader :source="source" :selected="selected" @update:selected="selected = $event"></ow-cascader>
         <p>1111111</p>
     </div>
 </template>
@@ -11,6 +11,7 @@
         name: 'app',
         data() {
             return {
+                selected: [],
                 source: [
                     {
                         name: '浙江',
