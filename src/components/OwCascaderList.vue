@@ -49,7 +49,10 @@
         methods: {
             selectLeftItem(item) {
                 let selectedCopy = Utils.deepClone(this.selected)
+                // Update to current selected item
                 selectedCopy[this.level] = item
+                // Remove items after that selected item
+                selectedCopy.splice(this.level + 1)
                 this.$emit('update:selected', selectedCopy)
             },
             onUpdateSelected(updatedSelected) {
