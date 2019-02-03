@@ -84,6 +84,7 @@
         top: calc(100% + 4px);
         left: 0;
         background: $--color-bg-dark;
+        overflow: auto;
         color: $--color-text-dark;
         box-shadow: 0 1px 4px $--color-bg-dark;
         border-radius: $--border-radius-small;
