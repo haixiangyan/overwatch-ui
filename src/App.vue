@@ -1,8 +1,9 @@
 <template>
     <div id="app">
         <ow-cascader
-            :source="source"
+            :source.sync="source"
             :selected.sync="selected"
+            :on-click-item="loadData"
             placeholder="请输入">
         </ow-cascader>
     </div>
@@ -11,17 +12,37 @@
 <script>
     import db from './assets/data/district'
 
-    function ajax(parentId=0, level) {
-        return db.filter((item) => item.parentId === parentId)
+    function ajax(parentId=0) {
+        return new Promise((success, fail) => {
+            setTimeout(() => {
+                let result = db.filter((item) => item.parentId === parentId)
+                success(result)
+            }, 300)
+        })
     }
     export default {
         name: 'app',
         data() {
             return {
                 selected: [],
-                source: ajax()
+                source: []
             }
         },
+        created() {
+            ajax(0).then((lastSelectedItem) => {
+                this.source = lastSelectedItem.map(item => {
+                    item.children = item.children || []
+                    return item
+                })
+            })
+        },
+        methods: {
+            loadData(clickedItem, updateSource) {
+                ajax(clickedItem.id).then(updatedChildren => {
+                    updateSource(updatedChildren)
+                })
+            }
+        }
     }
 </script>
 

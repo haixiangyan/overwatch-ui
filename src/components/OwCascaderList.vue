@@ -74,11 +74,12 @@
     &-left {
         height: 100%;
         padding: .3em 0;
+        overflow: auto;
         &-item {
             display: flex;
-            width: 120px;
             justify-content: space-between;
             align-items: center;
+            width: 120px;
             padding: .3em .5em;
             margin: 0 .5em;
             transition: all .3s;

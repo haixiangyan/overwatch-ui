@@ -5,7 +5,7 @@
                 :placeholder="placeholder"
                 :disabled="isInputDisabled"
                 class="ow-cascader-input"
-                :value="selectedResult">
+                :value="selectedValue">
             </ow-input>
         </div>
         <div v-if="isPopoverShow" class="ow-cascader-popover" :style="popoverStyles">
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+    import Utils from '../assets/scripts/utils'
     import OwInput from './OwInput'
     import OwCascaderList from './OwCascaderList'
 
@@ -38,6 +39,9 @@
             },
             placeholder: {
                 type: String
+            },
+            onClickItem: {
+                type: Function
             }
         },
         data() {
@@ -52,7 +56,7 @@
                     height: `${this.height}px`
                 }
             },
-            selectedResult() {
+            selectedValue() {
                 return this.selected.map((item) => item.name).join('/')
             }
         },
@@ -67,6 +71,17 @@
             },
             onUpdateSelected(updatedSelected) {
                 this.$emit('update:selected', updatedSelected)
+                this.handleClickItem(updatedSelected)
+            },
+            handleClickItem(updatedSelected) {
+                const clickedItem = updatedSelected[updatedSelected.length - 1]
+                let updateSource = (updatedChildren) => {
+                    const sourceCopy = Utils.deepClone(this.source)
+                    const toUpdate = Utils.findTreeNodeById({children: sourceCopy}, clickedItem.id)
+                    toUpdate.children = updatedChildren
+                    this.$emit('update:source', sourceCopy)
+                }
+                this.onClickItem(clickedItem, updateSource)
             }
         }
     }
@@ -84,11 +99,9 @@
         top: calc(100% + 4px);
         left: 0;
         background: $--color-bg-dark;
-        overflow: auto;
         color: $--color-text-dark;
         box-shadow: 0 1px 4px $--color-bg-dark;
         border-radius: $--border-radius-small;
-        border: 1px solid $--color-bg;
     }
 }
 </style>
