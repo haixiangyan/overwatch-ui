@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-cascader" ref="cascader">
+    <div class="ow-cascader" ref="cascader" v-click-outside="close">
         <div class="ow-cascader-trigger" @click="togglePopover">
             <ow-input
                 :placeholder="placeholder"
@@ -21,6 +21,7 @@
 
 <script>
     import Utils from '../assets/scripts/utils'
+    import ClickOutside from '../directives/ClickOutside'
     import OwInput from './OwInput'
     import OwCascaderList from './OwCascaderList'
 
@@ -61,28 +62,19 @@
                 return this.selected.map((item) => item.name).join('/')
             }
         },
+        directives: {
+            ClickOutside
+        },
         components: {
             OwCascaderList,
             OwInput
         },
         methods: {
-            onDocClick(event) {
-                const {cascader} = this.$refs
-                const {target} = event
-                if (cascader === target || cascader.contains(target)) {
-                    return
-                }
-                this.close()
-            },
             open() {
                 this.isPopoverShow = true
-                this.$nextTick(() => {
-                    document.addEventListener('click', this.onDocClick)
-                })
             },
             close() {
                 this.isPopoverShow = false
-                document.removeEventListener('click', this.onDocClick)
             },
             togglePopover() {
                 if (this.isPopoverShow) {

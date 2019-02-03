@@ -6,12 +6,12 @@
             :on-click-item="loadData"
             placeholder="点击选择">
         </ow-cascader>
-        <ow-popover position="top">
-            <template slot="content">
-                <div>Popover Content</div>
-            </template>
-            <ow-button>Pop It!</ow-button>
-        </ow-popover>
+        <ow-cascader
+            :source.sync="source"
+            :selected.sync="selected"
+            :on-click-item="loadData"
+            placeholder="点击选择">
+        </ow-cascader>
     </div>
 </template>
 
@@ -92,7 +92,7 @@
                     updateSource(updatedChildren)
                 })
             }
-        }
+        },
     }
 </script>
 
