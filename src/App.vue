@@ -6,12 +6,6 @@
             :on-click-item="loadData"
             placeholder="点击选择">
         </ow-cascader>
-        <ow-cascader
-            :source.sync="source"
-            :selected.sync="selected"
-            :on-click-item="loadData"
-            placeholder="点击选择">
-        </ow-cascader>
     </div>
 </template>
 

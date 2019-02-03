@@ -7,11 +7,14 @@
                 :key="index"
                 @click="selectLeftItem(item)">
                 <span class="ow-cascader-list-left-item-text">{{item.name}}</span>
-                <ow-icon
-                    v-if="showIcon(item)"
-                    name="right"
-                    class="ow-cascader-list-left-item-icon">
-                </ow-icon>
+                <span class="ow-cascader-list-left-item-icons">
+                    <template v-if="item.name === loadingItem.name">
+                        <ow-icon name="loading" :is-loading="true"></ow-icon>
+                    </template>
+                    <template v-else>
+                        <ow-icon v-if="showIcon(item)" name="right"></ow-icon>
+                    </template>
+                </span>
             </li>
         </ul>
         <section v-if="rightSource" class="ow-cascader-list-right">
@@ -20,6 +23,7 @@
                 :selected="selected"
                 :on-click-item="onClickItem"
                 @update:selected="onUpdateSelected"
+                :loading-item="loadingItem "
                 :source="rightSource">
             </ow-cascader-list>
         </section>
@@ -46,6 +50,10 @@
             },
             onClickItem: {
                 type: Function
+            },
+            loadingItem: {
+                type: Object,
+                default: () => ({})
             }
         },
         data() {
@@ -111,6 +119,10 @@
             white-space: nowrap;
             &-text {
                 user-select: none;
+            }
+            &-icons {
+                @include hvFlexCenterMx(inline-flex);
+                transform: scale(.9);
             }
             svg {
                 fill: $--color-text-dark;

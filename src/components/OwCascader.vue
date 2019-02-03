@@ -13,6 +13,7 @@
                 :selected="selected"
                 @update:selected="onUpdateSelected"
                 :on-click-item="onClickItem"
+                :loading-item="loadingItem"
                 :source="source">
             </ow-cascader-list>
         </div>
@@ -49,7 +50,8 @@
         data() {
             return {
                 isPopoverShow: false,
-                isInputDisabled: false
+                isInputDisabled: false,
+                loadingItem: {}
             }
         },
         computed: {
@@ -91,16 +93,20 @@
             },
             handleClickItem(updatedSelected) {
                 const clickedItem = updatedSelected[updatedSelected.length - 1]
-                if (clickedItem.isLeaf) {
+                if (clickedItem.isLeaf || !this.onClickItem) {
                     return
                 }
                 let updateSource = (updatedChildren) => {
+                    // Reset Loading
+                    this.loadingItem = {}
+                    // Update entire source
                     const sourceCopy = Utils.deepClone(this.source)
                     const toUpdate = Utils.findTreeNodeById({children: sourceCopy}, clickedItem.id)
                     toUpdate.children = updatedChildren
                     this.$emit('update:source', sourceCopy)
                 }
-                this.onClickItem && this.onClickItem(clickedItem, updateSource)
+                this.loadingItem = clickedItem
+                this.onClickItem(clickedItem, updateSource)
             }
         }
     }
@@ -121,6 +127,7 @@
         color: $--color-text-dark;
         box-shadow: 0 1px 4px $--color-bg-dark;
         border-radius: $--border-radius-small;
+        z-index: 1;
     }
 }
 </style>
