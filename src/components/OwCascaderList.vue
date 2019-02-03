@@ -41,8 +41,13 @@
         },
         computed: {
             rightSource() {
-                let currentSelected = this.selected[this.level]
-                return currentSelected && currentSelected.children ? currentSelected.children : null
+                // Use this.source to compute this property
+                if (this.selected && this.selected[this.level]) {
+                    const item = this.source.find((item) => item.name === this.selected[this.level].name)
+                    if (item && item.children && item.children.length > 0) {
+                        return item.children
+                    }
+                }
             }
         },
         methods: {
