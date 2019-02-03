@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-cascader">
+    <div class="ow-cascader" ref="cascader">
         <div class="ow-cascader-trigger" @click="togglePopover">
             <ow-input
                 :placeholder="placeholder"
@@ -8,7 +8,7 @@
                 :value="selectedValue">
             </ow-input>
         </div>
-        <div v-if="isPopoverShow" class="ow-cascader-popover" :style="popoverStyles">
+        <div v-show="isPopoverShow" class="ow-cascader-popover" :style="popoverStyles">
             <ow-cascader-list
                 :selected="selected"
                 @update:selected="onUpdateSelected"
@@ -47,7 +47,7 @@
         },
         data() {
             return {
-                isPopoverShow: true,
+                isPopoverShow: false,
                 isInputDisabled: false
             }
         },
@@ -66,8 +66,31 @@
             OwInput
         },
         methods: {
+            onDocClick(event) {
+                const {cascader} = this.$refs
+                const {target} = event
+                if (cascader === target || cascader.contains(target)) {
+                    return
+                }
+                this.close()
+            },
+            open() {
+                this.isPopoverShow = true
+                this.$nextTick(() => {
+                    document.addEventListener('click', this.onDocClick)
+                })
+            },
+            close() {
+                this.isPopoverShow = false
+                document.removeEventListener('click', this.onDocClick)
+            },
             togglePopover() {
-                this.isPopoverShow = !this.isPopoverShow
+                if (this.isPopoverShow) {
+                    this.close()
+                }
+                else {
+                    this.open()
+                }
                 this.isInputDisabled = this.isPopoverShow
             },
             onUpdateSelected(updatedSelected) {

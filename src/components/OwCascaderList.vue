@@ -108,6 +108,7 @@
             transition: all .3s;
             border-radius: $--border-radius-small;
             border: 1px solid transparent;
+            white-space: nowrap;
             &-text {
                 user-select: none;
             }
