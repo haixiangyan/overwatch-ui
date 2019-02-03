@@ -2,17 +2,23 @@
     <div class="ow-cascader-list">
         <ul class="ow-cascader-list-left">
             <li class="ow-cascader-list-left-item"
-                v-for="item in source"
-                :key="item.name"
+                :class="{active: item.name === activeName}"
+                v-for="(item, index) in source"
+                :key="index"
                 @click="selectLeftItem(item)">
-                <span>{{item.name}}</span>
-                <ow-icon v-if="item.children" name="right"></ow-icon>
+                <span class="ow-cascader-list-left-item-text">{{item.name}}</span>
+                <ow-icon
+                    v-if="showIcon(item)"
+                    name="right"
+                    class="ow-cascader-list-left-item-icon">
+                </ow-icon>
             </li>
         </ul>
         <section v-if="rightSource" class="ow-cascader-list-right">
             <ow-cascader-list
                 :level="level + 1"
                 :selected="selected"
+                :on-click-item="onClickItem"
                 @update:selected="onUpdateSelected"
                 :source="rightSource">
             </ow-cascader-list>
@@ -37,6 +43,14 @@
             level: {
                 type: Number,
                 default: 0
+            },
+            onClickItem: {
+                type: Function
+            }
+        },
+        data() {
+            return {
+                activeName: ''
             }
         },
         computed: {
@@ -48,10 +62,11 @@
                         return item.children
                     }
                 }
-            }
+            },
         },
         methods: {
             selectLeftItem(item) {
+                this.activeName = item.name
                 let selectedCopy = Utils.deepClone(this.selected)
                 // Update to current selected item
                 selectedCopy[this.level] = item
@@ -61,6 +76,9 @@
             },
             onUpdateSelected(updatedSelected) {
                 this.$emit('update:selected', updatedSelected)
+            },
+            showIcon(item) {
+                return this.onClickItem ? !item.isLeaf : item.children
             }
         },
         components: {
@@ -82,18 +100,22 @@
         overflow: auto;
         &-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             width: 120px;
             padding: .3em .5em;
             margin: 0 .5em;
             transition: all .3s;
             border-radius: $--border-radius-small;
             border: 1px solid transparent;
+            &-text {
+                user-select: none;
+            }
             svg {
                 fill: $--color-text-dark;
             }
-            &.selected {
+
+            &.active {
                 border: 1px solid $--color-primary;
             }
             &:hover {

@@ -12,6 +12,7 @@
             <ow-cascader-list
                 :selected="selected"
                 @update:selected="onUpdateSelected"
+                :on-click-item="onClickItem"
                 :source="source">
             </ow-cascader-list>
         </div>
@@ -75,13 +76,16 @@
             },
             handleClickItem(updatedSelected) {
                 const clickedItem = updatedSelected[updatedSelected.length - 1]
+                if (clickedItem.isLeaf) {
+                    return
+                }
                 let updateSource = (updatedChildren) => {
                     const sourceCopy = Utils.deepClone(this.source)
                     const toUpdate = Utils.findTreeNodeById({children: sourceCopy}, clickedItem.id)
                     toUpdate.children = updatedChildren
                     this.$emit('update:source', sourceCopy)
                 }
-                this.onClickItem(clickedItem, updateSource)
+                this.onClickItem && this.onClickItem(clickedItem, updateSource)
             }
         }
     }
