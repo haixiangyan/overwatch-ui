@@ -3,7 +3,7 @@ function deepClone(obj) {
 }
 function findTreeNodeById(root, id) {
     if (!root.children || root.children.length === 0) {
-        return []
+        return undefined
     }
     for (let child of Object.values(root.children)) {
         // Found that object
@@ -13,12 +13,12 @@ function findTreeNodeById(root, id) {
 
         // Using DFS to find
         const possibleResult = findTreeNodeById(child, id)
-        if (possibleResult.length !== 0) {
+        if (possibleResult) {
             return possibleResult
         }
     }
 
-    return []
+    return undefined
 }
 export default {
     deepClone,
