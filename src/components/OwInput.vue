@@ -94,7 +94,7 @@
                 opacity: $--more-opacity;
                 z-index: 1;
             }
-            &[disabled], &[readonly] {
+            &[disabled] {
                 opacity: $--half-opacity;
             }
         }

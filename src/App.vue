@@ -8,10 +8,9 @@
         name: 'app',
         data() {
             return {
-                selected: [],
-                source: []
+
             }
-        },
+        }
     }
 </script>
 

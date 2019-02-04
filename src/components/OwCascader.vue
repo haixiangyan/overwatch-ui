@@ -3,7 +3,7 @@
         <div class="ow-cascader-trigger" @click="togglePopover">
             <ow-input
                 :placeholder="placeholder"
-                :disabled="isInputDisabled"
+                :readonly="true"
                 class="ow-cascader-input"
                 :value="selectedValue">
             </ow-input>
@@ -50,7 +50,6 @@
         data() {
             return {
                 isPopoverShow: false,
-                isInputDisabled: false,
                 loadingItem: {}
             }
         },
@@ -85,7 +84,6 @@
                 else {
                     this.open()
                 }
-                this.isInputDisabled = this.isPopoverShow
             },
             onUpdateSelected(updatedSelected) {
                 this.$emit('update:selected', updatedSelected)
