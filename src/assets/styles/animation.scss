@@ -29,6 +29,25 @@
   transform: translateY(-100%);
 }
 
+/* Slides
+--------------------------*/
+.slide-left-leave-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.slide-left-enter-active, .slide-left-leave-active{
+  transition: all 1s;
+}
+.slide-left-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-left-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
 /* Vue animation
 --------------------------*/
 .fade-enter-active, .fade-leave-active {
