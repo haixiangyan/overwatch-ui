@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-slides :selected="selected">
+        <ow-slides :selected.sync="selected">
             <ow-slides-item name="1">
                 <div class="box">1</div>
             </ow-slides-item>
@@ -21,16 +21,6 @@
             return {
                 selected: '1'
             }
-        },
-        created() {
-            let n = 1
-            setInterval(() => {
-                if (n === 4) {
-                    n = 1
-                }
-                this.selected = n.toString()
-                n++
-            }, 3000)
         }
     }
 </script>
@@ -42,7 +32,6 @@
         background: url("./assets/images/ow-bg.jpg") center center;
         .box {
             height: 100px;
-            width: 100px;
             background: #ddd;
             border: 1px solid red;
         }

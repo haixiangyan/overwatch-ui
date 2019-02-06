@@ -1,6 +1,6 @@
 <template>
     <transition name="slide-left">
-        <div class="ow-carousel-item" v-if="isShow">
+        <div class="ow-carousel-item" v-if="isShow" :class="{reverse: isReverse}">
             <slot></slot>
         </div>
     </transition>
@@ -17,7 +17,8 @@
         },
         data() {
             return {
-                selected: null
+                selected: null,
+                isReverse: false
             }
         },
         computed: {

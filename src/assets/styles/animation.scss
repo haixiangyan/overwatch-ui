@@ -35,6 +35,8 @@
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
 }
 .slide-left-enter-active, .slide-left-leave-active{
   transition: all 1s;
@@ -43,8 +45,16 @@
   transform: translateX(100%);
   opacity: 0;
 }
+.slide-left-enter.reverse {
+  transform: translateX(-100%);
+  opacity: 0;
+}
 .slide-left-leave-to {
   transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-left-leave-to.reverse {
+  transform: translateX(100%);
   opacity: 0;
 }
 
