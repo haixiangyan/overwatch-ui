@@ -7,7 +7,7 @@
             <div>
                 <span
                     v-for="index in childrenLength"
-                    @click="select(index - 1)"
+                    @click="selectItem(index - 1)"
                     class="ow-carousel-indicator"
                     :class="{active: selectedIndicator === index - 1}">
                     {{index}}
@@ -31,7 +31,8 @@
         },
         data() {
             return {
-                childrenLength: 0
+                childrenLength: 0,
+                prevItem: null
             }
         },
         computed: {
@@ -43,41 +44,42 @@
             }
         },
         mounted() {
-            this.updateCarouselItems()
+            this.updateItems()
             this.autoPlay()
             this.childrenLength = this.$children.length
+            this.prevItem = this.selected
         },
         updated() {
-            this.updateCarouselItems()
+            this.updateItems()
         },
         methods: {
             autoPlay() {
                 let selectedIndex = this.names.indexOf(this.getSelected())
                 setTimeout(() => {
-                    this.updatingSelected(this.names, selectedIndex)
+                    this.updatingSelected(selectedIndex)
                 }, 3000)
             },
-            select(index) {
+            selectItem(index) {
                 this.$emit('update:selected', this.names[index])
             },
-            updatingSelected(names, selectedIndex) {
+            updatingSelected(selectedIndex) {
                 selectedIndex = selectedIndex - 1
-                if (selectedIndex === names.length) {
+                if (selectedIndex === this.names.length) {
                     selectedIndex = 0
                 }
                 if (selectedIndex === -1) {
-                    selectedIndex = names.length - 1
+                    selectedIndex = this.names.length - 1
                 }
-                this.$emit('update:selected', names[selectedIndex])
+                this.selectItem(selectedIndex)
 
                 setTimeout(() => {
-                    this.updatingSelected(names, selectedIndex)
+                    this.updatingSelected(selectedIndex)
                 }, 3000)
             },
             getSelected() {
                 return this.selected || this.$children[0].name
             },
-            updateCarouselItems() {
+            updateItems() {
                 const selected = this.getSelected()
                 const selectedIndex = this.names.indexOf(selected)
                 this.$children.forEach((child, index) => {
