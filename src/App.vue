@@ -31,7 +31,7 @@
         padding: 100px 150px;
         background: url("./assets/images/ow-bg.jpg") center center;
         .box {
-            height: 100px;
+            height: 200px;
             background: #ddd;
             border: 1px solid red;
         }

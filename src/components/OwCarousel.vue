@@ -4,6 +4,15 @@
             <div class="ow-carousel-items">
                 <slot></slot>
             </div>
+            <div>
+                <span
+                    v-for="index in childrenLength"
+                    @click="select(index - 1)"
+                    class="ow-carousel-indicator"
+                    :class="{active: selectedIndicator === index - 1}">
+                    {{index}}
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -20,20 +29,36 @@
                 default: true
             }
         },
+        data() {
+            return {
+                childrenLength: 0
+            }
+        },
+        computed: {
+            names() {
+                return this.$children.map(child => child.name)
+            },
+            selectedIndicator() {
+                return this.names.indexOf(this.getSelected())
+            }
+        },
         mounted() {
             this.updateCarouselItems()
             this.autoPlay()
+            this.childrenLength = this.$children.length
         },
         updated() {
             this.updateCarouselItems()
         },
         methods: {
             autoPlay() {
-                const names = this.$children.map(child => child.name)
-                let selectedIndex = names.indexOf(this.getSelected())
+                let selectedIndex = this.names.indexOf(this.getSelected())
                 setTimeout(() => {
-                    this.updatingSelected(names, selectedIndex)
+                    this.updatingSelected(this.names, selectedIndex)
                 }, 3000)
+            },
+            select(index) {
+                this.$emit('update:selected', this.names[index])
             },
             updatingSelected(names, selectedIndex) {
                 selectedIndex = selectedIndex - 1
@@ -53,9 +78,8 @@
                 return this.selected || this.$children[0].name
             },
             updateCarouselItems() {
-                const names = this.$children.map(child => child.name)
                 const selected = this.getSelected()
-                const selectedIndex = names.indexOf(selected)
+                const selectedIndex = this.names.indexOf(selected)
                 this.$children.forEach((child, index) => {
                     child.selected = selected
                     child.isReverse = index >= selectedIndex
@@ -75,6 +99,11 @@
     }
     &-items {
         position: relative;
+    }
+    &-indicator {
+        &.active {
+            background: red;
+        }
     }
 }
 </style>
