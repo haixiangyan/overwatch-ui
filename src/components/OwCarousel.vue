@@ -163,7 +163,7 @@
         },
         mounted() {
             this.updateItems()
-            // this.autoPlay()
+            this.autoPlay()
             this.childrenLength = this.items.length
             this.prevIndex = this.selected
         },
