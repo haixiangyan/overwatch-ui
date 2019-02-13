@@ -4,13 +4,13 @@
             <div class="ow-carousel-items">
                 <slot></slot>
             </div>
-            <div>
+            <div class="ow-carousel-indicators">
                 <span
                     v-for="index in childrenLength"
                     @click="selectItem(index - 1)"
-                    class="ow-carousel-indicator"
+                    class="indicator"
                     :class="{active: selectedIndex === index - 1}">
-                    {{index - 1}}
+                    {{index}}
                 </span>
             </div>
         </div>
@@ -131,9 +131,27 @@
     &-items {
         position: relative;
     }
-    &-indicator {
-        &.active {
-            background: red;
+    &-indicators {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0;
+        .indicator {
+            margin: 0 8px;
+            display: inline-flex;
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background: $--color-text-secondary;
+            font-size: .9em;
+            color: white;
+            &:hover {
+            }
+            &.active {
+                background: $--color-bg-dark;
+            }
         }
     }
 }
