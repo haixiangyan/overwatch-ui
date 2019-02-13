@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <ow-slides :selected.sync="selected">
-            <ow-slides-item name="1">
+        <ow-carousel :selected.sync="selected">
+            <ow-carousel-item name="1">
                 <div class="box">1</div>
-            </ow-slides-item>
-            <ow-slides-item name="2">
+            </ow-carousel-item>
+            <ow-carousel-item name="2">
                 <div class="box">2</div>
-            </ow-slides-item>
-            <ow-slides-item name="3">
+            </ow-carousel-item>
+            <ow-carousel-item name="3">
                 <div class="box">3</div>
-            </ow-slides-item>
-        </ow-slides>
+            </ow-carousel-item>
+        </ow-carousel>
     </div>
 </template>
 

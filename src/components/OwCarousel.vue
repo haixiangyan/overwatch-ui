@@ -16,6 +16,7 @@
                     v-for="index in childrenLength"
                     @click="selectItem(index - 1)"
                     class="indicator"
+                    :data-index="index-1"
                     :class="{active: selectedIndex === index - 1}">
                     {{index}}
                 </span>
@@ -39,6 +40,10 @@
             isAutoPlay: {
                 type: Boolean,
                 default: true
+            },
+            autoPlayDelay: {
+                type: Number,
+                default: 3000
             }
         },
         data() {
@@ -83,7 +88,7 @@
                 }
                 this.timerId = setTimeout(() => {
                     this.updatingSelected()
-                }, 3000)
+                }, this.autoPlayDelay)
             },
             selectItem(selectedIndex) {
                 this.prevIndex = this.selectedIndex
@@ -103,7 +108,7 @@
 
                 this.timerId = setTimeout(() => {
                     this.updatingSelected()
-                }, 3000)
+                }, this.autoPlayDelay)
             },
             pause() {
                 // Stop animation
@@ -163,7 +168,9 @@
         },
         mounted() {
             this.updateItems()
-            this.autoPlay()
+            if (this.isAutoPlay) {
+                this.autoPlay()
+            }
             this.childrenLength = this.items.length
             this.prevIndex = this.selected
         },

@@ -21,8 +21,8 @@ import OwCollapse from './OwCollapse.vue'
 import OwCollapseGroup from './OwCollapseGroup.vue'
 import OwCascader from './OwCascader.vue'
 import OwCascaderItem from './OwCascaderList.vue'
-import OwSlides from './OwCarousel.vue'
-import OwSlidesItem from './OwCarouselItem.vue'
+import OwCarousel from './OwCarousel.vue'
+import OwCarouselItem from './OwCarouselItem.vue'
 
 export default {
     OwButton,
@@ -47,6 +47,6 @@ export default {
     OwCollapseGroup,
     OwCascader,
     OwCascaderItem,
-    OwSlides,
-    OwSlidesItem
+    OwCarousel,
+    OwCarouselItem
 }
