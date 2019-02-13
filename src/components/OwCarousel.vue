@@ -45,11 +45,13 @@
             },
             isReverse() {
                 let isReverse = this.selectedIndex <= this.prevIndex
-                if (this.prevIndex === this.$children.length - 1 && this.selectedIndex === 0) {
-                    isReverse = false
-                }
-                if (this.prevIndex === 0 && this.selectedIndex === this.$children.length - 1) {
-                    isReverse = true
+                if (this.timerId) {
+                    if (this.prevIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+                        isReverse = false
+                    }
+                    if (this.prevIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+                        isReverse = true
+                    }
                 }
                 return isReverse
             }
