@@ -1,5 +1,10 @@
 <template>
-    <div class="ow-carousel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
+    <div class="ow-carousel"
+         @touchstart='onTouchStart'
+         @touchmove="onTouchMove"
+         @touchend="onTouchEnd"
+         @mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave">
         <div class="ow-carousel-window">
             <div class="ow-carousel-items">
                 <slot></slot>
@@ -33,7 +38,8 @@
             return {
                 childrenLength: 0,
                 prevIndex: null,
-                timerId: null
+                timerId: null,
+                startTouch: {}
             }
         },
         computed: {
@@ -41,9 +47,12 @@
                 return this.$children.map(child => child.name)
             },
             selectedIndex() {
-                return this.names.indexOf(this.getSelected())
-            },
-            isReverse() {
+                const index = this.names.indexOf(this.getSelected())
+                return (index === -1) ? 0 : index
+            }
+        },
+        methods: {
+            getIsReverse() {
                 let isReverse = this.selectedIndex <= this.prevIndex
                 if (this.timerId) {
                     if (this.prevIndex === this.$children.length - 1 && this.selectedIndex === 0) {
@@ -54,9 +63,7 @@
                     }
                 }
                 return isReverse
-            }
-        },
-        methods: {
+            },
             autoPlay() {
                 if (this.timerId) {
                     return
@@ -65,19 +72,19 @@
                     this.updatingSelected()
                 }, 3000)
             },
-            selectItem(index) {
+            selectItem(selectedIndex) {
                 this.prevIndex = this.selectedIndex
-                this.$emit('update:selected', this.names[index])
-            },
-            updatingSelected() {
-                let selectedIndex = this.names.indexOf(this.getSelected())
-                selectedIndex = selectedIndex - 1
                 if (selectedIndex === this.names.length) {
                     selectedIndex = 0
                 }
                 if (selectedIndex === -1) {
                     selectedIndex = this.names.length - 1
                 }
+                this.$emit('update:selected', this.names[selectedIndex])
+            },
+            updatingSelected() {
+                let selectedIndex = this.names.indexOf(this.getSelected())
+                selectedIndex = selectedIndex - 1
                 // Emit event for info new index
                 this.selectItem(selectedIndex)
 
@@ -102,10 +109,38 @@
             },
             updateItems() {
                 this.$children.forEach((child) => {
-                    child.isReverse = this.isReverse
+                    child.isReverse = this.getIsReverse()
                     this.$nextTick(() => {
                         child.selected = this.getSelected()
                     })
+                })
+            },
+            onTouchStart(event) {
+                if (event.touches.length > 1) {
+                    return
+                }
+                this.pause()
+                this.startTouch = event.touches[0]
+            },
+            onTouchMove() {
+            },
+            onTouchEnd(event) {
+                const endTouch = event.changedTouches[0]
+                const offsetX = endTouch.clientX - this.startTouch.clientX
+                const offsetY = endTouch.clientY - this.startTouch.clientY
+                // Only swipe up or down
+                if (Math.abs(offsetY) / Math.abs(offsetX) > 1) {
+                    return
+                }
+                if (offsetX > 0) {
+                    this.selectItem(this.selectedIndex - 1)
+                }
+                else {
+                    this.selectItem(this.selectedIndex + 1)
+                }
+
+                this.$nextTick(() => {
+                    this.autoPlay()
                 })
             }
         },
