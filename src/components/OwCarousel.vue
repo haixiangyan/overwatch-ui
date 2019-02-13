@@ -1,15 +1,17 @@
 <template>
     <div class="ow-carousel"
-         @touchstart='onTouchStart'
-         @touchmove="onTouchMove"
-         @touchend="onTouchEnd"
          @mouseenter="onMouseEnter"
          @mouseleave="onMouseLeave">
         <div class="ow-carousel-window">
-            <div class="ow-carousel-items">
+            <div class="ow-carousel-items"
+                 @touchstart="onTouchStart"
+                 @touchend="onTouchEnd">
                 <slot></slot>
             </div>
             <div class="ow-carousel-indicators">
+                <span class="indicator" @click="onClickPrev">
+                    <ow-icon color="white" name="up"></ow-icon>
+                </span>
                 <span
                     v-for="index in childrenLength"
                     @click="selectItem(index - 1)"
@@ -17,12 +19,17 @@
                     :class="{active: selectedIndex === index - 1}">
                     {{index}}
                 </span>
+                <span class="indicator" @click="onClickNext">
+                    <ow-icon color="white" name="down"></ow-icon>
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import OwIcon from './OwIcon'
+
     export default {
         name: "OwCarousel",
         props: {
@@ -44,21 +51,27 @@
         },
         computed: {
             names() {
-                return this.$children.map(child => child.name)
+                return this.items.map(child => child.name)
             },
             selectedIndex() {
                 const index = this.names.indexOf(this.getSelected())
                 return (index === -1) ? 0 : index
+            },
+            items() {
+                return this.$children.filter((child) => child.$options.name === 'OwCarouselItem')
             }
+        },
+        components: {
+            OwIcon
         },
         methods: {
             getIsReverse() {
                 let isReverse = this.selectedIndex <= this.prevIndex
                 if (this.timerId) {
-                    if (this.prevIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+                    if (this.prevIndex === this.items.length - 1 && this.selectedIndex === 0) {
                         isReverse = false
                     }
-                    if (this.prevIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+                    if (this.prevIndex === 0 && this.selectedIndex === this.items.length - 1) {
                         isReverse = true
                     }
                 }
@@ -105,10 +118,10 @@
                 this.autoPlay()
             },
             getSelected() {
-                return this.selected || this.$children[0].name
+                return this.selected || this.items[0].name
             },
             updateItems() {
-                this.$children.forEach((child) => {
+                this.items.forEach((child) => {
                     child.isReverse = this.getIsReverse()
                     this.$nextTick(() => {
                         child.selected = this.getSelected()
@@ -121,8 +134,6 @@
                 }
                 this.pause()
                 this.startTouch = event.touches[0]
-            },
-            onTouchMove() {
             },
             onTouchEnd(event) {
                 const endTouch = event.changedTouches[0]
@@ -142,12 +153,18 @@
                 this.$nextTick(() => {
                     this.autoPlay()
                 })
+            },
+            onClickPrev() {
+                this.selectItem(this.selectedIndex - 1)
+            },
+            onClickNext() {
+                this.selectItem(this.selectedIndex + 1)
             }
         },
         mounted() {
             this.updateItems()
-            this.autoPlay()
-            this.childrenLength = this.$children.length
+            // this.autoPlay()
+            this.childrenLength = this.items.length
             this.prevIndex = this.selected
         },
         updated() {
