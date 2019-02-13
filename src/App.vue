@@ -31,9 +31,12 @@
         padding: 100px 150px;
         background: url("./assets/images/ow-bg.jpg") center center;
         .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
             height: 200px;
             background: #ddd;
-            border: 1px solid red;
         }
     }
 </style>

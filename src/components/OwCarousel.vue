@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-carousel">
+    <div class="ow-carousel" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
         <div class="ow-carousel-window">
             <div class="ow-carousel-items">
                 <slot></slot>
@@ -32,7 +32,8 @@
         data() {
             return {
                 childrenLength: 0,
-                prevIndex: null
+                prevIndex: null,
+                timerId: null
             }
         },
         computed: {
@@ -41,20 +42,33 @@
             },
             selectedIndex() {
                 return this.names.indexOf(this.getSelected())
+            },
+            isReverse() {
+                let isReverse = this.selectedIndex <= this.prevIndex
+                if (this.prevIndex === this.$children.length - 1 && this.selectedIndex === 0) {
+                    isReverse = false
+                }
+                if (this.prevIndex === 0 && this.selectedIndex === this.$children.length - 1) {
+                    isReverse = true
+                }
+                return isReverse
             }
         },
         methods: {
             autoPlay() {
-                let selectedIndex = this.names.indexOf(this.getSelected())
-                setTimeout(() => {
-                    this.updatingSelected(selectedIndex)
+                if (this.timerId) {
+                    return
+                }
+                this.timerId = setTimeout(() => {
+                    this.updatingSelected()
                 }, 3000)
             },
             selectItem(index) {
                 this.prevIndex = this.selectedIndex
                 this.$emit('update:selected', this.names[index])
             },
-            updatingSelected(selectedIndex) {
+            updatingSelected() {
+                let selectedIndex = this.names.indexOf(this.getSelected())
                 selectedIndex = selectedIndex - 1
                 if (selectedIndex === this.names.length) {
                     selectedIndex = 0
@@ -62,18 +76,31 @@
                 if (selectedIndex === -1) {
                     selectedIndex = this.names.length - 1
                 }
+                // Emit event for info new index
                 this.selectItem(selectedIndex)
 
-                setTimeout(() => {
-                    this.updatingSelected(selectedIndex)
+                this.timerId = setTimeout(() => {
+                    this.updatingSelected()
                 }, 3000)
+            },
+            pause() {
+                // Stop animation
+                window.clearTimeout(this.timerId)
+                // Remove timer ID
+                this.timerId = null
+            },
+            onMouseEnter() {
+                this.pause()
+            },
+            onMouseLeave() {
+                this.autoPlay()
             },
             getSelected() {
                 return this.selected || this.$children[0].name
             },
             updateItems() {
                 this.$children.forEach((child) => {
-                    child.isReverse = this.selectedIndex <= this.prevIndex
+                    child.isReverse = this.isReverse
                     this.$nextTick(() => {
                         child.selected = this.getSelected()
                     })
@@ -82,12 +109,11 @@
         },
         mounted() {
             this.updateItems()
-            // this.autoPlay()
+            this.autoPlay()
             this.childrenLength = this.$children.length
             this.prevIndex = this.selected
         },
         updated() {
-            console.log('prevIndex', this.prevIndex, 'selectedIndex', this.selectedIndex)
             this.updateItems()
         },
     }
@@ -97,7 +123,6 @@
 .ow-carousel {
     width: 100%;
     display: flex;
-    border: 1px solid black;
     &-window {
         width: 100%;
     }
