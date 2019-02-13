@@ -9,8 +9,8 @@
                     v-for="index in childrenLength"
                     @click="selectItem(index - 1)"
                     class="ow-carousel-indicator"
-                    :class="{active: selectedIndicator === index - 1}">
-                    {{index}}
+                    :class="{active: selectedIndex === index - 1}">
+                    {{index - 1}}
                 </span>
             </div>
         </div>
@@ -32,25 +32,16 @@
         data() {
             return {
                 childrenLength: 0,
-                prevItem: null
+                prevIndex: null
             }
         },
         computed: {
             names() {
                 return this.$children.map(child => child.name)
             },
-            selectedIndicator() {
+            selectedIndex() {
                 return this.names.indexOf(this.getSelected())
             }
-        },
-        mounted() {
-            this.updateItems()
-            this.autoPlay()
-            this.childrenLength = this.$children.length
-            this.prevItem = this.selected
-        },
-        updated() {
-            this.updateItems()
         },
         methods: {
             autoPlay() {
@@ -60,6 +51,7 @@
                 }, 3000)
             },
             selectItem(index) {
+                this.prevIndex = this.selectedIndex
                 this.$emit('update:selected', this.names[index])
             },
             updatingSelected(selectedIndex) {
@@ -80,14 +72,24 @@
                 return this.selected || this.$children[0].name
             },
             updateItems() {
-                const selected = this.getSelected()
-                const selectedIndex = this.names.indexOf(selected)
-                this.$children.forEach((child, index) => {
-                    child.selected = selected
-                    child.isReverse = index >= selectedIndex
+                this.$children.forEach((child) => {
+                    child.isReverse = this.selectedIndex <= this.prevIndex
+                    this.$nextTick(() => {
+                        child.selected = this.getSelected()
+                    })
                 })
             }
-        }
+        },
+        mounted() {
+            this.updateItems()
+            // this.autoPlay()
+            this.childrenLength = this.$children.length
+            this.prevIndex = this.selected
+        },
+        updated() {
+            console.log('prevIndex', this.prevIndex, 'selectedIndex', this.selectedIndex)
+            this.updateItems()
+        },
     }
 </script>
 
