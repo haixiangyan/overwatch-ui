@@ -39,7 +39,7 @@
   height: 100%;
 }
 .slide-left-enter-active, .slide-left-leave-active{
-  transition: all 1s;
+  transition: all .8s;
 }
 .slide-left-enter {
   transform: translateX(20%);
@@ -61,7 +61,7 @@
 /* Vue animation
 --------------------------*/
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .8s;
+  transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
