@@ -10,7 +10,7 @@
             </div>
             <div class="ow-carousel-indicators">
                 <span class="indicator" @click="onClickPrev">
-                    <ow-icon color="white" name="up"></ow-icon>
+                    <ow-icon color="white" name="left"></ow-icon>
                 </span>
                 <span
                     v-for="index in childrenLength"
@@ -21,7 +21,7 @@
                     {{index}}
                 </span>
                 <span class="indicator" @click="onClickNext">
-                    <ow-icon color="white" name="down"></ow-icon>
+                    <ow-icon color="white" name="right"></ow-icon>
                 </span>
             </div>
         </div>
@@ -102,7 +102,7 @@
             },
             updatingSelected() {
                 let selectedIndex = this.names.indexOf(this.getSelected())
-                selectedIndex = selectedIndex - 1
+                selectedIndex = selectedIndex + 1
                 // Emit event for info new index
                 this.selectItem(selectedIndex)
 
