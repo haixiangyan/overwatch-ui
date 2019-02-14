@@ -38,7 +38,7 @@
                 type: [String, Boolean]
             },
             isAutoPlay: {
-                type: Boolean,
+                type: [String, Boolean],
                 default: true
             },
             autoPlayDelay: {
@@ -83,7 +83,7 @@
                 return isReverse
             },
             autoPlay() {
-                if (this.timerId) {
+                if (this.timerId || !this.isAutoPlay) {
                     return
                 }
                 this.timerId = setTimeout(() => {
@@ -168,9 +168,7 @@
         },
         mounted() {
             this.updateItems()
-            if (this.isAutoPlay) {
-                this.autoPlay()
-            }
+            this.autoPlay()
             this.childrenLength = this.items.length
             this.prevIndex = this.selected
         },
