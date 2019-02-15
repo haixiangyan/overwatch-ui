@@ -25,8 +25,8 @@
 </template>
 
 <script>
-    import OwIcon from './OwIcon'
-    import OwButton from './OwButton'
+    import OwIcon from '../Icon/OwIcon'
+    import OwButton from '../Button/OwButton'
 
     export default {
         name: "OwAlert",

@@ -1,10 +1,10 @@
 import {expect} from 'chai'
-import {shallowMount, mount} from '@vue/test-utils'
-import OwTabs from '../../src/components/OwTabs.vue'
-import OwTabsHead from '../../src/components/OwTabsHead.vue'
-import OwTabsBody from '../../src/components/OwTabsBody.vue'
-import OwTabsItem from '../../src/components/OwTabsItem.vue'
-import OwTabsPane from '../../src/components/OwTabsPane.vue'
+import {shallowMount} from '@vue/test-utils'
+import OwTabs from '../../src/components/Tabs/OwTabs.vue'
+import OwTabsHead from '../../src/components/Tabs/OwTabsHead.vue'
+import OwTabsBody from '../../src/components/Tabs/OwTabsBody.vue'
+import OwTabsItem from '../../src/components/Tabs/OwTabsItem.vue'
+import OwTabsPane from '../../src/components/Tabs/OwTabsPane.vue'
 
 const testData = {
     selected: 'career',

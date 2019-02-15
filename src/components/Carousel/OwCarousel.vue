@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import OwIcon from './OwIcon'
+    import OwIcon from '../Icon/OwIcon'
 
     export default {
         name: "OwCarousel",

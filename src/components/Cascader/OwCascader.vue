@@ -21,9 +21,9 @@
 </template>
 
 <script>
-    import Utils from '../assets/scripts/utils'
-    import ClickOutside from '../directives/ClickOutside'
-    import OwInput from './OwInput'
+    import Utils from '../../assets/scripts/utils'
+    import ClickOutside from '../../directives/ClickOutside'
+    import OwInput from '../Input/OwInput'
     import OwCascaderList from './OwCascaderList'
 
     export default {

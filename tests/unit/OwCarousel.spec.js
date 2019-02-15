@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {mount, shallowMount} from '@vue/test-utils'
-import OwCarousel from '../../src/components/OwCarousel.vue'
-import OwCarouselItem from '../../src/components/OwCarouselItem.vue'
+import OwCarousel from '../../src/components/Carousel/OwCarousel.vue'
+import OwCarouselItem from '../../src/components/Carousel/OwCarouselItem.vue'
 import sinon from "sinon"
 
 describe('OwCarousel.vue', () => {

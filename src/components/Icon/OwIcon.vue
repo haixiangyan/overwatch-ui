@@ -9,7 +9,8 @@
 
 <script>
     // Import icons svg
-    import '../assets/icons/index'
+    import '../../assets/icons/index'
+
     export default {
         name: "OwIcon",
         props: {

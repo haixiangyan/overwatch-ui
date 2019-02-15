@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwCollapseGroup from '../../src/components/OwCollapseGroup.vue'
+import OwCollapseGroup from '../../src/components/Collapse/OwCollapseGroup.vue'
 
 const testData = {
     multiple: true,

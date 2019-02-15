@@ -1,7 +1,7 @@
 import {expect} from 'chai'
-import {shallowMount, mount} from '@vue/test-utils'
-import OwAlert from '../../src/components/OwAlert.vue'
-import OwButton from '../../src/components/OwButton.vue'
+import {mount, shallowMount} from '@vue/test-utils'
+import OwAlert from '../../src/components/Alert/OwAlert.vue'
+import OwButton from '../../src/components/Button/OwButton.vue'
 import {testProperty} from "../utils"
 import sinon from "sinon"
 

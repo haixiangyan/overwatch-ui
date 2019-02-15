@@ -1,4 +1,4 @@
-import OwAlert from '../components/OwAlert'
+import OwAlert from '../components/Alert/OwAlert'
 
 let currentOwAlert
 

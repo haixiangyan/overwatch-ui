@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwInput from '../../src/components/OwInput.vue'
+import OwInput from '../../src/components/Input/OwInput.vue'
 import {testProperty} from "../utils"
 
 const testData = {

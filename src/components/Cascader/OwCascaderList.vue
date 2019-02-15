@@ -31,8 +31,8 @@
 </template>
 
 <script>
-    import Utils from '../assets/scripts/utils'
-    import OwIcon from './OwIcon'
+    import Utils from '../../assets/scripts/utils'
+    import OwIcon from '../Icon/OwIcon'
 
     export default {
         name: 'OwCascaderList',

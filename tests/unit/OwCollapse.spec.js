@@ -1,8 +1,8 @@
 import {expect} from 'chai'
 import {mount, shallowMount} from '@vue/test-utils'
-import OwCollapseGroup from '../../src/components/OwCollapseGroup.vue'
-import OwCollapse from '../../src/components/OwCollapse.vue'
-import OwButton from '../../src/components/OwButton.vue'
+import OwCollapseGroup from '../../src/components/Collapse/OwCollapseGroup.vue'
+import OwCollapse from '../../src/components/Collapse/OwCollapse.vue'
+import OwButton from '../../src/components/Button/OwButton.vue'
 import Vue from 'vue'
 
 const testData = {

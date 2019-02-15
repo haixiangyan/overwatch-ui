@@ -1,7 +1,6 @@
 import {expect} from 'chai'
-import {shallowMount, mount} from '@vue/test-utils'
-import OwCol from '../../src/components/OwCol.vue'
-import {testProperty} from "../utils"
+import {shallowMount} from '@vue/test-utils'
+import OwCol from '../../src/components/Layout/OwCol.vue'
 
 const testData = {
     pc: {span: 2, offset: 2},

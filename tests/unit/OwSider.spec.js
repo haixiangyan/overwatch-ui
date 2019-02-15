@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwSider from '../../src/components/OwSider.vue'
+import OwSider from '../../src/components/Layout/OwSider.vue'
 
 const testData = {
     slot: 'Hello',

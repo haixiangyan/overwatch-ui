@@ -6,7 +6,7 @@
 
 <script>
     import Vue from 'vue'
-    import Utils from '../assets/scripts/utils'
+    import Utils from '../../assets/scripts/utils'
 
     export default {
         name: "OwCollapseGroup",

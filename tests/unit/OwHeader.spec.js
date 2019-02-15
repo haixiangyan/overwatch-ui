@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwHeader from '../../src/components/OwHeader.vue'
+import OwHeader from '../../src/components/Layout/OwHeader.vue'
 
 const testData = {
     slot: 'Hello',

@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {mount, shallowMount} from '@vue/test-utils'
-import OwCascader from '../../src/components/OwCascader'
-import OwCascaderList from '../../src/components/OwCascaderList'
+import OwCascader from '../../src/components/Cascader/OwCascader'
+import OwCascaderList from '../../src/components/Cascader/OwCascaderList'
 
 const testData = {
     source: [

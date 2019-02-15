@@ -1,7 +1,7 @@
 import {expect} from 'chai'
-import {shallowMount, mount} from '@vue/test-utils'
-import OwRow from '../../src/components/OwRow.vue'
-import OwCol from '../../src/components/OwCol.vue'
+import {mount, shallowMount} from '@vue/test-utils'
+import OwRow from '../../src/components/Layout/OwRow.vue'
+import OwCol from '../../src/components/Layout/OwCol.vue'
 import Vue from 'vue'
 import {testProperty} from "../utils"
 
