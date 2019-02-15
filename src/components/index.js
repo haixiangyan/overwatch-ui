@@ -23,6 +23,9 @@ import OwCascader from './Cascader/OwCascader.vue'
 import OwCascaderItem from './Cascader/OwCascaderList.vue'
 import OwCarousel from './Carousel/OwCarousel.vue'
 import OwCarouselItem from './Carousel/OwCarouselItem.vue'
+import OwNav from './Nav/OwNav'
+import OwNavItem from './Nav/OwNavItem'
+import OwSubNav from './Nav/OwSubNav'
 
 export default {
     OwButton,
@@ -48,5 +51,8 @@ export default {
     OwCascader,
     OwCascaderItem,
     OwCarousel,
-    OwCarouselItem
+    OwCarouselItem,
+    OwNav,
+    OwNavItem,
+    OwSubNav
 }

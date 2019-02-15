@@ -1,16 +1,10 @@
 <template>
     <div id="app">
-        <ow-carousel :selected.sync="selected">
-            <ow-carousel-item name="1">
-                <div class="box">1</div>
-            </ow-carousel-item>
-            <ow-carousel-item name="2">
-                <div class="box">2</div>
-            </ow-carousel-item>
-            <ow-carousel-item name="3">
-                <div class="box">3</div>
-            </ow-carousel-item>
-        </ow-carousel>
+        <ow-nav :selected.sync="selected">
+            <ow-nav-item name="home">Home</ow-nav-item>
+            <ow-nav-item name="about">About</ow-nav-item>
+            <ow-nav-item name="career">Career</ow-nav-item>
+        </ow-nav>
     </div>
 </template>
 
@@ -19,7 +13,7 @@
         name: 'app',
         data() {
             return {
-                selected: '1'
+                selected: ['home']
             }
         }
     }
