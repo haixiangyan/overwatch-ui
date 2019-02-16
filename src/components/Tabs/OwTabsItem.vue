@@ -63,7 +63,7 @@
         width: 0;
         transform: translateX(-50%);
         background: #01FFFF;
-        transition: width .2s;
+        transition: width .3s;
     }
 
     // OwIcon
