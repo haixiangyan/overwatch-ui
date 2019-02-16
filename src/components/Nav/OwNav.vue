@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-nav">
+    <div class="ow-nav" :class="{vertical: isVertical}">
         <slot></slot>
     </div>
 </template>
@@ -12,10 +12,15 @@
         provide() {
             return {
                 // Nav to be the root
-                root: this
+                root: this,
+                isVertical: this.isVertical
             }
         },
         props: {
+            isVertical: {
+                type: Boolean,
+                default: false
+            },
             selected: {
                 type: Array,
                 default: () => []
@@ -74,5 +79,8 @@
     background: $--color-bg-shallow;
     margin-bottom: 4px;
     user-select: none;
+    &.vertical {
+        flex-direction: column;
+    }
 }
 </style>

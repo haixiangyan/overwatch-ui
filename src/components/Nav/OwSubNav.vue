@@ -6,9 +6,11 @@
                 <ow-icon size=".8em" name="right"></ow-icon>
             </span>
         </span>
-        <div v-show ="isOpen" class="ow-sub-nav-popover">
-            <slot></slot>
-        </div>
+        <transition name="x" @enter="enter" @leave="leave" @after-enter="afterEnter">
+            <div v-show ="isOpen" class="ow-sub-nav-popover" :class="{vertical: isVertical}">
+                <slot></slot>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -18,7 +20,7 @@
 
     export default {
         name: "OwSubNav",
-        inject: ['root'],
+        inject: ['root', 'isVertical'],
         props: {
             name: {
                 type: [String, Number],
@@ -53,6 +55,30 @@
                 if (this.$parent.updateNamePath) {
                     this.$parent.updateNamePath()
                 }
+            },
+            enter(el, done) {
+                el.style.height = 'auto'
+                // Get popover height
+                const {height} = el.getBoundingClientRect()
+                el.style.height = 0
+                // Force not to combine multiple changes
+                el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            leave(el, done) {
+                const {height} = el.getBoundingClientRect()
+                el.style.height = `${height}px`
+                el.getBoundingClientRect()
+                el.style.height = 0
+                el.addEventListener('transitionend', () => {
+                    done()
+                })
+            },
+            afterEnter(el) {
+                el.style.height = 'auto'
             }
         }
     }
@@ -104,6 +130,14 @@
         white-space: nowrap;
         box-shadow: 0 1px 4px $--color-bg-dark;
         border-radius: $--border-radius-small;
+        z-index: 1;
+        &.vertical {
+            position: static;
+            border-radius: 0;
+            box-shadow: none;
+            transition: all .5s;
+            overflow: hidden;
+        }
     }
 }
 /*For Popover*/
@@ -128,6 +162,9 @@
         top: 0;
         left: 100%;
         margin-left: 4px;
+        &.vertical {
+            margin-left: 8px;
+        }
     }
 }
 </style>
