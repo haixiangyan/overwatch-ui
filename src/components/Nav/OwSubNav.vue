@@ -6,11 +6,19 @@
                 <ow-icon size=".8em" name="right"></ow-icon>
             </span>
         </span>
-        <transition name="x" @enter="enter" @leave="leave" @after-enter="afterEnter">
-            <div v-show ="isOpen" class="ow-sub-nav-popover" :class="{vertical: isVertical}">
+        <!--Show different template-->
+        <template v-if="isVertical">
+            <transition @enter="enter" @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
+                <div v-show ="isOpen" class="ow-sub-nav-popover vertical">
+                    <slot></slot>
+                </div>
+            </transition>
+        </template>
+        <template v-else>
+            <div v-show ="isOpen" class="ow-sub-nav-popover">
                 <slot></slot>
             </div>
-        </transition>
+        </template>
     </div>
 </template>
 
@@ -68,6 +76,9 @@
                     done()
                 })
             },
+            afterEnter(el) {
+                el.style.height = 'auto'
+            },
             leave(el, done) {
                 const {height} = el.getBoundingClientRect()
                 el.style.height = `${height}px`
@@ -77,7 +88,7 @@
                     done()
                 })
             },
-            afterEnter(el) {
+            afterLeave(el) {
                 el.style.height = 'auto'
             }
         }
@@ -130,12 +141,12 @@
         white-space: nowrap;
         box-shadow: 0 1px 4px $--color-bg-dark;
         border-radius: $--border-radius-small;
+        transition: all .5s;
         z-index: 1;
         &.vertical {
             position: static;
             border-radius: 0;
             box-shadow: none;
-            transition: all .5s;
             overflow: hidden;
         }
     }
