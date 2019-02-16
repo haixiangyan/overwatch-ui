@@ -3,7 +3,7 @@
         <span @click="onClickTitle" class="ow-sub-nav-title">
             <slot name="title"></slot>
         </span>
-        <div v-show="isShow" class="ow-sub-nav-popover">
+        <div v-show ="isShow" class="ow-sub-nav-popover">
             <slot></slot>
         </div>
     </div>
@@ -14,7 +14,7 @@
         name: "OwSubNav",
         data() {
             return {
-                isShow: false
+                isShow: true
             }
         },
         methods: {
@@ -29,9 +29,8 @@
 .ow-sub-nav {
     position: relative;
     &-title {
-        display: inline-flex;
+        display: flex;
         padding: 10px 20px;
-        vertical-align: top;
     }
     &-popover {
         position: absolute;
@@ -40,5 +39,11 @@
         border: 1px solid green;
         white-space: nowrap;
     }
+}
+/*For Popover*/
+.ow-sub-nav .ow-sub-nav .ow-sub-nav-popover {
+    top: 0;
+    left: 100%;
+    margin-left: 8px;
 }
 </style>

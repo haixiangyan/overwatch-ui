@@ -6,7 +6,15 @@
                 <template slot="title">About</template>
                 <ow-nav-item name="team">Team</ow-nav-item>
                 <ow-nav-item name="developer">Developer</ow-nav-item>
-                <ow-nav-item name="company">company</ow-nav-item>
+                <ow-sub-nav>
+                    <template slot="title">Company</template>
+                    <ow-nav-item name="baidu">Baidu</ow-nav-item>
+                    <ow-sub-nav>
+                        <template slot="title">Tencent</template>
+                        <ow-nav-item name="sports">Sports</ow-nav-item>
+                        <ow-nav-item name="ant">Ant</ow-nav-item>
+                    </ow-sub-nav>
+                </ow-sub-nav>
             </ow-sub-nav>
             <ow-nav-item name="career">Career</ow-nav-item>
         </ow-nav>
