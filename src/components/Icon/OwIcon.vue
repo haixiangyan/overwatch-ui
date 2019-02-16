@@ -25,12 +25,18 @@
             isLoading: {
                 type: Boolean,
                 default: false
+            },
+            size: {
+                type: String,
+                default: '1em'
             }
         },
         computed: {
             styles() {
                 return {
-                    fill: this.color
+                    fill: this.color,
+                    width: this.size,
+                    height: this.size
                 }
             },
             classes() {
@@ -45,8 +51,6 @@
 
 <style scoped lang="scss">
     .ow-icon {
-        height: 1em;
-        width: 1em;
         &_loading {
             animation: spin .5s infinite linear;
         }
