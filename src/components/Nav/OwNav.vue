@@ -9,6 +9,12 @@
 
     export default {
         name: "OwNav",
+        provide() {
+            return {
+                // Nav to be the root
+                root: this
+            }
+        },
         props: {
             selected: {
                 type: Array,
@@ -19,6 +25,11 @@
                 default: false
             }
         },
+        data() {
+            return {
+                items: []
+            }
+        },
         mounted() {
             this.updateItems()
 
@@ -27,12 +38,10 @@
         updated() {
             this.updateItems()
         },
-        computed: {
-            items() {
-                return this.$children.filter((child) => child.$options.name === 'OwNavItem')
-            }
-        },
         methods: {
+            addItem(item) {
+                this.items.push(item)
+            },
             updateItems() {
                 this.items.forEach((item) => {
                     item.active = this.selected.indexOf(item.name) > -1;

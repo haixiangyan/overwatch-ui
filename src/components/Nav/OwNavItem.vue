@@ -7,6 +7,7 @@
 <script>
     export default {
         name: "OwNavItem",
+        inject: ['root'],
         props: {
             name: {
                 type: [String, Number],
@@ -22,6 +23,9 @@
             onClickItem() {
                 this.$emit('add:selected', this.name)
             }
+        },
+        created() {
+            this.root.addItem(this)
         }
     }
 </script>

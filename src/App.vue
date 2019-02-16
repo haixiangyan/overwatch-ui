@@ -2,7 +2,12 @@
     <div id="app">
         <ow-nav :selected.sync="selected">
             <ow-nav-item name="home">Home</ow-nav-item>
-            <ow-nav-item name="about">About</ow-nav-item>
+            <ow-sub-nav>
+                <template slot="title">About</template>
+                <ow-nav-item name="team">Team</ow-nav-item>
+                <ow-nav-item name="developer">Developer</ow-nav-item>
+                <ow-nav-item name="company">company</ow-nav-item>
+            </ow-sub-nav>
             <ow-nav-item name="career">Career</ow-nav-item>
         </ow-nav>
     </div>
@@ -13,7 +18,7 @@
         name: 'app',
         data() {
             return {
-                selected: ['home']
+                selected: ['developer']
             }
         }
     }
