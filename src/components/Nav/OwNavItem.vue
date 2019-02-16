@@ -32,9 +32,34 @@
 
 <style scoped lang="scss">
 .ow-nav-item {
-    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: $--tab-height;
+    padding: 0 20px;
+    transition: all .5s;
+    &:hover {
+        color: $--color-white;
+        background: $--color-primary;
+    }
     &.active {
-        background: red;
+        background: $--color-primary;
+        color: $--color-white;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 100%;
+            border-bottom: 4px solid #01FFFF;
+            width: 100%;
+        }
+    }
+}
+.ow-sub-nav .ow-nav-item {
+    &.active {
+        &::after {
+            display: none;
+        }
     }
 }
 </style>

@@ -69,6 +69,8 @@
 <style scoped lang="scss">
 .ow-nav {
     display: flex;
-    border: 1px solid red;
+    color: $--color-primary;
+    background: $--color-bg-shallow;
+    user-select: none;
 }
 </style>

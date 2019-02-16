@@ -29,21 +29,31 @@
 .ow-sub-nav {
     position: relative;
     &-title {
+        height: $--tab-height;
         display: flex;
-        padding: 10px 20px;
+        align-items: center;
+        padding: 0px 20px;
+        transition: all .5s;
+        &:hover {
+            color: $--color-white;
+            background: $--color-primary;
+        }
     }
     &-popover {
         position: absolute;
-        top: 100%;
+        top: calc(100% + 4px);
         left: 0;
-        border: 1px solid green;
+        background: $--color-bg-dark;
+        color: $--color-text-placeholder;
         white-space: nowrap;
+        box-shadow: 0 1px 4px $--color-bg-dark;
+        border-radius: $--border-radius-small;
     }
 }
 /*For Popover*/
 .ow-sub-nav .ow-sub-nav .ow-sub-nav-popover {
     top: 0;
     left: 100%;
-    margin-left: 8px;
+    margin-left: 4px;
 }
 </style>
