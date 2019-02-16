@@ -2,6 +2,9 @@
     <div class="ow-sub-nav" :class="{active: isActive}" v-click-outside="close">
         <span @click="onClickTitle" class="ow-sub-nav-title">
             <slot name="title"></slot>
+            <span class="ow-sub-nav-icon" :class="{open: isOpen}">
+                <ow-icon size=".8em" name="right"></ow-icon>
+            </span>
         </span>
         <div v-show ="isOpen" class="ow-sub-nav-popover">
             <slot></slot>
@@ -10,6 +13,7 @@
 </template>
 
 <script>
+    import OwIcon from '../Icon/OwIcon'
     import ClickOutside from '../../directives/ClickOutside'
 
     export default {
@@ -29,10 +33,13 @@
         computed: {
             isActive() {
                 return this.root.namePath.indexOf(this.name) >= 0
-            }
+            },
         },
         directives: {
             ClickOutside
+        },
+        components: {
+            OwIcon
         },
         methods: {
             close() {
@@ -66,15 +73,26 @@
             width: 100%;
         }
     }
+    &-icon {
+        display: none;
+    }
     &-title {
         height: $--tab-height;
         display: flex;
         align-items: center;
-        padding: 0px 20px;
+        justify-content: space-between;
+        padding: 0 20px;
         transition: all .5s;
+        svg {
+            fill: $--color-text-placeholder;
+            transition: all .3s;
+        }
         &:hover {
             color: $--color-white;
             background: $--color-primary;
+            svg {
+                fill: $--color-white;
+            }
         }
     }
     &-popover {
@@ -89,9 +107,27 @@
     }
 }
 /*For Popover*/
-.ow-sub-nav .ow-sub-nav .ow-sub-nav-popover {
-    top: 0;
-    left: 100%;
-    margin-left: 4px;
+.ow-sub-nav .ow-sub-nav {
+    &.active {
+        &::after {
+            display: none;
+        }
+        svg {
+            fill: $--color-white;
+        }
+    }
+    .ow-sub-nav-icon {
+        margin-left: 8px;
+        display: inline-flex;
+        transition: transform .5s;
+        &.open {
+            transform: rotate(180deg);
+        }
+    }
+    .ow-sub-nav-popover {
+        top: 0;
+        left: 100%;
+        margin-left: 4px;
+    }
 }
 </style>

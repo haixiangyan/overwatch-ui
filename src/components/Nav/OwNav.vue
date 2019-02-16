@@ -72,6 +72,7 @@
     display: flex;
     color: $--color-primary;
     background: $--color-bg-shallow;
+    margin-bottom: 4px;
     user-select: none;
 }
 </style>
