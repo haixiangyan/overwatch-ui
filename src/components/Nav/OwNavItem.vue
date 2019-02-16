@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-nav-item" :class="{active: isActive}" @click="onClickItem">
+    <div class="ow-nav-item" :class="{active: isActive, vertical: isVertical}" @click="onClickItem">
         <slot></slot>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
     export default {
         name: "OwNavItem",
-        inject: ['root'],
+        inject: ['root', 'isVertical'],
         props: {
             name: {
                 type: [String, Number],
@@ -42,6 +42,30 @@
     height: $--tab-height;
     padding: 0 20px;
     transition: all .5s;
+    &:not(.vertical) {
+        &.active {
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 100%;
+                border-bottom: 4px solid #01FFFF;
+                width: 100%;
+            }
+        }
+    }
+    &.vertical {
+        &.active {
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 0;
+                border-right: 4px solid #01FFFF;
+                height: 100%;
+            }
+        }
+    }
     &:hover {
         color: $--color-white;
         background: $--color-primary;
@@ -49,21 +73,21 @@
     &.active {
         background: $--color-primary;
         color: $--color-white;
+    }
+}
+.ow-sub-nav .ow-nav-item.vertical {
+    &.active {
         &::after {
             content: '';
             position: absolute;
-            left: 0;
-            top: 100%;
-            border-bottom: 4px solid #01FFFF;
-            width: 100%;
+            right: 0;
+            top: 0;
+            border-right: 4px solid #01FFFF;
+            height: 100%;
         }
     }
 }
-.ow-sub-nav .ow-nav-item {
-    &.active {
-        &::after {
-            display: none;
-        }
-    }
+a {
+    color: inherit;
 }
 </style>

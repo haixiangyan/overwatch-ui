@@ -1,9 +1,10 @@
 <template>
-    <div class="ow-sub-nav" :class="{active: isActive}" v-click-outside="close">
+    <div class="ow-sub-nav" :class="{active: isActive, vertical: isVertical}" v-click-outside="close">
         <span @click="onClickTitle" class="ow-sub-nav-title">
             <slot name="title"></slot>
             <span class="ow-sub-nav-icon" :class="{open: isOpen}">
-                <ow-icon size=".8em" name="right"></ow-icon>
+                <ow-icon v-if="isVertical" size=".8em" name="up"></ow-icon>
+                <ow-icon v-else size=".8em" name="right"></ow-icon>
             </span>
         </span>
         <!--Show different template-->
@@ -82,6 +83,7 @@
             leave(el, done) {
                 const {height} = el.getBoundingClientRect()
                 el.style.height = `${height}px`
+                // Force not to combine multiple changes
                 el.getBoundingClientRect()
                 el.style.height = 0
                 el.addEventListener('transitionend', () => {
@@ -98,7 +100,7 @@
 <style scoped lang="scss">
 .ow-sub-nav {
     position: relative;
-    &.active {
+    &:not(.vertical).active {
         background: $--color-primary;
         color: $--color-white;
         &::after {
@@ -109,6 +111,9 @@
             border-bottom: 4px solid #01FFFF;
             width: 100%;
         }
+    }
+    &.vertical.active {
+        color: $--color-white;
     }
     &-icon {
         display: none;
@@ -174,7 +179,7 @@
         left: 100%;
         margin-left: 4px;
         &.vertical {
-            margin-left: 8px;
+            margin-left: 16px;
         }
     }
 }
