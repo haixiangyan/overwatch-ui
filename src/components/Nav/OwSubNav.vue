@@ -1,25 +1,51 @@
 <template>
-    <div class="ow-sub-nav">
+    <div class="ow-sub-nav" :class="{active: isActive}" v-click-outside="close">
         <span @click="onClickTitle" class="ow-sub-nav-title">
             <slot name="title"></slot>
         </span>
-        <div v-show ="isShow" class="ow-sub-nav-popover">
+        <div v-show ="isOpen" class="ow-sub-nav-popover">
             <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
+    import ClickOutside from '../../directives/ClickOutside'
+
     export default {
         name: "OwSubNav",
-        data() {
-            return {
-                isShow: true
+        inject: ['root'],
+        props: {
+            name: {
+                type: [String, Number],
+                required: true
             }
         },
+        data() {
+            return {
+                isOpen: false
+            }
+        },
+        computed: {
+            isActive() {
+                return this.root.namePath.indexOf(this.name) >= 0
+            }
+        },
+        directives: {
+            ClickOutside
+        },
         methods: {
+            close() {
+                this.isOpen = false
+            },
             onClickTitle() {
-                this.isShow = !this.isShow
+                this.isOpen = !this.isOpen
+            },
+            updateNamePath() {
+                this.root.namePath.unshift(this.name)
+                if (this.$parent.updateNamePath) {
+                    this.$parent.updateNamePath()
+                }
             }
         }
     }
@@ -28,6 +54,18 @@
 <style scoped lang="scss">
 .ow-sub-nav {
     position: relative;
+    &.active {
+        background: $--color-primary;
+        color: $--color-white;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 100%;
+            border-bottom: 4px solid #01FFFF;
+            width: 100%;
+        }
+    }
     &-title {
         height: $--tab-height;
         display: flex;

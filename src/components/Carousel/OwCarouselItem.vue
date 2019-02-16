@@ -22,7 +22,7 @@
             }
         },
         computed: {
-            isShow() {
+            isOpen() {
                 return this.selected === this.name
             }
         }

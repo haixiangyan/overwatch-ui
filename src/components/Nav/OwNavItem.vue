@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-nav-item" :class="{active}" @click="onClickItem">
+    <div class="ow-nav-item" :class="{active: isActive}" @click="onClickItem">
         <slot></slot>
     </div>
 </template>
@@ -16,11 +16,15 @@
         },
         data() {
             return {
-                active: false
+                isActive: false
             }
         },
         methods: {
             onClickItem() {
+                // Clear all active parent
+                this.root.namePath = []
+                // Then update name path recursively
+                this.$parent.updateNamePath && this.$parent.updateNamePath()
                 this.$emit('add:selected', this.name)
             }
         },

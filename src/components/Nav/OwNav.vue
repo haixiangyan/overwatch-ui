@@ -27,7 +27,8 @@
         },
         data() {
             return {
-                items: []
+                items: [],
+                namePath: []
             }
         },
         mounted() {
@@ -44,7 +45,7 @@
             },
             updateItems() {
                 this.items.forEach((item) => {
-                    item.active = this.selected.indexOf(item.name) > -1;
+                    item.isActive = this.selected.indexOf(item.name) > -1;
                 })
             },
             listenToItems() {
