@@ -1,6 +1,6 @@
 <template>
     <transition name="slide-left">
-        <div class="ow-carousel-item" v-if="isShow" :class="{reverse: isReverse}">
+        <div class="ow-carousel-item" v-if="isOpen" :class="{reverse: isReverse}">
             <slot></slot>
         </div>
     </transition>
