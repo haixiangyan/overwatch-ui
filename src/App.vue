@@ -1,9 +1,7 @@
 <template>
     <div id="app">
         <ow-nav :selected.sync="selected1" @update:selected="onUpdateSelected" :isVertical="true" style="width: 200px">
-            <ow-nav-item name="home">
-                Home
-            </ow-nav-item>
+            <ow-nav-item name="home">Home</ow-nav-item>
             <ow-sub-nav name="about">
                 <template slot="title">About</template>
                 <ow-nav-item name="team">Team</ow-nav-item>

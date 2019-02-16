@@ -1,5 +1,8 @@
 <template>
-    <div class="ow-nav-item" :class="{active: isActive, vertical: isVertical}" @click="onClickItem">
+    <div class="ow-nav-item"
+         :data-name="name"
+         :class="{active: isActive, vertical: isVertical}"
+         @click="onClickItem">
         <slot></slot>
     </div>
 </template>
