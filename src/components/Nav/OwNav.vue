@@ -5,8 +5,6 @@
 </template>
 
 <script>
-    import Utils from '../../assets/scripts/utils'
-
     export default {
         name: "OwNav",
         provide() {
@@ -22,12 +20,8 @@
                 default: false
             },
             selected: {
-                type: Array,
-                default: () => []
-            },
-            multiple: {
-                type: Boolean,
-                default: false
+                type: String,
+                default: ''
             }
         },
         data() {
@@ -50,21 +44,13 @@
             },
             updateItems() {
                 this.items.forEach((item) => {
-                    item.isActive = this.selected.indexOf(item.name) > -1;
+                    item.isActive = this.selected === item.name
                 })
             },
             listenToItems() {
                 this.items.forEach((item) => {
-                    item.$on('add:selected', (name) => {
-                        if (!this.multiple) {
-                            this.$emit('update:selected', [name])
-                            return
-                        }
-                        // Multiple and name is for new item
-                        if (this.selected.indexOf(name) < 0) {
-                            let selectedCopy = Utils.deepClone(this.selected).push(name)
-                            this.$emit('update:selected', selectedCopy)
-                        }
+                    item.$on('update:selected', (name) => {
+                        this.$emit('update:selected', name)
                     })
                 })
             }

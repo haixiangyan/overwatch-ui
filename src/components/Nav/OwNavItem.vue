@@ -25,7 +25,7 @@
                 this.root.namePath = []
                 // Then update name path recursively
                 this.$parent.updateNamePath && this.$parent.updateNamePath()
-                this.$emit('add:selected', this.name)
+                this.$emit('update:selected', this.name)
             }
         },
         created() {

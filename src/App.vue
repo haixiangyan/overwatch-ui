@@ -1,10 +1,8 @@
 <template>
     <div id="app">
-        <ow-nav :selected.sync="selected1" :isVertical="true" style="width: 200px">
+        <ow-nav :selected.sync="selected1" @update:selected="onUpdateSelected" :isVertical="true" style="width: 200px">
             <ow-nav-item name="home">
-                <a href="www.google.com">
-                    Home
-                </a>
+                Home
             </ow-nav-item>
             <ow-sub-nav name="about">
                 <template slot="title">About</template>
@@ -23,6 +21,7 @@
             <ow-nav-item name="career">Career</ow-nav-item>
         </ow-nav>
         Hello You Hello YOu Hello You Hello YOu Hello You Hello YOu Hello You Hello YO
+        <p>Select: {{selected1}}</p>
         <br>
         <br>
         <ow-nav :selected.sync="selected2">
@@ -44,6 +43,7 @@
             <ow-nav-item name="career">Career</ow-nav-item>
         </ow-nav>
         Hello You Hello YOu Hello You Hello YOu Hello You Hello YOu Hello You Hello YO
+        <p>Select: {{selected2}}</p>
     </div>
 </template>
 
@@ -52,8 +52,18 @@
         name: 'app',
         data() {
             return {
-                selected1: ['home'],
-                selected2: ['home']
+                selected1: 'home',
+                selected2: 'home'
+            }
+        },
+        methods: {
+            onUpdateSelected(newSelected) {
+                alert('Selected 1 ' + newSelected)
+            }
+        },
+        watch: {
+            selected2(newSelected) {
+                alert('Selected 2 ' + newSelected)
             }
         }
     }
