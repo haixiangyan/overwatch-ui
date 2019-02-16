@@ -51,6 +51,9 @@
 
 <style scoped lang="scss">
     .ow-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         &_loading {
             animation: spin .5s infinite linear;
         }
