@@ -20,7 +20,11 @@ function findTreeNodeById(root, id) {
 
     return undefined
 }
+function unique(array) {
+    return array.filter((el, index) => array.indexOf(el) === index)
+}
 export default {
     deepClone,
-    findTreeNodeById
+    findTreeNodeById,
+    unique
 }

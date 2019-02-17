@@ -26,6 +26,7 @@ import OwCarouselItem from './Carousel/OwCarouselItem.vue'
 import OwNav from './Nav/OwNav'
 import OwNavItem from './Nav/OwNavItem'
 import OwSubNav from './Nav/OwSubNav'
+import OwPager from './Pager/OwPager'
 
 export default {
     OwButton,
@@ -54,5 +55,6 @@ export default {
     OwCarouselItem,
     OwNav,
     OwNavItem,
-    OwSubNav
+    OwSubNav,
+    OwPager
 }
