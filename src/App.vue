@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-pager :total="20" :current="10"></ow-pager>
+        <ow-pager :total="20" :current="1"></ow-pager>
     </div>
 </template>
 
