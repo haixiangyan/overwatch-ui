@@ -1,6 +1,6 @@
 {
     "name": "overwatch-ui",
-    "version": "0.9.3",
+    "version": "1.0.0",
     "description": "A UI library of Overwatch, built with Vue.js",
     "main": "./dist/overwatch-ui.common.js",
     "private": false,
