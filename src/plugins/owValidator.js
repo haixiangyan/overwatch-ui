@@ -4,11 +4,11 @@ function toObject(object, field) {
     }
 }
 
-class Validator {
+export class OwValidator {
     constructor() { }
 
     static addValidator(name, callback) {
-        Validator.prototype[name] = callback
+        OwValidator.prototype[name] = callback
     }
     validate(data, rules) {
         let errors = {}
@@ -68,4 +68,9 @@ class Validator {
     }
 }
 
-export default Validator
+export default {
+    install(Vue, options) {
+        // Add function $owToast to prototype
+        Vue.prototype.$OwValidator = OwValidator
+    }
+}

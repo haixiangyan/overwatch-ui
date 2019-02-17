@@ -1,9 +1,9 @@
 import {expect} from 'chai'
-import Validator from '../../src/plugins/Validator'
+import {OwValidator} from '../../src/plugins/owValidator'
 
 describe('Validator', () => {
     it('exists', () => {
-        expect(Validator).to.exist
+        expect(OwValidator).to.exist
     })
 
     it('test required rule', () => {
@@ -13,7 +13,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', required: true}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email.required).to.eq('Value required')
     })
@@ -25,7 +25,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', required: true}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email).to.not.exist
     })
@@ -37,7 +37,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: /^.+@.+$/}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email.pattern).to.equal('Invalid value')
     })
@@ -48,7 +48,7 @@ describe('Validator', () => {
         const rules =[
             {field: 'email', pattern: /^.+@.+$/}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email).to.not.exist
     })
@@ -59,7 +59,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: 'email'}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email.pattern).to.equal('Invalid value')
     })
@@ -70,7 +70,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: 'email'}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email).to.not.exist
     })
@@ -81,7 +81,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: 'email', required: true}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         // errors = {email: {pattern: 'Invalid', required: ''}}
         expect(errors.email.required).to.exist
@@ -94,7 +94,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: 'email', minLength: 6}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         // errors = {email: {pattern: 'Invalid', required: ''}}
         expect(errors.email.minLength).to.exist
@@ -107,7 +107,7 @@ describe('Validator', () => {
         const rules = [
             {field: 'email', pattern: 'email', maxLength: 10}
         ]
-        const validator = new Validator()
+        const validator = new OwValidator()
         const errors = validator.validate(data, rules)
         expect(errors.email.maxLength).to.exist
     })
@@ -124,7 +124,7 @@ describe('Validator', () => {
         }]
 
         let fn = () => {
-            const validator = new Validator()
+            const validator = new OwValidator()
             const errors = validator.validate(data, rules)
         }
         expect(fn).to.throw
@@ -133,7 +133,7 @@ describe('Validator', () => {
         const data = {
             email: 'abc'
         }
-        const validator = new Validator()
+        const validator = new OwValidator()
         validator.hasNumber = (value) => {
             if (!/\d/.test(value)) {
                 return 'Must have number'
@@ -155,8 +155,8 @@ describe('Validator', () => {
         const data = {
             email: 'abcabcabc'
         }
-        const validator1 = new Validator()
-        const validator2 = new Validator()
+        const validator1 = new OwValidator()
+        const validator2 = new OwValidator()
         validator1.hasNumber = (value) => {
             if (!/\d/.test(value)) {
                 return 'Must have number'
@@ -176,9 +176,9 @@ describe('Validator', () => {
         const data = {
             email: 'abcabcabc'
         }
-        const validator1 = new Validator()
-        const validator2 = new Validator()
-        Validator.addValidator('hasNumber',  (value) => {
+        const validator1 = new OwValidator()
+        const validator2 = new OwValidator()
+        OwValidator.addValidator('hasNumber',  (value) => {
             if (!/\d/.test(value)) {
                 return 'Must have number'
             }

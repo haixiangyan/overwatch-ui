@@ -1,6 +1,6 @@
 // Import Plugins
 import $owAlert from './owAlert'
-import $Validator from './Validator'
+import $Validator from './owValidator'
 
 // Plugins
 export default {
