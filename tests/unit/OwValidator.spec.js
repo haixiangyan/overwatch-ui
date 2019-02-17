@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {OwValidator} from '../../src/plugins/owValidator'
+import {OwValidator} from '../../src/plugins/OwValidator'
 
 describe('Validator', () => {
     it('exists', () => {

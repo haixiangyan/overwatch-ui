@@ -4,6 +4,7 @@ function toObject(object, field) {
     }
 }
 
+// For testing
 export class OwValidator {
     constructor() { }
 
@@ -68,6 +69,7 @@ export class OwValidator {
     }
 }
 
+// For output
 export default {
     install(Vue, options) {
         // Add function $owToast to prototype
