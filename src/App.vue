@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-pager :total="20" :current="1"></ow-pager>
+        <ow-pager :total="20" :current.sync="current"></ow-pager>
     </div>
 </template>
 
@@ -9,6 +9,7 @@
         name: 'app',
         data() {
             return {
+                current: 1
             }
         },
     }

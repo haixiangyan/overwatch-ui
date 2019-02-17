@@ -1,6 +1,8 @@
 <template>
-    <div class="ow-pager">
-        <span class="ow-pager-item" :class="{disabled: current === 1}">
+    <div v-show="!(hideOnSinglePage && total <= 1)" class="ow-pager">
+        <span class="ow-pager-item"
+              :class="{disabled: current === 1}"
+              @click="onClickPage(current -1)">
             <ow-icon name="left"></ow-icon>
         </span>
         <template v-for="page in pages">
@@ -13,10 +15,12 @@
                 </span>
             </template>
             <template v-else>
-                <span class="ow-pager-item ow-pager-indicator">{{page}}</span>
+                <span class="ow-pager-item ow-pager-indicator" @click="onClickPage(page)">{{page}}</span>
             </template>
         </template>
-        <span class="ow-pager-item" :class="{disabled: current === total}">
+        <span class="ow-pager-item"
+              :class="{disabled: current === total}"
+              @click="onClickPage(current + 1)">
             <ow-icon name="right"></ow-icon>
         </span>
     </div>
@@ -42,16 +46,8 @@
                 default: true
             }
         },
-        data() {
-            return {
-                pages: this.getPages()
-            }
-        },
-        components: {
-            OwIcon
-        },
-        methods: {
-            getPages() {
+        computed: {
+            pages() {
                 return Utils.unique([
                     1, this.total, this.current,
                     this.current - 1, this.current - 2,
@@ -64,6 +60,16 @@
                         index + 1 < array.length && array[index + 1] - array[index] > 1 && prev.push('...')
                         return prev
                     }, [])
+            }
+        },
+        components: {
+            OwIcon
+        },
+        methods: {
+            onClickPage(page) {
+                if (1 <= page && page <= this.total) {
+                    this.$emit('update:current', page)
+                }
             }
         }
     }
