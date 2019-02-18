@@ -227,13 +227,13 @@
         tbody {
             tr {
                 padding: 4px;
-                background: $--color-opacity-bg-shallow;
+                background: $--color-opacity-bg-dark;
                 transition: all .5s;
                 &:hover {
                     background: $--color-bg-dark;
                 }
                 td {
-                    padding: 8px;
+                    padding: 10px;
                 }
             }
         }
@@ -246,7 +246,7 @@
             tbody {
                 tr {
                     &:nth-child(odd) {
-                        background: $--color-opacity-bg-dark;
+                        background: $--color-opacity-bg-shallow;
                     }
                     &:hover {
                         background: $--color-bg-dark;
