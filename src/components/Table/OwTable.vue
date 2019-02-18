@@ -8,6 +8,7 @@
                         <input
                             ref="allCheckbox"
                             type="checkbox"
+                            :checked="areAllItemsSelected"
                             @change="onSelectAllItems">
                     </th>
                     <th v-if="isShowIndex">
@@ -24,7 +25,7 @@
                     <td>
                         <input
                             type="checkbox"
-                            :checked="isItemChecked(item)"
+                            :checked="isItemSelected(item)"
                             @change="onSelectItem(index, item, $event)">
                     </td>
                     <td v-if="isShowIndex">
@@ -94,23 +95,28 @@
             onSelectAllItems(event) {
                 this.$emit('update:selectedItems', event.target.checked ? this.source : [])
             },
-            isItemChecked(item) {
+            isItemSelected(item) {
                 return this.selectedItems.find(i => i.id === item.id)
+            }
+        },
+        computed: {
+            areAllItemsSelected() {
+                const sourceIds = this.source.map((item) => item.id).sort()
+                const selectedIds = this.selectedItems.map(item => item.id).sort()
+                if (sourceIds.length !== selectedIds.length) {
+                    return false
+                }
+                for (let i = 0; i < sourceIds.length; i++) {
+                    if (sourceIds[i] !== selectedIds[i]) {
+                        return false
+                    }
+                }
+                return true
             }
         },
         watch: {
             selectedItems() {
-                if (this.selectedItems.length === this.source.length) {
-                    this.$refs.allCheckbox.indeterminate = false
-                    this.$refs.allCheckbox.checked = true
-                }
-                else if (this.selectedItems.length === 0) {
-                    this.$refs.allCheckbox.indeterminate = false
-                    this.$refs.allCheckbox.checked = false
-                }
-                else {
-                    this.$refs.allCheckbox.indeterminate = true
-                }
+                this.$refs.allCheckbox.indeterminate = !(this.selectedItems.length === this.source.length || this.selectedItems.length === 0)
             }
         }
     }
