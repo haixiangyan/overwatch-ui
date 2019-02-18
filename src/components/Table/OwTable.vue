@@ -68,7 +68,7 @@
                 type: Boolean,
                 default: false
             },
-            selectedItems: {
+            selected: {
                 type: Array,
                 default: () => []
             },
@@ -106,23 +106,23 @@
         },
         methods: {
             onSelectItem(index, item, event) {
-                let selectedItemsCopy = Utils.deepClone(this.selectedItems)
+                let selectedCopy = Utils.deepClone(this.selected)
                 if (event.target.checked) {
                     // Add this item to array
-                    selectedItemsCopy.push(item)
+                    selectedCopy.push(item)
                 }
                 else {
                     // Remove this item from array
-                    selectedItemsCopy = selectedItemsCopy.filter(i => i.id !== item.id)
+                    selectedCopy = selectedCopy.filter(i => i.id !== item.id)
                 }
 
-                this.$emit('update:selectedItems', selectedItemsCopy)
+                this.$emit('update:selected', selectedCopy)
             },
             onSelectAllItems(event) {
-                this.$emit('update:selectedItems', event.target.checked ? this.source : [])
+                this.$emit('update:selected', event.target.checked ? this.source : [])
             },
             isItemSelected(item) {
-                return this.selectedItems.find(i => i.id === item.id)
+                return this.selected.find(i => i.id === item.id)
             },
             sort(field, prevOrder) {
                 const sortRulesCopy = Utils.deepClone(this.sortRules)
@@ -141,7 +141,7 @@
         computed: {
             areAllItemsSelected() {
                 const sourceIds = this.source.map((item) => item.id).sort()
-                const selectedIds = this.selectedItems.map(item => item.id).sort()
+                const selectedIds = this.selected.map(item => item.id).sort()
                 if (sourceIds.length !== selectedIds.length) {
                     return false
                 }
@@ -154,8 +154,8 @@
             }
         },
         watch: {
-            selectedItems() {
-                this.$refs.allCheckbox.indeterminate = !(this.selectedItems.length === this.source.length || this.selectedItems.length === 0)
+            selected() {
+                this.$refs.allCheckbox.indeterminate = !(this.selected.length === this.source.length || this.selected.length === 0)
             }
         },
         components: {
