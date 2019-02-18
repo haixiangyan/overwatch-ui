@@ -7,6 +7,7 @@
             :source="source"
             :sort-rules.sync="sortRules"
             @update:sortRules="x"
+            height="400px"
             :selected.sync="selected">
         </ow-table>
         <ow-button @click="loading = !loading">Button</ow-button>

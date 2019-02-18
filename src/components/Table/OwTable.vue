@@ -1,8 +1,9 @@
 <template>
-    <div class="ow-table-wrapper">
-        <table class="ow-table" :class="{compact: isCompact, strip}">
-            <!--Head-->
-            <thead>
+    <div ref="wrapper" class="ow-table-wrapper">
+        <div :style="{height, overflow: 'auto'}">
+            <table ref="table" class="ow-table" :class="{compact: isCompact, strip}">
+                <!--Head-->
+                <thead>
                 <tr>
                     <th>
                         <input
@@ -32,9 +33,9 @@
                         </div>
                     </th>
                 </tr>
-            </thead>
-            <!--Body-->
-            <tbody>
+                </thead>
+                <!--Body-->
+                <tbody>
                 <tr :key="item.id" v-for="(item, index) in source">
                     <td>
                         <input
@@ -49,8 +50,9 @@
                         <td :key="column.label">{{item[column.field]}}</td>
                     </template>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
         <transition name="fade">
             <div v-if="loading" class="ow-table-loading">
                 <ow-icon name="loading" color="white" size="4em" :is-loading="true"></ow-icon>
@@ -73,6 +75,9 @@
             selected: {
                 type: Array,
                 default: () => []
+            },
+            height: {
+                type: String
             },
             columns: {
                 type: Array,
@@ -138,6 +143,52 @@
                     sortRulesCopy[field] = 'asc'
                 }
                 this.$emit('update:sortRules', sortRulesCopy)
+            },
+            getTableCopy() {
+                this.tableCopy = this.$refs.table.cloneNode(true)
+                // Add copy class name
+                this.tableCopy.classList.add('ow-table-copy')
+            },
+            getTHead() {
+                // Get previous thead
+                const thead = Array.from(this.$refs.table.children).find((node) => {
+                    return node.tagName.toLowerCase() === 'thead'
+                })
+                // Hide the old thead
+                thead.style.visibility = 'hidden'
+
+                return thead
+            },
+            filterTable() {
+                let theadCopy = null
+                Array.from(this.tableCopy.children).map((node) => {
+                    if (node.tagName.toLowerCase() !== 'thead') {
+                        node.remove()
+                    }
+                    else {
+                        theadCopy = node
+                    }
+                })
+                return theadCopy
+            },
+            updateThWidth(thead, theadCopy) {
+                Array.from(thead.children[0].children).map((th, index) => {
+                    const {width} = th.getBoundingClientRect()
+                    theadCopy.children[0].children[index].style.width = width + 'px'
+                })
+                this.$refs.wrapper.appendChild(this.tableCopy)
+            },
+            fixTHead() {
+                this.getTableCopy()
+
+                // Get previous thead
+                const thead = this.getTHead()
+                const theadCopy = this.filterTable()
+
+                this.updateThWidth(thead, theadCopy)
+            },
+            onWindowResize() {
+                this.fixTHead()
             }
         },
         computed: {
@@ -162,6 +213,14 @@
         },
         components: {
             OwIcon
+        },
+        mounted() {
+            this.fixTHead()
+            window.addEventListener('resize', this.onWindowResize)
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.onWindowResize)
+            this.tableCopy.remove()
         }
     }
 </script>
@@ -170,6 +229,7 @@
 .ow-table-wrapper {
     opacity: $--more-opacity;
     position: relative;
+    overflow: auto;
     .ow-table-loading {
         position: absolute;
         top: 0;
@@ -186,6 +246,12 @@
         color: $--color-white;
         border-collapse: separate;
         border-spacing: 0 4px;
+        &-copy {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
         &-sort-indicator {
             margin-left: 4px;
             display: inline-flex;
