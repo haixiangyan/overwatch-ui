@@ -5,8 +5,8 @@
                 <!--Head-->
                 <thead>
                 <tr>
-                    <th :style="{width: '50px'}"></th>
-                    <th class="ow-table-center" :style="{width: '50px'}" >
+                    <th v-if="expandField" :style="{width: '50px'}"></th>
+                    <th v-if="selectable" class="ow-table-center" :style="{width: '50px'}" >
                         <input
                             ref="allCheckbox"
                             type="checkbox"
@@ -42,13 +42,13 @@
                 <tbody>
                     <template v-for="(item, index) in source">
                         <tr :key="item.id" >
-                            <td class="ow-table-expander ow-table-center"
+                            <td v-if="expandField" class="ow-table-expander ow-table-center"
                                 :class="{expanded: isItemExpanded(item.id)}"
                                 @click="toggleExpandItem(item.id)"
                                 :style="{width: '50px'}">
                                 <ow-icon name="right" size=".8em" color="white"></ow-icon>
                             </td>
-                            <td :style="{width: '50px'}" class="ow-table-center">
+                            <td v-if="selectable" :style="{width: '50px'}" class="ow-table-center">
                                 <input
                                     type="checkbox"
                                     :checked="isItemSelected(item)"
@@ -63,7 +63,7 @@
                         </tr>
                         <transition name="slide-down">
                             <tr v-if="isItemExpanded(item.id)" :key="`${item.id}-expand`">
-                                <td :colspan="columns.length + 2">
+                                <td :colspan="expandedColspan">
                                     {{item[expandField]}}
                                 </td>
                             </tr>
@@ -94,6 +94,10 @@
             selected: {
                 type: Array,
                 default: () => []
+            },
+            selectable: {
+                type: Boolean,
+                default: false
             },
             height: {
                 type: Number
@@ -136,6 +140,32 @@
         data() {
             return {
                 expandedItems: []
+            }
+        },
+        computed: {
+            areAllItemsSelected() {
+                const sourceIds = this.source.map((item) => item.id).sort()
+                const selectedIds = this.selected.map(item => item.id).sort()
+                if (sourceIds.length !== selectedIds.length) {
+                    return false
+                }
+                for (let i = 0; i < sourceIds.length; i++) {
+                    if (sourceIds[i] !== selectedIds[i]) {
+                        return false
+                    }
+                }
+                return true
+            },
+            expandedColspan() {
+                let colspan = this.columns.length
+                console.log(colspan)
+                if (this.selectable) {
+                    colspan += 1
+                }
+                if (this.expandField) {
+                    colspan += 1
+                }
+                return colspan
             }
         },
         methods: {
@@ -208,21 +238,6 @@
             },
             isItemExpanded(id) {
                 return this.expandedItems.indexOf(id) >= 0
-            }
-        },
-        computed: {
-            areAllItemsSelected() {
-                const sourceIds = this.source.map((item) => item.id).sort()
-                const selectedIds = this.selected.map(item => item.id).sort()
-                if (sourceIds.length !== selectedIds.length) {
-                    return false
-                }
-                for (let i = 0; i < sourceIds.length; i++) {
-                    if (sourceIds[i] !== selectedIds[i]) {
-                        return false
-                    }
-                }
-                return true
             }
         },
         watch: {
