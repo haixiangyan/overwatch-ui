@@ -1,7 +1,13 @@
 <template>
     <div id="app">
-        {{selected}}
-        <ow-table :columns="columns" :source="source" :selected-items.sync="selected"></ow-table>
+        {{sortRules}}
+        <ow-table
+            :columns="columns"
+            :source="source"
+            :sort-rules.sync="sortRules"
+            @update:sortRules="x"
+            :selected-items.sync="selected">
+        </ow-table>
     </div>
 </template>
 
@@ -14,6 +20,10 @@
                     {label: 'Name', field: 'name'},
                     {label: 'Score', field: 'score'}
                 ],
+                sortRules: {
+                    name: 'asc',
+                    score: 'desc'
+                },
                 source: [
                     {id: 1, name: 'Jack', score: 100},
                     {id: 2, name: 'Marry', score: 200},
@@ -23,6 +33,18 @@
                 selected: []
             }
         },
+        methods: {
+            x(newOrder) {
+                this.source = this.source.sort((a, b) => {
+                    if (newOrder.score === 'asc') {
+                        return a.score - b.score
+                    }
+                    if (newOrder.score === 'desc') {
+                        return b.score - a.score
+                    }
+                })
+            }
+        }
     }
 </script>
 

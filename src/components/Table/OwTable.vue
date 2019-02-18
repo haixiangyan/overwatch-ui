@@ -14,8 +14,22 @@
                     <th v-if="isShowIndex">
                         #
                     </th>
-                    <th :key="column.label" v-for="column in columns">
-                        {{column.label}}
+                    <th :key="column.label" v-for="column in columns" @click="sort(column.field, sortRules[column.field])">
+                        <div >
+                            <span>{{column.label}}</span>
+                            <span v-if="column.field in sortRules" class="ow-table-sort-indicator">
+                                <ow-icon
+                                    :class="{active: sortRules[column.field] === 'desc'}"
+                                    size="10px"
+                                    name="up-solid">
+                                </ow-icon>
+                                <ow-icon
+                                    :class="{active: sortRules[column.field] === 'asc'}"
+                                    size="10px"
+                                    name="down-solid">
+                                </ow-icon>
+                            </span>
+                        </div>
                     </th>
                 </tr>
             </thead>
@@ -42,6 +56,7 @@
 
 <script>
     import Utils from '../../assets/scripts/utils'
+    import OwIcon from '../Icon/OwIcon'
 
     export default {
         name: "OwTable",
@@ -57,6 +72,10 @@
             columns: {
                 type: Array,
                 required: true
+            },
+            sortRules: {
+                type: Object,
+                default: () => ({})
             },
             source: {
                 type: Array,
@@ -97,6 +116,19 @@
             },
             isItemSelected(item) {
                 return this.selectedItems.find(i => i.id === item.id)
+            },
+            sort(field, prevOrder) {
+                const sortRulesCopy = Utils.deepClone(this.sortRules)
+                if (prevOrder === 'asc') {
+                    sortRulesCopy[field] = 'desc'
+                }
+                else if (prevOrder === 'desc') {
+                    sortRulesCopy[field] = true
+                }
+                else {
+                    sortRulesCopy[field] = 'asc'
+                }
+                this.$emit('update:sortRules', sortRulesCopy)
             }
         },
         computed: {
@@ -118,6 +150,9 @@
             selectedItems() {
                 this.$refs.allCheckbox.indeterminate = !(this.selectedItems.length === this.source.length || this.selectedItems.length === 0)
             }
+        },
+        components: {
+            OwIcon
         }
     }
 </script>
@@ -130,6 +165,25 @@
         color: $--color-white;
         border-collapse: separate;
         border-spacing: 0 4px;
+        &-sort-indicator {
+            margin-left: 4px;
+            display: inline-flex;
+            flex-direction: column;
+            svg {
+                fill: $--color-text-secondary;
+                &.active {
+                    fill: $--color-white;
+                }
+                &:first-child {
+                    position: relative;
+                    bottom: -1px;
+                }
+                &:last-child {
+                    position: relative;
+                    top: -1px;
+                }
+            }
+        }
         thead {
             tr {
                 background: $--color-opacity-primary;
@@ -137,6 +191,17 @@
                     padding: 8px;
                     text-align: left;
                     font-size: 1.2em;
+                    transition: all .5s;
+                    border: 1px solid transparent;
+                    border-radius: $--border-radius-small;
+                    > div {
+                        display: flex;
+                        align-items: center;
+                    }
+                    &:hover {
+                        border: 1px solid white;
+                        background: $--color-primary;
+                    }
                 }
             }
         }
