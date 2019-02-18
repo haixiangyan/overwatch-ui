@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <ow-pager :total="20" :current.sync="current"></ow-pager>
+        {{selected}}
+        <ow-table :columns="columns" :source="source" :selected-items.sync="selected"></ow-table>
     </div>
 </template>
 
@@ -9,7 +10,17 @@
         name: 'app',
         data() {
             return {
-                current: 1
+                columns: [
+                    {label: 'Name', field: 'name'},
+                    {label: 'Score', field: 'score'}
+                ],
+                source: [
+                    {id: 1, name: 'Jack', score: 100},
+                    {id: 2, name: 'Marry', score: 200},
+                    {id: 3, name: 'Xiaoming', score: 300},
+                    {id: 4, name: 'Ani', score: 400},
+                ],
+                selected: []
             }
         },
     }
@@ -19,6 +30,6 @@
     #app {
         height: 100vh;
         padding: 10px 15px;
-        background: url("./assets/images/ow-bg.jpg") center center;
+        background: url("./assets/images/bg.png") center center;
     }
 </style>
