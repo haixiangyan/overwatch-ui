@@ -3,11 +3,13 @@
         {{sortRules}}
         <ow-table
             :columns="columns"
+            :loading="loading"
             :source="source"
             :sort-rules.sync="sortRules"
             @update:sortRules="x"
             :selected-items.sync="selected">
         </ow-table>
+        <ow-button @click="loading = !loading">Button</ow-button>
     </div>
 </template>
 
@@ -30,7 +32,8 @@
                     {id: 3, name: 'Xiaoming', score: 300},
                     {id: 4, name: 'Ani', score: 400},
                 ],
-                selected: []
+                selected: [],
+                loading: false
             }
         },
         methods: {

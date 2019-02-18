@@ -51,6 +51,9 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="loading" class="ow-table-loading">
+            <ow-icon name="loading" color="white" size="4em" :is-loading="true"></ow-icon>
+        </div>
     </div>
 </template>
 
@@ -93,6 +96,10 @@
                 default: false
             },
             isCompact: {
+                type: Boolean,
+                default: false
+            },
+            loading: {
                 type: Boolean,
                 default: false
             }
@@ -160,6 +167,18 @@
 <style scoped lang="scss">
 .ow-table-wrapper {
     opacity: $--more-opacity;
+    position: relative;
+    .ow-table-loading {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+    }
     .ow-table {
         width: 100%;
         color: $--color-white;
