@@ -9,6 +9,10 @@
             :height="400"
             expand-field="description"
             :selected.sync="selected">
+            <template slot-scope="row">
+                <ow-button @click="editItem(row.item)">Edit</ow-button>
+                <ow-button @click="deleteItem(row.item)" type="danger">Delete</ow-button>
+            </template>
         </ow-table>
         <ow-button @click="loading = !loading">Button</ow-button>
     </div>
@@ -21,7 +25,7 @@
             return {
                 columns: [
                     {label: 'Name', field: 'name', width: 300},
-                    {label: 'Score', field: 'score'}
+                    {label: 'Score', field: 'score', width: 500}
                 ],
                 sortRules: {
                     name: 'asc',
@@ -59,6 +63,13 @@
                         return b.score - a.score
                     }
                 })
+            },
+            editItem(item) {
+                console.log(item)
+                alert('Edit: ' + item.id)
+            },
+            deleteItem(item) {
+                alert('Delete: ' + item.id)
             }
         }
     }

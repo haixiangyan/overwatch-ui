@@ -36,6 +36,7 @@
                             </span>
                         </div>
                     </th>
+                    <th></th>
                 </tr>
                 </thead>
                 <!--Body-->
@@ -60,6 +61,9 @@
                             <template v-for="column in columns">
                                 <td :style="{width: column.width + 'px'}" :key="column.label">{{item[column.field]}}</td>
                             </template>
+                            <td>
+                                <slot :item="item"></slot>
+                            </td>
                         </tr>
                         <transition name="slide-down">
                             <tr v-if="isItemExpanded(item.id)" :key="`${item.id}-expand`">
