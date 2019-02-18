@@ -1,22 +1,26 @@
 <template>
     <div ref="wrapper" class="ow-table-wrapper">
-        <div :style="{height, overflow: 'auto'}">
+        <div :style="{height: height + 'px', overflow: 'auto'}" ref="content">
             <table ref="table" class="ow-table" :class="{compact: isCompact, strip}">
                 <!--Head-->
                 <thead>
                 <tr>
-                    <th>
+                    <th :style="{width: '50px'}"></th>
+                    <th class="ow-table-center" :style="{width: '50px'}" >
                         <input
                             ref="allCheckbox"
                             type="checkbox"
                             :checked="areAllItemsSelected"
                             @change="onSelectAllItems">
                     </th>
-                    <th v-if="isShowIndex">
+                    <th class="ow-table-center" :style="{width: '50px'}" v-if="isShowIndex">
                         #
                     </th>
-                    <th :key="column.label" v-for="column in columns" @click="sort(column.field, sortRules[column.field])">
-                        <div >
+                    <th :style="{width: column.width + 'px'}"
+                        :key="column.label"
+                        v-for="column in columns"
+                        @click="sort(column.field, sortRules[column.field])">
+                        <div>
                             <span>{{column.label}}</span>
                             <span v-if="column.field in sortRules" class="ow-table-sort-indicator">
                                 <ow-icon
@@ -36,20 +40,35 @@
                 </thead>
                 <!--Body-->
                 <tbody>
-                <tr :key="item.id" v-for="(item, index) in source">
-                    <td>
-                        <input
-                            type="checkbox"
-                            :checked="isItemSelected(item)"
-                            @change="onSelectItem(index, item, $event)">
-                    </td>
-                    <td v-if="isShowIndex">
-                        {{index}}
-                    </td>
-                    <template v-for="column in columns">
-                        <td :key="column.label">{{item[column.field]}}</td>
+                    <template v-for="(item, index) in source">
+                        <tr :key="item.id" >
+                            <td class="ow-table-expander ow-table-center"
+                                :class="{expanded: isItemExpanded(item.id)}"
+                                @click="toggleExpandItem(item.id)"
+                                :style="{width: '50px'}">
+                                <ow-icon name="right" size=".8em" color="white"></ow-icon>
+                            </td>
+                            <td :style="{width: '50px'}" class="ow-table-center">
+                                <input
+                                    type="checkbox"
+                                    :checked="isItemSelected(item)"
+                                    @change="onSelectItem(index, item, $event)">
+                            </td>
+                            <td :style="{width: '50px'}" v-if="isShowIndex">
+                                {{index}}
+                            </td>
+                            <template v-for="column in columns">
+                                <td :style="{width: column.width + 'px'}" :key="column.label">{{item[column.field]}}</td>
+                            </template>
+                        </tr>
+                        <transition name="slide-down">
+                            <tr v-if="isItemExpanded(item.id)" :key="`${item.id}-expand`">
+                                <td :colspan="columns.length + 2">
+                                    {{item[expandField]}}
+                                </td>
+                            </tr>
+                        </transition>
                     </template>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -77,7 +96,7 @@
                 default: () => []
             },
             height: {
-                type: String
+                type: Number
             },
             columns: {
                 type: Array,
@@ -106,9 +125,17 @@
                 type: Boolean,
                 default: false
             },
+            expandField: {
+                type: String
+            },
             loading: {
                 type: Boolean,
                 default: false
+            }
+        },
+        data() {
+            return {
+                expandedItems: []
             }
         },
         methods: {
@@ -144,51 +171,43 @@
                 }
                 this.$emit('update:sortRules', sortRulesCopy)
             },
-            getTableCopy() {
-                this.tableCopy = this.$refs.table.cloneNode(true)
+            resizeTable(thead) {
+                // Set margin top
+                let {height} = thead.getBoundingClientRect()
+                this.$refs.content.style.marginTop = height + 'px'
+                // Set content height
+                this.$refs.content.style.height = this.height - height + 'px'
+            },
+            copyTable() {
+                this.tableCopy = this.$refs.table.cloneNode(false)
                 // Add copy class name
                 this.tableCopy.classList.add('ow-table-copy')
             },
-            getTHead() {
-                // Get previous thead
-                const thead = Array.from(this.$refs.table.children).find((node) => {
-                    return node.tagName.toLowerCase() === 'thead'
-                })
-                // Hide the old thead
-                thead.style.visibility = 'hidden'
+            fixTHead() {
+                // Get a new table copy
+                this.copyTable()
 
-                return thead
-            },
-            filterTable() {
-                let theadCopy = null
-                Array.from(this.tableCopy.children).map((node) => {
-                    if (node.tagName.toLowerCase() !== 'thead') {
-                        node.remove()
-                    }
-                    else {
-                        theadCopy = node
-                    }
-                })
-                return theadCopy
-            },
-            updateThWidth(thead, theadCopy) {
-                Array.from(thead.children[0].children).map((th, index) => {
-                    const {width} = th.getBoundingClientRect()
-                    theadCopy.children[0].children[index].style.width = width + 'px'
-                })
+                // Get thead
+                const thead = this.$refs.table.children[0]
+
+                this.resizeTable(thead)
+
+                // Append previous thead to new table
+                this.tableCopy.appendChild(thead)
+
+                // Append new table to wrapper
                 this.$refs.wrapper.appendChild(this.tableCopy)
             },
-            fixTHead() {
-                this.getTableCopy()
-
-                // Get previous thead
-                const thead = this.getTHead()
-                const theadCopy = this.filterTable()
-
-                this.updateThWidth(thead, theadCopy)
+            toggleExpandItem(id) {
+                if (this.isItemExpanded(id)) {
+                    this.expandedItems.splice(this.expandedItems.indexOf(id), 1)
+                }
+                else {
+                    this.expandedItems.push(id)
+                }
             },
-            onWindowResize() {
-                this.fixTHead()
+            isItemExpanded(id) {
+                return this.expandedItems.indexOf(id) >= 0
             }
         },
         computed: {
@@ -216,10 +235,8 @@
         },
         mounted() {
             this.fixTHead()
-            window.addEventListener('resize', this.onWindowResize)
         },
         beforeDestroy() {
-            window.removeEventListener('resize', this.onWindowResize)
             this.tableCopy.remove()
         }
     }
@@ -251,6 +268,16 @@
             top: 0;
             left: 0;
             width: 100%;
+        }
+        &-expander {
+            svg {
+                transition: all .5s;
+            }
+            &.expanded {
+                svg {
+                    transform: rotate(90deg);
+                }
+            }
         }
         &-sort-indicator {
             margin-left: 4px;
@@ -321,6 +348,9 @@
                     }
                 }
             }
+        }
+        & .ow-table-center {
+            text-align: center;
         }
     }
 }

@@ -1,13 +1,13 @@
 <template>
     <div id="app">
-        {{sortRules}}
         <ow-table
             :columns="columns"
             :loading="loading"
             :source="source"
             :sort-rules.sync="sortRules"
             @update:sortRules="x"
-            height="400px"
+            :height="400"
+            expand-field="description"
             :selected.sync="selected">
         </ow-table>
         <ow-button @click="loading = !loading">Button</ow-button>
@@ -20,7 +20,7 @@
         data() {
             return {
                 columns: [
-                    {label: 'Name', field: 'name'},
+                    {label: 'Name', field: 'name', width: 300},
                     {label: 'Score', field: 'score'}
                 ],
                 sortRules: {
@@ -28,8 +28,8 @@
                     score: 'desc'
                 },
                 source: [
-                    {id: 1, name: 'Jack', score: 100},
-                    {id: 2, name: 'Marry', score: 200},
+                    {id: 1, name: 'Jack', score: 100, description: 'Good Job'},
+                    {id: 2, name: 'Marry', score: 200, description: 'Nice Job'},
                     {id: 3, name: 'Xiaoming', score: 300},
                     {id: 4, name: 'Ani', score: 400},
                     {id: 5, name: 'Jack', score: 100},
