@@ -51,9 +51,11 @@
                 </tr>
             </tbody>
         </table>
-        <div v-if="loading" class="ow-table-loading">
-            <ow-icon name="loading" color="white" size="4em" :is-loading="true"></ow-icon>
-        </div>
+        <transition name="fade">
+            <div v-if="loading" class="ow-table-loading">
+                <ow-icon name="loading" color="white" size="4em" :is-loading="true"></ow-icon>
+            </div>
+        </transition>
     </div>
 </template>
 
