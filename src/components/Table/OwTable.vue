@@ -127,10 +127,6 @@
                 type: Boolean,
                 default: false
             },
-            hasBorder: {
-                type: Boolean,
-                default: false
-            },
             isCompact: {
                 type: Boolean,
                 default: false
