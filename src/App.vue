@@ -1,20 +1,15 @@
 <template>
     <div id="app">
-        <ow-table
-            :columns="columns"
-            :loading="loading"
-            :source="source"
-            :sort-rules.sync="sortRules"
-            @update:sortRules="x"
-            :height="400"
-            expand-field="description"
-            :selected.sync="selected">
-            <template slot-scope="row">
-                <ow-button @click="editItem(row.item)">Edit</ow-button>
-                <ow-button @click="deleteItem(row.item)" type="danger">Delete</ow-button>
+        <ow-uploader
+            accpet="image/*"
+            action="http://localhost:3000/upload"
+            method="POST"
+            name="file">
+            <ow-button>Upload</ow-button>
+            <template slot="hint">
+                <p>Only accept file with 300Mb.</p>
             </template>
-        </ow-table>
-        <ow-button @click="loading = !loading">Button</ow-button>
+        </ow-uploader>
     </div>
 </template>
 
@@ -23,54 +18,10 @@
         name: 'app',
         data() {
             return {
-                columns: [
-                    {label: 'Name', field: 'name', width: 300},
-                    {label: 'Score', field: 'score', width: 500}
-                ],
-                sortRules: {
-                    name: 'asc',
-                    score: 'desc'
-                },
-                source: [
-                    {id: 1, name: 'Jack', score: 100, description: 'Good Job'},
-                    {id: 2, name: 'Marry', score: 200, description: 'Nice Job'},
-                    {id: 3, name: 'Xiaoming', score: 300},
-                    {id: 4, name: 'Ani', score: 400},
-                    {id: 5, name: 'Jack', score: 100},
-                    {id: 6, name: 'Marry', score: 200},
-                    {id: 7, name: 'Xiaoming', score: 300},
-                    {id: 8, name: 'Ani', score: 400},
-                    {id: 9, name: 'Jack', score: 100},
-                    {id: 10, name: 'Marry', score: 200},
-                    {id: 11, name: 'Xiaoming', score: 300},
-                    {id: 12, name: 'Ani', score: 400},
-                    {id: 13, name: 'Jack', score: 100},
-                    {id: 14, name: 'Marry', score: 200},
-                    {id: 15, name: 'Xiaoming', score: 300},
-                    {id: 16, name: 'Ani', score: 400},
-                ],
-                selected: [],
-                loading: false
+                fileList: []
             }
         },
         methods: {
-            x(newOrder) {
-                this.source = this.source.sort((a, b) => {
-                    if (newOrder.score === 'asc') {
-                        return a.score - b.score
-                    }
-                    if (newOrder.score === 'desc') {
-                        return b.score - a.score
-                    }
-                })
-            },
-            editItem(item) {
-                console.log(item)
-                alert('Edit: ' + item.id)
-            },
-            deleteItem(item) {
-                alert('Delete: ' + item.id)
-            }
         }
     }
 </script>

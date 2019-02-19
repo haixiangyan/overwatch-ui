@@ -28,6 +28,7 @@ import OwNavItem from './Nav/OwNavItem'
 import OwSubNav from './Nav/OwSubNav'
 import OwPager from './Pager/OwPager'
 import OwTable from './Table/OwTable'
+import OwUploader from './Uploader/OwUploader'
 
 export default {
     OwButton,
@@ -58,5 +59,6 @@ export default {
     OwNavItem,
     OwSubNav,
     OwPager,
-    OwTable
+    OwTable,
+    OwUploader
 }
