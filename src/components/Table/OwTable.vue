@@ -36,7 +36,7 @@
                             </span>
                         </div>
                     </th>
-                    <th></th>
+                    <th ref="actionsTh" v-if="$scopedSlots.default"></th>
                 </tr>
                 </thead>
                 <!--Body-->
@@ -61,8 +61,10 @@
                             <template v-for="column in columns">
                                 <td :style="{width: column.width + 'px'}" :key="column.label">{{item[column.field]}}</td>
                             </template>
-                            <td>
-                                <slot :item="item"></slot>
+                            <td v-if="$scopedSlots.default">
+                                <div class="ow-table-actions" ref="actions">
+                                    <slot :item="item"></slot>
+                                </div>
                             </td>
                         </tr>
                         <transition name="slide-down">
@@ -162,11 +164,13 @@
             },
             expandedColspan() {
                 let colspan = this.columns.length
-                console.log(colspan)
                 if (this.selectable) {
                     colspan += 1
                 }
                 if (this.expandField) {
+                    colspan += 1
+                }
+                if (this.$scopedSlots.default) {
                     colspan += 1
                 }
                 return colspan
@@ -242,6 +246,24 @@
             },
             isItemExpanded(id) {
                 return this.expandedItems.indexOf(id) >= 0
+            },
+            setActionsWidth() {
+                if (this.$scopedSlots.default) {
+                    // Get the one of actions element
+                    let firstActions = this.$refs.actions[0]
+
+                    // Get styles and compute its width
+                    let {width} = firstActions.getBoundingClientRect()
+                    let styles = getComputedStyle(firstActions.parentNode)
+                    let { paddingLeft, paddingRight, borderLeft, borderRight } = styles
+                    let computedWidth = parseInt(width) + parseInt(paddingLeft) + parseInt(paddingRight) + parseInt(borderLeft) + parseInt(borderRight) + 'px'
+
+                    // Assign new computed width to th and div
+                    this.$refs.actionsTh.style.width = computedWidth
+                    this.$refs.actions.map((div) => {
+                        div.parentNode.style.width = computedWidth
+                    })
+                }
             }
         },
         watch: {
@@ -254,6 +276,8 @@
         },
         mounted() {
             this.fixTHead()
+
+            this.setActionsWidth()
         },
         beforeDestroy() {
             this.tableCopy.remove()
@@ -367,6 +391,9 @@
                     }
                 }
             }
+        }
+        &-actions {
+            display: inline-flex;
         }
         & .ow-table-center {
             text-align: center;
