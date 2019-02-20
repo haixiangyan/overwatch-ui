@@ -6,6 +6,8 @@
             action="http://localhost:3000/upload"
             method="POST"
             :onUploaded="parse"
+            :onUploadError="fail"
+            :max-size="1024*1024"
             :file-list.sync="fileList"
             name="file">
             <ow-button icon-name="upload" icon-position="right">Upload</ow-button>
@@ -31,6 +33,9 @@
                 let responseJson = JSON.parse(response)
                 let url = `http://127.0.0.1:3000/preview/${responseJson.filename}`
                 return url
+            },
+            fail(errorMsg) {
+                alert(errorMsg)
             }
         }
     }

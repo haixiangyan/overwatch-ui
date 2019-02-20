@@ -49,9 +49,16 @@
                 type: Function,
                 required: true
             },
+            onUploadError: {
+                type: Function,
+                default: () => {}
+            },
             fileList: {
                 type: Array,
                 default: () => []
+            },
+            maxSize: {
+                type: Number
             }
         },
         data() {
@@ -97,19 +104,30 @@
             createFileInput() {
                 let fileInput = document.createElement('input')
                 fileInput.type = 'file'
+                this.$refs.inputWrapper.innerHTML = ''
                 this.$refs.inputWrapper.appendChild(fileInput)
 
                 return fileInput
             },
             beforeUpload(fileInfo) {
                 const {name, size, type} = fileInfo
+                // Check if exceed file size
+                if (size > this.maxSize) {
+                    this.onUploadError(`File exceeds ${(this.maxSize/1024/1024).toFixed(2)}Mb`)
+                    return false
+                }
+
                 this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'UPLOADING'}])
+                return true
             },
             uploadFile(file) {
                 const fileInfo = this.getFileInfo(file)
                 const {name, size, type} = fileInfo
 
-                this.beforeUpload(fileInfo)
+                // Check can be uploaded
+                if (!this.beforeUpload(fileInfo)) {
+                    return
+                }
 
                 let formData = new FormData()
                 formData.append(this.name, file)
@@ -120,8 +138,8 @@
                     this.$emit('update:fileList', [...this.fileList, {name, size, type}])
 
                     this.afterUpload(fileInfo, url)
-                }, () => {
-                    this.uploadError(name)
+                }, (xhr) => {
+                    this.uploadError(xhr, name)
                 })
             },
             afterUpload(fileInfo, url) {
@@ -139,14 +157,19 @@
                 // Update whole fileList
                 this.$emit('update:fileList', fileListCopy)
             },
-            uploadError(name) {
+            uploadError(xhr, name) {
                 let file = this.fileList.find(file => file.name === name)
                 let index = this.fileList.indexOf(file)
                 let fileCopy = Utils.deepClone(file)
                 fileCopy.status = 'FAIL'
+
                 let fileListCopy = Utils.deepClone(this.fileList)
                 fileListCopy.splice(index, 1, fileCopy)
+
                 this.$emit('update:fileList', fileListCopy)
+                if (xhr.status === 0) {
+                    this.onUploadError('No Internet')
+                }
             },
             getFileInfo(file) {
                 let {name, size, type} = file
@@ -165,6 +188,9 @@
                 xhr.open(this.method, this.action)
                 xhr.onload = () => {
                     success(xhr.response)
+                }
+                xhr.onerror = () => {
+                    fail(xhr, xhr.statusCode)
                 }
                 xhr.send(formData)
             }
