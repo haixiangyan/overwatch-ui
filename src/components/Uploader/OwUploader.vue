@@ -5,14 +5,21 @@
         </div>
         <div class="ow-uploader-input-wrapper" ref="inputWrapper"></div>
         <ol class="ow-uploader-preview">
-            <li v-for="file in fileList" :key="file.id">
+            <li v-for="file in fileList" :key="file.name">
+                <template v-if="file.status === 'uploading'">
+                    <p>Loading...</p>
+                </template>
                 <img :src="file.url">{{file.name}}
+                {{file}}
+                <ow-button type="danger" @click="onRemoveFile(file)">Remove</ow-button>
             </li>
         </ol>
     </div>
 </template>
 
 <script>
+    import Utils from '../../assets/scripts/utils'
+
     export default {
         name: "OwUploader",
         props: {
@@ -28,7 +35,7 @@
                 type: String,
                 required: true
             },
-            uploaded: {
+            onUploaded: {
                 type: Function,
                 required: true
             },
@@ -58,6 +65,15 @@
                 // Trigger input
                 fileInput.click()
             },
+            onRemoveFile(file) {
+                let answer = window.confirm('Sure?')
+                if (answer) {
+                    let fileListCopy = [...this.fileList]
+                    let index = fileListCopy.indexOf(file)
+                    fileListCopy.splice(index, 1)
+                    this.$emit('update:fileList', fileListCopy)
+                }
+            },
             createFileInput() {
                 let fileInput = document.createElement('input')
                 fileInput.type = 'file'
@@ -65,16 +81,41 @@
 
                 return fileInput
             },
+            beforeUpload(fileInfo) {
+                const {name, size, type} = fileInfo
+                this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'uploading'}])
+            },
             uploadFile(file) {
-                const {name, size, type} = this.getFileInfo(file)
+                const fileInfo = this.getFileInfo(file)
+                const {name, size, type} = fileInfo
+
+                this.beforeUpload(fileInfo)
 
                 let formData = new FormData()
                 formData.append(this.name, file)
 
                 this.sendAjax(formData, (response) => {
-                    const url = this.uploaded(response)
-                    this.$emit('update:fileList', [...this.fileList, {name, size, type, url}])
+                    const url = this.onUploaded(response)
+
+                    // this.$emit('update:fileList', [...this.fileList, {name, size, type, url}])
+
+                    this.afterUpload(fileInfo, url)
                 })
+            },
+            afterUpload(fileInfo, url) {
+                const {name, size, type} = fileInfo
+                // Find uploaded file and its info
+                const uploadedFileInfo = this.fileList.find(fileInfo => fileInfo.name === name)
+                const uploadedFileIndex = this.fileList.indexOf(uploadedFileInfo)
+                // Update uploaded file info
+                let uploadedFileInfoCopy = Utils.deepClone(uploadedFileInfo)
+                uploadedFileInfoCopy.url = url
+                uploadedFileInfoCopy.status = 'uploaded'
+                // Put the updated info in fileList
+                let fileListCopy = [...this.fileList]
+                fileListCopy.splice(uploadedFileIndex, 1, uploadedFileInfoCopy)
+                // Update whole fileList
+                this.$emit('update:fileList', fileListCopy)
             },
             getFileInfo(file) {
                 let {name, size, type} = file

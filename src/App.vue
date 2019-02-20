@@ -4,7 +4,7 @@
             accpet="image/*"
             action="http://localhost:3000/upload"
             method="POST"
-            :uploaded="parse"
+            :onUploaded="parse"
             :file-list.sync="fileList"
             name="file">
             <ow-button>Upload</ow-button>
