@@ -59,6 +59,13 @@
             },
             maxSize: {
                 type: Number
+            },
+            accept: {
+                type: String,
+            },
+            multiple: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -101,57 +108,60 @@
             createFileInput() {
                 let fileInput = document.createElement('input')
                 fileInput.type = 'file'
-                fileInput.multiple = true
+                fileInput.multiple = this.multiple
+                fileInput.accept = this.accept
+
                 this.$refs.inputWrapper.innerHTML = ''
                 this.$refs.inputWrapper.appendChild(fileInput)
 
                 return fileInput
             },
-            beforeUpload(fileInfo) {
-                const {name, size, type} = fileInfo
+            beforeUpload(files) {
                 // Check if exceed file size
-                if (size > this.maxSize) {
-                    this.onUploadError(`File exceeds ${(this.maxSize/1024/1024).toFixed(2)}Mb`)
-                    return false
+                for (let i = 0; i < files.length; i++) {
+                    if (files[i].size > this.maxSize) {
+                        this.onUploadError(`File exceeds ${(this.maxSize/1024/1024).toFixed(2)}Mb`)
+                        return false
+                    }
                 }
 
-                // this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'UPLOADING'}])
-                this.$emit('addFile', {name, type, size, status: 'UPLOADING'})
+                // Add loading state for new files
+                let loadingFiles = Array.from(files).map((file) => {
+                    return {...file.fileInfo, status: 'UPLOADING'}
+                })
+
+                this.$emit('update:fileList', [...this.fileList, ...loadingFiles])
                 return true
             },
-            // uploadFiles(files) {
-            //     let formData = new FormData()
-            //     for (let i = 0; i < files.length; i++) {
-            //         formData.append(this.name, files[i])
-            //     }
-            //     let xhr = new XMLHttpRequest()
-            //     xhr.open(this.method, this.action)
-            //     xhr.send(formData)
-            // },
+            uploadFile(file) {
+                let fileInfo = file.fileInfo
+
+                let formData = new FormData()
+                formData.append(this.name, file)
+
+                this.sendAjax(formData, (response) => {
+                    const url = this.onUploaded(response)
+
+                    this.$emit('update:fileList', [...this.fileList, fileInfo])
+
+                    this.afterUpload(fileInfo, url)
+                }, (xhr) => {
+                    this.uploadError(xhr, fileInfo)
+                })
+            },
             uploadFiles(files) {
                 for (let i = 0; i < files.length; i++) {
-                    let file = files[i]
+                    files[i].fileInfo = this.getFileInfo(files[i])
+                }
 
-                    const fileInfo = this.getFileInfo(file)
-                    const {name, size, type} = fileInfo
+                // Add loading state and check if files can be uploaded
+                if (!this.beforeUpload(files)) {
+                    return
+                }
 
-                    // Check can be uploaded
-                    if (!this.beforeUpload(fileInfo)) {
-                        continue
-                    }
-
-                    let formData = new FormData()
-                    formData.append(this.name, file)
-
-                    this.sendAjax(formData, (response) => {
-                        const url = this.onUploaded(response)
-
-                        this.$emit('update:fileList', [...this.fileList, {name, size, type}])
-
-                        this.afterUpload(fileInfo, url)
-                    }, (xhr) => {
-                        this.uploadError(xhr, name)
-                    })
+                // Upload each file
+                for (let i = 0; i < files.length; i++) {
+                    this.uploadFile(files[i])
                 }
             },
             afterUpload(fileInfo, url) {
@@ -169,8 +179,8 @@
                 // Update whole fileList
                 this.$emit('update:fileList', fileListCopy)
             },
-            uploadError(xhr, name) {
-                let file = this.fileList.find(file => file.name === name)
+            uploadError(xhr, fileInfo) {
+                let file = this.fileList.find(file => file.name === fileInfo.name)
                 let index = this.fileList.indexOf(file)
                 let fileCopy = Utils.deepClone(file)
                 fileCopy.status = 'FAIL'

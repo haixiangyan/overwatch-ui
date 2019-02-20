@@ -8,7 +8,8 @@
             :onUploaded="parse"
             :onUploadError="fail"
             :file-list.sync="fileList"
-            @addFile="addFile"
+            accept="image/*"
+            :multiple="true"
             name="file">
             <ow-button icon-name="upload" icon-position="right">Upload</ow-button>
         </ow-uploader>
@@ -37,9 +38,6 @@
             fail(errorMsg) {
                 alert(errorMsg)
             },
-            addFile(file) {
-                this.fileList.push(file)
-            }
         }
     }
 </script>
