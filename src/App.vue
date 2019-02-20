@@ -7,8 +7,8 @@
             method="POST"
             :onUploaded="parse"
             :onUploadError="fail"
-            :max-size="1024*1024"
             :file-list.sync="fileList"
+            @addFile="addFile"
             name="file">
             <ow-button icon-name="upload" icon-position="right">Upload</ow-button>
         </ow-uploader>
@@ -36,6 +36,9 @@
             },
             fail(errorMsg) {
                 alert(errorMsg)
+            },
+            addFile(file) {
+                this.fileList.push(file)
             }
         }
     }

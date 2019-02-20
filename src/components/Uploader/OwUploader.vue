@@ -82,10 +82,7 @@
                 let fileInput = this.createFileInput()
                 // Listen to input
                 fileInput.addEventListener('change', (event) => {
-                    // Get chosen file
-                    let file = fileInput.files[0]
-                    // Upload file
-                    this.uploadFile(file)
+                    this.uploadFiles(fileInput.files)
                     // Remove this file input
                     fileInput.remove()
                 })
@@ -104,6 +101,7 @@
             createFileInput() {
                 let fileInput = document.createElement('input')
                 fileInput.type = 'file'
+                fileInput.multiple = true
                 this.$refs.inputWrapper.innerHTML = ''
                 this.$refs.inputWrapper.appendChild(fileInput)
 
@@ -117,30 +115,44 @@
                     return false
                 }
 
-                this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'UPLOADING'}])
+                // this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'UPLOADING'}])
+                this.$emit('addFile', {name, type, size, status: 'UPLOADING'})
                 return true
             },
-            uploadFile(file) {
-                const fileInfo = this.getFileInfo(file)
-                const {name, size, type} = fileInfo
+            // uploadFiles(files) {
+            //     let formData = new FormData()
+            //     for (let i = 0; i < files.length; i++) {
+            //         formData.append(this.name, files[i])
+            //     }
+            //     let xhr = new XMLHttpRequest()
+            //     xhr.open(this.method, this.action)
+            //     xhr.send(formData)
+            // },
+            uploadFiles(files) {
+                for (let i = 0; i < files.length; i++) {
+                    let file = files[i]
 
-                // Check can be uploaded
-                if (!this.beforeUpload(fileInfo)) {
-                    return
+                    const fileInfo = this.getFileInfo(file)
+                    const {name, size, type} = fileInfo
+
+                    // Check can be uploaded
+                    if (!this.beforeUpload(fileInfo)) {
+                        continue
+                    }
+
+                    let formData = new FormData()
+                    formData.append(this.name, file)
+
+                    this.sendAjax(formData, (response) => {
+                        const url = this.onUploaded(response)
+
+                        this.$emit('update:fileList', [...this.fileList, {name, size, type}])
+
+                        this.afterUpload(fileInfo, url)
+                    }, (xhr) => {
+                        this.uploadError(xhr, name)
+                    })
                 }
-
-                let formData = new FormData()
-                formData.append(this.name, file)
-
-                this.sendAjax(formData, (response) => {
-                    const url = this.onUploaded(response)
-
-                    this.$emit('update:fileList', [...this.fileList, {name, size, type}])
-
-                    this.afterUpload(fileInfo, url)
-                }, (xhr) => {
-                    this.uploadError(xhr, name)
-                })
             },
             afterUpload(fileInfo, url) {
                 const {name, size, type} = fileInfo
