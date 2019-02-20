@@ -4,6 +4,8 @@
             accpet="image/*"
             action="http://localhost:3000/upload"
             method="POST"
+            :uploaded="parse"
+            :file-list.sync="fileList"
             name="file">
             <ow-button>Upload</ow-button>
             <template slot="hint">
@@ -22,6 +24,11 @@
             }
         },
         methods: {
+            parse(response) {
+                let responseJson = JSON.parse(response)
+                let url = `http://127.0.0.1:3000/preview/${responseJson.filename}`
+                return url
+            }
         }
     }
 </script>
