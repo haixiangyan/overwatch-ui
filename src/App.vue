@@ -21,7 +21,7 @@
             return {
                 fileList: [
                     {name: 'Jack', size: 13, type: 'ok', status: 'UPLOADING'},
-                    {name: 'Mary', size: 13, type: 'ok', status: 'SUCCESS'},
+                    {name: 'Mary', size: 13, type: 'ok', status: 'UPLOADED'},
                     {name: 'Jeney', size: 13, type: 'ok', status: 'FAIL'},
                 ]
             }

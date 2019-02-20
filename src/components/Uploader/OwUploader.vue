@@ -6,17 +6,19 @@
         <div class="ow-uploader-input-wrapper" ref="inputWrapper"></div>
         <ol class="ow-uploader-filelist">
             <li class="ow-upload-item" v-for="file in fileList" :key="file.name">
-                <img v-if="file.type.indexOf('image') >= 0" class="ow-upload-item-img" :src="file.url">
-                <img v-else src="../../assets/images/file-placeholder.jpg" class="ow-upload-item-img">
-                <div class="ow-upload-item-info">
-                    <section>
-                        <span class="ow-upload-item-name">{{file.name}}</span>
-                        <span class="ow-upload-item-status" :class="getStatusClasses(file.status)" >{{file.status}}</span>
-                    </section>
-                    <span class="ow-upload-item-size">Size: {{file.size}}</span>
-                </div>
-                <div v-if="file.status === 'UPLOADING'" class="ow-upload-item-loading">
-                    <ow-icon size="3em" color="white" name="loading" :is-loading="true"></ow-icon>
+                <div class="ow-upload-item-wrapper">
+                    <img v-if="file.type.indexOf('image') >= 0" class="ow-upload-item-img" :src="file.url">
+                    <img v-else src="../../assets/images/file-placeholder.jpg" class="ow-upload-item-img">
+                    <div class="ow-upload-item-info">
+                        <section>
+                            <span class="ow-upload-item-name">{{file.name}}</span>
+                            <span class="ow-upload-item-status" :class="getStatusClasses(file.status)" >{{file.status}}</span>
+                        </section>
+                        <span class="ow-upload-item-size">{{file.size}} Kb</span>
+                    </div>
+                    <div v-if="file.status === 'UPLOADING'" class="ow-upload-item-loading">
+                        <ow-icon size="3em" color="white" name="loading" :is-loading="true"></ow-icon>
+                    </div>
                 </div>
                 <ow-button class="ow-upload-item-remove-btn" type="danger" @click="onRemoveFile(file)">Remove</ow-button>
             </li>
@@ -68,14 +70,6 @@
                         return ['danger']
                 }
             },
-            getFileSrc(file) {
-                if (file.type.indexOf('image') >= 0) {
-                    return file.url
-                }
-                else {
-                    return '../../assets/images/file-placeholder.gif'
-                }
-            },
             onClickUpload() {
                 // Create input
                 let fileInput = this.createFileInput()
@@ -116,11 +110,9 @@
                 const {name, size, type} = fileInfo
 
                 this.beforeUpload(fileInfo)
-                console.log(this.fileList)
 
                 let formData = new FormData()
                 formData.append(this.name, file)
-                console.log(this.fileList, 'ppp')
 
                 this.sendAjax(formData, (response) => {
                     const url = this.onUploaded(response)
@@ -172,8 +164,7 @@
                 let xhr = new XMLHttpRequest()
                 xhr.open(this.method, this.action)
                 xhr.onload = () => {
-                    // success(xhr.response)
-                    fail()
+                    success(xhr.response)
                 }
                 xhr.send(formData)
             }
@@ -197,11 +188,14 @@
         flex-wrap: wrap;
         width: 100%;
         .ow-upload-item {
-            position: relative;
             margin-right: 12px;
+            margin-bottom: 12px;
             display: inline-flex;
             flex-direction: column;
             width: 280px;
+            &-wrapper {
+                position: relative;
+            }
             &-img {
                 display: inline-flex;
                 width: 100%;
