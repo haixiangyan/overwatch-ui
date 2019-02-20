@@ -88,7 +88,7 @@
                 // Create input
                 let fileInput = this.createFileInput()
                 // Listen to input
-                fileInput.addEventListener('change', (event) => {
+                fileInput.addEventListener('change', () => {
                     this.uploadFiles(fileInput.files)
                     // Remove this file input
                     fileInput.remove()
@@ -165,9 +165,8 @@
                 }
             },
             afterUpload(fileInfo, url) {
-                const {name, size, type} = fileInfo
                 // Find uploaded file and its info
-                const uploadedFileInfo = this.fileList.find(fileInfo => fileInfo.name === name)
+                const uploadedFileInfo = this.fileList.find(file => file.name === fileInfo.name)
                 const uploadedFileIndex = this.fileList.indexOf(uploadedFileInfo)
                 // Update uploaded file info
                 let uploadedFileInfoCopy = Utils.deepClone(uploadedFileInfo)
@@ -206,15 +205,11 @@
                 return {name, size, type}
             },
             sendAjax(formData, success, fail) {
-                let xhr = new XMLHttpRequest()
-                xhr.open(this.method, this.action)
-                xhr.onload = () => {
-                    success(xhr.response)
-                }
-                xhr.onerror = () => {
-                    fail(xhr, xhr.statusCode)
-                }
-                xhr.send(formData)
+                Utils.ajax[this.method.toLowerCase()](this.action, {
+                    success,
+                    fail,
+                    data: formData
+                })
             }
         },
         components: {

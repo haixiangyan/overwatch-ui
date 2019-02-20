@@ -23,8 +23,26 @@ function findTreeNodeById(root, id) {
 function unique(array) {
     return array.filter((el, index) => array.indexOf(el) === index)
 }
+function ajaxCore(method, url, options) {
+    let xhr = new XMLHttpRequest()
+    xhr.open(method, url)
+    xhr.onload = () => {
+        options.success && options.success(xhr.response)
+    }
+    xhr.onerror = () => {
+        options.fail && options.fail(xhr, xhr.statusCode)
+    }
+    xhr.send(options.data)
+}
+const ajax = {
+    get(url, options) {},
+    post(url, options) {
+        ajaxCore('POST', url, options)
+    }
+}
 export default {
     deepClone,
     findTreeNodeById,
-    unique
+    unique,
+    ajax
 }
