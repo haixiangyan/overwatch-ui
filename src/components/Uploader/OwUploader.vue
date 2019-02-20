@@ -8,7 +8,9 @@
             <li class="ow-upload-item" v-for="file in fileList" :key="file.name">
                 <div class="ow-upload-item-wrapper">
                     <img v-if="file.type.indexOf('image') >= 0" class="ow-upload-item-img" :src="file.url">
-                    <img :src="placeholderImg" class="ow-upload-item-img">
+                    <div v-else class="ow-upload-item-placeholder">
+                        <ow-icon color="white" name="order" size="4em"></ow-icon>
+                    </div>
                     <div class="ow-upload-item-info">
                         <section>
                             <span class="ow-upload-item-name">{{file.name}}</span>
@@ -70,8 +72,7 @@
         },
         data() {
             return {
-                previewUrl: 'about:blank',
-                placeholderImg: require('../../assets/images/file-placeholder.jpg')
+                previewUrl: 'about:blank'
             }
         },
         methods: {
@@ -240,6 +241,14 @@
             width: 280px;
             &-wrapper {
                 position: relative;
+            }
+            &-placeholder {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 130px;
+                vertical-align: top;
+                background: $--color-warning;
             }
             &-img {
                 display: inline-flex;
