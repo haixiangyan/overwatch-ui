@@ -4,15 +4,21 @@
             <slot></slot>
         </div>
         <div class="ow-uploader-input-wrapper" ref="inputWrapper"></div>
-        <ol class="ow-uploader-preview">
-            <li v-for="file in fileList" :key="file.name">
-                <template v-if="file.status === 'uploading'">
-                    <p>Loading...</p>
-                </template>
-                <img :src="file.url">{{file.name}}
-                {{file}}
-                <span>{{file.status}}</span>
-                <ow-button type="danger" @click="onRemoveFile(file)">Remove</ow-button>
+        <ol class="ow-uploader-filelist">
+            <li class="ow-upload-item" v-for="file in fileList" :key="file.name">
+                <img v-if="file.type.indexOf('image') >= 0" class="ow-upload-item-img" :src="file.url">
+                <img v-else src="../../assets/images/file-placeholder.jpg" class="ow-upload-item-img">
+                <div class="ow-upload-item-info">
+                    <section>
+                        <span class="ow-upload-item-name">{{file.name}}</span>
+                        <span class="ow-upload-item-status" :class="getStatusClasses(file.status)" >{{file.status}}</span>
+                    </section>
+                    <span class="ow-upload-item-size">Size: {{file.size}}</span>
+                </div>
+                <div v-if="file.status === 'UPLOADING'" class="ow-upload-item-loading">
+                    <ow-icon size="3em" color="white" name="loading" :is-loading="true"></ow-icon>
+                </div>
+                <ow-button class="ow-upload-item-remove-btn" type="danger" @click="onRemoveFile(file)">Remove</ow-button>
             </li>
         </ol>
     </div>
@@ -20,6 +26,7 @@
 
 <script>
     import Utils from '../../assets/scripts/utils'
+    import OwIcon from '../Icon/OwIcon'
 
     export default {
         name: "OwUploader",
@@ -51,6 +58,24 @@
             }
         },
         methods: {
+            getStatusClasses(status) {
+                switch (status) {
+                    case 'UPLOADING':
+                        return ['warning']
+                    case 'UPLOADED':
+                        return ['success']
+                    case 'FAIL':
+                        return ['danger']
+                }
+            },
+            getFileSrc(file) {
+                if (file.type.indexOf('image') >= 0) {
+                    return file.url
+                }
+                else {
+                    return '../../assets/images/file-placeholder.gif'
+                }
+            },
             onClickUpload() {
                 // Create input
                 let fileInput = this.createFileInput()
@@ -84,7 +109,7 @@
             },
             beforeUpload(fileInfo) {
                 const {name, size, type} = fileInfo
-                this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'uploading'}])
+                this.$emit('update:fileList', [...this.fileList, {name, size, type, status: 'UPLOADING'}])
             },
             uploadFile(file) {
                 const fileInfo = this.getFileInfo(file)
@@ -115,7 +140,7 @@
                 // Update uploaded file info
                 let uploadedFileInfoCopy = Utils.deepClone(uploadedFileInfo)
                 uploadedFileInfoCopy.url = url
-                uploadedFileInfoCopy.status = 'uploaded'
+                uploadedFileInfoCopy.status = 'UPLOADED'
                 // Put the updated info in fileList
                 let fileListCopy = [...this.fileList]
                 fileListCopy.splice(uploadedFileIndex, 1, uploadedFileInfoCopy)
@@ -126,7 +151,7 @@
                 let file = this.fileList.find(file => file.name === name)
                 let index = this.fileList.indexOf(file)
                 let fileCopy = Utils.deepClone(file)
-                fileCopy.status = 'fail'
+                fileCopy.status = 'FAIL'
                 let fileListCopy = Utils.deepClone(this.fileList)
                 fileListCopy.splice(index, 1, fileCopy)
                 this.$emit('update:fileList', fileListCopy)
@@ -152,21 +177,83 @@
                 }
                 xhr.send(formData)
             }
+        },
+        components: {
+            OwIcon
         }
     }
 </script>
 
 <style scoped lang="scss">
 .ow-uploader {
-    display: inline-flex;
     &-input-wrapper {
         width: 0;
         height: 0;
         overflow: hidden;
     }
-    &-preview {
-        img {
-            width: 300px;
+    &-filelist {
+        margin-top: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        .ow-upload-item {
+            position: relative;
+            margin-right: 12px;
+            display: inline-flex;
+            flex-direction: column;
+            width: 280px;
+            &-img {
+                display: inline-flex;
+                width: 100%;
+                border: none;
+            }
+            &-info {
+                padding: 6px 8px;
+                font-weight: bold;
+                background: white;
+                > section {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 2px;
+                }
+            }
+            &-name {
+                font-size: 1.2em;
+                color: $--color-bg-dark;
+            }
+            &-status {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 4px;
+                padding: .2em .4em;
+                color: $--color-white;
+                font-size: .6em;
+                border-radius: $--border-radius-small;
+                background: $--color-primary;
+                &.warning { background: $--color-warning; }
+                &.success { background: $--color-success; }
+                &.danger { background: $--color-danger; }
+            }
+            &-size {
+                color: $--color-primary;
+                font-size: .9em;
+            }
+            &-remove-btn {
+                margin-top: 2px;
+                width: 100%;
+            }
+            &-loading {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0, 0, 0, .5);
+            }
         }
     }
 }

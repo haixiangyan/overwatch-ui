@@ -1,18 +1,16 @@
 <template>
     <div id="app">
-        {{fileList}}
         <ow-uploader
+            style="width: 950px;"
             accpet="image/*"
             action="http://localhost:3000/upload"
             method="POST"
             :onUploaded="parse"
             :file-list.sync="fileList"
             name="file">
-            <ow-button>Upload</ow-button>
-            <template slot="hint">
-                <p>Only accept file with 300Mb.</p>
-            </template>
+            <ow-button icon-name="upload" icon-position="right">Upload</ow-button>
         </ow-uploader>
+        <p>Only accept 300Mb file.</p>
     </div>
 </template>
 
@@ -21,7 +19,11 @@
         name: 'app',
         data() {
             return {
-                fileList: []
+                fileList: [
+                    {name: 'Jack', size: 13, type: 'ok', status: 'UPLOADING'},
+                    {name: 'Mary', size: 13, type: 'ok', status: 'SUCCESS'},
+                    {name: 'Jeney', size: 13, type: 'ok', status: 'FAIL'},
+                ]
             }
         },
         methods: {
