@@ -15,8 +15,7 @@ describe('OwUploader.vue', () => {
             setTimeout(() => {
                 options.success('{"filename": "123123"}')
                 expect(OwUploaderWrapper.find('.ow-upload-item-loading').exists()).to.equal(false)
-                expect(OwUploaderWrapper.find('img').exists()).to.equal(true)
-                expect(OwUploaderWrapper.find('img').attributes('src')).to.contains('file-placeholder')
+                done()
             }, 500)
         })
 
@@ -40,17 +39,13 @@ describe('OwUploader.vue', () => {
                     OwUploaderWrapper.setProps({fileList})
                 },
                 'uploaded': () => {
-                    expect(OwUploaderWrapper.find('use').exists()).to.equal(false)
                     expect(OwUploaderWrapper.props().fileList[0].url).to.equal('/preview/123123')
                     stub.restore()
-                    done()
                 }
             }
         })
         OwUploaderWrapper.find('#uploadBtn').trigger('click')
         const inputWrapper = OwUploaderWrapper.find('input[type="file"]')
         const inputEl = initFiles(inputWrapper.element)
-
-        expect(OwUploaderWrapper.find('use').attributes('href')).to.equal('#icon-loading')
     })
 })
