@@ -5,10 +5,9 @@
             accpet="image/*"
             action="http://localhost:3000/upload"
             method="POST"
-            :onUploaded="parse"
+            :getPreviewUrl="parse"
             :onUploadError="fail"
             :file-list.sync="fileList"
-            accept="image/*"
             :multiple="true"
             name="file">
             <ow-button icon-name="upload" icon-position="right">Upload</ow-button>

@@ -45,7 +45,7 @@
                 type: String,
                 required: true
             },
-            onUploaded: {
+            getPreviewUrl: {
                 type: Function,
                 required: true
             },
@@ -140,7 +140,7 @@
                 formData.append(this.name, file)
 
                 this.sendAjax(formData, (response) => {
-                    const url = this.onUploaded(response)
+                    const url = this.getPreviewUrl(response)
 
                     this.$emit('update:fileList', [...this.fileList, fileInfo])
 
@@ -177,6 +177,7 @@
                 fileListCopy.splice(uploadedFileIndex, 1, uploadedFileInfoCopy)
                 // Update whole fileList
                 this.$emit('update:fileList', fileListCopy)
+                this.$emit('uploaded')
             },
             uploadError(xhr, fileInfo) {
                 let file = this.fileList.find(file => file.name === fileInfo.name)
