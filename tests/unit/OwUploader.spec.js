@@ -11,14 +11,14 @@ describe('OwUploader.vue', () => {
     })
 
     it('can upload a file', (done) => {
-        Utils.ajax.post = (url, options) => {
+        let stub = sinon.stub(Utils.ajax, 'post').callsFake((url, options) => {
             setTimeout(() => {
                 options.success('{"filename": "123123"}')
                 expect(OwUploaderWrapper.find('.ow-upload-item-loading').exists()).to.equal(false)
                 expect(OwUploaderWrapper.find('img').exists()).to.equal(true)
                 expect(OwUploaderWrapper.find('img').attributes('src')).to.contains('file-placeholder')
             }, 500)
-        }
+        })
 
         const OwUploaderWrapper = mount(OwUploader, {
             propsData: {
@@ -42,6 +42,7 @@ describe('OwUploader.vue', () => {
                 'uploaded': () => {
                     expect(OwUploaderWrapper.find('use').exists()).to.equal(false)
                     expect(OwUploaderWrapper.props().fileList[0].url).to.equal('/preview/123123')
+                    stub.restore()
                     done()
                 }
             }
