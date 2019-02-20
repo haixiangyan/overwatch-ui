@@ -11,6 +11,7 @@
                 </template>
                 <img :src="file.url">{{file.name}}
                 {{file}}
+                <span>{{file.status}}</span>
                 <ow-button type="danger" @click="onRemoveFile(file)">Remove</ow-button>
             </li>
         </ol>
@@ -90,16 +91,20 @@
                 const {name, size, type} = fileInfo
 
                 this.beforeUpload(fileInfo)
+                console.log(this.fileList)
 
                 let formData = new FormData()
                 formData.append(this.name, file)
+                console.log(this.fileList, 'ppp')
 
                 this.sendAjax(formData, (response) => {
                     const url = this.onUploaded(response)
 
-                    // this.$emit('update:fileList', [...this.fileList, {name, size, type, url}])
+                    this.$emit('update:fileList', [...this.fileList, {name, size, type}])
 
                     this.afterUpload(fileInfo, url)
+                }, () => {
+                    this.uploadError(name)
                 })
             },
             afterUpload(fileInfo, url) {
@@ -117,6 +122,15 @@
                 // Update whole fileList
                 this.$emit('update:fileList', fileListCopy)
             },
+            uploadError(name) {
+                let file = this.fileList.find(file => file.name === name)
+                let index = this.fileList.indexOf(file)
+                let fileCopy = Utils.deepClone(file)
+                fileCopy.status = 'fail'
+                let fileListCopy = Utils.deepClone(this.fileList)
+                fileListCopy.splice(index, 1, fileCopy)
+                this.$emit('update:fileList', fileListCopy)
+            },
             getFileInfo(file) {
                 let {name, size, type} = file
 
@@ -129,11 +143,12 @@
 
                 return {name, size, type}
             },
-            sendAjax(formData, success) {
+            sendAjax(formData, success, fail) {
                 let xhr = new XMLHttpRequest()
                 xhr.open(this.method, this.action)
                 xhr.onload = () => {
-                    success(xhr.response)
+                    // success(xhr.response)
+                    fail()
                 }
                 xhr.send(formData)
             }

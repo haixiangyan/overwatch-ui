@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        {{fileList}}
         <ow-uploader
             accpet="image/*"
             action="http://localhost:3000/upload"
