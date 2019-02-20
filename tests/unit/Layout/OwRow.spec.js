@@ -1,9 +1,9 @@
 import {expect} from 'chai'
 import {mount, shallowMount} from '@vue/test-utils'
-import OwRow from '../../src/components/Layout/OwRow.vue'
-import OwCol from '../../src/components/Layout/OwCol.vue'
+import OwRow from '../../../src/components/Layout/OwRow.vue'
+import OwCol from '../../../src/components/Layout/OwCol.vue'
 import Vue from 'vue'
-import {testProperty} from "../utils"
+import {testProperty} from "../../utils"
 
 const testData = {
     gutter: 10,

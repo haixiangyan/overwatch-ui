@@ -1,25 +1,25 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwContent from '../../src/components/Layout/OwContent.vue'
+import OwFooter from '../../../src/components/Layout/OwFooter.vue'
 
 const testData = {
     slot: 'Hello',
 }
 
-describe('OwContent.vue', () => {
+describe('OwFooter.vue', () => {
     it('should exist', () => {
-        const OwContentWrapper = shallowMount(OwContent)
-        expect(OwContentWrapper).to.exist
+        const OwLayoutWrapper = shallowMount(OwFooter)
+        expect(OwLayoutWrapper).to.exist
     })
 
     it('should pass elements to slot', () => {
         const {slot} = testData
-        const OwContentWrapper = shallowMount(OwContent, {
+        const OwFooterWrapper = shallowMount(OwFooter, {
             slots: {
                 default: slot
             }
         })
 
-        expect(OwContentWrapper.text()).to.equal(slot)
+        expect(OwFooterWrapper.text()).to.equal(slot)
     })
 })

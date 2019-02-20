@@ -1,9 +1,9 @@
 import chai, {expect} from 'chai'
 import {mount, shallowMount} from '@vue/test-utils'
 import sinon from 'sinon'
-import OwNav from '../../src/components/Nav/OwNav'
-import OwNavItem from '../../src/components/Nav/OwNavItem'
-import OwSubNav from '../../src/components/Nav/OwSubNav'
+import OwNav from '../../../src/components/Nav/OwNav'
+import OwNavItem from '../../../src/components/Nav/OwNavItem'
+import OwSubNav from '../../../src/components/Nav/OwSubNav'
 import sinonChai from 'sinon-chai'
 
 chai.use(sinonChai)

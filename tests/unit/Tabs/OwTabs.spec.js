@@ -1,10 +1,10 @@
 import {expect} from 'chai'
-import {shallowMount} from '@vue/test-utils'
-import OwTabs from '../../src/components/Tabs/OwTabs.vue'
-import OwTabsHead from '../../src/components/Tabs/OwTabsHead.vue'
-import OwTabsBody from '../../src/components/Tabs/OwTabsBody.vue'
-import OwTabsItem from '../../src/components/Tabs/OwTabsItem.vue'
-import OwTabsPane from '../../src/components/Tabs/OwTabsPane.vue'
+import {mount, shallowMount} from '@vue/test-utils'
+import OwTabs from '../../../src/components/Tabs/OwTabs.vue'
+import OwTabsHead from '../../../src/components/Tabs/OwTabsHead.vue'
+import OwTabsBody from '../../../src/components/Tabs/OwTabsBody.vue'
+import OwTabsItem from '../../../src/components/Tabs/OwTabsItem.vue'
+import OwTabsPane from '../../../src/components/Tabs/OwTabsPane.vue'
 
 const testData = {
     selected: 'career',
@@ -21,7 +21,7 @@ const testData = {
             </ow-tabs-body>`
 }
 
-describe('OwTabsItem.vue', () => {
+describe('OwTabs.vue', () => {
 
     it('exists', () => {
         const {selected, slot} = testData
@@ -30,11 +30,21 @@ describe('OwTabsItem.vue', () => {
             slots: {default: slot},
             stubs: { OwTabsHead, OwTabsBody, OwTabsItem, OwTabsPane }
         })
-        expect(OwTabsWrapper.find(OwTabsItem)).to.exist
+        expect(OwTabsWrapper).to.exist
     })
 
     describe('props', () => {
         it('should pass props.selected', () => {
+            const {slot, selected} = testData
+
+            const OwTabsWrapper = mount(OwTabs, {
+                propsData: {selected},
+                slots: { default: slot },
+                stubs: { OwTabsHead, OwTabsBody, OwTabsItem, OwTabsPane }
+            })
+
+            OwTabsWrapper.find(OwTabsItem).trigger('click')
+            expect(OwTabsWrapper.find(OwTabsPane).text()).to.equal('Data')
         })
     })
 })

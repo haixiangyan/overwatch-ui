@@ -1,9 +1,9 @@
 import {expect} from 'chai'
 import {mount} from '@vue/test-utils'
-import OwUploader from '../../src/components/Uploader/OwUploader.vue'
+import OwUploader from '../../../src/components/Uploader/OwUploader.vue'
 
-import {initFiles} from "../utils"
-import Utils from '../../src/assets/scripts/utils'
+import {initFiles} from "../../utils"
+import Utils from '../../../src/assets/scripts/utils'
 
 describe('OwUploader.vue', () => {
     it('exists', () => {

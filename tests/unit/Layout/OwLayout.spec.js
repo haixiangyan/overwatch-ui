@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwLayout from '../../src/components/Layout/OwLayout.vue'
-import OwSider from '../../src/components/Layout/OwSider.vue'
+import OwLayout from '../../../src/components/Layout/OwLayout.vue'
+import OwSider from '../../../src/components/Layout/OwSider.vue'
 import Vue from 'vue'
 
 const testData = {

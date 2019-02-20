@@ -1,9 +1,9 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import sinon from 'sinon'
-import OwButton from '../../src/components/Button/OwButton.vue'
-import OwIcon from '../../src/components/Icon/OwIcon.vue'
-import {testProperty} from "../utils"
+import OwButton from '../../../src/components/Button/OwButton.vue'
+import OwIcon from '../../../src/components/Icon/OwIcon.vue'
+import {testProperty} from "../../utils"
 
 const testData = {
     iconNames: ['setting', 'add'],

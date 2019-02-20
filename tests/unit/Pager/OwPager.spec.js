@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import OwPager from '../../src/components/Pager/OwPager.vue'
+import OwPager from '../../../src/components/Pager/OwPager.vue'
 
 describe('OwButton.vue', () => {
 
