@@ -10,7 +10,6 @@
         let valid = true
         keys.forEach(key => {
             if (!['span', 'offset'].includes(key)) {
-                console.log(key)
                 valid = false
             }
         })

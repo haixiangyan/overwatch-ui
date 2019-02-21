@@ -26,7 +26,7 @@ module.exports = {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
     // web server port
     port: 9876,
     // enable / disable colors in the output (reporters and logs)
@@ -42,4 +42,9 @@ module.exports = {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity,
+    // Coverage reporter
+    coverageReporter: {
+        dir: './coverage',
+        reporters: [{ type: 'lcov', subdir: '.' }, { type: 'text-summary' }]
+    }
 }
