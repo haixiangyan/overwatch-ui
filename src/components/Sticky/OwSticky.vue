@@ -21,8 +21,7 @@
                 top: null,
                 left: null,
                 width: null,
-                height: null,
-                timerId: null
+                height: null
             }
         },
         computed: {
