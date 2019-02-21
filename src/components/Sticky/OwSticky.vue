@@ -18,9 +18,11 @@
         data() {
             return {
                 isSticky: false,
+                top: null,
                 left: null,
                 width: null,
-                height: null
+                height: null,
+                timerId: null
             }
         },
         computed: {
@@ -31,6 +33,7 @@
             },
             contentStyles() {
                 return {
+                    top: this.top + 'px',
                     width: this.width + 'px',
                     left: this.left + 'px'
                 }
@@ -42,28 +45,36 @@
             }
         },
         methods: {
-            getOffsetTop() {
+            getOriginOffsetTop() {
                 const {top} = this.$refs.stickyWrapper.getBoundingClientRect()
                 return top + window.scrollY
             },
-        },
-        mounted() {
-            const offsetTop = this.getOffsetTop()
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > offsetTop) {
-                    console.log('Out of top')
-                    const {height, width, left} = this.$refs.stickyWrapper.getBoundingClientRect()
-                    this.height = height
-                    this.width = width
-                    this.left = left
-                    // this.$refs.stickyWrapper.style.height = `${height}px`
+            onWindowScroll() {
+                if (window.scrollY > this.getOriginOffsetTop() - this.offsetTop) {
+                    const {left, width, height} = this.$refs.stickyWrapper.getBoundingClientRect()
+
+                    this.setPosition(this.offsetTop, left, width, height)
+
                     this.isSticky = true
                 }
                 else {
-                    console.log('No')
+                    this.setPosition(null, null, null, null)
+
                     this.isSticky = false
                 }
-            })
+            },
+            setPosition(top, left, width, height) {
+                this.top = top
+                this.left = left
+                this.width = width
+                this.height = height
+            }
+        },
+        mounted() {
+            window.addEventListener('scroll', this.onWindowScroll)
+        },
+        beforeDestroy() {
+            window.removeEventListener('scroll', this.onWindowScroll)
         }
     }
 </script>
@@ -73,7 +84,6 @@
     border: 1px solid black;
     &-content.sticky {
         position: fixed;
-        top: 0;
         left: 0;
     }
 }
