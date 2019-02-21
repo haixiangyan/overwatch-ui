@@ -80,10 +80,8 @@
 
 <style scoped lang="scss">
 .ow-sticky {
-    border: 1px solid black;
     &-content.sticky {
         position: fixed;
-        left: 0;
     }
 }
 </style>
