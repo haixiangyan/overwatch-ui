@@ -55,7 +55,7 @@
                                     :checked="isItemSelected(item)"
                                     @change="onSelectItem(index, item, $event)">
                             </td>
-                            <td :style="{width: '50px'}" v-if="isShowIndex">
+                            <td class="ow-table-center" :style="{width: '50px'}" v-if="isShowIndex">
                                 {{index}}
                             </td>
                             <template v-for="column in columns">

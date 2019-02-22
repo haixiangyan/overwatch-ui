@@ -1,232 +1,12 @@
 <template>
     <div id="app">
-        <div style="display: flex; justify-content: center;">
-            <div style="width: 600px;border: 1px solid black;">
-                <div>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                </div>
-                <ow-sticky :offset-top="100">
-                    <div style="border: 1px solid red;">
-                        Sticky
-                        <img src="https://avatars1.githubusercontent.com/u/32581037?s=64&v=4" alt="">
-                    </div>
-                </ow-sticky>
-                <div>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                    <p>Text1</p>
-                    <p>Text2</p>
-                    <p>Text3</p>
-                    <p>Text4</p>
-                    <p>Text5</p>
-                    <p>Text6</p>
-                    <p>Text7</p>
-                    <p>Text8</p>
-                    <p>Text9</p>
-                    <p>Text10</p>
-                </div>
-            </div>
-        </div>
+        <ow-table
+            :is-show-index="true"
+            :selectable="true"
+            :columns="columns"
+            :source="source"
+            :selected.sync="selected">
+        </ow-table>
     </div>
 </template>
 
@@ -235,6 +15,17 @@
         name: 'app',
         data() {
             return {
+                columns: [
+                    {label: 'Name', field: 'name', width: 300},
+                    {label: 'Score', field: 'score'}
+                ],
+                source: [
+                    {id: 1, name: 'Jack', score: 100},
+                    {id: 2, name: 'Marry', score: 200},
+                    {id: 3, name: 'Xiaoming', score: 300},
+                    {id: 4, name: 'Ani', score: 400},
+                ],
+                selected: []
             }
         },
         methods: {
@@ -244,8 +35,8 @@
 
 <style lang="scss">
     #app {
-        border: 1px solid;
+        height: 100vh;
         padding: 10px 15px;
-        background: #ffaabb;
+        background: url("./assets/images/bg.png");
     }
 </style>
