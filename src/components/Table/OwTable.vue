@@ -36,7 +36,7 @@
                             </span>
                         </div>
                     </th>
-                    <th ref="actionsTh" v-if="$scopedSlots.default"></th>
+                    <th ref="actionsTh" v-if="$scopedSlots.default">Action</th>
                 </tr>
                 </thead>
                 <!--Body-->
@@ -352,7 +352,6 @@
                         align-items: center;
                     }
                     &:hover {
-                        border: 1px solid white;
                         background: $--color-primary;
                     }
                 }
