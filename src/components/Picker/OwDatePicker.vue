@@ -1,33 +1,45 @@
 <template>
     <div class="ow-date-picker">
         <ow-popover position="bottom">
-            <ow-input :readonly="true"></ow-input>
+            <ow-input :value="formattedValue" @input="onInput"></ow-input>
             <template slot="content">
                 <div class="ow-date-picker-popover">
                     <div class="ow-date-picker-popover-header">
-                        <ow-icon color="white" name="fast-left"></ow-icon>
-                        <ow-icon color="white" name="left"></ow-icon>
-                        <span @click="onClickYear">2018</span>
-                        <span @click="onClickMonth">February</span>
-                        <ow-icon color="white" name="right"></ow-icon>
-                        <ow-icon color="white" name="fast-right"></ow-icon>
+                        <span class="ow-date-picker-popover-header-action">
+                            <ow-icon color="white" name="fast-left"></ow-icon>
+                        </span>
+                        <span class="ow-date-picker-popover-header-action">
+                            <ow-icon color="white" name="left"></ow-icon>
+                        </span>
+                        <span @click="pickYearMonth" class="ow-date-picker-popover-header-year-month">
+                            <span>2018</span>
+                            -
+                            <span>November</span>
+                        </span>
+                        <span class="ow-date-picker-popover-header-action">
+                            <ow-icon color="white" name="right"></ow-icon>
+                        </span>
+                        <span class="ow-date-picker-popover-header-action">
+                            <ow-icon color="white" name="fast-right"></ow-icon>
+                        </span>
                     </div>
                     <div class="ow-date-picker-popover-content">
-                        <div v-if="mode === 'year'" class="ow-date-picker-popover-content-item">
-                            Years
-                        </div>
-                        <div v-else-if="mode === 'month'" class="ow-date-picker-panel-content-item">
-                            Months
-                        </div>
-                        <div v-else class="">
+                        <div v-if="isShowDays">
                             <div class="ow-date-picker-popover-content-weekdays">
-                                <span v-for="weekday in weekdays">{{weekday}}</span>
+                                <span :key="weekday" v-for="weekday in weekdays">{{weekday}}</span>
                             </div>
-                            <div class="ow-date-picker-popover-content-week" v-for="week in 6">
-                                <span class="ow-date-picker-popover-content-day" v-for="day in 7">
-                                    {{dates[(week - 1) * 7 + (day - 1)].getDate()}}
+                            <div class="ow-date-picker-popover-content-week" v-for="week in 6" :key="week">
+                                <span
+                                    @click="onClickCell(getDateObj(week, day))"
+                                    :class="getDateClasses(getDateObj(week, day))"
+                                    v-for="day in 7"
+                                    :key="day">
+                                    {{getDateObj(week, day).getDate()}}
                                 </span>
                             </div>
+                        </div>
+                        <div v-else class="ow-date-picker-panel-content-item">
+                            Years and Months
                         </div>
                     </div>
                     <div class="ow-date-picker-popover-footer">
@@ -46,56 +58,62 @@
 
     export default {
         name: "OwDatePicker",
+        props: {
+            value: {
+                type: Date,
+                default: new Date()
+            }
+        },
         data() {
             return {
                 isPanelVisible: true,
-                mode: 'day',
-                value: new Date(),
+                isShowDays: true,
                 weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
             }
         },
         computed: {
             dates() {
                 let dateObj = new Date()
-                const {year, month} = DateUtils.getDateInfo(dateObj)
-
                 let firstDateObj = DateUtils.firstDayOfMonth(dateObj)
-                let lastDateObj = DateUtils.lastDayOfMonth(dateObj)
+                let prevFirstDayMs = DateUtils.getFirstDateMs(firstDateObj)
 
-                let currentDates = []
-                for (let i = firstDateObj.getDate(); i <= lastDateObj.getDate(); i++) {
-                    currentDates.push(new Date(year, month, i))
+                let dates = []
+                for (let i = 0; i < 42; i++) {
+                    dates.push(new Date(DateUtils.addDayInMs(prevFirstDayMs, i)))
                 }
 
-                let prevDates = []
-                let prevDatesNum = firstDateObj.getDay() === 0 ? 6 : firstDateObj.getDay() - 1
-                for (let i = 0; i < prevDatesNum; i++) {
-                    prevDates.unshift(new Date(year, month, -i))
-                }
-
-                let nextDates = []
-                let nextDatesNum = 42 - prevDates.length - currentDates.length
-                for (let i = 1; i <= nextDatesNum; i++) {
-                    nextDates.push(new Date(year, month + 1, i))
-                }
-
-                return [...prevDates, ...currentDates, ...nextDates]
+                return dates
+            },
+            formattedValue() {
+                const {year, month, date} = DateUtils.getDateInfo(this.value)
+                return `${month + 1}/${date}/${year}`
             }
         },
         methods: {
-            onClickYear() {
-                this.mode = 'year'
+            getDateClasses(dateObj) {
+                const {month} = DateUtils.getDateInfo(this.value)
+                return [
+                    'ow-date-picker-popover-content-day',
+                    { 'current-month': dateObj.getMonth() !== month }
+                ]
             },
-            onClickMonth() {
-                this.mode = 'month'
+            pickYearMonth() {
+                this.isShowDays = !this.isShowDays
+            },
+            onClickCell(dateObj) {
+                this.$emit('input', dateObj)
+            },
+            getDateObj(week, day) {
+                return this.dates[(week - 1) * 7 + (day - 1)]
+            },
+            onInput(event) {
+                console.log(event)
             }
         },
         components: {
             OwIcon,
             OwInput,
             OwPopover
-        },
-        mounted() {
         }
     }
 </script>
@@ -104,5 +122,54 @@
 .ow-date-picker {
     display: inline-flex;
     border: 1px solid red;
+    &-popover {
+        user-select: none;
+        width: 240px;
+        &-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            &-year-month {
+                margin: 0 auto;
+            }
+            &-action {
+                width: 1.75em;
+                height: 1.75em;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                vertical-align: top;
+                border-radius: $--border-radius-circle;
+                transition: all .5s;
+                &:hover {
+                    background: $--color-primary;
+                }
+            }
+        }
+        &-content {
+            &-day, &-weekdays > span {
+                width: 1.75em;
+                height: 1.75em;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                vertical-align: top;
+                border-radius: $--border-radius-small;
+            }
+            &-weekdays, &-week {
+                display: flex;
+                justify-content: space-between;
+            }
+            &-day {
+                transition: all .5s;
+                &.current-month {
+                    color: $--color-text-secondary;
+                }
+                &:hover {
+                    background: $--color-primary;
+                }
+            }
+        }
+    }
 }
 </style>

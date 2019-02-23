@@ -24,7 +24,7 @@
     name: "OwInput",
     props: {
         value: {
-            type: [String, Number]
+            type: [String, Number, Date]
         },
         iconName: {
             type: String

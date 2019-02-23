@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-date-picker>
+        <ow-date-picker :value="date" @input="date = $event">
         </ow-date-picker>
         <p>Hello</p>
     </div>
@@ -11,7 +11,7 @@
         name: 'app',
         data() {
             return {
-
+                 date: new Date()
             }
         },
     }
