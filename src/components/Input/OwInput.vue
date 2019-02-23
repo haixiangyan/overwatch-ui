@@ -86,16 +86,16 @@
             outline: none;
             border: 1px solid $--input-border-color;
             border-radius: $--border-radius-base;
-            transition: opacity .3s;
-            opacity: $--less-opacity;
+            transition: background-color .3s;
+            background: rgba(255, 255, 255, 0.9);
             font-size: 1em;
 
             &:hover, &:active, &:focus {
-                opacity: $--more-opacity;
+                background: rgba(255, 255, 255, 1);
                 z-index: 1;
             }
             &[disabled] {
-                opacity: $--half-opacity;
+                background: rgba(255, 255, 255, 0.5);
             }
         }
 

@@ -1,12 +1,8 @@
 <template>
     <div id="app">
-        <ow-table
-            :is-show-index="true"
-            :selectable="true"
-            :columns="columns"
-            :source="source"
-            :selected.sync="selected">
-        </ow-table>
+        <ow-date-picker>
+        </ow-date-picker>
+        <p>Hello</p>
     </div>
 </template>
 
@@ -15,28 +11,16 @@
         name: 'app',
         data() {
             return {
-                columns: [
-                    {label: 'Name', field: 'name', width: 300},
-                    {label: 'Score', field: 'score'}
-                ],
-                source: [
-                    {id: 1, name: 'Jack', score: 100},
-                    {id: 2, name: 'Marry', score: 200},
-                    {id: 3, name: 'Xiaoming', score: 300},
-                    {id: 4, name: 'Ani', score: 400},
-                ],
-                selected: []
+
             }
         },
-        methods: {
-        }
     }
 </script>
 
 <style lang="scss">
     #app {
         height: 100vh;
-        padding: 10px 15px;
+        padding: 100px 100px;
         background: url("./assets/images/bg.png");
     }
 </style>
