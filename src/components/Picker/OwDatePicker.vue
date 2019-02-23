@@ -113,8 +113,15 @@
                 return datesObj
             },
             formattedValue() {
-                const {year, month, date} = DateUtils.getDateInfo(this.value)
-                return `${month + 1}/${date}/${year}`
+                let {year, month, date} = DateUtils.getDateInfo(this.value)
+                month = month + 1
+                if (month < 10) {
+                    month = '0' + month
+                }
+                if (date < 10) {
+                    date = '0' + date
+                }
+                return `${month}-${date}-${year}`
             }
         },
         methods: {
@@ -135,8 +142,17 @@
             getDateObj(week, day) {
                 return this.dates[(week - 1) * 7 + (day - 1)]
             },
-            onInput(event) {
-                console.log(event)
+            onInput(value) {
+                const regex = /^\d{1,2}-\d{1,2}-\d{4}$/g
+                if (value.match(regex)) {
+                    let [year, month, date] = value.split('-')
+                    month = month - 1
+                    console.log(new Date(year, month, date))
+                    this.$emit('input', new Date(year, month, date))
+                }
+                else {
+                    console.log('no')
+                }
             },
             onSelectYear(event) {
 
