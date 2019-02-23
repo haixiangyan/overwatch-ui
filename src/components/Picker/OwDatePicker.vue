@@ -38,8 +38,36 @@
                                 </span>
                             </div>
                         </div>
-                        <div v-else class="ow-date-picker-panel-content-item">
-                            Years and Months
+                        <div v-else>
+                            <div class="ow-date-picker-panel-content-selector">
+                                <select @change="onSelectYear">
+                                    <option value="2001">2001</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2011">2011</option>
+                                </select>
+                                <select @change="onSelectMonth">
+                                    <option value="0">Jan</option>
+                                    <option value="1">Feb</option>
+                                    <option value="2">Mar</option>
+                                    <option value="3">Apr</option>
+                                    <option value="4">May</option>
+                                    <option value="5">Jun</option>
+                                    <option value="6">Jul</option>
+                                    <option value="7">Aug</option>
+                                    <option value="8">Sep</option>
+                                    <option value="9">Oct</option>
+                                    <option value="10">Nov</option>
+                                    <option value="11">Dec</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="ow-date-picker-popover-footer">
@@ -48,7 +76,7 @@
             </template>
         </ow-popover>
     </div>
-</template>k
+</template>
 
 <script>
     import OwIcon from '../Icon/OwIcon'
@@ -67,7 +95,7 @@
         data() {
             return {
                 isPanelVisible: true,
-                isShowDays: true,
+                isShowDays: false,
                 weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
             }
         },
@@ -77,12 +105,12 @@
                 let firstDateObj = DateUtils.firstDayOfMonth(dateObj)
                 let prevFirstDayMs = DateUtils.getFirstDateMs(firstDateObj)
 
-                let dates = []
+                let datesObj = []
                 for (let i = 0; i < 42; i++) {
-                    dates.push(new Date(DateUtils.addDayInMs(prevFirstDayMs, i)))
+                    datesObj.push(new Date(DateUtils.addDayInMs(prevFirstDayMs, i)))
                 }
 
-                return dates
+                return datesObj
             },
             formattedValue() {
                 const {year, month, date} = DateUtils.getDateInfo(this.value)
@@ -108,6 +136,12 @@
             },
             onInput(event) {
                 console.log(event)
+            },
+            onSelectYear(event) {
+
+            },
+            onSelectMonth(event) {
+
             }
         },
         components: {
