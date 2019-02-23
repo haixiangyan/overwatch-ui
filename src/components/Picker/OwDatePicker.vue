@@ -95,7 +95,7 @@
         data() {
             return {
                 isPanelVisible: true,
-                isShowDays: false,
+                isShowDays: true,
                 weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
             }
         },
@@ -119,10 +119,11 @@
         },
         methods: {
             getDateClasses(dateObj) {
-                const {month} = DateUtils.getDateInfo(this.value)
+                const {year, month, date} = DateUtils.getDateInfo(this.value)
                 return [
                     'ow-date-picker-popover-content-day',
-                    { 'current-month': dateObj.getMonth() !== month }
+                    { 'current-month': dateObj.getMonth() !== month },
+                    { 'active': dateObj.getFullYear() === year && dateObj.getMonth() === month && dateObj.getDate() === date}
                 ]
             },
             pickYearMonth() {
@@ -198,6 +199,9 @@
                 transition: all .5s;
                 &.current-month {
                     color: $--color-text-secondary;
+                }
+                &.active {
+                    background: $--color-primary;
                 }
                 &:hover {
                     background: $--color-primary;
