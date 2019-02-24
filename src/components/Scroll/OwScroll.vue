@@ -1,13 +1,19 @@
 <template>
-    <div class="ow-scroll" ref="parent" :style="wrapperStyles" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
-        <div class="ow-scroll-child" ref="child">
+    <div ref="parent"
+         class="ow-scroll-wrapper"
+         :style="wrapperStyles"
+         @mouseenter="onMouseEnter"
+         @mouseleave="onMouseLeave"
+         @wheel="onWheel"
+         @mousemove="onMouseMove">
+        <div ref="child" class="ow-scroll" :style="{transform: `translateY(${this.contentY}px)`}">
             <slot></slot>
         </div>
-        <transition name="fade">
-            <div v-show="isShowScrollTrack" class="ow-scroll-track">
-                <div class="ow-scroll-bar" :style="barStyles"></div>
+        <div class="ow-scroll-track" v-show="scrollBarVisible">
+            <div class="ow-scroll-bar" ref="bar" @mousedown="onMouseDownScrollBar" @selectstart="onSelectStartScrollBar">
+                <div class="ow-scroll-bar-inner"></div>
             </div>
-        </transition>
+        </div>
     </div>
 </template>
 
@@ -16,101 +22,179 @@
         name: "OwScroll",
         props: {
             height: {
-                type: Number,
-                default: null
+                type: Number
             }
         },
-        data() {
+        data () {
             return {
-                isShowScrollTrack: false,
-                scrollBarHeight: 0,
-                scrollBarTranslateY: 0
+                scrollBarVisible: false,
+                isScrolling: false,
+                startPosition: undefined,
+                endPosition: undefined,
+                scrollBarY: 0,
+                contentY: 0,
+                barHeight: undefined,
+                parentHeight: undefined,
+                mouseIn: false,
             }
         },
         computed: {
-            wrapperStyles() {
-                return {height: `${this.height}px`}
+            maxScrollHeight () {
+                return this.parentHeight - this.barHeight
             },
-            barStyles() {
+            childHeight () { // 可以优化
+                return this.$refs.child.getBoundingClientRect().height
+            },
+            wrapperStyles() {
                 return {
-                    height: `${this.scrollBarHeight}px`,
-                    transform: `translateY(${this.scrollBarTranslateY}px)`
+                    height: this.height + 'px'
                 }
             }
+        },
+        mounted () {
+            this.listenToDocument()
+            this.parentHeight = this.$refs.parent.getBoundingClientRect().height
+            this.updateScrollBar()
+            this.listenToRemoteResources()
+            this.listenToDomChange()
+        },
+        beforeDestroy () {
+            document.removeEventListener('mousemove', this.onMouseMoveScrollbar)
+            document.removeEventListener('mouseup', this.onMouseUpScrollbar)
         },
         methods: {
-            updateScrollBar(parentHeight, childHeight, translateY) {
-                this.scrollBarHeight = parentHeight * parentHeight / childHeight
-                this.scrollBarTranslateY = -(parentHeight * translateY / childHeight)
+            listenToRemoteResources () {
+                let tags = this.$refs.parent.querySelectorAll('img, video, audio')
+                Array.from(tags).map((tag) => {
+                    if (tag.hasAttribute('data-ow-listened')) { return }
+                    tag.setAttribute('data-ow-listened', 'yes')
+                    tag.addEventListener('load', () => {
+                        this.updateScrollBar()
+                    })
+                })
             },
-            onMouseEnter() {
-                this.isShowScrollTrack = true
+            listenToDomChange () {
+                const targetNode = this.$refs.child
+                const config = {attributes: true, childList: true, subtree: true};
+                const callback = () => {
+                    this.listenToRemoteResources()
+                }
+                const observer = new MutationObserver(callback);
+                observer.observe(targetNode, config);
             },
-            onMouseLeave() {
-                this.isShowScrollTrack = false
+            listenToDocument () {
+                document.addEventListener('mousemove', this.onMouseMoveScrollbar)
+                document.addEventListener('mouseup', this.onMouseUpScrollbar)
+            },
+            calculateContentYFromDeltaY (deltaY) {
+                let contentY = this.contentY
+                if (deltaY > 20) {
+                    contentY -= 20 * 3
+                } else if (deltaY < -20) {
+                    contentY -= -20 * 3
+                } else {
+                    contentY -= deltaY * 3
+                }
+                return contentY
+            },
+            onWheel (e) {
+                this.updateContentY(e.deltaY, () => e.preventDefault())
+                this.updateScrollBar()
+            },
+            updateContentY (deltaY, fn) {
+                let maxHeight = this.calculateContentYMax()
+                this.contentY = this.calculateContentYFromDeltaY(deltaY)
+                if (this.contentY > 0) {
+                    this.contentY = 0
+                } else if (this.contentY < -maxHeight) {
+                    this.contentY = -maxHeight
+                } else {
+                    fn && fn()
+                }
+            },
+            calculateContentYMax () {
+                let {borderTopWidth, borderBottomWidth, paddingTop, paddingBottom} = window.getComputedStyle(this.$refs.parent)
+                borderTopWidth = parseInt(borderTopWidth)
+                borderBottomWidth = parseInt(borderBottomWidth)
+                paddingTop = parseInt(paddingTop)
+                paddingBottom = parseInt(paddingBottom)
+                let maxHeight = this.childHeight - this.parentHeight + (borderTopWidth + borderBottomWidth + paddingTop + paddingBottom)
+                return maxHeight
+            },
+            updateScrollBar () {
+                let parentHeight = this.parentHeight
+                let childHeight = this.childHeight
+                this.barHeight = parentHeight * parentHeight / childHeight
+                this.$refs.bar.style.height = this.barHeight + 'px'
+                this.scrollBarY = -parentHeight * this.contentY / childHeight
+                this.$refs.bar.style.transform = `translateY(${this.scrollBarY}px)`;
+            },
+            onMouseEnter () {
+                this.scrollBarVisible = true
+                this.mouseIn = true
+            },
+            onMouseLeave () {
+                this.mouseIn = false
+                if (!this.isScrolling) this.scrollBarVisible = false;
+            },
+            onMouseMove () {
+                this.mouseIn = true
+            },
+            onMouseDownScrollBar (e) {
+                this.isScrolling = true
+                let {screenX, screenY} = e
+                this.startPosition = {x: screenX, y: screenY}
+            },
+            onMouseMoveScrollbar (e) {
+                if (!this.isScrolling) { return }
+                this.endPosition = {x: e.screenX, y: e.screenY}
+                let delta = {x: this.endPosition.x - this.startPosition.x, y: this.endPosition.y - this.startPosition.y}
+                this.scrollBarY = this.calculateScrollBarY(delta)
+                this.contentY = -(this.childHeight * this.scrollBarY / this.parentHeight)
+                this.startPosition = this.endPosition
+                this.$refs.bar.style.transform = `translate(0px,${this.scrollBarY}px)`
+            },
+            calculateScrollBarY (delta) {
+                let newValue = parseInt(this.scrollBarY) + delta.y
+                if (newValue < 0) {
+                    newValue = 0
+                } else if (newValue > this.maxScrollHeight) {
+                    newValue = this.maxScrollHeight
+                }
+                return newValue
+            },
+            onMouseUpScrollbar (e) {
+                this.isScrolling = false
+                if (!this.mouseIn) {
+                    this.scrollBarVisible = false
+                }
+            },
+            onSelectStartScrollBar (e) {
+                e.preventDefault()
             }
-        },
-        mounted() {
-            const parent = this.$refs.parent
-            const child = this.$refs.child
-            let translateY = 0
-            const {height: childHeight} = child.getBoundingClientRect()
-            const {height: parentHeight} = parent.getBoundingClientRect()
-            const {borderTopWidth, borderBottomWidth, paddingTop, paddingBottom} = window.getComputedStyle(parent)
-            const maxHeight = parseInt(childHeight) - parseInt(parentHeight) + parseInt(borderTopWidth) + parseInt(borderBottomWidth) + parseInt(paddingTop) + parseInt(paddingBottom)
-            parent.addEventListener('wheel', (event) => {
-                // If there's no vertical movement
-                if (event.deltaY === 0) {
-                    return
-                }
-
-                // Calculate current position
-                translateY = translateY - event.deltaY
-
-                // Check edge case
-                if (translateY > 0) {
-                    translateY = 0
-                }
-                else if (translateY < -maxHeight) {
-                    translateY = -maxHeight
-                }
-                else {
-                    event.preventDefault()
-                }
-
-                // Update style
-                child.style.transform = `translateY(${translateY}px)`
-                this.updateScrollBar(parentHeight, childHeight, translateY)
-            })
-
-            this.updateScrollBar(parentHeight, childHeight, translateY)
         }
     }
 </script>
 
 <style scoped lang="scss">
-.ow-scroll {
-    border: 4px solid red;
-    height: 400px;
-    overflow: hidden;
-    box-sizing: border-box;
-    position: relative;
-    &-track {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 8px;
-        border-radius: $--border-radius-base;
-        .ow-scroll-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 20px;
-            width: 100%;
-            background: #7F7F7F;
-            border-radius: $--border-radius-base;
+    .ow-scroll {
+        transition: transform 0.05s ease;
+        &-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        &-track { position: absolute; top: 0; right: 0; width: 14px; height: 100%;
+            background: #FAFAFA; border-left: 1px solid #E8E7E8; opacity: 0.9;
+        }
+        &-bar {
+            position: absolute; top: -1px; left: 50%; height: 40px; width: 8px;
+            margin-left: -4px; padding: 4px 0;
+            &-inner {
+                height: 100%; border-radius: 4px; background: #C2C2C2;
+                &:hover {
+                    background: #7D7D7D;
+                }
+            }
         }
     }
-}
 </style>
