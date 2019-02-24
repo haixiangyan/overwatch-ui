@@ -120,34 +120,39 @@
         },
         mounted() {
             console.log(navigator.userAgent)
-            function winScroll() {
+            function winScroll(event) {
                 if (event.deltaY > 0) {
-                    console.log('想看上面')
+                    scrollUp(event)
                 }
                 else if (event.deltaY < 0) {
-                    console.log('想看下面')
+                    scrollDown(event)
                 }
                 else {
                     console.log('没动')
                 }
             }
             let translateY = 0
-            function macScroll() {
+            function macScroll(event) {
                 if (event.deltaY > 0) {
-                    translateY -= 10
-                    child.style.transform = `translateY(${translateY}px)`
+                    scrollDown(event)
                 }
                 else if (event.deltaY < 0) {
-                    translateY += 10
-                    child.style.transform = `translateY(${translateY}px)`
+                    scrollUp(event)
                 }
                 else {
                     console.log('没动')
                 }
             }
+            function scrollUp(event) {
+                translateY -= event.deltaY
+                child.style.transform = `translateY(${translateY}px)`
+            }
+            function scrollDown(event) {
+                translateY -= event.deltaY
+                child.style.transform = `translateY(${translateY}px)`
+            }
             const parent = this.$refs.parent
             const child = this.$refs.child
-            child.style.transition= 'transform .5s linear'
             if (navigator.userAgent.indexOf('Mac OS X')) {
                 parent.addEventListener('wheel', macScroll)
             }
