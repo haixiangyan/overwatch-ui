@@ -129,15 +129,21 @@
                 const {year, month, date} = DateUtils.getDateInfo(this.value)
                 return [
                     'ow-date-picker-popover-content-day',
-                    { 'not-current-month': dateObj.getFullYear() !== year || dateObj.getMonth() !== month },
+                    { 'current-month': this.isCurrentMonth(dateObj) },
                     { 'active': dateObj.getFullYear() === year && dateObj.getMonth() === month && dateObj.getDate() === date}
                 ]
+            },
+            isCurrentMonth(dateObj) {
+                const {year, month, date} = DateUtils.getDateInfo(this.value)
+                return dateObj.getFullYear() === year && dateObj.getMonth() === month
             },
             pickYearMonth() {
                 this.isShowDays = !this.isShowDays
             },
             onClickCell(dateObj) {
-                this.$emit('input', dateObj)
+                if (this.isCurrentMonth(dateObj)) {
+                    this.$emit('input', dateObj)
+                }
             },
             getDateObj(week, day) {
                 return this.dates[(week - 1) * 7 + (day - 1)]
@@ -213,8 +219,9 @@
             }
             &-day {
                 transition: all .5s;
-                &.not-current-month {
-                    color: $--color-text-secondary;
+                color: $--color-text-placeholder;
+                &.current-month {
+                    color: $--color-white;
                 }
                 &.active {
                     background: $--color-primary;
