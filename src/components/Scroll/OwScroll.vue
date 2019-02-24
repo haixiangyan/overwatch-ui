@@ -1,8 +1,13 @@
 <template>
-    <div class="ow-scroll" ref="parent" :style="wrapperStyles">
+    <div class="ow-scroll" ref="parent" :style="wrapperStyles" @mouseenter="onMouseEnter" @mouseleave="onMouseLeave">
         <div class="ow-scroll-child" ref="child">
             <slot></slot>
         </div>
+        <transition name="fade">
+            <div v-show="isShowScrollTrack" class="ow-scroll-track">
+                <div class="ow-scroll-bar" :style="barStyles"></div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -15,21 +20,47 @@
                 default: null
             }
         },
+        data() {
+            return {
+                isShowScrollTrack: false,
+                scrollBarHeight: 0,
+                scrollBarTranslateY: 0
+            }
+        },
         computed: {
             wrapperStyles() {
                 return {height: `${this.height}px`}
+            },
+            barStyles() {
+                return {
+                    height: `${this.scrollBarHeight}px`,
+                    transform: `translateY(${this.scrollBarTranslateY}px)`
+                }
+            }
+        },
+        methods: {
+            updateScrollBar(parentHeight, childHeight, translateY) {
+                this.scrollBarHeight = parentHeight * parentHeight / childHeight
+                this.scrollBarTranslateY = -(parentHeight * translateY / childHeight)
+            },
+            onMouseEnter() {
+                console.log('enter')
+                this.isShowScrollTrack = true
+            },
+            onMouseLeave() {
+                console.log('leave')
+                this.isShowScrollTrack = false
             }
         },
         mounted() {
             const parent = this.$refs.parent
             const child = this.$refs.child
             let translateY = 0
-            console.log(translateY)
             const {height: childHeight} = child.getBoundingClientRect()
             const {height: parentHeight} = parent.getBoundingClientRect()
             const {borderTopWidth, borderBottomWidth, paddingTop, paddingBottom} = window.getComputedStyle(parent)
             const maxHeight = parseInt(childHeight) - parseInt(parentHeight) + parseInt(borderTopWidth) + parseInt(borderBottomWidth) + parseInt(paddingTop) + parseInt(paddingBottom)
-            function onScroll(event) {
+            parent.addEventListener('wheel', (event) => {
                 // If there's no vertical movement
                 if (event.deltaY === 0) {
                     return
@@ -51,8 +82,10 @@
 
                 // Update style
                 child.style.transform = `translateY(${translateY}px)`
-            }
-            parent.addEventListener('wheel', onScroll)
+                this.updateScrollBar(parentHeight, childHeight, translateY)
+            })
+
+            this.updateScrollBar(parentHeight, childHeight, translateY)
         }
     }
 </script>
@@ -63,8 +96,23 @@
     height: 400px;
     overflow: hidden;
     box-sizing: border-box;
-    &-child {
-        border: 4px solid green;
+    position: relative;
+    &-track {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 8px;
+        border-radius: $--border-radius-base;
+        .ow-scroll-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 100%;
+            background: #7F7F7F;
+            border-radius: $--border-radius-base;
+        }
     }
 }
 </style>
