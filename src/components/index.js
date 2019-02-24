@@ -31,6 +31,7 @@ import OwTable from './Table/OwTable'
 import OwUploader from './Uploader/OwUploader'
 import OwSticky from './Sticky/OwSticky'
 import OwDatePicker from './Picker/OwDatePicker'
+import OwScroll from './Scroll/OwScroll'
 
 export default {
     OwButton,
@@ -64,5 +65,6 @@ export default {
     OwTable,
     OwUploader,
     OwSticky,
-    OwDatePicker
+    OwDatePicker,
+    OwScroll
 }
