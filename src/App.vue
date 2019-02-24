@@ -106,6 +106,8 @@
             <p>text99</p>
             <p>text100</p>
         </ow-scroll>
+
+        <div draggable="true" ref="test" id="test" style="height: 100px;width: 100px;border: 1px solid red;position: absolute;top: 0;left: 0;">Test</div>
     </div>
 </template>
 
@@ -118,15 +120,43 @@
             }
         },
         mounted() {
-
+            const test = this.$refs.test
+            let startPosition = null
+            let endPosition = null
+            /* 可拖动的目标元素会触发事件 */
+            test.addEventListener("dragstart", (event) => {
+                test.classList.toggle('hide')
+                startPosition = {
+                    x: event.screenX,
+                    y: event.screenY
+                }
+            });
+            test.addEventListener('dragend', (event) => {
+                endPosition = {
+                    x: event.screenX,
+                    y: event.screenY
+                }
+                let deltaX = endPosition.x - startPosition.x
+                let deltaY = endPosition.y - startPosition.y
+                test.style.left = parseInt(test.style.left) + deltaX + 'px'
+                test.style.top = parseInt(test.style.top) + deltaY + 'px'
+                test.classList.toggle('hide')
+            })
         }
     }
 </script>
 
 <style lang="scss">
     #app {
+        position: relative;
         height: 100vh;
         padding: 100px 100px;
         background: url("./assets/images/bg.png");
+        .hide {
+            opacity: .5;
+        }
+        .show {
+            opacity: 1;
+        }
     }
 </style>

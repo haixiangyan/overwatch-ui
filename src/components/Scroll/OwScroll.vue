@@ -44,11 +44,9 @@
                 this.scrollBarTranslateY = -(parentHeight * translateY / childHeight)
             },
             onMouseEnter() {
-                console.log('enter')
                 this.isShowScrollTrack = true
             },
             onMouseLeave() {
-                console.log('leave')
                 this.isShowScrollTrack = false
             }
         },
