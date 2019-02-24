@@ -129,7 +129,7 @@
                 const {year, month, date} = DateUtils.getDateInfo(this.value)
                 return [
                     'ow-date-picker-popover-content-day',
-                    { 'current-month': dateObj.getMonth() !== month },
+                    { 'not-current-month': dateObj.getFullYear() !== year || dateObj.getMonth() !== month },
                     { 'active': dateObj.getFullYear() === year && dateObj.getMonth() === month && dateObj.getDate() === date}
                 ]
             },
@@ -213,7 +213,7 @@
             }
             &-day {
                 transition: all .5s;
-                &.current-month {
+                &.not-current-month {
                     color: $--color-text-secondary;
                 }
                 &.active {
