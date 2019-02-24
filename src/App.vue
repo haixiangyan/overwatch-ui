@@ -119,49 +119,34 @@
             }
         },
         mounted() {
-            console.log(navigator.userAgent)
-            function winScroll(event) {
-                if (event.deltaY > 0) {
-                    scrollUp(event)
-                }
-                else if (event.deltaY < 0) {
-                    scrollDown(event)
-                }
-                else {
-                    console.log('没动')
-                }
-            }
-            let translateY = 0
-            function macScroll(event) {
-                if (event.deltaY > 0) {
-                    scrollDown(event)
-                }
-                else if (event.deltaY < 0) {
-                    scrollUp(event)
-                }
-                else {
-                    console.log('没动')
-                }
-            }
-            function scrollUp(event) {
-                translateY -= event.deltaY
-                child.style.transform = `translateY(${translateY}px)`
-            }
-            function scrollDown(event) {
-                translateY -= event.deltaY
-                child.style.transform = `translateY(${translateY}px)`
-            }
             const parent = this.$refs.parent
             const child = this.$refs.child
-            if (navigator.userAgent.indexOf('Mac OS X')) {
-                parent.addEventListener('wheel', macScroll)
+            let translateY = 0
+            const {height: childHeight} = child.getBoundingClientRect()
+            const {height: parentHeight} = parent.getBoundingClientRect()
+            const {borderTopWidth, borderBottomWidth, paddingTop, paddingBottom} = window.getComputedStyle(parent)
+            const maxHeight = parseInt(childHeight) - parseInt(parentHeight) + parseInt(borderTopWidth) + parseInt(borderBottomWidth) + parseInt(paddingTop) + parseInt(paddingBottom)
+            function macScroll(event) {
+                // If there's no vertical movement
+                if (event.deltaY === 0) {
+                    return
+                }
+
+                // Calculate current position
+                translateY -= event.deltaY
+
+                // Check edge case
+                if (translateY > 0) {
+                    translateY = 0
+                }
+                else if (translateY < -maxHeight) {
+                    translateY = -maxHeight
+                }
+
+                // Update style
+                child.style.transform = `translateY(${translateY}px)`
             }
-            else {
-                parent.addEventListener('wheel', winScroll)
-            }
-            parent.addEventListener('touchmove', () => {
-                console.log('touch')
-            })
+            parent.addEventListener('wheel', macScroll)
         }
     }
 </script>
