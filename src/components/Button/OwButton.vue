@@ -96,5 +96,9 @@
         &-danger { background: $--button-danger-fill; }
         &-warning { background: $--button-warning-fill; }
         &-info { background: $--button-info-fill; }
+
+        & + & {
+            margin-left: 4px;
+        }
     }
 </style>
