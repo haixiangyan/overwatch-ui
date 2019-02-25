@@ -54,7 +54,7 @@
                 this.$refs.popover.removeEventListener('click', this.onPopoverClick)
             }
             else {
-                this.$refs.popover.removeEventListener('mouseenter', this.isOpen)
+                this.$refs.popover.removeEventListener('mouseenter', this.open)
                 this.$refs.popover.removeEventListener('mouseleave', this.close)
             }
         },
@@ -64,7 +64,7 @@
                     this.$refs.popover.addEventListener('click', this.onPopoverClick)
                 }
                 else {
-                    this.$refs.popover.addEventListener('mouseenter', this.isOpen)
+                    this.$refs.popover.addEventListener('mouseenter', this.open)
                     this.$refs.popover.addEventListener('mouseleave', this.close)
                 }
             },
@@ -111,8 +111,9 @@
                 }
                 this.close();
             },
-            isOpen() {
+            open() {
                 this.visible = true
+                this.$emit('open')
                 this.$nextTick(() => {
                     // Set content position
                     this.setContentPosition()
@@ -122,6 +123,7 @@
             },
             close() {
                 this.visible = false
+                this.$emit('close')
                 // Remove event listener after closing OwPopover
                 document.removeEventListener('click', this.onDocClick)
             },
@@ -132,7 +134,7 @@
                         this.close()
                     }
                     else {
-                        this.isOpen()
+                        this.open()
                     }
                 }
             }
