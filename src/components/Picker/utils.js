@@ -21,5 +21,19 @@ export default {
     addDayInMs(currentMs, dayNum) {
         return currentMs + dayNum * 3600 * 24 * 1000
     },
-    getDateInfo
+    addMonth(dateObj, offset) {
+        const {month} = getDateInfo(dateObj)
+
+        dateObj.setMonth(month + offset)
+
+        return dateObj
+    },
+    addYear(dateObj, offset) {
+        const {year} = getDateInfo(dateObj)
+
+        dateObj.setFullYear(year + offset)
+
+        return dateObj
+    },
+    getDateInfo,
 }

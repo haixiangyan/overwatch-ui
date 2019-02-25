@@ -5,21 +5,21 @@
             <template slot="content">
                 <div class="ow-date-picker-popover">
                     <div class="ow-date-picker-popover-header">
-                        <span class="ow-date-picker-popover-header-action">
+                        <span class="ow-date-picker-popover-header-action" @click="onClickPrevYear">
                             <ow-icon color="white" name="fast-left"></ow-icon>
                         </span>
                         <span class="ow-date-picker-popover-header-action">
-                            <ow-icon color="white" name="left"></ow-icon>
+                            <ow-icon color="white" name="left" @click="onClickPrevMonth"></ow-icon>
                         </span>
                         <span @click="pickYearMonth" class="ow-date-picker-popover-header-year-month">
-                            <span>2018</span>
+                            <span>{{display.year}}</span>
                             -
-                            <span>November</span>
+                            <span>{{months[display.month]}}</span>
                         </span>
-                        <span class="ow-date-picker-popover-header-action">
+                        <span class="ow-date-picker-popover-header-action" @click="onClickNextMonth">
                             <ow-icon color="white" name="right"></ow-icon>
                         </span>
-                        <span class="ow-date-picker-popover-header-action">
+                        <span class="ow-date-picker-popover-header-action" @click="onClickNextYear">
                             <ow-icon color="white" name="fast-right"></ow-icon>
                         </span>
                     </div>
@@ -93,15 +93,18 @@
             }
         },
         data() {
+            const {year, month} = DateUtils.getDateInfo(this.value)
             return {
                 isPanelVisible: true,
                 isShowDays: true,
-                weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+                weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+                months: ['Jan', 'Feb', 'Mar', 'Ari', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                display: { year, month }
             }
         },
         computed: {
             dates() {
-                let dateObj = new Date()
+                let dateObj = new Date(this.display.year, this.display.month, 1)
                 let firstDateObj = DateUtils.firstDayOfMonth(dateObj)
                 let prevFirstDayMs = DateUtils.getFirstDateMs(firstDateObj)
 
@@ -134,8 +137,8 @@
                 ]
             },
             isCurrentMonth(dateObj) {
-                const {year, month, date} = DateUtils.getDateInfo(this.value)
-                return dateObj.getFullYear() === year && dateObj.getMonth() === month
+                const {year, month} = DateUtils.getDateInfo(dateObj)
+                return this.display.year === year && this.display.month === month
             },
             pickYearMonth() {
                 this.isShowDays = !this.isShowDays
@@ -160,6 +163,30 @@
                     console.log('no')
                 }
             },
+            onClickPrevYear() {
+                const oldDateObj = new Date(this.display.year, this.display.month)
+                const newDateObj = DateUtils.addYear(oldDateObj, -1)
+                const {year, month} = DateUtils.getDateInfo(newDateObj)
+                this.display = {year, month}
+            },
+            onClickPrevMonth() {
+                const oldDateObj = new Date(this.display.year, this.display.month)
+                const newDateObj = DateUtils.addMonth(oldDateObj, -1)
+                const {year, month} = DateUtils.getDateInfo(newDateObj)
+                this.display = {year, month}
+            },
+            onClickNextMonth() {
+                const oldDateObj = new Date(this.display.year, this.display.month)
+                const newDateObj = DateUtils.addMonth(oldDateObj, 1)
+                const {year, month} = DateUtils.getDateInfo(newDateObj)
+                this.display = {year, month}
+            },
+            onClickNextYear() {
+                const oldDateObj = new Date(this.display.year, this.display.month)
+                const newDateObj = DateUtils.addYear(oldDateObj, 1)
+                const {year, month} = DateUtils.getDateInfo(newDateObj)
+                this.display = {year, month}
+            },
             onSelectYear(event) {
 
             },
@@ -181,7 +208,7 @@
     border: 1px solid red;
     &-popover {
         user-select: none;
-        width: 240px;
+        width: 220px;
         &-header {
             display: flex;
             align-items: center;
