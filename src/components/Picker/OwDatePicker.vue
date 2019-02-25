@@ -1,7 +1,7 @@
 <template>
     <div class="ow-date-picker">
         <ow-popover position="bottom">
-            <ow-input :value="formattedValue" @input="onInput"></ow-input>
+            <ow-input :value="formattedValue" :readonly="true"></ow-input>
             <template slot="content" slot-scope="{close}">
                 <div class="ow-date-picker-popover">
                     <div class="ow-date-picker-popover-header">
@@ -50,9 +50,8 @@
                         </div>
                     </div>
                     <div class="ow-date-picker-popover-footer">
-                        <ow-button v-if="isShowDays" @click="isShowDays = false">Selector</ow-button>
-                        <ow-button v-else type="danger" @click="isShowDays = true">Back</ow-button>
                         <ow-button @click="onClickToday" type="warning">Today</ow-button>
+                        <ow-button v-if="!isShowDays" type="danger" @click="isShowDays = true">Back</ow-button>
                     </div>
                 </div>
             </template>
@@ -104,12 +103,6 @@
             formattedValue() {
                 let {year, month, date} = DateUtils.getDateInfo(this.value)
                 month = month + 1
-                if (month < 10) {
-                    month = '0' + month
-                }
-                if (date < 10) {
-                    date = '0' + date
-                }
                 return `${month}-${date}-${year}`
             },
             years() {
@@ -145,18 +138,6 @@
             },
             getDateObj(week, day) {
                 return this.dates[(week - 1) * 7 + (day - 1)]
-            },
-            onInput(value) {
-                const regex = /^\d{1,2}-\d{1,2}-\d{4}$/g
-                if (value.match(regex)) {
-                    let [year, month, date] = value.split('-')
-                    month = month - 1
-                    console.log(new Date(year, month, date))
-                    this.$emit('input', new Date(year, month, date))
-                }
-                else {
-                    console.log('no')
-                }
             },
             onClickPrevYear() {
                 const oldDateObj = new Date(this.display.year, this.display.month)
@@ -224,7 +205,6 @@
 <style scoped lang="scss">
 .ow-date-picker {
     display: inline-flex;
-    border: 1px solid red;
     &-popover {
         user-select: none;
         &-header {
@@ -232,7 +212,15 @@
             align-items: center;
             margin-bottom: 8px;
             &-year-month {
-                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                flex-grow: 1;
+                padding: 4px 0;
+                transition: background-color .5s;
+                border-radius: $--border-radius-small;
+                &:hover {
+                    background: $--color-primary;
+                }
             }
             &-action {
                 width: 1.75em;
