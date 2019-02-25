@@ -1,6 +1,6 @@
 <template>
     <div class="ow-date-picker">
-        <ow-popover position="bottom">
+        <ow-popover position="bottom" @open="onOpen">
             <ow-input :value="formattedValue" :readonly="true"></ow-input>
             <template slot="content" slot-scope="{close}">
                 <div class="ow-date-picker-popover">
@@ -30,7 +30,7 @@
                             </div>
                             <div class="ow-date-picker-popover-content-week" v-for="week in 6" :key="week">
                                 <span
-                                    @click="onClickCell(getDateObj(week, day))"
+                                    @click="onClickCell(getDateObj(week, day), close)"
                                     :class="getDateClasses(getDateObj(week, day))"
                                     v-for="day in 7"
                                     :key="day">
@@ -103,7 +103,7 @@
             formattedValue() {
                 let {year, month, date} = DateUtils.getDateInfo(this.value)
                 month = month + 1
-                return `${month}-${date}-${year}`
+                return `${DateUtils.padLeft(month)}-${DateUtils.padLeft(date)}-${year}`
             },
             years() {
                 const startYear = this.range[0].getFullYear()
@@ -131,9 +131,10 @@
             pickYearMonth() {
                 this.isShowDays = !this.isShowDays
             },
-            onClickCell(dateObj) {
+            onClickCell(dateObj, close) {
                 if (this.isCurrentMonth(dateObj)) {
                     this.$emit('input', dateObj)
+                    close()
                 }
             },
             getDateObj(week, day) {
@@ -191,7 +192,10 @@
                 this.display = {year, month}
 
                 this.$emit('input', new Date(year, month, date))
-            }
+            },
+            onOpen() {
+                this.isShowDays = true
+            },
         },
         components: {
             OwIcon,

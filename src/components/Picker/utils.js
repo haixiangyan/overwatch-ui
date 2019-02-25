@@ -35,5 +35,11 @@ export default {
 
         return dateObj
     },
+    padLeft(number) {
+        if (typeof number !== 'number') {
+            throw new Error('Wrong type')
+        }
+        return (number >= 10 ? '' : '0') + number
+    },
     getDateInfo,
 }
