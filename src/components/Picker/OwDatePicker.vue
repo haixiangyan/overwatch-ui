@@ -39,33 +39,12 @@
                             </div>
                         </div>
                         <div v-else>
-                            <div class="ow-date-picker-panel-content-selector">
-                                <select @change="onSelectYear">
-                                    <option value="2001">2001</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2011">2011</option>
+                            <div class="ow-date-picker-popover-content-selector">
+                                <select @change="onSelectYear" :value="display.year">
+                                    <option v-for="year in years" :key="year" :value="year">{{year}}</option>
                                 </select>
-                                <select @change="onSelectMonth">
-                                    <option value="0">Jan</option>
-                                    <option value="1">Feb</option>
-                                    <option value="2">Mar</option>
-                                    <option value="3">Apr</option>
-                                    <option value="4">May</option>
-                                    <option value="5">Jun</option>
-                                    <option value="6">Jul</option>
-                                    <option value="7">Aug</option>
-                                    <option value="8">Sep</option>
-                                    <option value="9">Oct</option>
-                                    <option value="10">Nov</option>
-                                    <option value="11">Dec</option>
+                                <select @change="onSelectMonth" :value="display.month">
+                                    <option v-for="(month, index) in months" :key="month" :value="index">{{month}}</option>
                                 </select>
                             </div>
                         </div>
@@ -90,13 +69,17 @@
             value: {
                 type: Date,
                 default: new Date()
+            },
+            range: {
+                type: Array,
+                default: () => [new Date(1900, 1, 1), DateUtils.addYear(new Date(), 100)]
             }
         },
         data() {
             const {year, month} = DateUtils.getDateInfo(this.value)
             return {
                 isPanelVisible: true,
-                isShowDays: true,
+                isShowDays: false,
                 weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
                 months: ['Jan', 'Feb', 'Mar', 'Ari', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 display: { year, month }
@@ -125,7 +108,16 @@
                     date = '0' + date
                 }
                 return `${month}-${date}-${year}`
-            }
+            },
+            years() {
+                const startYear = this.range[0].getFullYear()
+                const endYear = this.range[1].getFullYear()
+                let years = []
+                for (let year = startYear; year <= endYear; year++) {
+                    years.push(year)
+                }
+                return years
+            },
         },
         methods: {
             getDateClasses(dateObj) {
@@ -188,17 +180,35 @@
                 this.display = {year, month}
             },
             onSelectYear(event) {
-
+                const year = event.target.value - 0
+                const selectingDateObj = new Date(year, this.display.month)
+                if (this.range[0] <= selectingDateObj && selectingDateObj <= this.range[1]) {
+                    console.log('yes')
+                    this.display.year = parseInt(year)
+                }
+                else {
+                    event.target.value = this.display.year
+                    alert('Error')
+                }
             },
             onSelectMonth(event) {
-
+                const month = event.target.value - 0
+                const selectingDateObj = new Date(this.display.year, month)
+                if (this.range[0] <= selectingDateObj && selectingDateObj <= this.range[1]) {
+                    console.log('yes')
+                    this.display.month = parseInt(month)
+                }
+                else {
+                    event.target.value = this.display.month
+                    alert('Error')
+                }
             }
         },
         components: {
             OwIcon,
             OwInput,
             OwPopover
-        }
+        },
     }
 </script>
 
@@ -256,6 +266,11 @@
                 &:hover {
                     background: $--color-primary;
                 }
+            }
+            &-selector {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     }
