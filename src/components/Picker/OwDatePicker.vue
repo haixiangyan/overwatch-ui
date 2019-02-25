@@ -2,7 +2,7 @@
     <div class="ow-date-picker">
         <ow-popover position="bottom">
             <ow-input :value="formattedValue" @input="onInput"></ow-input>
-            <template slot="content">
+            <template slot="content" slot-scope="{close}">
                 <div class="ow-date-picker-popover">
                     <div class="ow-date-picker-popover-header">
                         <span class="ow-date-picker-popover-header-action" @click="onClickPrevYear">
@@ -50,6 +50,9 @@
                         </div>
                     </div>
                     <div class="ow-date-picker-popover-footer">
+                        <ow-button v-if="isShowDays" @click="isShowDays = false">Selector</ow-button>
+                        <ow-button v-else type="danger" @click="isShowDays = true">Back</ow-button>
+                        <ow-button @click="onClickToday" type="warning">Today</ow-button>
                     </div>
                 </div>
             </template>
@@ -61,6 +64,7 @@
     import OwIcon from '../Icon/OwIcon'
     import OwInput from '../Input/OwInput'
     import OwPopover from '../Popover/OwPopover'
+    import OwButton from '../Button/OwButton'
     import DateUtils from './utils'
 
     export default {
@@ -78,8 +82,7 @@
         data() {
             const {year, month} = DateUtils.getDateInfo(this.value)
             return {
-                isPanelVisible: true,
-                isShowDays: false,
+                isShowDays: true,
                 weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
                 months: ['Jan', 'Feb', 'Mar', 'Ari', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 display: { year, month }
@@ -200,12 +203,20 @@
                     event.target.value = this.display.month
                     this.$emit('outOfRange')
                 }
+            },
+            onClickToday() {
+                const nowObj = new Date()
+                const {year, month, date} = DateUtils.getDateInfo(nowObj)
+                this.display = {year, month}
+
+                this.$emit('input', new Date(year, month, date))
             }
         },
         components: {
             OwIcon,
             OwInput,
-            OwPopover
+            OwPopover,
+            OwButton
         },
     }
 </script>
@@ -216,7 +227,6 @@
     border: 1px solid red;
     &-popover {
         user-select: none;
-        width: 220px;
         &-header {
             display: flex;
             align-items: center;
@@ -239,6 +249,10 @@
             }
         }
         &-content {
+            > div {
+                width: 220px;
+                height: 200px;
+            }
             &-day, &-weekdays > span {
                 width: 1.75em;
                 height: 1.75em;
@@ -257,19 +271,23 @@
                 color: $--color-text-placeholder;
                 &.current-month {
                     color: $--color-white;
+                    &:hover {
+                        background: $--color-primary;
+                    }
                 }
                 &.active {
                     background: $--color-primary;
                 }
-                &:hover {
-                    background: $--color-primary;
-                }
             }
             &-selector {
+                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
+        }
+        &-footer {
+            text-align: right;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <ow-date-picker :value="date" @input="date = $event" :range="range">
+        <ow-date-picker :value.sync="date" @input="date = $event" :range="range">
         </ow-date-picker>
         <p>Hello</p>
     </div>
