@@ -73,7 +73,7 @@
             range: {
                 type: Array,
                 default: () => [new Date(1900, 1, 1), DateUtils.addYear(new Date(), 100)]
-            }
+            },
         },
         data() {
             const {year, month} = DateUtils.getDateInfo(this.value)
@@ -183,24 +183,22 @@
                 const year = event.target.value - 0
                 const selectingDateObj = new Date(year, this.display.month)
                 if (this.range[0] <= selectingDateObj && selectingDateObj <= this.range[1]) {
-                    console.log('yes')
                     this.display.year = parseInt(year)
                 }
                 else {
                     event.target.value = this.display.year
-                    alert('Error')
+                    this.$emit('outOfRange')
                 }
             },
             onSelectMonth(event) {
                 const month = event.target.value - 0
                 const selectingDateObj = new Date(this.display.year, month)
                 if (this.range[0] <= selectingDateObj && selectingDateObj <= this.range[1]) {
-                    console.log('yes')
                     this.display.month = parseInt(month)
                 }
                 else {
                     event.target.value = this.display.month
-                    alert('Error')
+                    this.$emit('outOfRange')
                 }
             }
         },
