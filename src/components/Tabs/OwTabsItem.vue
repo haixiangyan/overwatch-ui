@@ -52,7 +52,6 @@
         @include hvFlexCenterMx(flex);
         height: 45px;
         padding: 0 1.2em;
-        border-right: 1px solid #323D5B;
     }
 
     &-line {
