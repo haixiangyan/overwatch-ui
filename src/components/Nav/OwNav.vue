@@ -65,7 +65,11 @@
     background: $--nav-fill;
     margin-bottom: 4px;
     user-select: none;
+    > .ow-nav-item {
+        color: $--nav-header-item-color;
+    }
     &.vertical {
+        height: auto;
         flex-direction: column;
     }
 }

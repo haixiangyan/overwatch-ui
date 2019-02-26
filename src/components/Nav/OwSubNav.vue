@@ -112,8 +112,16 @@
             width: 100%;
         }
     }
-    &.vertical.active {
-        color: $--color-white;
+    &-title {
+        color: $--nav-header-item-color;
+        &:hover {
+            color: $--nav-item-color;
+        }
+    }
+    &.vertical {
+        &.active {
+            color: $--color-white;
+        }
     }
     &-icon {
         display: none;

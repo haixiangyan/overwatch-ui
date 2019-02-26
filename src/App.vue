@@ -2,8 +2,39 @@
     <div id="app">
         <ow-nav :selected.sync="selected">
             <ow-nav-item name="home">Home</ow-nav-item>
-            <ow-nav-item name="team">Team</ow-nav-item>
-            <ow-nav-item name="developer">Developer</ow-nav-item>
+            <ow-sub-nav name="about">
+                <template slot="title">About</template>
+                <ow-nav-item name="team">Team</ow-nav-item>
+                <ow-nav-item name="developer">Developer</ow-nav-item>
+                <ow-sub-nav name="company">
+                    <template slot="title">Company</template>
+                    <ow-nav-item name="baidu">Baidu</ow-nav-item>
+                    <ow-sub-nav name="tencent">
+                        <template slot="title">Tencent</template>
+                        <ow-nav-item name="sports">Sports</ow-nav-item>
+                        <ow-nav-item name="ant">Ant</ow-nav-item>
+                    </ow-sub-nav>
+                </ow-sub-nav>
+            </ow-sub-nav>
+            <ow-nav-item name="career">Career</ow-nav-item>
+        </ow-nav>
+
+        <ow-nav :selected.sync="vselected" :isVertical="true" style="width: 200px">
+            <ow-nav-item name="home">Home</ow-nav-item>
+            <ow-sub-nav name="about">
+                <template slot="title">About</template>
+                <ow-nav-item name="team">Team</ow-nav-item>
+                <ow-nav-item name="developer">Developer</ow-nav-item>
+                <ow-sub-nav name="company">
+                    <template slot="title">Company</template>
+                    <ow-nav-item name="baidu">Baidu</ow-nav-item>
+                    <ow-sub-nav name="tencent">
+                        <template slot="title">Tencent</template>
+                        <ow-nav-item name="sports">Sports</ow-nav-item>
+                        <ow-nav-item name="ant">Ant</ow-nav-item>
+                    </ow-sub-nav>
+                </ow-sub-nav>
+            </ow-sub-nav>
             <ow-nav-item name="career">Career</ow-nav-item>
         </ow-nav>
 
@@ -22,7 +53,17 @@
         </ow-tabs>
 
         <div class="item">
-            <ow-table :strip="true" :columns="columns" :source="tableSource" :selected.sync="tableSelected" expand-field="description" :is-show-index="true" :selectable="true"></ow-table>
+            <ow-table
+                    :sort-rules.sync="sortRules"
+                    :strip="true"
+                    :columns="columns"
+                    :source="tableSource"
+                    :selected.sync="tableSelected"
+                    expand-field="description"
+                    :is-show-index="true"
+                    @update:sortRules="sortScore"
+                    :selectable="true">
+            </ow-table>
         </div>
 
         <div class="item">
@@ -107,6 +148,7 @@
             return {
                 date: new Date(),
                 range: [new Date(2019, 1), new Date(2019, 2)],
+                vselected: 'home',
                 selected: 'home',
                 selectedTab: 'data',
                 carouselSelected: '1',
@@ -124,6 +166,10 @@
                     {id: 3, name: 'Xiaoming', score: 300},
                     {id: 4, name: 'Ani', score: 400},
                 ],
+                sortRules: {
+                    name: 'asc',
+                    score: 'desc'
+                },
                 tableSelected: []
             }
         },
@@ -140,7 +186,17 @@
                         }
                     }
                 })
-            }
+            },
+            sortScore(newOrder) {
+                this.tableSource = this.tableSource.sort((a, b) => {
+                    if (newOrder.score === 'asc') {
+                        return a.score - b.score
+                    }
+                    if (newOrder.score === 'desc') {
+                        return b.score - a.score
+                    }
+                })
+            },
         },
         mounted() {
         }

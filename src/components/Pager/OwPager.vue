@@ -11,7 +11,7 @@
             </template>
             <template v-else-if="page === '...'">
                 <span class="ow-pager-separator">
-                    <ow-icon name="more"></ow-icon>
+                    <ow-icon name="more" color="#464F6A"></ow-icon>
                 </span>
             </template>
             <template v-else>
@@ -115,17 +115,6 @@
         align-items: center;
         background: none;
         color: $--pager-button-color;
-        svg {
-            fill: $--pager-button-color;
-            transition: all .5s;
-        }
-        &.active, &:hover {
-            box-shadow: none;
-            color: $--pager-hover-color;
-            svg {
-                fill: $--pager-hover-color;
-            }
-        }
     }
 }
 </style>

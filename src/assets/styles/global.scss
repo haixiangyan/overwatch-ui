@@ -545,11 +545,12 @@ $--steps-padding: 20px !default;
 $--nav-height: 48px !default;
 $--nav-fill: $--color-opacity-bg-dark !default;
 $--nav-item-font-size: $--font-size-base !default;
-$--nav-item-color: $--color-primary !default;
+$--nav-header-item-color: $--color-primary !default;
+$--nav-item-color: $--color-white !default;
 $--nav-fill: $--color-opacity-bg-dark !default;
 $--nav-item-hover-fill: $--color-primary !default;
 $--nav-item-hover-color: $--color-white !default;
-$--nav-border-line: px solid #01FFFF !default;
+$--nav-border-line: 3px solid #01FFFF !default;
 
 /* Rate
 --------------------------*/

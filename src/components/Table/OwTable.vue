@@ -24,12 +24,12 @@
                             <span>{{column.label}}</span>
                             <span v-if="column.field in sortRules" class="ow-table-sort-indicator">
                                 <ow-icon
-                                    :class="{active: sortRules[column.field] === 'desc'}"
+                                    :color="getAscColor(column.field)"
                                     size="10px"
                                     name="up-solid">
                                 </ow-icon>
                                 <ow-icon
-                                    :class="{active: sortRules[column.field] === 'asc'}"
+                                    :color="getDescColor(column.field)"
                                     size="10px"
                                     name="down-solid">
                                 </ow-icon>
@@ -173,9 +173,15 @@
                     colspan += 1
                 }
                 return colspan
-            }
+            },
         },
         methods: {
+            getAscColor(field) {
+                return this.sortRules[field] === 'asc' ? '#909399' : '#FFC429'
+            },
+            getDescColor(field) {
+                return this.sortRules[field] === 'desc' ? '#909399' : '#FFC429'
+            },
             onSelectItem(index, item, event) {
                 let selectedCopy = Utils.deepClone(this.selected)
                 if (event.target.checked) {
@@ -325,10 +331,6 @@
             display: inline-flex;
             flex-direction: column;
             svg {
-                fill: $--color-text-secondary;
-                &.active {
-                    fill: $--color-white;
-                }
                 &:first-child {
                     position: relative;
                     bottom: -1px;
