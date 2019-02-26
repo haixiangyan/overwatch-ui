@@ -634,14 +634,10 @@ $--carousel-indicator-height: 20px !default;
 /* Collapse
 --------------------------*/
 $--collapse-border-color: $--border-color-lighter !default;
-$--collapse-header-height: 48px !default;
-$--collapse-header-padding: 20px !default;
-$--collapse-header-fill: $--color-white !default;
-$--collapse-header-color: $--color-text-primary !default;
-$--collapse-header-size: 13px !default;
-$--collapse-content-fill: $--color-white !default;
-$--collapse-content-size: 13px !default;
-$--collapse-content-color: $--color-text-primary !default;
+$--collapse-header-height: $--height-base !default;
+$--collapse-header-padding: 10px !default;
+$--collapse-header-fill: $--color-opacity-bg !default;
+$--collapse-header-color: $--color-text-shallow !default;
 
 /* Transfer
 --------------------------*/

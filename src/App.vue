@@ -55,6 +55,15 @@
         </div>
 
         <div class="item">
+            <ow-collapse-group :selected.sync="selectedCollapse">
+                <ow-collapse title="Title1" name="1"> <div>Content 1</div> </ow-collapse>
+                <ow-collapse title="Title2" name="2"> <div>Content 2</div> </ow-collapse>
+                <ow-collapse title="Title3" name="3"> <div>Content 3</div> </ow-collapse>
+            </ow-collapse-group>
+            <span>You select: {{selectedCollapse}}</span>
+        </div>
+
+        <div class="item">
             <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         </div>
         <p>Hello</p>
@@ -73,6 +82,7 @@
                 carouselSelected: '1',
                 source: [ { name: 'CA', children: [ { name: 'Irvine', isLeaf: false, children: [ {name: 'UCI'}, {name: 'UCSB'}, {name: 'UCB'}, ] }, { name: 'LA', isLeaf: false, children: [ {name: 'UCLA'}, {name: 'UCB'}, {name: 'UCSD'}, ] }, ] }, { name: 'NY', children: [ {name: 'Col', isLeaf: true}, { name: 'NY', isLeaf: false, children: [ {name: 'NYU'}, {name: 'FU'}, {name: 'BC'}, ] }, ] } ],
                 cascaderSelected: [],
+                selectedCollapse: ['1', '2']
             }
         },
         methods: {
@@ -98,9 +108,8 @@
 <style lang="scss">
     #app {
         position: relative;
-        height: 100vh;
         padding: 100px 100px;
-        background: url("./assets/images/bg.png");
+        background: url("./assets/images/bg.png") no-repeat;
         .item {
             padding: 10px 0;
             .box {

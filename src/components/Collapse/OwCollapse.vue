@@ -57,22 +57,25 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        color: $--color-text-shallow;
-        height: $--height-base;
+        color: $--collapse-header-color;
+        height: $--collapse-header-height;
         width: 100%;
         &-text {
             flex-grow: 1;
             display: flex;
             align-items: center;
             padding-left: 10px;
-            background: $--color-bg;
+            background: $--collapse-header-fill;
             height: 100%;
-            opacity: $--less-opacity;
         }
         &-button {
-            margin-left: 10px;
+            margin-left: $--collapse-header-padding;
             border-radius: 0;
         }
+    }
+    &-content {
+        margin-top: 4px;
+        padding: 0 $--collapse-header-padding;
     }
 }
 </style>

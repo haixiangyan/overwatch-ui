@@ -97,7 +97,7 @@
 <style scoped lang="scss">
 .ow-collapse-group {
     > div {
-        margin: 10px;
+        margin: 10px 0;
     }
 }
 </style>
