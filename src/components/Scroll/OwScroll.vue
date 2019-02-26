@@ -184,15 +184,15 @@
             position: relative;
         }
         &-track { position: absolute; top: 0; right: 0; width: 14px; height: 100%;
-            background: #FAFAFA; border-left: 1px solid #E8E7E8; opacity: 0.9;
+            background: $--scrollbar-background-color; border-left: 1px solid $--scrollbar-border-color; opacity: 0.9;
         }
         &-bar {
             position: absolute; top: -1px; left: 50%; height: 40px; width: 8px;
             margin-left: -4px; padding: 4px 0;
             &-inner {
-                height: 100%; border-radius: 4px; background: #C2C2C2;
+                height: 100%; border-radius: 4px; background: $--scrollbar-inner-background-color;
                 &:hover {
-                    background: #7D7D7D;
+                    background: $--scrollbar-inner-hover-background-color;
                 }
             }
         }
