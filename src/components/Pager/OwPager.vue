@@ -3,7 +3,7 @@
         <span class="ow-pager-item"
               :class="{disabled: current === 1}"
               @click="onClickPage(current -1)">
-            <ow-icon name="left"></ow-icon>
+            <ow-icon color="white" name="left"></ow-icon>
         </span>
         <template v-for="page in pages">
             <template v-if="page === current">
@@ -21,7 +21,7 @@
         <span class="ow-pager-item"
               :class="{disabled: current === total}"
               @click="onClickPage(current + 1)">
-            <ow-icon name="right"></ow-icon>
+            <ow-icon color="white" name="right"></ow-icon>
         </span>
     </div>
 </template>

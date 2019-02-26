@@ -21,7 +21,7 @@
             },
             color: {
                 type: String,
-                default: '#464F6A'
+                default: '#C9D4E3'
             },
             isLoading: {
                 type: Boolean,
