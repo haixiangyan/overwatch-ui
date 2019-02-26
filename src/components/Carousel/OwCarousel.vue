@@ -198,6 +198,8 @@
             display: inline-flex;
             width: $--carousel-indicator-width;
             height: $--carousel-indicator-height;
+            line-height: $--carousel-indicator-height;
+            text-align: center;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
