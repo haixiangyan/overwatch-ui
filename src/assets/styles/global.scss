@@ -426,15 +426,14 @@ $--dialog-padding-primary: 20px !default;
 
 /* Table
 -------------------------- */
-$--table-border-color: $--border-color-lighter !default;
-$--table-border: 1px solid $--table-border-color !default;
-$--table-text-color: $--color-text-regular !default;
-$--table-header-color: $--color-text-secondary !default;
-$--table-row-hover-background: $--background-color-base !default;
-$--table-current-row-background: $--color-primary-light-9 !default;
-$--table-header-background: $--color-white !default;
-$--table-footer-background: $--color-text-placeholder !default;
-$--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
+$--table-text-color: $--color-white !default;
+$--table-header-color: $--color-white !default;
+$--table-row-hover-background: $--color-bg-dark !default;
+$--table-row-background: $--color-opacity-bg-dark !default;
+$--table-strip-row-hover-background: $--color-bg-shallow !default;
+$--table-strip-row-background: $--color-opacity-bg-shallow !default;
+$--table-header-background: $--color-opacity-primary !default;
+$--table-header-hover-background: $--color-primary !default;
 
 /* Pager
 -------------------------- */

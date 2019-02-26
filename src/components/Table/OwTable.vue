@@ -163,6 +163,9 @@
                 if (this.selectable) {
                     colspan += 1
                 }
+                if (this.isShowIndex) {
+                    colspan += 1
+                }
                 if (this.expandField) {
                     colspan += 1
                 }
@@ -283,7 +286,6 @@
 
 <style scoped lang="scss">
 .ow-table-wrapper {
-    opacity: $--more-opacity;
     position: relative;
     overflow: auto;
     .ow-table-loading {
@@ -299,7 +301,7 @@
     }
     .ow-table {
         width: 100%;
-        color: $--color-white;
+        color: $--table-text-color;
         border-collapse: separate;
         border-spacing: 0 4px;
         &-copy {
@@ -339,7 +341,7 @@
         }
         thead {
             tr {
-                background: $--color-opacity-primary;
+                background: $--table-header-background;
                 th {
                     padding: 8px;
                     text-align: left;
@@ -352,7 +354,7 @@
                         align-items: center;
                     }
                     &:hover {
-                        background: $--color-primary;
+                        background: $--table-header-hover-background;
                     }
                 }
             }
@@ -360,10 +362,10 @@
         tbody {
             tr {
                 padding: 4px;
-                background: $--color-opacity-bg-dark;
+                background: $--table-row-background;
                 transition: all .5s;
                 &:hover {
-                    background: $--color-bg-dark;
+                    background: $--table-row-hover-background;
                 }
                 td {
                     padding: 10px;
@@ -379,10 +381,10 @@
             tbody {
                 tr {
                     &:nth-child(odd) {
-                        background: $--color-opacity-bg-shallow;
+                        background: $--table-strip-row-background;
                     }
                     &:hover {
-                        background: $--color-bg-dark;
+                        background: $--table-strip-row-hover-background;
                     }
                 }
             }

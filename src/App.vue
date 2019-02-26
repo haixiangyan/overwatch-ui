@@ -22,6 +22,10 @@
         </ow-tabs>
 
         <div class="item">
+            <ow-table :strip="true" :columns="columns" :source="tableSource" :selected.sync="tableSelected" expand-field="description" :is-show-index="true" :selectable="true"></ow-table>
+        </div>
+
+        <div class="item">
             <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         </div>
 
@@ -92,6 +96,7 @@
                 <ow-button>Pop It!</ow-button>
             </ow-popover>
         </div>
+
     </div>
 </template>
 
@@ -108,7 +113,18 @@
                 source: [ { name: 'CA', children: [ { name: 'Irvine', isLeaf: false, children: [ {name: 'UCI'}, {name: 'UCSB'}, {name: 'UCB'}, ] }, { name: 'LA', isLeaf: false, children: [ {name: 'UCLA'}, {name: 'UCB'}, {name: 'UCSD'}, ] }, ] }, { name: 'NY', children: [ {name: 'Col', isLeaf: true}, { name: 'NY', isLeaf: false, children: [ {name: 'NYU'}, {name: 'FU'}, {name: 'BC'}, ] }, ] } ],
                 cascaderSelected: [],
                 selectedCollapse: ['1', '2'],
-                current: 5
+                current: 5,
+                columns: [
+                    {label: 'Name', field: 'name', width: 300},
+                    {label: 'Score', field: 'score'}
+                ],
+                tableSource: [
+                    {id: 1, name: 'Jack', score: 100, description: 'Good Job'},
+                    {id: 2, name: 'Marry', score: 200, description: 'Nice Job'},
+                    {id: 3, name: 'Xiaoming', score: 300},
+                    {id: 4, name: 'Ani', score: 400},
+                ],
+                tableSelected: []
             }
         },
         methods: {
@@ -135,7 +151,7 @@
     #app {
         position: relative;
         padding: 100px 100px;
-        background: url("./assets/images/bg.png") no-repeat;
+        background: url("./assets/images/bg.png");
         .item {
             padding: 10px 0;
             .box {
