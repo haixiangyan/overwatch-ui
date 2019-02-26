@@ -17,7 +17,7 @@
         props: {
             name: {
                 type: String,
-                default: ''
+                default: '#464F6A'
             },
             color: {
                 type: String,

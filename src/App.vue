@@ -22,6 +22,10 @@
         </ow-tabs>
 
         <div class="item">
+            <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
+        </div>
+
+        <div class="item">
             <ow-button type="primary" @click="showAlert">Alert it</ow-button>
         </div>
 
@@ -64,9 +68,11 @@
         </div>
 
         <div class="item">
-            <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
+            <ow-icon name="setting"></ow-icon>
+            <ow-icon name="remove"></ow-icon>
+            <ow-icon name="upload"></ow-icon>
+            <ow-icon :is-loading="true" name="loading"></ow-icon>
         </div>
-        <p>Hello</p>
     </div>
 </template>
 
