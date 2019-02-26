@@ -42,9 +42,13 @@ $--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /
 $--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
 
 $--color-success: #33A03D !default;
+$--color-opacity-success: rgba(51, 160, 60, 0.8) !default;
 $--color-warning: #FFC429 !default;
+$--color-opacity-warning: rgba(255, 196, 41, 0.8) !default;
 $--color-danger: #DE4561 !default;
+$--color-opacity-danger: rgba(222, 69, 97, 0.8) !default;
 $--color-info: #909399 !default;
+$--color-opacity-info: rgba(144, 147, 153, 0.8) !default;
 $--color-bg-shallow: #565F76 !default;
 $--color-bg: #464F6A !default;
 $--color-bg-dark: #2B3753 !default;
@@ -424,57 +428,17 @@ $--tab-bg: $--color-opacity-bg-dark!default;
 /* Button
 -------------------------- */
 $--button-font-size: 14px !default;
-$--button-font-weight: $--font-weight-primary !default;
-$--button-border-radius: $--border-radius-base !default;
-$--button-padding-vertical: 4px !default;
-$--button-padding-horizontal: 12px !default;
+$--button-border-radius: $--border-radius-small !default;
+$--button-padding: 4px 12px !default;
+$--button-default-fill: $--color-primary !default;
 
-$--button-medium-font-size: 14px !default;
-$--button-medium-border-radius: $--border-radius-base !default;
-$--button-medium-padding-vertical: 10px !default;
-$--button-medium-padding-horizontal: 20px !default;
+$--button-primary-fill: $--color-opacity-primary !default;
+$--button-success-fill: $--color-opacity-success !default;
+$--button-warning-fill: $--color-opacity-warning !default;
+$--button-danger-fill: $--color-opacity-danger !default;
+$--button-info-fill: $--color-opacity-info !default;
 
-$--button-small-font-size: 12px !default;
-$--button-small-border-radius: #{$--border-radius-base - 1} !default;
-$--button-small-padding-vertical: 9px !default;
-$--button-small-padding-horizontal: 15px !default;
-
-$--button-mini-font-size: 12px !default;
-$--button-mini-border-radius: #{$--border-radius-base - 1} !default;
-$--button-mini-padding-vertical: 7px !default;
-$--button-mini-padding-horizontal: 15px !default;
-
-$--button-default-color: $--color-text-regular !default;
-$--button-default-fill: $--color-white !default;
-$--button-default-border: $--border-color-base !default;
-
-$--button-disabled-color: $--color-text-placeholder !default;
-$--button-disabled-fill: $--color-white !default;
-$--button-disabled-border: $--border-color-lighter !default;
-
-$--button-primary-border: $--color-primary !default;
-$--button-primary-color: $--color-white !default;
-$--button-primary-fill: $--color-primary !default;
-
-$--button-success-border: $--color-success !default;
-$--button-success-color: $--color-white !default;
-$--button-success-fill: $--color-success !default;
-
-$--button-warning-border: $--color-warning !default;
-$--button-warning-color: $--color-white !default;
-$--button-warning-fill: $--color-warning !default;
-
-$--button-danger-border: $--color-danger !default;
-$--button-danger-color: $--color-white !default;
-$--button-danger-fill: $--color-danger !default;
-
-$--button-info-border: $--color-info !default;
-$--button-info-color: $--color-white !default;
-$--button-info-fill: $--color-info !default;
-
-$--button-hover-tint-percent: 20% !default;
-$--button-active-shade-percent: 10% !default;
-
+$--button-color: $--color-white !default;
 $--button-icon-color: $--color-white !default;
 
 /* cascader

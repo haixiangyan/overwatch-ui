@@ -59,19 +59,17 @@
 <style scoped lang="scss">
     .ow-button {
         @include hvFlexCenterMx(inline-flex);
-        font-size: $--button-font-size;
-        padding: $--button-padding-vertical $--button-padding-horizontal;
+        padding: $--button-padding;
         height: $--height-base;
-        color: $--button-warning-color;
-        border-radius: $--border-radius-small;
+        color: $--button-color;
         border: none;
-        background: $--button-warning-fill;
         outline: none;
+        border-radius: $--button-border-radius;
+        background: $--button-default-fill;
+        font-size: $--button-font-size;
         vertical-align: middle;
-        opacity: $--more-opacity;
         transition: all .3s;
         &:hover {
-            opacity: $--less-opacity;
             box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 1);
         }
         &:active {

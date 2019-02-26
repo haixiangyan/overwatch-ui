@@ -21,9 +21,20 @@
             </ow-tabs-body>
         </ow-tabs>
 
-        <ow-button type="primary" @click="showAlert">Alert it</ow-button>
+        <div class="item">
+            <ow-button type="primary" @click="showAlert">Alert it</ow-button>
+        </div>
 
-        <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
+        <div class="item">
+            <ow-button type="primary">Primary</ow-button>
+            <ow-button type="warning">Warning</ow-button>
+            <ow-button type="info">Info</ow-button>
+            <ow-button type="danger">Danger</ow-button>
+        </div>
+
+        <div class="item">
+            <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
+        </div>
         <p>Hello</p>
     </div>
 </template>
@@ -65,5 +76,8 @@
         height: 100vh;
         padding: 100px 100px;
         background: url("./assets/images/bg.png");
+        .item {
+            padding: 10px 0;
+        }
     }
 </style>
