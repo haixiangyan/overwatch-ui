@@ -22,9 +22,8 @@
     justify-content: flex-start;
     height: $--tab-height;
     background: $--tab-bg;
-    color: $--color-primary;
-    opacity: $--middle-opacity;
-
+    color: $--tab-header-color;
+    font-size: $--tab-font-size;
     &-actions-wrapper {
         margin-left: auto;
         height: 100%;

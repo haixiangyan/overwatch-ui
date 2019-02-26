@@ -68,15 +68,15 @@
 
     // OwIcon
     svg {
-        fill: $--color-primary;
+        fill: $--tab-header-color;
     }
 
     &:hover, &_active {
-        color: $--color-white;
-        background: $--tab-item-bg-active;
+        color: $--tab-header-color-active;
+        background: $--tab-header-fill-active;
 
         .ow-tabs-item-content {
-            border-right: 1px solid $--tab-item-bg-active;
+            border-right: 1px solid $--tab-header-fill-active;
         }
 
         .ow-tabs-item-line {
@@ -85,7 +85,7 @@
 
         // OwIcon
         svg {
-            fill: $--color-white;
+            fill: $--tab-header-color-active;
         }
     }
 }

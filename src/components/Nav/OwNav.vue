@@ -61,8 +61,8 @@
 <style scoped lang="scss">
 .ow-nav {
     display: flex;
-    color: $--color-primary;
-    background: $--color-bg-shallow;
+    height: $--nav-height;
+    background: $--nav-fill;
     margin-bottom: 4px;
     user-select: none;
     &.vertical {

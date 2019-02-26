@@ -1,7 +1,27 @@
 <template>
     <div id="app">
-        <ow-date-picker :value.sync="date" @input="date = $event" :range="range">
-        </ow-date-picker>
+        <ow-nav :selected.sync="selected">
+            <ow-nav-item name="home">Home</ow-nav-item>
+            <ow-nav-item name="team">Team</ow-nav-item>
+            <ow-nav-item name="developer">Developer</ow-nav-item>
+            <ow-nav-item name="career">Career</ow-nav-item>
+        </ow-nav>
+
+        <ow-tabs :selected="selectedTab">
+            <ow-tabs-head>
+                <ow-tabs-item name="data">Data</ow-tabs-item>
+                <ow-tabs-item name="career">Career</ow-tabs-item>
+                <ow-tabs-item name="avatar">Avatar</ow-tabs-item>
+            </ow-tabs-head>
+
+            <ow-tabs-body>
+                <ow-tabs-pane class="pane" name="data">Data</ow-tabs-pane>
+                <ow-tabs-pane class="pane" name="career">Career</ow-tabs-pane>
+                <ow-tabs-pane class="pane" name="avatar">Avatar</ow-tabs-pane>
+            </ow-tabs-body>
+        </ow-tabs>
+
+        <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         <p>Hello</p>
     </div>
 </template>
@@ -12,7 +32,9 @@
         data() {
             return {
                 date: new Date(),
-                range: [new Date(2019, 1), new Date(2019, 2)]
+                range: [new Date(2019, 1), new Date(2019, 2)],
+                selected: 'home',
+                selectedTab: 'data'
             }
         },
         mounted() {

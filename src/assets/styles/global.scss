@@ -115,9 +115,9 @@ $--fill-base: $--color-white !default;
 /* Font
 -------------------------- */
 $--font-path: 'fonts' !default;
-$--font-size-base: 14px !default;
-$--font-size-small: 13px !default;
-$--font-size-large: 18px !default;
+$--font-size-base: 1em !default;
+$--font-size-small: .9em !default;
+$--font-size-large: 1.1em !default;
 $--font-color-disabled-base: #bbb !default;
 $--font-weight-primary: 500 !default;
 $--font-line-height-primary: 24px !default;
@@ -418,17 +418,12 @@ $--group-title-width: 66px !default;
 $--tab-height: 48px !default;
 $--tab-font-size: $--font-size-base !default;
 $--tab-border-line: 1px solid #e4e4e4 !default;
-$--tab-header-color-active: $--color-text-secondary !default;
-$--tab-header-color-hover: $--color-text-regular !default;
-$--tab-header-color: $--color-text-regular !default;
-$--tab-header-fill-active: rgba($--color-black, 0.06) !default;
-$--tab-header-fill-hover: rgba($--color-black, 0.06) !default;
-$--tab-vertical-header-width: 90px !default;
-$--tab-vertical-header-count-color: $--color-white !default;
-$--tab-vertical-header-count-fill: $--color-text-secondary !default;
-$--tab-bg: $--color-bg-dark !default;
-$--tab-item-bg: $--color-primary !default;
-$--tab-item-bg-active: $--color-primary !default;
+$--tab-header-color-active: $--color-white !default;
+$--tab-header-color-hover: $--color-white !default;
+$--tab-header-color: $--color-primary !default;
+$--tab-header-fill-active: $--color-primary !default;
+$--tab-header-fill-hover: $--color-primary !default;
+$--tab-bg: $--color-opacity-bg-dark!default;
 /* Button
 -------------------------- */
 $--button-font-size: 14px !default;
@@ -634,12 +629,15 @@ $--steps-border-color: $--disabled-border-base !default;
 $--steps-border-radius: 4px !default;
 $--steps-padding: 20px !default;
 
-/* Menu
+/* Nav
 --------------------------*/
-$--menu-item-font-size: $--font-size-base !default;
-$--menu-item-color: $--color-text-primary !default;
-$--menu-item-fill: $--color-white !default;
-$--menu-item-hover-fill: $--color-primary-light-9 !default;
+$--nav-height: 48px !default;
+$--nav-fill: $--color-opacity-bg-dark !default;
+$--nav-item-font-size: $--font-size-base !default;
+$--nav-item-color: $--color-primary !default;
+$--nav-fill: $--color-opacity-bg-dark !default;
+$--nav-item-hover-fill: $--color-primary !default;
+$--nav-item-hover-color: $--color-primary !default;
 
 /* Rate
 --------------------------*/

@@ -43,6 +43,8 @@
     display: flex;
     align-items: center;
     height: $--tab-height;
+    color: $--nav-item-color;
+    font-size: $--nav-item-font-size;
     padding: 0 20px;
     transition: all .5s;
     &:not(.vertical) {
