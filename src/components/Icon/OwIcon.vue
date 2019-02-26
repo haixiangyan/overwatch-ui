@@ -17,11 +17,11 @@
         props: {
             name: {
                 type: String,
-                default: '#464F6A'
+                default: ''
             },
             color: {
                 type: String,
-                default: '#00000'
+                default: '#464F6A'
             },
             isLoading: {
                 type: Boolean,
