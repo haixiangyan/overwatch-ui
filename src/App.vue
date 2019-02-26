@@ -47,6 +47,14 @@
         </div>
 
         <div class="item">
+            <ow-cascader
+                    :source.sync="source"
+                    :selected.sync="cascaderSelected"
+                    placeholder="Click to Select">
+            </ow-cascader>
+        </div>
+
+        <div class="item">
             <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         </div>
         <p>Hello</p>
@@ -62,7 +70,9 @@
                 range: [new Date(2019, 1), new Date(2019, 2)],
                 selected: 'home',
                 selectedTab: 'data',
-                carouselSelected: '1'
+                carouselSelected: '1',
+                source: [ { name: 'CA', children: [ { name: 'Irvine', isLeaf: false, children: [ {name: 'UCI'}, {name: 'UCSB'}, {name: 'UCB'}, ] }, { name: 'LA', isLeaf: false, children: [ {name: 'UCLA'}, {name: 'UCB'}, {name: 'UCSD'}, ] }, ] }, { name: 'NY', children: [ {name: 'Col', isLeaf: true}, { name: 'NY', isLeaf: false, children: [ {name: 'NYU'}, {name: 'FU'}, {name: 'BC'}, ] }, ] } ],
+                cascaderSelected: [],
             }
         },
         methods: {

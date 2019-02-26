@@ -386,25 +386,13 @@ $--input-mini-height: 28px !default;
 
 /* Cascader
 -------------------------- */
-$--cascader-menu-fill: $--fill-base !default;
-$--cascader-menu-font-size: $--font-size-base !default;
+$--cascader-menu-fill: $--color-bg-dark !default;
 $--cascader-menu-radius: $--border-radius-small !default;
-$--cascader-menu-border: $--border-base !default;
-$--cascader-menu-border-color: $--color-bg !default;
-$--cascader-menu-border-width: $--border-width-base !default;
-$--cascader-menu-color: $--color-text-regular !default;
-$--cascader-menu-option-color-active: $--color-text-secondary !default;
-$--cascader-menu-option-fill-active: rgba($--color-text-secondary, 0.12) !default;
-$--cascader-menu-option-color-hover: $--color-text-regular !default;
-$--cascader-menu-option-fill-hover: rgba($--color-text-primary, 0.06) !default;
-$--cascader-menu-option-color-disabled: #999 !default;
-$--cascader-menu-option-fill-disabled: rgba($--color-black, 0.06) !default;
-$--cascader-menu-option-empty-color: #666 !default;
-$--cascader-menu-group-color: #999 !default;
-$--cascader-menu-shadow: 0 1px 2px rgba($--color-black, 0.14), 0 0 3px rgba($--color-black, 0.14) !default;
-$--cascader-menu-option-pinyin-color: #999 !default;
-$--cascader-menu-submenu-shadow: 1px 1px 2px rgba($--color-black, 0.14), 1px 0 2px rgba($--color-black, 0.14) !default;
-$--cascader-menu-bg: $--color-bg-dark !default;
+$--cascader-menu-color: $--color-text-dark !default;
+$--cascader-menu-option-fill-active: $--color-primary !default;
+$--cascader-menu-option-color-hover: $--color-white !default;
+$--cascader-menu-option-fill-hover: $--color-primary !default;
+$--cascader-menu-shadow: 0 1px 4px $--color-bg-dark !default;
 
 /* Group
 -------------------------- */

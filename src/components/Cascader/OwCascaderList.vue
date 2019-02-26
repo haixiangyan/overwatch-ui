@@ -114,7 +114,7 @@
             padding: .3em .5em;
             margin: 0 .5em;
             transition: all .3s;
-            border-radius: $--border-radius-small;
+            border-radius: $--cascader-menu-radius;
             border: 1px solid transparent;
             white-space: nowrap;
             &-text {
@@ -125,17 +125,17 @@
                 transform: scale(.9);
             }
             svg {
-                fill: $--color-text-dark;
+                fill: $--cascader-menu-color;
             }
 
             &.active {
                 border: 1px solid $--color-primary;
             }
             &:hover {
-                background: $--color-primary;
-                color: $--color-text-shallow;
+                background: $--cascader-menu-option-fill-hover;
+                color: $--cascader-menu-option-color-hover;
                 svg {
-                    fill: $--color-text-shallow;
+                    fill: $--cascader-menu-option-color-hover
                 }
             }
         }

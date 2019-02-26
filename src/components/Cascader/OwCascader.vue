@@ -114,17 +114,14 @@
 .ow-cascader {
     position: relative;
     display: inline-flex;
-    &-input {
-        opacity: $--more-opacity;
-    }
     &-popover {
         position: absolute;
         top: calc(100% + 4px);
         left: 0;
-        background: $--color-bg-dark;
-        color: $--color-text-dark;
-        box-shadow: 0 1px 4px $--color-bg-dark;
-        border-radius: $--border-radius-small;
+        background: $--cascader-menu-fill;
+        color: $--cascader-menu-color;
+        box-shadow: $--cascader-menu-shadow;
+        border-radius: $--cascader-menu-radius;
         z-index: 1;
     }
 }
