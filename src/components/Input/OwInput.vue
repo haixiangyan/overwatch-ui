@@ -95,7 +95,7 @@
                 z-index: 1;
             }
             &[disabled] {
-                background: rgba(255, 255, 255, 0.5);
+                background: $--input-disabled-fill;
             }
         }
 

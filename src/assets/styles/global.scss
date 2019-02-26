@@ -349,41 +349,12 @@ $--notification-danger-color: $--color-danger !default;
 /* Input
 -------------------------- */
 $--input-padding-horizontal: 15px !default;
-$--input-font-size: $--font-size-base !default;
-$--input-color: $--color-text-regular !default;
-$--input-width: 140px !default;
 $--input-height: $--height-base !default;
-$--input-border: $--border-base !default;
 $--input-border-color: $--border-color-base !default;
 $--input-border-radius: $--border-radius-base !default;
 $--input-border-color-hover: $--border-color-hover !default;
-$--input-fill: $--color-white !default;
-$--input-fill-disabled: $--disabled-fill-base !default;
-$--input-color-disabled: $--font-color-disabled-base !default;
-$--input-icon-color: $--color-text-placeholder !default;
-$--input-placeholder-color: $--color-text-placeholder !default;
-$--input-max-width: 314px !default;
 
-$--input-hover-border: $--border-color-hover !default;
-$--input-clear-hover-color: $--color-text-secondary !default;
-
-$--input-focus-border: $--color-primary !default;
-$--input-focus-fill: $--color-white !default;
-
-$--input-disabled-fill: $--disabled-fill-base !default;
-$--input-disabled-border: $--disabled-border-base !default;
-$--input-disabled-color: $--disabled-color-base !default;
-$--input-disabled-placeholder-color: $--color-text-placeholder !default;
-
-$--input-medium-font-size: 14px !default;
-$--input-medium-height: 36px !default;
-
-$--input-small-font-size: 13px !default;
-$--input-small-height: 32px !default;
-
-$--input-mini-font-size: 12px !default;
-$--input-mini-height: 28px !default;
-
+$--input-disabled-fill: rgba(255, 255, 255, 0.6) !default;
 /* Cascader
 -------------------------- */
 $--cascader-menu-fill: $--color-bg-dark !default;

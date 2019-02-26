@@ -73,6 +73,12 @@
             <ow-icon name="upload"></ow-icon>
             <ow-icon :is-loading="true" name="loading"></ow-icon>
         </div>
+
+        <div class="item">
+            <ow-input :disabled="true"></ow-input>
+            <ow-input :readonly="true"></ow-input>
+            <ow-input></ow-input>
+        </div>
     </div>
 </template>
 
