@@ -9,17 +9,66 @@
 A UI library of game Overwatch, built with Vue.js.
 
 ## Documentation
-For now, I have released the first version. Click link below to check it.
 
-[Official doc](https://haixiang6123.github.io/overwatch-ui-doc/#/)
+[Documentation](https://haixiang6123.github.io/overwatch-ui-doc/#/)
 
 ![Doc](./screenshot/home.png)
+
+## Install
+```bash
+$ yarn install overwatch-ui
+
+or
+
+$ npm install overwatch-ui --save
+```
+
+## Import
+Then you need to import its components and plugins in *main.js*.
+
+```javascript
+// main.js
+// Import the library
+import OwUI from 'overwatch-ui'
+import 'overwatch-ui/dist/overwatch-ui.css'
+
+// Use some plugins
+Vue.use(OwUI.plugins.$owAlert)
+
+// Register components that you need in the root component
+new Vue({
+    components: {
+        ...OwUI.Components
+    },
+    router,
+    render: h => h(App)
+}).$mount('#app')
+```
+
+## Usage
+Now, let's place some components in your Web APP!
+
+```html
+<ow-button type="info">Info</ow-button>
+<ow-button type="primary">Primary</ow-button>
+<ow-button type="success">Success</ow-button>
+<ow-button type="warning">Warning</ow-button>
+<ow-button type="danger">Danger</ow-button>
+
+<ow-popover position="top">
+    <template slot="content">
+        <div>Hello, Overwatch UI!</div>
+    </template>
+    <ow-button>Pop It!</ow-button>
+</ow-popover>
+```
+
+If you wanna explore more usages, here's a playground on [CodeSandBox.io](https://codesandbox.io/s/r093528ny4).
 
 ## Note
 
 **This UI library will reset some styles as followed. 
-I strongly recommend you to add these styles to all of your projects :), 
-because some CSS bugs can't be found without them.**
+I strongly recommend you to add these styles to all of your projects for saving time to find CSS bugs :)**
 
 ```css
 * {
@@ -28,3 +77,44 @@ because some CSS bugs can't be found without them.**
     box-sizing: border-box;
 }
 ```
+
+## Change Logs
+
+* v0.2.0
+    * Add OwButton
+    * Add OwButtonGroup
+* v0.3.0
+    * Add OwIcon
+    * Split scss variables to global.scss
+* v0.4.0
+    * Add OwInput
+    * Add travis CI integration test
+* v0.5.0
+    * Add grid system
+    * Add layout system
+* v0.6.0
+    * Add OwAlert
+    * Add plugin function
+* v0.7.0
+    * Add OwPopover
+* v0.8.0
+    * Add OwCollapse
+* v0.9.0
+    * Update to vue-cli 3
+    * Add OwCascader
+* v1.0.0
+    * Add OwCarousel
+* v1.1.0
+    * Add OwNav
+* v1.2.0
+    * Integrate Karma to vue cli 3
+    * Add OwValidate
+* v1.3.0
+    * Add OwPager
+    * Add OwSticky
+* v1.4.0
+    * Add OwUploader
+    * Ow OwTable
+* v1.5.0
+    * Add OwScroll
+    * Add OwDatePicker
