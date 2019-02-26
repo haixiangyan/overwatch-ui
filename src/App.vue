@@ -79,6 +79,10 @@
             <ow-input :readonly="true"></ow-input>
             <ow-input></ow-input>
         </div>
+
+        <div class="item">
+            <ow-pager :total="20" :current.sync="current"></ow-pager>
+        </div>
     </div>
 </template>
 
@@ -94,7 +98,8 @@
                 carouselSelected: '1',
                 source: [ { name: 'CA', children: [ { name: 'Irvine', isLeaf: false, children: [ {name: 'UCI'}, {name: 'UCSB'}, {name: 'UCB'}, ] }, { name: 'LA', isLeaf: false, children: [ {name: 'UCLA'}, {name: 'UCB'}, {name: 'UCSD'}, ] }, ] }, { name: 'NY', children: [ {name: 'Col', isLeaf: true}, { name: 'NY', isLeaf: false, children: [ {name: 'NYU'}, {name: 'FU'}, {name: 'BC'}, ] }, ] } ],
                 cascaderSelected: [],
-                selectedCollapse: ['1', '2']
+                selectedCollapse: ['1', '2'],
+                current: 5
             }
         },
         methods: {

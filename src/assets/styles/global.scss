@@ -400,9 +400,6 @@ $--button-info-fill: $--color-opacity-info !default;
 $--button-color: $--color-white !default;
 $--button-icon-color: $--color-white !default;
 
-/* cascader
--------------------------- */
-$--cascader-height: 200px !default;
 
 /* Switch
 -------------------------- */
@@ -439,19 +436,17 @@ $--table-header-background: $--color-white !default;
 $--table-footer-background: $--color-text-placeholder !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
-/* Pagination
+/* Pager
 -------------------------- */
-$--pagination-font-size: 13px !default;
-$--pagination-fill: $--color-white !default;
-$--pagination-color: $--color-text-primary !default;
-$--pagination-border-radius: 3px !default;
-$--pagination-button-color: $--color-text-primary !default;
-$--pagination-button-width: 35.5px !default;
-$--pagination-button-height: 28px !default;
-$--pagination-button-disabled-color: $--color-text-placeholder !default;
-$--pagination-button-disabled-fill: $--color-white !default;
-$--pagination-hover-fill: $--color-primary !default;
-$--pagination-hover-color: $--color-white !default;
+$--pager-border-radius: $--border-radius-base !default;
+$--pager-button-color: $--color-white !default;
+$--pager-button-fill: $--color-bg !default;
+$--pager-button-width: 35.5px !default;
+$--pager-button-height: 28px !default;
+$--pager-hover-fill: $--color-primary !default;
+$--pager-hover-color: $--color-white !default;
+$--pager-button-disabled-color: $--color-text-placeholder !default;
+$--pager-button-disabled-fill: $--color-white !default;
 
 /* Popover
 -------------------------- */

@@ -85,45 +85,45 @@
         align-items: center;
         margin: 0 6px;
         padding: 4px;
-        min-width: $--pagination-button-width;
-        min-height: $--pagination-button-height;
-        color: $--color-white;
-        background: $--color-bg;
+        min-width: $--pager-button-width;
+        min-height: $--pager-button-height;
+        color: $--pager-button-color;
+        background: $--pager-button-fill;
         text-align: center;
         user-select: none;
-        border-radius: $--border-radius-base;
+        border-radius: $--pager-border-radius;
         transition: all .5s;
         svg {
-            fill: $--color-white;
+            fill: $--pager-button-color;
         }
         &.active, &:hover {
-            background: $--color-primary;
-            box-shadow: 0 1px 4px $--color-primary;
+            background: $--pager-hover-fill;
+            box-shadow: 0 1px 4px $--pager-hover-fill;
         }
         &.disabled {
-            background: $--pagination-button-disabled-color;
+            background: $--pager-button-disabled-color;
             &.active, &:hover {
                 box-shadow: none;
             }
         }
     }
     &-current {
-        background: $--color-primary;
+        background: $--pager-button-fill;
     }
     &-separator {
         display: flex;
         align-items: center;
         background: none;
-        color: $--color-bg;
+        color: $--pager-button-color;
         svg {
-            fill: $--color-bg;
+            fill: $--pager-button-color;
             transition: all .5s;
         }
         &.active, &:hover {
             box-shadow: none;
-            color: $--color-primary;
+            color: $--pager-hover-color;
             svg {
-                fill: $--color-primary;
+                fill: $--pager-hover-color;
             }
         }
     }
