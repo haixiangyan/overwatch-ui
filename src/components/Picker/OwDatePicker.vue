@@ -223,7 +223,7 @@
                 transition: background-color .5s;
                 border-radius: $--border-radius-small;
                 &:hover {
-                    background: $--color-primary;
+                    background: $--datepicker-cell-hover-color;
                 }
             }
             &-action {
@@ -236,7 +236,7 @@
                 border-radius: $--border-radius-circle;
                 transition: all .5s;
                 &:hover {
-                    background: $--color-primary;
+                    background: $--datepicker-cell-hover-color;
                 }
             }
         }
@@ -260,15 +260,15 @@
             }
             &-day {
                 transition: all .5s;
-                color: $--color-text-placeholder;
+                color: $--datepicker-outrange-color;
                 &.current-month {
-                    color: $--color-white;
+                    color: $--datepicker-inrange-border-color;
                     &:hover {
-                        background: $--color-primary;
+                        background: $--datepicker-cell-hover-color;
                     }
                 }
                 &.active {
-                    background: $--color-primary;
+                    background: $--datepicker-active-color;
                 }
             }
             &-selector {

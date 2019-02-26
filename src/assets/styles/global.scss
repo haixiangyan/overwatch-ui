@@ -565,16 +565,13 @@ $--rate-icon-color: $--color-text-placeholder !default;
 
 /* DatePicker
 --------------------------*/
-$--datepicker-color: $--color-text-regular !default;
-$--datepicker-off-color: $--color-text-placeholder !default;
-$--datepicker-header-color: $--color-text-regular !default;
-$--datepicker-icon-color: $--color-text-primary !default;
+$--datepicker-color: $--color-white !default;
+$--datepicker-outrange-color: $--color-text-placeholder !default;
+$--datepicker-header-color: $--color-white !default;
+$--datepicker-icon-color: $--color-white !default;
 $--datepicker-border-color: $--disabled-border-base !default;
-$--datepicker-inner-border-color: #e4e4e4 !default;
-$--datepicker-inrange-color: $--border-color-extra-light !default;
-$--datepicker-inrange-hover-color: $--border-color-extra-light !default;
+$--datepicker-inrange-border-color: $--color-white !default;
 $--datepicker-active-color: $--color-primary !default;
-$--datepicker-text-hover-color: $--color-white !default;
 $--datepicker-cell-hover-color: $--color-primary !default;
 
 /* Loading
