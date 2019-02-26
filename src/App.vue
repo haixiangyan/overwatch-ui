@@ -83,6 +83,15 @@
         <div class="item">
             <ow-pager :total="20" :current.sync="current"></ow-pager>
         </div>
+
+        <div class="item">
+            <ow-popover position="top">
+                <template slot="content">
+                    <div>Popover Content</div>
+                </template>
+                <ow-button>Pop It!</ow-button>
+            </ow-popover>
+        </div>
     </div>
 </template>
 
