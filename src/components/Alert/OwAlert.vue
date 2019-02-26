@@ -121,7 +121,7 @@
     &-content {
         display: flex;
         align-items: center;
-        padding: 8px 6px;
+        padding: $--alert-padding;
         color: $--color-white;
         opacity: $--more-opacity;
         background: $--color-bg;
@@ -133,25 +133,25 @@
         }
         &-text {
             display: inline;
-            &-info, &-loading { border-left: 2px solid $--color-primary; }
-            &-danger { border-left: 2px solid $--color-danger; }
-            &-success { border-left: 2px solid $--color-success; }
-            &-warning { border-left: 2px solid $--color-warning; }
+            &-info, &-loading { border-left: 2px solid $--alert-info-color }
+            &-danger { border-left: 2px solid $--alert-danger-color }
+            &-success { border-left: 2px solid $--alert-success-color }
+            &-warning { border-left: 2px solid $--alert-warning-color }
         }
         &-title {
-            font-size: 1.1em;
+            font-size: $--alert-title-font-size;
         }
         &-message {
-            color: $--color-text-placeholder;
-            font-size: 0.8em;
+            color: $--alert-message-color;
+            font-size: $--alert-message-font-size;
         }
     }
 
     &-cancel-button {
         margin-top: 1px;
         width: 100%;
-        font-size: $--font-size-mini;
-        height: $--height-mini;
+        font-size: $--alert-cancel-button-font-size;
+        height: $--alert-cancel-button-height;
     }
 }
 </style>

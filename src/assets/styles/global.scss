@@ -275,20 +275,18 @@ $--select-dropdown-border: solid 1px $--border-color-light !default;
 
 /* Alert
 -------------------------- */
-$--alert-padding: 8px 16px !default;
+$--alert-padding: 8px 6px !default;
 $--alert-border-radius: $--border-radius-base !default;
-$--alert-title-font-size: 13px !default;
-$--alert-description-font-size: 12px !default;
-$--alert-close-font-size: 12px !default;
-$--alert-close-customed-font-size: 13px !default;
+$--alert-title-font-size: $--font-size-large !default;
+$--alert-message-font-size: .8em !default;
+$--alert-message-color: $--color-text-placeholder !default;
+$--alert-cancel-button-font-size: $--font-size-mini !default;
+$--alert-cancel-button-height: $--height-mini !default;
 
-$--alert-success-color: $--color-success-lighter !default;
-$--alert-info-color: $--color-info-lighter !default;
-$--alert-warning-color: $--color-warning-lighter !default;
-$--alert-danger-color: $--color-danger-lighter !default;
-
-$--alert-icon-size: 16px !default;
-$--alert-icon-large-size: 28px !default;
+$--alert-success-color: $--color-success!default;
+$--alert-info-color: $--color-info!default;
+$--alert-warning-color: $--color-warning!default;
+$--alert-danger-color: $--color-danger!default;
 
 /* Message Box
 -------------------------- */

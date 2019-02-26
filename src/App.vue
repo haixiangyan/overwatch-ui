@@ -21,6 +21,8 @@
             </ow-tabs-body>
         </ow-tabs>
 
+        <ow-button type="primary" @click="showAlert">Alert it</ow-button>
+
         <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         <p>Hello</p>
     </div>
@@ -35,6 +37,21 @@
                 range: [new Date(2019, 1), new Date(2019, 2)],
                 selected: 'home',
                 selectedTab: 'data'
+            }
+        },
+        methods: {
+            showAlert() {
+                this.$owAlert({
+                    type: 'success',
+                    title: 'SEARCHING FOR GAME',
+                    message: 'ESTIMATE TIME: 0:0:2',
+                    closeButton: {
+                        text: 'OK',
+                        callback(vm) {
+                            console.log('Yes')
+                        }
+                    }
+                })
             }
         },
         mounted() {
