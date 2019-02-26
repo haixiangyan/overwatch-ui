@@ -68,7 +68,7 @@
                             </td>
                         </tr>
                         <transition name="slide-down">
-                            <tr v-if="isItemExpanded(item.id)" :key="`${item.id}-expand`">
+                            <tr v-if="isItemExpanded(item.id)" data-expanded :key="`${item.id}-expand`">
                                 <td :colspan="expandedColspan">
                                     {{item[expandField]}}
                                 </td>
