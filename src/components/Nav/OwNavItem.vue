@@ -54,7 +54,7 @@
                 position: absolute;
                 left: 0;
                 top: 100%;
-                border-bottom: 4px solid #01FFFF;
+                border-bottom: $--nav-border-line;
                 width: 100%;
             }
         }
@@ -66,18 +66,18 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                border-right: 4px solid #01FFFF;
+                border-right: $--nav-border-line;
                 height: 100%;
             }
         }
     }
     &:hover {
-        color: $--color-white;
-        background: $--color-primary;
+        color: $--nav-item-hover-color;
+        background: $--nav-item-hover-fill;
     }
     &.active {
-        background: $--color-primary;
-        color: $--color-white;
+        background: $--nav-item-hover-fill;
+        color: $--nav-item-hover-color;
     }
 }
 .ow-sub-nav .ow-nav-item.vertical {
@@ -87,7 +87,7 @@
             position: absolute;
             right: 0;
             top: 0;
-            border-right: 4px solid #01FFFF;
+            border-right: $--nav-border-line;
             height: 100%;
         }
     }
