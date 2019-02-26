@@ -50,6 +50,21 @@ describe('OwNav.vue', () => {
         })
     })
 
+    it('receives SubNav', () => {
+        const OwNavWrapper = mount(OwNav, {
+            propsData: {
+                selected: 'home'
+            },
+            slots: {
+                default: testData.slot
+            },
+            stubs: {OwNavItem, OwSubNav},
+            attachToDocument: true
+        })
+        OwNavWrapper.find(".ow-sub-nav-title").trigger('click')
+        expect(OwNavWrapper.find('.ow-sub-nav-popover').element.style.display).to.equal('')
+    })
+
     it('handles update:selected event', () => {
         const eventHandler = sinon.fake()
         const OwNavWrapper = mount(OwNav, {
