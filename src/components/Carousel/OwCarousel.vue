@@ -196,15 +196,17 @@
         .indicator {
             margin: 0 8px;
             display: inline-flex;
-            width: 20px;
-            height: 20px;
+            width: $--carousel-indicator-width;
+            height: $--carousel-indicator-height;
             justify-content: center;
             align-items: center;
             border-radius: 50%;
-            background: $--color-text-secondary;
-            font-size: .9em;
-            color: white;
+            background: $--carousel-indicator-background;
+            font-size: $--carousel-indicator-font-size;
+            color: $--carousel-indicator-color;
+            transition: background-color .5s;
             &:hover {
+                background: $--carousel-indicator-hover-background;
             }
             &.active {
                 background: $--color-bg-dark;

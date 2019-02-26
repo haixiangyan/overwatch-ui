@@ -33,6 +33,20 @@
         </div>
 
         <div class="item">
+            <ow-carousel :selected.sync="carouselSelected">
+                <ow-carousel-item name="1">
+                    <div class="box">1</div>
+                </ow-carousel-item>
+                <ow-carousel-item name="2">
+                    <div class="box">2</div>
+                </ow-carousel-item>
+                <ow-carousel-item name="3">
+                    <div class="box">3</div>
+                </ow-carousel-item>
+            </ow-carousel>
+        </div>
+
+        <div class="item">
             <ow-date-picker :value.sync="date" @input="date = $event" :range="range"></ow-date-picker>
         </div>
         <p>Hello</p>
@@ -47,7 +61,8 @@
                 date: new Date(),
                 range: [new Date(2019, 1), new Date(2019, 2)],
                 selected: 'home',
-                selectedTab: 'data'
+                selectedTab: 'data',
+                carouselSelected: '1'
             }
         },
         methods: {
@@ -78,6 +93,10 @@
         background: url("./assets/images/bg.png");
         .item {
             padding: 10px 0;
+            .box {
+                height: 300px;
+                background: $--color-warning;
+            }
         }
     }
 </style>
