@@ -1,11 +1,11 @@
 <template>
     <div class="ow-blood">
         <div class="ow-blood-title">
-            <span :style="{color: textTotalColor}" class="ow-blood-title-total">
+            <span :style="{color: totalTextColor}" class="ow-blood-title-total">
                 {{total}}
             </span>
             /
-            <span :style="{color: textResidualColor}" class="ow-blood-title-residual">
+            <span :style="{color: residualTextColor}" class="ow-blood-title-residual">
                 {{residual !== undefined ? residual : total}}
             </span>
         </div>
@@ -42,11 +42,11 @@
                 type: String,
                 default: 'rgba(255, 255, 255, 0.5)'
             },
-            textResidualColor: {
+            residualTextColor: {
                 type: String,
                 default: 'black'
             },
-            textTotalColor: {
+            totalTextColor: {
                 type: String,
                 default: 'black'
             }
