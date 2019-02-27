@@ -88,6 +88,7 @@
     height: 100%;
     transform: skew(25rad);
     transition: all .5s;
+    border-radius: $--blood-border-radius;
     & + & {
         margin-left: 2px;
     }

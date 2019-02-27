@@ -614,18 +614,22 @@ $--transfer-item-height: 30px !default;
 $--transfer-item-hover-background: $--color-text-secondary !default;
 $--transfer-filter-height: 32px !default;
 
-/* Hero
+/* Game
 --------------------------*/
 $--game-skew: skew(25rad);
+$--game-border-radius: 7px;
 
+/* Hero
+--------------------------*/
 $--hero-background: #333;
 $--hero-border: 3px solid #f6f6f6;
-$--hero-border-radius: 7px;
+$--hero-border-radius: $--game-border-radius;
 $--hero-margin-left: 8px;
 
 /* Blood
 --------------------------*/
 $--blood-height: 20px;
+$--blood-border-radius: $--border-radius-small;
 
 /* Animation
 --------------------------*/
