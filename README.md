@@ -78,6 +78,22 @@ I strongly recommend you to add these styles to all of your projects for saving 
 }
 ```
 
+## Things going to do...
+
+I'm still working on these components:
+
+* UI Component
+    * HeroAvatar
+    * Blood
+    * PlayerAvatar
+    * Ult
+* Form Component
+    * Modal
+    * Input
+    * Slider
+    * Swiper
+    * Dropdown
+
 ## Change Logs
 
 * v0.2.0
