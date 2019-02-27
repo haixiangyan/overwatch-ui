@@ -83,9 +83,9 @@ I strongly recommend you to add these styles to all of your projects for saving 
 I'm still working on these components:
 
 * UI Component
-    * HeroAvatar
+    * Hero
     * Blood
-    * PlayerAvatar
+    * Player
     * Ult
 * Form Component
     * Modal
