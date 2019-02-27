@@ -1,16 +1,11 @@
 <template>
     <div id="app">
         <div class="present">
-            <div>
-                <ow-hero hero="mccree"></ow-hero>
-                <ow-hero url="https://avatars2.githubusercontent.com/u/16954378?s=64&v=4"></ow-hero>
-                <ow-hero :is-active="true" hero="hanzo"></ow-hero>
-            </div>
-            <div>
-                <ow-hero @click="onClick" size="small" hero="mccree"></ow-hero>
-                <ow-hero hero="genji"></ow-hero>
-                <ow-hero size="large" hero="hanzo"></ow-hero>
-            </div>
+            <ow-blood :total="150"></ow-blood>
+            <ow-blood :total="200" :residual="blood"></ow-blood>
+            <ow-blood :total="250"></ow-blood>
+            <ow-blood :total="500" :residual="100"></ow-blood>
+            <ow-blood :total="600"></ow-blood>
         </div>
         <past></past>
     </div>
@@ -22,14 +17,14 @@
         name: 'app',
         data() {
             return {
+                blood: 30
             }
         },
         methods: {
-            onClick() {
-                console.log('jjj');
-            }
         },
-        components: { Past }
+        components: { Past },
+        mounted() {
+        }
     }
 </script>
 

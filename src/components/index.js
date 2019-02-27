@@ -33,6 +33,7 @@ import OwSticky from './Sticky/OwSticky'
 import OwDatePicker from './Picker/OwDatePicker'
 import OwScroll from './Scroll/OwScroll'
 import OwHero from './Hero/OwHero'
+import OwBlood from './Blood/OwBlood'
 
 export default {
     OwButton,
@@ -68,5 +69,6 @@ export default {
     OwSticky,
     OwDatePicker,
     OwScroll,
-    OwHero
+    OwHero,
+    OwBlood
 }
