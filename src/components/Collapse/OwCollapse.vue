@@ -75,7 +75,6 @@
     }
     &-content {
         margin-top: 4px;
-        padding: 0 $--collapse-header-padding;
     }
 }
 </style>

@@ -108,7 +108,7 @@
         }
     }
     &-current {
-        background: $--pager-button-fill;
+        background: $--pager-hover-fill;
     }
     &-separator {
         display: flex;
