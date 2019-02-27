@@ -9,7 +9,7 @@
                 {{residual !== undefined ? residual : total}}
             </span>
         </div>
-        <div class="ow-blood-items" :style="{width: width + 'px'}" :gutter="1">
+        <div class="ow-blood-items" :style="{width: width + 'px'}">
             <span class="ow-blood-item"
                 :style="getItemStyles(item)"
                 v-for="item in itemNum"
