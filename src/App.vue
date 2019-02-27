@@ -7,7 +7,7 @@
                 <ow-hero :is-active="true" hero="hanzo"></ow-hero>
             </div>
             <div>
-                <ow-hero size="small" hero="mccree"></ow-hero>
+                <ow-hero @click="onClick" size="small" hero="mccree"></ow-hero>
                 <ow-hero hero="genji"></ow-hero>
                 <ow-hero size="large" hero="hanzo"></ow-hero>
             </div>
@@ -25,6 +25,9 @@
             }
         },
         methods: {
+            onClick() {
+                console.log('jjj');
+            }
         },
         components: { Past }
     }

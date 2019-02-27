@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-hero" :class="heroClasses">
+    <div class="ow-hero" @click="$emit('click')" :class="heroClasses">
         <div class="ow-hero-avatar" :class="avatarClasses" :style="avatarStyles"></div>
     </div>
 </template>
