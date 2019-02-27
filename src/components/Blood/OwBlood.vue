@@ -1,6 +1,14 @@
 <template>
     <div class="ow-blood">
-        <div class="title">{{total}}/{{residual !== undefined ? residual : total}}</div>
+        <div class="ow-blood-title">
+            <span :style="{color: textTotalColor}" class="ow-blood-title-total">
+                {{total}}
+            </span>
+            /
+            <span :style="{color: textResidualColor}" class="ow-blood-title-residual">
+                {{residual !== undefined ? residual : total}}
+            </span>
+        </div>
         <div class="ow-blood-items" :style="{width: width + 'px'}" :gutter="1">
             <span class="ow-blood-item"
                 :style="getItemStyles(item)"
@@ -34,6 +42,14 @@
                 type: String,
                 default: 'rgba(255, 255, 255, 0.5)'
             },
+            textResidualColor: {
+                type: String,
+                default: 'black'
+            },
+            textTotalColor: {
+                type: String,
+                default: 'black'
+            }
         },
         computed: {
             itemNum() {
@@ -53,6 +69,13 @@
 
 <style scoped lang="scss">
 .ow-blood {
+    display: inline-block;
+    vertical-align: top;
+    &-title {
+        &-total {
+            font-size: 1.5em;
+        }
+    }
     &-items {
         display: flex;
         height: 20px;
