@@ -48,10 +48,10 @@
     border: $--hero-border;
     border-radius: $--hero-border-radius;
     overflow: hidden;
-    transform: skew(25rad);
+    transform: $--game-skew;
     transition: all .5s;
     &:hover, &.active {
-        transform: scale(1.2) skew(25rad);
+        transform: scale(1.2) $--game-skew;
         box-shadow: 0px 0px 2px 1px rgba(255, 255, 255, 1);
     }
     &-avatar {
