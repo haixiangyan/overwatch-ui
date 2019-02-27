@@ -149,7 +149,7 @@
             </ow-popover>
         </div>
 
-        <div class="itm">
+        <div class="item">
             <div>
                 <ow-hero hero="mccree"></ow-hero>
                 <ow-hero url="https://avatars2.githubusercontent.com/u/16954378?s=64&v=4"></ow-hero>
@@ -162,6 +162,14 @@
             </div>
         </div>
 
+        <div class="item">
+            <ow-blood class="blood-item" :total="150"></ow-blood>
+            <ow-blood class="blood-item" :total="200" :residual="blood"></ow-blood>
+            <ow-blood class="blood-item" :total="250"></ow-blood>
+            <ow-blood class="blood-item" :total="500" :residual="100"></ow-blood>
+            <ow-blood class="blood-item" total-text-color="red" residual-text-color="yellow" :total="600"></ow-blood>
+            <ow-blood class="blood-item" :total="200" :residual="100" residual-color="red" gone-color="green"></ow-blood>
+        </div>
     </div>
 </template>
 
@@ -200,6 +208,7 @@
                     {name: 'index.html', size: 333, type: 'text/html', status: 'UPLOADED'},
                     {name: 'styles.css', size: 876, type: 'text/css', status: 'FAIL'},
                 ],
+                blood: 30
             }
         },
         methods: {

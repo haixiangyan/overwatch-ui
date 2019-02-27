@@ -1,12 +1,6 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-blood class="blood-item" :total="150"></ow-blood>
-            <ow-blood class="blood-item" :total="200" :residual="blood"></ow-blood>
-            <ow-blood class="blood-item" :total="250"></ow-blood>
-            <ow-blood class="blood-item" :total="500" :residual="100"></ow-blood>
-            <ow-blood class="blood-item" total-text-color="red" residual-text-color="yellow" :total="600"></ow-blood>
-            <ow-blood class="blood-item" :total="200" :residual="100" residual-color="red" gone-color="green"></ow-blood>
         </div>
         <past></past>
     </div>
@@ -14,11 +8,11 @@
 
 <script>
     import Past from './Past'
+
     export default {
         name: 'app',
         data() {
             return {
-                blood: 30
             }
         },
         methods: {

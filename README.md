@@ -83,54 +83,13 @@ I strongly recommend you to add these styles to all of your projects for saving 
 I'm still working on these components:
 
 * UI Component
-    * Hero
-    * Blood
-    * Player
-    * Ult
+    - [x] Hero
+    - [x] Blood
+    - [ ] Player
+    - [ ] Ult
 * Form Component
-    * Modal
-    * Input
-    * Slider
-    * Swiper
-    * Dropdown
-
-## Change Logs
-
-* v0.2.0
-    * Add OwButton
-    * Add OwButtonGroup
-* v0.3.0
-    * Add OwIcon
-    * Split scss variables to global.scss
-* v0.4.0
-    * Add OwInput
-    * Add travis CI integration test
-* v0.5.0
-    * Add grid system
-    * Add layout system
-* v0.6.0
-    * Add OwAlert
-    * Add plugin function
-* v0.7.0
-    * Add OwPopover
-* v0.8.0
-    * Add OwCollapse
-* v0.9.0
-    * Update to vue-cli 3
-    * Add OwCascader
-* v1.0.0
-    * Add OwCarousel
-* v1.1.0
-    * Add OwNav
-* v1.2.0
-    * Integrate Karma to vue cli 3
-    * Add OwValidate
-* v1.3.0
-    * Add OwPager
-    * Add OwSticky
-* v1.4.0
-    * Add OwUploader
-    * Ow OwTable
-* v1.5.0
-    * Add OwScroll
-    * Add OwDatePicker
+    - [ ] Modal
+    - [ ] Input
+    - [ ] Slider
+    - [ ] Swiper
+    - [ ] Dropdown
