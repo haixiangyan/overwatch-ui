@@ -14,7 +14,7 @@ describe('OwButton.vue', () => {
                 total: 200
             }
         })
-        expect(OwBloodWrapper.find('.title').text().split('/')[0]).to.equal('200');
+        expect(OwBloodWrapper.find('.ow-blood-title-total').text()).to.equal('200');
     })
     it('receives residual', () => {
         const OwBloodWrapper = shallowMount(OwBlood, {
@@ -23,7 +23,7 @@ describe('OwButton.vue', () => {
                 residual: 150
             }
         })
-        expect(OwBloodWrapper.find('.title').text().split('/')[1]).to.equal('150');
+        expect(OwBloodWrapper.find('.ow-blood-title-residual').text()).to.equal('150');
     })
     it('receives width', () => {
         const OwBloodWrapper = shallowMount(OwBlood, {
