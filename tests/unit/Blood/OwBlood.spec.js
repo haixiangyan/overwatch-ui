@@ -34,4 +34,17 @@ describe('OwButton.vue', () => {
         })
         expect(OwBloodWrapper.find('.ow-blood-items').attributes().style).to.equal('width: 400px;')
     })
+    it('receives color props', () => {
+        const OwBloodWrapper = shallowMount(OwBlood, {
+            propsData: {
+                total: 200,
+                residual: 100,
+                residualColor: 'green',
+                goneColor: 'red',
+            }
+        })
+        const itemWrappers = OwBloodWrapper.findAll('.ow-blood-item')
+        expect(itemWrappers.at(0).attributes().style).contains('green');
+        expect(itemWrappers.at(itemWrappers.length - 1).attributes().style).contains('red');
+    })
 })

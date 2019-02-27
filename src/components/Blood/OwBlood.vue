@@ -1,14 +1,13 @@
 <template>
     <div class="ow-blood">
         <div class="title">{{total}}/{{residual !== undefined ? residual : total}}</div>
-        <ul class="ow-blood-items" :style="{width: width + 'px'}" :gutter="1">
-            <li class="ow-blood-item"
-                :class="{out: item > residual / 25}"
-                :style="itemStyles"
+        <div class="ow-blood-items" :style="{width: width + 'px'}" :gutter="1">
+            <span class="ow-blood-item"
+                :style="getItemStyles(item)"
                 v-for="item in itemNum"
                 :key="item">
-            </li>
-        </ul>
+            </span>
+        </div>
     </div>
 </template>
 
@@ -26,15 +25,26 @@
             },
             residual: {
                 type: Number
-            }
+            },
+            residualColor: {
+                type: String,
+                default: 'rgba(255, 255, 255, 0.8)'
+            },
+            goneColor: {
+                type: String,
+                default: 'rgba(255, 255, 255, 0.5)'
+            },
         },
         computed: {
             itemNum() {
                 return this.total / 25
             },
-            itemStyles() {
+        },
+        methods: {
+            getItemStyles(item) {
                 return {
-                    width: this.width / this.itemNum - 2 + 'px'
+                    width: this.width / this.itemNum - 2 + 'px',
+                    background: (item >= this.residual / 25) ? this.goneColor : this.residualColor
                 }
             }
         }
@@ -53,12 +63,8 @@
     display: inline-flex;
     vertical-align: top;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
     transform: skew(25rad);
     transition: all .5s;
-    &.out {
-        background: rgba(255, 255, 255, 0.5)
-    }
     & + & {
         margin-left: 2px;
     }

@@ -6,6 +6,7 @@
             <ow-blood :total="250"></ow-blood>
             <ow-blood :total="500" :residual="100"></ow-blood>
             <ow-blood :total="600"></ow-blood>
+            <ow-blood :total="200" :residual="100" residual-color="red" gone-color="green"></ow-blood>
         </div>
         <past></past>
     </div>
