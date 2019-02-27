@@ -47,6 +47,7 @@
     position: relative;
     height: 100%;
     flex-shrink: 0;
+    user-select: none;
 
     &-content {
         @include hvFlexCenterMx(flex);
@@ -73,10 +74,6 @@
     &:hover, &_active {
         color: $--tab-header-color-active;
         background: $--tab-header-fill-active;
-
-        .ow-tabs-item-content {
-            border-right: 1px solid $--tab-header-fill-active;
-        }
 
         .ow-tabs-item-line {
             width: 100%;
