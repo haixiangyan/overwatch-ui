@@ -53,6 +53,17 @@
         </ow-tabs>
 
         <div class="item">
+            <ow-uploader
+                name="file"
+                action="https://upload-node-server.herokuapp.com/upload"
+                method="POST"
+                :getPreviewUrl="getPreviewUrl"
+                :file-list.sync="fileList">
+                <ow-button icon-name="upload" icon-position="right">Upload</ow-button>
+            </ow-uploader>
+        </div>
+
+        <div class="item">
             <ow-table
                     :sort-rules.sync="sortRules"
                     :strip="true"
@@ -170,7 +181,12 @@
                     name: 'asc',
                     score: 'desc'
                 },
-                tableSelected: []
+                tableSelected: [],
+                fileList: [
+                    {name: 'README.md', size: 231, type: 'text/markdown', status: 'UPLOADING'},
+                    {name: 'index.html', size: 333, type: 'text/html', status: 'UPLOADED'},
+                    {name: 'styles.css', size: 876, type: 'text/css', status: 'FAIL'},
+                ],
             }
         },
         methods: {
@@ -197,8 +213,10 @@
                     }
                 })
             },
-        },
-        mounted() {
+            getPreviewUrl(response) {
+                let responseJson = JSON.parse(response)
+                return "https://upload-node-server.herokuapp.com/preview/" + responseJson.filename
+            }
         }
     }
 </script>

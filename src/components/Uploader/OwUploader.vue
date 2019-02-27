@@ -8,7 +8,7 @@
             <li class="ow-upload-item" v-for="file in fileList" :key="file.name">
                 <div class="ow-upload-item-wrapper">
                     <img v-if="file.type.indexOf('image') >= 0" class="ow-upload-item-img" :src="file.url">
-                    <div v-else class="ow-upload-item-placeholder">
+                    <div v-if="file.type.indexOf('image') < 0 || file.status === 'UPLOADING'" class="ow-upload-item-placeholder">
                         <ow-icon color="white" name="order" size="4em"></ow-icon>
                     </div>
                     <div class="ow-upload-item-info">
@@ -99,7 +99,7 @@
                 fileInput.click()
             },
             onRemoveFile(file) {
-                let answer = window.confirm('Sure?')
+                let answer = window.confirm('Are you sure to remove?')
                 if (answer) {
                     let fileListCopy = [...this.fileList]
                     let index = fileListCopy.indexOf(file)
