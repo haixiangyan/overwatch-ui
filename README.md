@@ -85,7 +85,7 @@ I'm still working on these components:
 * UI Component
     - [x] Hero
     - [x] Blood
-    - [ ] Player
+    - [ ] Badge
     - [ ] Ult
 * Form Component
     - [ ] Modal

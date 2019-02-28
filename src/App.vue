@@ -1,6 +1,14 @@
 <template>
     <div id="app">
         <div class="present">
+            <ow-badge class="badge-item" title="99+">
+                <span>LOOTBOX</span>
+            </ow-badge>
+
+            <ow-badge class="badge-item" :is-dot="true">
+                <span>LOOTBOX</span>
+            </ow-badge>
+            <ow-badge title="MESSAGE"></ow-badge>
         </div>
         <past></past>
     </div>
@@ -31,8 +39,8 @@
         .present {
             margin-bottom: 100vh;
         }
-        .blood-item {
-            margin: 10px;
+        .badge-item {
+            margin: 0 20px;
         }
     }
 </style>

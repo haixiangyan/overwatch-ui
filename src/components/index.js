@@ -34,6 +34,7 @@ import OwDatePicker from './Picker/OwDatePicker'
 import OwScroll from './Scroll/OwScroll'
 import OwHero from './Hero/OwHero'
 import OwBlood from './Blood/OwBlood'
+import OwBadge from './Badge/OwBadge'
 
 export default {
     OwButton,
@@ -70,5 +71,6 @@ export default {
     OwDatePicker,
     OwScroll,
     OwHero,
-    OwBlood
+    OwBlood,
+    OwBadge
 }
