@@ -631,6 +631,15 @@ $--hero-margin-left: 8px;
 $--blood-height: 20px;
 $--blood-border-radius: $--border-radius-small;
 
+/* Badge
+--------------------------*/
+$--badge-height: 18px;
+$--badge-default-color: #F8CC45;
+$--badge-hover-color: #FEFF74;
+$--badge-line-height: 14px;
+$--badge-font-size: .8em;
+$--badge-background: rgba(0, 0, 0, 0.2);
+
 /* Animation
 --------------------------*/
 @import 'animation.scss';

@@ -35,32 +35,35 @@
 <style scoped lang="scss">
 @keyframes glowing {
     0% {
-        border-color: #F8CC45;
-        color: #F8CC45;
+        border-color: $--badge-default-color;
+        color: $--badge-default-color;
     }
     50% {
-        border-color: #FEFF74;
-        color: #FEFF74;
+        border-color: $--badge-hover-color;
+        color: $--badge-hover-color;
     }
     100% {
-        border-color: #F8CC45;
-        color: #F8CC45;
+        border-color: $--badge-default-color;
+        color: $--badge-default-color;
     }
 }
 .ow-badge {
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     vertical-align: top;
     &-sup, &-dot, &-none {
         animation: glowing 2s infinite ease-in-out;
-        background: rgba(0, 0, 0, 0.2);
-        line-height: 14px;
-        font-size: .8em;
+        background: $--badge-background;
+        line-height: $--badge-line-height;
+        font-size: $--badge-font-size;
     }
     &-sup {
         position: absolute;
         top: -15px;
         left: 100%;
-        height: 18px;
+        height: $--badge-height;
         margin-left: -4px;
         padding: 0 2px;
         border: 2px solid;
@@ -77,7 +80,7 @@
     }
     &-none {
         display: inline-block;
-        height: 18px;
+        height: $--badge-height;
         vertical-align: top;
         padding: 0 4px;
         border: 2px solid;
