@@ -2,7 +2,7 @@ import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import OwPager from '../../../src/components/Pager/OwPager.vue'
 
-describe('OwButton.vue', () => {
+describe('OwPager.vue', () => {
 
     it('exists', () => {
         const OwPagerWrapper = shallowMount(OwPager, {
