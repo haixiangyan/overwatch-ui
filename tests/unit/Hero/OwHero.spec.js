@@ -1,12 +1,8 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import sinon from 'sinon'
 import OwHero from '../../../src/components/Hero/OwHero.vue'
 
-const testData = {
-}
-
-describe('OwButton.vue', () => {
+describe('OwHero.vue', () => {
     it('exists', () => {
         const OwHeroWrapper = shallowMount(OwHero)
         expect(OwHeroWrapper).to.exist
