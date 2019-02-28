@@ -1,9 +1,8 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import sinon from 'sinon'
 import OwBlood from '../../../src/components/Blood/OwBlood.vue'
 
-describe('OwButton.vue', () => {
+describe('OwBlood.vue', () => {
     it('exists', () => {
         const OwBloodWrapper = shallowMount(OwBlood)
         expect(OwBloodWrapper).to.exist
