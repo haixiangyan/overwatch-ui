@@ -65,6 +65,7 @@
         left: 100%;
         height: $--badge-height;
         margin-left: -4px;
+        margin-top: 4px;
         padding: 0 2px;
         border: 2px solid;
         border-radius: $--border-radius-base;
@@ -74,7 +75,7 @@
         top: 0;
         right: 0;
         margin-right: -4px;
-        margin-top: -4px;
+        margin-top: -2px;
         border: 4px solid;
         border-radius: $--border-radius-circle;
     }
