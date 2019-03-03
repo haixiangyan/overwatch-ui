@@ -77,19 +77,3 @@ I strongly recommend you to add these styles to all of your projects for saving 
     box-sizing: border-box;
 }
 ```
-
-## Things going to do...
-
-I'm still working on these components:
-
-* UI Component
-    - [x] Hero
-    - [x] Blood
-    - [ ] Badge
-    - [ ] Ult
-* Form Component
-    - [ ] Modal
-    - [ ] Input
-    - [ ] Slider
-    - [ ] Swiper
-    - [ ] Dropdown
