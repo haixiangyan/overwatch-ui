@@ -102,7 +102,9 @@
     position: relative;
     &:not(.vertical).active {
         background: $--color-primary;
-        color: $--color-white;
+        .ow-sub-nav-title {
+            color: white;
+        }
         &::after {
             content: '';
             position: absolute;
@@ -110,12 +112,6 @@
             top: 100%;
             border-bottom: 4px solid #01FFFF;
             width: 100%;
-        }
-    }
-    &-title {
-        color: $--nav-header-item-color;
-        &:hover {
-            color: $--nav-item-color;
         }
     }
     &.vertical {
@@ -133,6 +129,7 @@
         justify-content: space-between;
         padding: 0 20px;
         transition: all .5s;
+        color: $--nav-header-item-color;
         svg {
             fill: $--color-text-placeholder;
             transition: all .3s;
