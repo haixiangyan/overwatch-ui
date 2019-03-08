@@ -8,7 +8,7 @@
                 readonly>
             <ow-icon color="white" name="down"></ow-icon>
         </div>
-        <ul v-if="isShowPopover" class="ow-select-popover">
+        <ul v-if="isShowdropdown" class="ow-select-dropdown">
             <ow-option
                 v-for="option in options"
                 :key="option.value"
@@ -45,7 +45,7 @@
         },
         data() {
             return {
-                isShowPopover: true
+                isShowdropdown: true
             }
         },
         computed: {
@@ -58,13 +58,13 @@
         components: { OwOption, OwIcon },
         methods: {
             open() {
-                this.isShowPopover = true
+                this.isShowdropdown = true
             },
             close() {
-                this.isShowPopover = false
+                this.isShowdropdown = false
             },
             toggle() {
-                if (this.isShowPopover) {
+                if (this.isShowdropdown) {
                     this.close()
                 }
                 else {
@@ -109,7 +109,7 @@
             border-color: $--select-border-color-hover;
         }
     }
-    &-popover {
+    &-dropdown {
         position: absolute;
         top: $--input-height;
         left: 0;
