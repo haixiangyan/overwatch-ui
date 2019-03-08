@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-select v-model="value" :options="options"></ow-select>
+            <ow-select :max-height="100" v-model="value" :options="options"></ow-select>
             <span>{{value}}</span>
         </div>
         <past></past>
@@ -38,7 +38,7 @@
                         value: 'zarya',
                         label: 'Zarya',
                         img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png',
-                    }
+                    },
                 ],
                 value: ''
             }

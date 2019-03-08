@@ -8,7 +8,7 @@
                 readonly>
             <ow-icon color="white" name="down"></ow-icon>
         </div>
-        <ul v-if="isShowDropdown" class="ow-select-dropdown">
+        <ul v-if="isShowDropdown" :style="dropdownStyles" class="ow-select-dropdown">
             <ow-option
                 v-for="option in options"
                 :key="option.value"
@@ -41,6 +41,9 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            maxHeight: {
+                type: Number,
             }
         },
         data() {
@@ -52,6 +55,11 @@
             selectedLabel() {
                 const selectedOption = this.options.find((option) => option.value === this.value)
                 return (selectedOption && selectedOption.label) ? selectedOption.label : ''
+            },
+            dropdownStyles() {
+                return {
+                    maxHeight: this.maxHeight + 'px'
+                }
             }
         },
         directives: { ClickOutside },
@@ -119,6 +127,7 @@
         max-height: $--select-dropdown-max-height;
         border-radius: 2px;
         background: $--select-dropdown-background;
+        overflow: auto;
     }
 }
 </style>
