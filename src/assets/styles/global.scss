@@ -246,37 +246,6 @@ $--radio-button-checked-color: $--color-white !default;
 $--radio-button-checked-border-color: $--color-primary !default;
 $--radio-button-disabled-checked-fill: $--border-color-extra-light !default;
 
-/* Select
--------------------------- */
-$--select-border-color-hover: $--border-color-hover !default;
-$--select-disabled-border: $--disabled-border-base !default;
-$--select-font-size: $--font-size-base !default;
-$--select-close-hover-color: $--color-text-secondary !default;
-
-$--select-input-color: $--color-text-placeholder !default;
-$--select-multiple-input-color: #666 !default;
-$--select-input-font-size: 14px !default;
-
-$--select-option-color: $--color-text-regular !default;
-$--select-option-disabled-color: $--color-text-placeholder !default;
-$--select-option-disabled-background: $--color-white !default;
-$--select-option-height: 34px !default;
-$--select-option-hover-background: $--background-color-base !default;
-$--select-option-selected: $--color-primary !default;
-$--select-option-selected-hover: $--background-color-base !default;
-
-$--select-group-color: $--color-info !default;
-$--select-group-height: 30px !default;
-$--select-group-font-size: 12px !default;
-
-$--select-dropdown-background: $--color-white !default;
-$--select-dropdown-shadow: $--box-shadow-light !default;
-$--select-dropdown-empty-color: #999 !default;
-$--select-dropdown-max-height: 274px !default;
-$--select-dropdown-padding: 6px 0 !default;
-$--select-dropdown-empty-padding: 10px 0 !default;
-$--select-dropdown-border: solid 1px $--border-color-light !default;
-
 /* Alert
 -------------------------- */
 $--alert-padding: 8px 6px !default;
@@ -639,6 +608,23 @@ $--badge-hover-color: #FEFF74;
 $--badge-line-height: 14px;
 $--badge-font-size: .8em;
 $--badge-background: rgba(0, 0, 0, 0.2);
+
+/* Select
+-------------------------- */
+$--select-border-color-hover: $--color-white !default;
+
+$--select-input-color: $--color-white !default;
+$--select-input-font-size: 1em !default;
+
+$--select-option-color: $--color-white !default;
+$--select-option-disabled-color: $--color-text-placeholder !default;
+$--select-option-height: $--input-height;
+$--select-option-hover-background: $--color-primary !default;
+$--select-option-selected: $--color-primary !default;
+
+$--select-dropdown-background: $--color-bg-dark !default;
+$--select-dropdown-max-height: 274px !default;
+$--select-dropdown-padding: 4px 8px !default;
 
 /* Animation
 --------------------------*/

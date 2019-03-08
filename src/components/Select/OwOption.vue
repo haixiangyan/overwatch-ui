@@ -40,12 +40,12 @@
 .ow-option {
     display: flex;
     align-items: center;
-    height: $--input-height;
+    height: $--select-option-height;
     padding: 0 4px;
-    color: white;
+    color: $--select-option-color;
     border-radius: 2px;
     &:hover {
-        background: $--color-primary;
+        background: $--select-option-hover-background
     }
     &-img {
         margin-right: 8px;

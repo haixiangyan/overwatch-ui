@@ -99,12 +99,12 @@
             border: none;
             background: transparent;
             outline: none;
-            color: white;
-            font-size: 1em;
+            color: $--select-input-color;
+            font-size: $--select-input-font-size;
         }
         &:hover {
             background: $--color-primary;
-            border-color: white;
+            border: $--select-border-color-hover;
         }
     }
     &-popover {
@@ -112,10 +112,11 @@
         top: $--input-height;
         left: 0;
         margin-top: 2px;
-        padding: 4px 8px;
+        padding: $--select-dropdown-padding;
         width: 100%;
+        max-height: $--select-dropdown-max-height;
         border-radius: 2px;
-        background: $--color-bg-dark;
+        background: $--select-dropdown-background;
     }
 }
 </style>
