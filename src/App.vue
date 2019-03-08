@@ -24,6 +24,7 @@
                         value: 'hanzo',
                         label: 'Hanzo',
                         img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png',
+                        disabled: true
                     }, {
                         value: 'mccree',
                         label: 'McCree',
@@ -32,6 +33,7 @@
                         value: 'tracer',
                         label: 'Tracer',
                         img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/tracer/icon-portrait.png',
+                        disabled: true
                     }, {
                         value: 'zarya',
                         label: 'Zarya',

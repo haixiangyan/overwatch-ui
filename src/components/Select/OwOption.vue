@@ -26,11 +26,21 @@
             disabled: {
                 type: Boolean,
                 required: false
+            },
+            selected: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
             optionClasses() {
-                return [ 'ow-option', { 'ow-option-disabled': this.disabled } ]
+                return [
+                    'ow-option',
+                    {
+                        'ow-option-disabled': this.disabled,
+                        'ow-option-selected': this.selected
+                    }
+                ]
             }
         }
     }
@@ -46,6 +56,12 @@
     border-radius: 2px;
     &:hover {
         background: $--select-option-hover-background
+    }
+    &-disabled {
+        color: $--select-option-disabled-color;
+        &:hover {
+            background: none;
+        }
     }
     &-img {
         margin-right: 8px;

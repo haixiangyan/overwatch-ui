@@ -15,6 +15,8 @@
                 :label="option.label"
                 :value="option.value"
                 :img-url="option.img"
+                :disabled="option.disabled"
+                :selected="option.selected"
                 @click="onClickOption(option)">
             </ow-option>
         </ul>
@@ -70,7 +72,7 @@
                 }
             },
             onClickOption(option) {
-                if (this.disabled) {
+                if (this.disabled || option.disabled) {
                     return
                 }
                 this.$emit('update:value', option.value)
