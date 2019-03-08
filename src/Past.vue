@@ -181,6 +181,10 @@
             </ow-badge>
             <ow-badge title="MESSAGE"></ow-badge>
         </div>
+
+        <div class="item">
+            <ow-select v-model="value" :options="options"></ow-select>
+        </div>
     </div>
 </template>
 
@@ -219,7 +223,33 @@
                     {name: 'index.html', size: 333, type: 'text/html', status: 'UPLOADED'},
                     {name: 'styles.css', size: 876, type: 'text/css', status: 'FAIL'},
                 ],
-                blood: 30
+                blood: 30,
+                options: [
+                    {
+                        value: 'genji',
+                        label: 'Genji',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/genji/icon-portrait.png',
+                    }, {
+                        value: 'hanzo',
+                        label: 'Hanzo',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png',
+                        disabled: true
+                    }, {
+                        value: 'mccree',
+                        label: 'McCree',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/mccree/icon-portrait.png',
+                    }, {
+                        value: 'tracer',
+                        label: 'Tracer',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/tracer/icon-portrait.png',
+                        disabled: true
+                    }, {
+                        value: 'zarya',
+                        label: 'Zarya',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png',
+                    },
+                ],
+                value: 'genji'
             }
         },
         methods: {
