@@ -17,20 +17,25 @@
             return {
                 options: [
                     {
-                        value: '选项1',
-                        label: '黄金糕'
+                        value: 'genji',
+                        label: 'Genji',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/genji/icon-portrait.png',
                     }, {
-                        value: '选项2',
-                        label: '双皮奶'
+                        value: 'hanzo',
+                        label: 'Hanzo',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png',
                     }, {
-                        value: '选项3',
-                        label: '蚵仔煎'
+                        value: 'mccree',
+                        label: 'McCree',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/mccree/icon-portrait.png',
                     }, {
-                        value: '选项4',
-                        label: '龙须面'
+                        value: 'tracer',
+                        label: 'Tracer',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/tracer/icon-portrait.png',
                     }, {
-                        value: '选项5',
-                        label: '北京烤鸭'
+                        value: 'zarya',
+                        label: 'Zarya',
+                        img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png',
                     }
                 ],
                 value: ''

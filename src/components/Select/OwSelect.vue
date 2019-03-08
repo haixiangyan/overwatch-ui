@@ -3,7 +3,7 @@
         <div class="ow-select-input-wrapper">
             <input
                 :disabled="disabled"
-                @click="open" type="text"
+                @click="toggle" type="text"
                 :value="selectedLabel"
                 readonly>
             <ow-icon color="white" name="down"></ow-icon>
@@ -14,6 +14,7 @@
                 :key="option.value"
                 :label="option.label"
                 :value="option.value"
+                :img-url="option.img"
                 @click="onClickOption(option)">
             </ow-option>
         </ul>
@@ -90,13 +91,20 @@
         padding: 0 8px;
         height: $--input-height;
         background: $--color-opacity-primary;
+        border: 1px solid $--color-opacity-primary;
+        transition: all .3s;
         > input {
-            padding: 0 2px;
+            padding: 0 4px;
             height: 100%;
             border: none;
             background: transparent;
             outline: none;
             color: white;
+            font-size: 1em;
+        }
+        &:hover {
+            background: $--color-primary;
+            border-color: white;
         }
     }
     &-popover {
@@ -107,7 +115,7 @@
         padding: 4px 8px;
         width: 100%;
         border-radius: 2px;
-        background: $--color-bg;
+        background: $--color-bg-dark;
     }
 }
 </style>
