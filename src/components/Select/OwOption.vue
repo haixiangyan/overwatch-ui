@@ -54,6 +54,7 @@
     padding: 0 4px;
     color: $--select-option-color;
     border-radius: 2px;
+    border: 1px solid transparent;
     &:hover {
         background: $--select-option-hover-background
     }
@@ -62,6 +63,9 @@
         &:hover {
             background: none;
         }
+    }
+    &-selected {
+        border: 1px solid $--color-primary;
     }
     &-img {
         margin-right: 8px;

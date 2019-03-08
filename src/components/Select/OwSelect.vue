@@ -16,7 +16,7 @@
                 :value="option.value"
                 :img-url="option.img"
                 :disabled="option.disabled"
-                :selected="option.selected"
+                :selected="option.selected || option.label === selectedLabel"
                 @click="onClickOption(option)">
             </ow-option>
         </ul>
@@ -96,7 +96,7 @@
         border: 1px solid $--color-opacity-primary;
         transition: all .3s;
         > input {
-            padding: 0 4px;
+            padding: 0 5px;
             height: 100%;
             border: none;
             background: transparent;
@@ -106,7 +106,7 @@
         }
         &:hover {
             background: $--color-primary;
-            border: $--select-border-color-hover;
+            border-color: $--select-border-color-hover;
         }
     }
     &-popover {
