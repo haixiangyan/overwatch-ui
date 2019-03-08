@@ -33,5 +33,11 @@
 </script>
 
 <style scoped lang="scss">
-
+.ow-option {
+    display: flex;
+    align-items: center;
+    height: $--input-height;
+    padding: 0 2px;
+    color: white;
+}
 </style>

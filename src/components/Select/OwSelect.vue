@@ -1,11 +1,13 @@
 <template>
     <div class="ow-select" v-click-outside="close">
-        <input
-            :disabled="disabled"
-            class="ow-select-input"
-            @click="open" type="text"
-            :value="selectedLabel"
-            readonly>
+        <div class="ow-select-input-wrapper">
+            <input
+                :disabled="disabled"
+                @click="open" type="text"
+                :value="selectedLabel"
+                readonly>
+            <ow-icon color="white" name="down"></ow-icon>
+        </div>
         <ul v-if="isShowPopover" class="ow-select-popover">
             <ow-option
                 v-for="option in options"
@@ -20,6 +22,7 @@
 
 <script>
     import ClickOutside from '../../directives/ClickOutside'
+    import OwIcon from '../Icon/OwIcon'
     import OwOption from './OwOption'
     export default {
         name: "OwSelect",
@@ -49,7 +52,7 @@
             }
         },
         directives: { ClickOutside },
-        components: { OwOption },
+        components: { OwOption, OwIcon },
         methods: {
             open() {
                 this.isShowPopover = true
@@ -81,15 +84,30 @@
     position: relative;
     display: inline-block;
     vertical-align: top;
-    &-input {
+    &-input-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 0 8px;
         height: $--input-height;
+        background: $--color-opacity-primary;
+        > input {
+            padding: 0 2px;
+            height: 100%;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: white;
+        }
     }
     &-popover {
-        border: 1px solid red;
         position: absolute;
         top: $--input-height;
         left: 0;
         margin-top: 2px;
+        padding: 4px 8px;
+        width: 100%;
+        border-radius: 2px;
+        background: $--color-bg;
     }
 }
 </style>
