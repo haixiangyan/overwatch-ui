@@ -170,6 +170,17 @@
             <ow-blood class="blood-item" total-text-color="red" residual-text-color="yellow" :total="600"></ow-blood>
             <ow-blood class="blood-item" :total="200" :residual="100" residual-color="red" gone-color="green"></ow-blood>
         </div>
+
+        <div class="item">
+            <ow-badge class="badge-item" title="99+">
+                <span>LOOTBOX</span>
+            </ow-badge>
+
+            <ow-badge class="badge-item" :is-dot="true">
+                <span>LOOTBOX</span>
+            </ow-badge>
+            <ow-badge title="MESSAGE"></ow-badge>
+        </div>
     </div>
 </template>
 

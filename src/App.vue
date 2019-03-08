@@ -1,14 +1,8 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-badge class="badge-item" title="99+">
-                <span>LOOTBOX</span>
-            </ow-badge>
-
-            <ow-badge class="badge-item" :is-dot="true">
-                <span>LOOTBOX</span>
-            </ow-badge>
-            <ow-badge title="MESSAGE"></ow-badge>
+            <ow-select v-model="value" :options="options" :searchable="true"></ow-select>
+            <p>{{value}}</p>
         </div>
         <past></past>
     </div>
@@ -21,6 +15,25 @@
         name: 'app',
         data() {
             return {
+                options: [
+                    {
+                        value: '选项1',
+                        label: '黄金糕'
+                    }, {
+                        value: '选项2',
+                        label: '双皮奶'
+                    }, {
+                        value: '选项3',
+                        label: '蚵仔煎'
+                    }, {
+                        value: '选项4',
+                        label: '龙须面'
+                    }, {
+                        value: '选项5',
+                        label: '北京烤鸭'
+                    }
+                ],
+                value: ''
             }
         },
         methods: {

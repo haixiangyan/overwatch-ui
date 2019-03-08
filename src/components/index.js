@@ -35,6 +35,8 @@ import OwScroll from './Scroll/OwScroll'
 import OwHero from './Hero/OwHero'
 import OwBlood from './Blood/OwBlood'
 import OwBadge from './Badge/OwBadge'
+import OwSelect from './Select/OwSelect'
+import OwOption from './Select/OwOption'
 
 export default {
     OwButton,
@@ -72,5 +74,7 @@ export default {
     OwScroll,
     OwHero,
     OwBlood,
-    OwBadge
+    OwBadge,
+    OwSelect,
+    OwOption
 }
