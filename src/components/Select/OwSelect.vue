@@ -8,7 +8,7 @@
                 readonly>
             <ow-icon color="white" name="down"></ow-icon>
         </div>
-        <ul v-if="isShowdropdown" class="ow-select-dropdown">
+        <ul v-if="isShowDropdown" class="ow-select-dropdown">
             <ow-option
                 v-for="option in options"
                 :key="option.value"
@@ -45,7 +45,7 @@
         },
         data() {
             return {
-                isShowdropdown: true
+                isShowDropdown: false
             }
         },
         computed: {
@@ -58,13 +58,13 @@
         components: { OwOption, OwIcon },
         methods: {
             open() {
-                this.isShowdropdown = true
+                this.isShowDropdown = true
             },
             close() {
-                this.isShowdropdown = false
+                this.isShowDropdown = false
             },
             toggle() {
-                if (this.isShowdropdown) {
+                if (this.isShowDropdown) {
                     this.close()
                 }
                 else {

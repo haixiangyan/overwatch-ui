@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-select v-model="value" :options="options" :searchable="true"></ow-select>
+            <ow-select v-model="value" :options="options"></ow-select>
             <span>{{value}}</span>
         </div>
         <past></past>
