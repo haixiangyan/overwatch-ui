@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-switch></ow-switch>
+            <ow-switch v-model="value" :options="options"></ow-switch>
         </div>
         <past></past>
     </div>
@@ -14,6 +14,21 @@
         name: 'app',
         data() {
             return {
+                value: 'hanzo',
+                options: [
+                    {
+                        label: 'Genji',
+                        value: 'genji'
+                    },
+                    {
+                        label: 'Hanzo',
+                        value: 'hanzo'
+                    },
+                    {
+                        label: 'McCree',
+                        value: 'mccree'
+                    },
+                ]
             }
         },
         methods: {

@@ -8,7 +8,7 @@
                  @touchend="onTouchEnd">
                 <slot></slot>
             </div>
-            <div class="ow-carousel-indicators">
+            <div v-if="isShowIndicators" class="ow-carousel-indicators">
                 <span class="indicator" @click="onClickPrev">
                     <ow-icon color="white" name="left"></ow-icon>
                 </span>
@@ -44,6 +44,10 @@
             autoPlayDelay: {
                 type: Number,
                 default: 3000
+            },
+            isShowIndicators: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
