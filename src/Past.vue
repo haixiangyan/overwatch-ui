@@ -185,6 +185,11 @@
         <div class="item">
             <ow-select v-model="value" :options="options"></ow-select>
         </div>
+
+        <div class="item">
+            <ow-slider v-model="sliderValue" :max="100"></ow-slider>
+            <p>{{sliderValue}}</p>
+        </div>
     </div>
 </template>
 
@@ -249,7 +254,8 @@
                         img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png',
                     },
                 ],
-                value: 'genji'
+                value: 'genji',
+                sliderValue: 20
             }
         },
         methods: {

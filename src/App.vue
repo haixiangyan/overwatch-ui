@@ -1,8 +1,7 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-slider v-model="sliderValue" :max="100"></ow-slider>
-            <p>{{sliderValue}}</p>
+            <ow-switch></ow-switch>
         </div>
         <past></past>
     </div>
@@ -15,7 +14,6 @@
         name: 'app',
         data() {
             return {
-                sliderValue: 20
             }
         },
         methods: {

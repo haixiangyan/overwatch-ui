@@ -38,6 +38,7 @@ import OwBadge from './Badge/OwBadge'
 import OwSelect from './Select/OwSelect'
 import OwOption from './Select/OwOption'
 import OwSlider from './Slider/OwSlider'
+import OwSwitch from './Switch/OwSwitch'
 
 export default {
     OwButton,
@@ -78,5 +79,6 @@ export default {
     OwBadge,
     OwSelect,
     OwOption,
-    OwSlider
+    OwSlider,
+    OwSwitch
 }
