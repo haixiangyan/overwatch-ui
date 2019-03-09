@@ -1,7 +1,7 @@
 <template>
     <div class="ow-switch">
         <div class="ow-switch-indicator" @click="prev">
-            <ow-icon color="white" name="left"></ow-icon>
+            <ow-icon :color="prevIndicatorColor" name="left"></ow-icon>
         </div>
         <div @click="next" class="ow-switch-window">
             <div class="ow-switch-wrapper">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="ow-switch-indicator" @click="next">
-            <ow-icon color="white" name="right"></ow-icon>
+            <ow-icon :color="nextIndicatorColor" name="right"></ow-icon>
         </div>
     </div>
 </template>
@@ -52,7 +52,13 @@
                     }
                 }
                 return -1
-            }
+            },
+            prevIndicatorColor() {
+                return this.currentIndex === 0 ? '#909399': 'white'
+            },
+            nextIndicatorColor() {
+                return this.currentIndex === this.options.length - 1 ? '#909399': 'white'
+            },
         },
         components: { OwIcon, OwSwitchItem },
         methods: {
