@@ -100,10 +100,17 @@
             border: none;
             outline: none;
             margin-right: 32px;
+            color: 1em;
         }
     }
     & + & {
         margin-top: 8px;
+    }
+
+    /*Reset*/
+    .ow-switch {
+        background: transparent;
+        border-color: transparent;
     }
 }
 </style>

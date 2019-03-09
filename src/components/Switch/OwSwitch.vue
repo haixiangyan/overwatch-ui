@@ -63,10 +63,10 @@
                 return -1
             },
             prevIndicatorColor() {
-                return this.currentIndex === 0 ? '#909399': 'white'
+                return this.currentIndex === 0 ? 'transparent': 'white'
             },
             nextIndicatorColor() {
-                return this.currentIndex === this.options.length - 1 ? '#909399': 'white'
+                return this.currentIndex === this.options.length - 1 ? 'transparent': 'white'
             },
         },
         components: { OwIcon, OwSwitchItem },
