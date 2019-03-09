@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-switch v-model="value" :options="options"></ow-switch>
+            <ow-switch v-model="value" :options="options" :width="150"></ow-switch>
             {{value}}
         </div>
         <past></past>

@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-switch" :data-value="value">
+    <div class="ow-switch" :style="switchStyles" :data-value="value">
         <div class="ow-switch-indicator" @click="prev">
             <ow-icon :color="prevIndicatorColor" name="left"></ow-icon>
         </div>
@@ -34,6 +34,10 @@
             value: {
                 type: [String, Number, Boolean],
                 required: true
+            },
+            width: {
+                type: Number,
+                default: 200
             }
         },
         data() {
@@ -42,6 +46,11 @@
             }
         },
         computed: {
+            switchStyles() {
+                return {
+                    width: this.width + 'px'
+                }
+            },
             items() {
                 return this.$children.filter((child) => child.$options.name === 'OwSwitchItem')
             },
@@ -98,7 +107,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
     height: $--input-height;
     background: $--color-opacity-primary;
     &-window {
