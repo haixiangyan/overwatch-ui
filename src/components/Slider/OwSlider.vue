@@ -16,19 +16,19 @@
         name: "OwSlider",
         props: {
             width: {
-                type: Number,
+                type: [Number, String],
                 default: 200
             },
             value: {
-                type: Number,
+                type: [Number, String],
                 default: 0
             },
             min: {
-                type: Number,
+                type: [Number, String],
                 default: 0
             },
             max: {
-                type: Number,
+                type: [Number, String],
                 default: 100
             }
         },
