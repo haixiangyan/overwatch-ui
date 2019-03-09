@@ -7,7 +7,7 @@
             <span v-if="hasOwSlider">
                 <input
                     v-if="isShowInput"
-                    @input="onInput"
+                    @input="$emit('input', $event.target.value)"
                     class="ow-label-item-input"
                     type="text"
                     :value="value">
@@ -42,9 +42,6 @@
             }
         },
         methods: {
-            onInput(event) {
-                this.$emit('input', event.target.value)
-            },
             showInput() {
                 this.isShowInput = true
             },
@@ -54,7 +51,7 @@
         },
         directives: { ClickOutside },
         mounted() {
-            this.hasOwSlider = this.$children[0].$options.name === 'OwSlider'
+            this.hasOwSlider = this.$children.length > 0 ? this.$children[0].$options.name === 'OwSlider' : false
         }
     }
 </script>
