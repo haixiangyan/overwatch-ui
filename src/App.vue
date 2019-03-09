@@ -2,7 +2,13 @@
     <div id="app">
         <div class="present">
             <ow-label title="GRAPHICS QUALITY">
-                <ow-select v-model="labelValue" :options="labelOptions"></ow-select>
+                <ow-select v-model="labelValue1" :options="labelOptions1"></ow-select>
+            </ow-label>
+            <ow-label title="FIELD OF VIEW">
+                <ow-slider v-model="labelValue2"></ow-slider>
+            </ow-label>
+            <ow-label title="DISPLAY MODE">
+                <ow-switch v-model="labelValue3" :options="labelOptoins3"></ow-switch>
             </ow-label>
         </div>
         <past></past>
@@ -16,8 +22,17 @@
         name: 'app',
         data() {
             return {
-                labelValue: 'medium',
-                labelOptions: [
+                labelValue1: 'tracer',
+                labelOptions1: [
+                    { value: 'genji', label: 'Genji', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/genji/icon-portrait.png', },
+                    { value: 'hanzo', label: 'Hanzo', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png', },
+                    { value: 'mccree', label: 'McCree', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/mccree/icon-portrait.png', },
+                    { value: 'tracer', label: 'Tracer', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/tracer/icon-portrait.png', },
+                    { value: 'zarya', label: 'Zarya', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png', }
+                ],
+                labelValue2: 18,
+                labelValue3: 'medium',
+                labelOptoins3: [
                     {
                         label: 'EPIC',
                         value: 'epic'

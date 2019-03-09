@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-select" v-click-outside="close">
+    <div class="ow-select" :style="selectStyles" v-click-outside="close">
         <div class="ow-select-input-wrapper">
             <input
                 :disabled="disabled"
@@ -44,6 +44,10 @@
             },
             maxHeight: {
                 type: Number,
+            },
+            width: {
+                type: Number,
+                default: 200
             }
         },
         data() {
@@ -55,6 +59,11 @@
             selectedLabel() {
                 const selectedOption = this.options.find((option) => option.value === this.value)
                 return (selectedOption && selectedOption.label) ? selectedOption.label : ''
+            },
+            selectStyles() {
+                return {
+                    width: this.width + 'px'
+                }
             },
             dropdownStyles() {
                 return {
