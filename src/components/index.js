@@ -39,6 +39,7 @@ import OwSelect from './Select/OwSelect'
 import OwOption from './Select/OwOption'
 import OwSlider from './Slider/OwSlider'
 import OwSwitch from './Switch/OwSwitch'
+import OwLabel from './Label/OwLabel'
 
 export default {
     OwButton,
@@ -80,5 +81,6 @@ export default {
     OwSelect,
     OwOption,
     OwSlider,
-    OwSwitch
+    OwSwitch,
+    OwLabel
 }

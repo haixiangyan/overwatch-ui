@@ -190,6 +190,11 @@
             <ow-slider v-model="sliderValue" :max="100"></ow-slider>
             <p>{{sliderValue}}</p>
         </div>
+
+        <div class="item">
+            <ow-switch v-model="switchValue" :options="switchOptions" :width="150"></ow-switch>
+            <p>{{value}}</p>
+        </div>
     </div>
 </template>
 
@@ -255,7 +260,22 @@
                     },
                 ],
                 value: 'genji',
-                sliderValue: 20
+                sliderValue: 20,
+                switchValue: 'genji',
+                switchOptions: [
+                    {
+                        label: 'Genji',
+                        value: 'genji'
+                    },
+                    {
+                        label: 'Hanzo',
+                        value: 'hanzo'
+                    },
+                    {
+                        label: 'McCree',
+                        value: 'mccree'
+                    },
+                ]
             }
         },
         methods: {

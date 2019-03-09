@@ -85,6 +85,8 @@
                 }
                 this.$emit('update:value', option.value)
                 this.$emit('input', option.value)
+                // Close dropdown
+                this.close()
             }
         }
     }

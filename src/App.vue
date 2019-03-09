@@ -1,8 +1,9 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-switch v-model="value" :options="options" :width="150"></ow-switch>
-            {{value}}
+            <ow-label title="GRAPHICS QUALITY">
+                <ow-select v-model="labelValue" :options="labelOptions"></ow-select>
+            </ow-label>
         </div>
         <past></past>
     </div>
@@ -15,20 +16,20 @@
         name: 'app',
         data() {
             return {
-                value: 'genji',
-                options: [
+                labelValue: 'medium',
+                labelOptions: [
                     {
-                        label: 'Genji',
-                        value: 'genji'
+                        label: 'EPIC',
+                        value: 'epic'
                     },
                     {
-                        label: 'Hanzo',
-                        value: 'hanzo'
+                        label: 'MEDIUM',
+                        value: 'medium'
                     },
                     {
-                        label: 'McCree',
-                        value: 'mccree'
-                    },
+                        label: 'LOW',
+                        value: 'low'
+                    }
                 ]
             }
         },
