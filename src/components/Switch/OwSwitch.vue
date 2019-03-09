@@ -1,5 +1,5 @@
 <template>
-    <div class="ow-switch">
+    <div class="ow-switch" :data-value="value">
         <div class="ow-switch-indicator" @click="prev">
             <ow-icon :color="prevIndicatorColor" name="left"></ow-icon>
         </div>
@@ -63,13 +63,11 @@
         components: { OwIcon, OwSwitchItem },
         methods: {
             prev() {
-                console.log(this.currentIndex);
                 let prevIndex = this.currentIndex - 1
                 if (prevIndex < 0) {
                     return
                 }
                 this.isReverse = true
-                console.log(this.options[prevIndex].value, 'prev');
                 this.$emit('input', this.options[prevIndex].value)
             },
             next() {
@@ -78,7 +76,6 @@
                     return
                 }
                 this.isReverse = false
-                console.log(this.options[nextIndex].value, 'next');
                 this.$emit('input', this.options[nextIndex].value)
             },
             updateItems() {

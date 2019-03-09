@@ -15,7 +15,7 @@
         name: 'app',
         data() {
             return {
-                value: 'hanzo',
+                value: 'genji',
                 options: [
                     {
                         label: 'Genji',
