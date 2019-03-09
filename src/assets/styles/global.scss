@@ -372,16 +372,9 @@ $--button-icon-color: $--color-white !default;
 
 /* Switch
 -------------------------- */
-$--switch-on-color: $--color-primary !default;
-$--switch-off-color: $--border-color-base !default;
-$--switch-disabled-color: $--border-color-lighter !default;
-$--switch-disabled-text-color: $--color-text-placeholder !default;
-
-$--switch-font-size: $--font-size-base !default;
-$--switch-core-border-radius: 10px !default;
-$--switch-width: 40px !default;
-$--switch-height: 20px !default;
-$--switch-button-size: 16px !default;
+$--switch-background-color: $--color-primary !default;
+$--switch-font-color: $--color-white !default;
+$--switch-height: $--input-height !default;
 
 /* Dialog
 -------------------------- */

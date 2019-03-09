@@ -107,8 +107,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    height: $--input-height;
-    background: $--color-opacity-primary;
+    height: $--switch-height;
+    background: $--switch-background-color;
     &-window {
         flex-grow: 1;
         height: 100%;
@@ -123,7 +123,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
+        color: $--switch-font-color;
     }
     &-indicator {
         padding: 0 4px;
