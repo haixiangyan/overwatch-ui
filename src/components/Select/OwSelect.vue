@@ -117,6 +117,7 @@
         > input {
             padding: 0 5px;
             height: 100%;
+            width: 100%;
             border: none;
             background: transparent;
             outline: none;
@@ -139,6 +140,7 @@
         border-radius: 2px;
         background: $--select-dropdown-background;
         overflow: auto;
+        z-index: 1;
     }
 }
 </style>

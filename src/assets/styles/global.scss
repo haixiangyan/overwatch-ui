@@ -372,9 +372,11 @@ $--button-icon-color: $--color-white !default;
 
 /* Switch
 -------------------------- */
-$--switch-background-color: $--color-primary !default;
+$--switch-background-color: $--color-opacity-primary !default;
 $--switch-font-color: $--color-white !default;
 $--switch-height: $--input-height !default;
+$--switch-hover-background: $--color-primary !default;
+$--switch-hover-border-color: $--color-white !default;
 
 /* Dialog
 -------------------------- */

@@ -109,6 +109,12 @@
     justify-content: space-between;
     height: $--switch-height;
     background: $--switch-background-color;
+    border: 1px solid $--color-opacity-primary;
+    transition: all .3s;
+    &:hover {
+        background: $--switch-hover-background;
+        border-color: $--switch-hover-border-color;
+    }
     &-window {
         flex-grow: 1;
         height: 100%;
