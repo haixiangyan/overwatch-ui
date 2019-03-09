@@ -1,5 +1,5 @@
 <template>
-    <transition name="slide-left">
+    <transition name="slide-all-left">
         <div v-if="isShow" class="ow-switch-item" :class="{reverse: isReverse}">
             <slot></slot>
         </div>

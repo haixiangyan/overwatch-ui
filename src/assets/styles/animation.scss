@@ -58,6 +58,33 @@
   opacity: 0;
 }
 
+.slide-all-left-leave-active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.slide-all-left-enter-active, .slide-all-left-leave-active{
+  transition: all .8s;
+}
+.slide-all-left-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-all-left-enter.reverse {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-all-left-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.slide-all-left-leave-to.reverse {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
 /* Vue animation
 --------------------------*/
 .fade-enter-active, .fade-leave-active {
