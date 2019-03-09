@@ -2,13 +2,13 @@
     <div id="app">
         <div class="present">
             <ow-label title="GRAPHICS QUALITY">
-                <ow-select v-model="labelValue1" :options="labelOptions1"></ow-select>
+                <ow-select :width="300" v-model="labelValue1" :options="labelOptions1"></ow-select>
             </ow-label>
             <ow-label v-model="labelValue2" :wrappable="true" title="FIELD OF VIEW">
-                <ow-slider v-model="labelValue2"></ow-slider>
+                <ow-slider :width="300" v-model="labelValue2"></ow-slider>
             </ow-label>
             <ow-label v-model="labelValue3" :wrappable="true" title="DISPLAY MODE">
-                <ow-switch v-model="labelValue3" :options="labelOptoins3"></ow-switch>
+                <ow-switch :width="300" v-model="labelValue3" :options="labelOptoins3"></ow-switch>
             </ow-label>
         </div>
         <past></past>
