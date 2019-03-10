@@ -5,6 +5,7 @@
             :disabled="disabled"
             :readonly="readonly"
             :placeholder="placeholder"
+            :style="inputStyles"
             @change="$emit('change', $event.target.value)"
             @focus="$emit('focus', $event.target.value)"
             @blur="$emit('blur', $event.target.value)"
@@ -52,6 +53,10 @@
         type: {
             type: String,
             default: 'text'
+        },
+        width: {
+            type: Number,
+            default: 200
         }
     },
     computed: {
@@ -59,6 +64,11 @@
             return [
                 `ow-input-wrapper-${this.hintType}`
             ]
+        },
+        inputStyles() {
+            return {
+                width: this.width + 'px'
+            }
         },
         iconColor() {
             const colors = {

@@ -7,8 +7,11 @@
             <ow-label v-model="labelValue2" :wrappable="true" title="FIELD OF VIEW">
                 <ow-slider :width="300" v-model="labelValue2"></ow-slider>
             </ow-label>
-            <ow-label v-model="labelValue3" :wrappable="true" title="DISPLAY MODE">
-                <ow-switch :width="300" v-model="labelValue3" :options="labelOptoins3"></ow-switch>
+            <ow-label :wrappable="true" title="DISPLAY MODE">
+                <ow-switch :width="300" v-model="labelValue3" :options="labelOptions3"></ow-switch>
+            </ow-label>
+            <ow-label :wrappable="true" title="NAME">
+                <ow-input></ow-input>
             </ow-label>
         </div>
         <past></past>
@@ -32,7 +35,7 @@
                 ],
                 labelValue2: 18,
                 labelValue3: 'medium',
-                labelOptoins3: [
+                labelOptions3: [
                     {
                         label: 'EPIC',
                         value: 'epic'
