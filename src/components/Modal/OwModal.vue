@@ -76,14 +76,11 @@
         left: 0;
         right: 0;
         transform: translateY(-50%);
-        background: #263249;
-        p {
-            text-align: center;
-        }
+        background: $--modal-uppper-background;
         &-header {
             font-size: 3em;
             text-align: center;
-            color: white;
+            color: $--modal-text-color;
             padding-top: 16px;
         }
         &-main{
@@ -91,14 +88,14 @@
             flex-direction: column;
             align-items: center;
             margin: 12px 0;
-            color: $--color-text-shallow;
+            color: $--modal-text-color;
         }
         &-footer {
             padding: 16px 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #1F2734;
+            background: $--modal-lower-background;
         }
     }
 }
