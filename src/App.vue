@@ -2,14 +2,14 @@
     <div id="app">
         <div class="present">
             <ow-button @click="isOpen = true">Open</ow-button>
-            <ow-modal :is-open="isOpen">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <p style="font-size: 3em">ADD A NEW FRIEND</p>
-                    <p style="margin: 12px">INPUT A GAME ID OR EMAIL ADDRESS</p>
-                    <ow-input placeholder="Game ID or Email Address" :width="300"></ow-input>
-                </div>
+            <ow-modal :is-open.sync="isOpen">
+                <template slot="header">
+                    ADD A NEW FRIEND
+                </template>
+                <p style="margin-bottom: 12px">PUT A GAME ID OR EMAIL ADDRESS</p>
+                <ow-input placeholder="Game ID or Email Address" :width="300"></ow-input>
                 <template slot="footer">
-                    <ow-button>BACK</ow-button>
+                    <ow-button @click="isOpen = false">BACK</ow-button>
                     <ow-button type="warning">SEND REQUEST</ow-button>
                 </template>
             </ow-modal>
