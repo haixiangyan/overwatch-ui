@@ -38,15 +38,20 @@
 .ow-radio {
     display: inline-flex;
     align-items: center;
+    &:hover {
+        .ow-radio-item {
+            border-color: $--radio-input-border-color-hover;
+        }
+    }
     &-item {
         display: inline-block;
         vertical-align: middle;
-        height: 16px;
-        width: 16px;
+        height: $--radio-input-height;
+        width: $--radio-input-width;
         position: relative;
-        background: white;
-        border: 1px solid $--color-bg;
-        border-radius: 50%;
+        background: $--radio-input-fill;
+        border: $--radio-input-border;
+        border-radius: $--radio-input-border-radius;
         &-solid {
             content: '';
             position: absolute;
@@ -55,12 +60,12 @@
             transform: translate(-50%, -50%);
             height: 12px;
             width: 12px;
-            background: $--color-bg-dark;
-            border-radius: 50%;
+            background: $--radio-checked-input-fill;
+            border-radius: $--radio-input-border-radius;
         }
     }
     &-label {
-        color: $--color-bg;
+        color: $--radio-color;
         display: inline-flex;
         vertical-align: middle;
         align-items: center;
