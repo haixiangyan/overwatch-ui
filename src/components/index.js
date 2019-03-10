@@ -42,6 +42,7 @@ import OwSwitch from './Switch/OwSwitch'
 import OwLabel from './Label/OwLabel'
 import OwModal from './Modal/OwModal'
 import OwRadio from './Radio/OwRadio'
+import OwCheckbox from './Checkbox/OwCheckbox'
 
 export default {
     OwButton,
@@ -86,5 +87,6 @@ export default {
     OwSwitch,
     OwLabel,
     OwModal,
-    OwRadio
+    OwRadio,
+    OwCheckbox
 }

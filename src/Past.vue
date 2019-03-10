@@ -225,6 +225,21 @@
                 </template>
             </ow-modal>
         </div>
+
+        <div class="item">
+            <div>
+                <ow-radio v-model="radioValue" radioKey="genji" :options="radioOptions">
+                    <ow-icon name="setting"></ow-icon>
+                    GENJI
+                </ow-radio>
+            </div>
+            <div>
+                <ow-radio v-model="radioValue" radioKey="hanzo" :options="radioOptions">HANZO</ow-radio>
+            </div>
+            <div>
+                <ow-radio v-model="radioValue" radioKey="widowmaker" :options="radioOptions">WIDOWMAKER</ow-radio>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -330,7 +345,19 @@
                         value: 'low'
                     }
                 ],
-                isOpen: false
+                isOpen: false,
+                radioValue: 'genji',
+                radioOptions: [
+                    {
+                        value: 'genji'
+                    },
+                    {
+                        value: 'hanzo'
+                    },
+                    {
+                        value: 'widowmaker'
+                    }
+                ]
             }
         },
         methods: {

@@ -1,18 +1,8 @@
 <template>
     <div id="app">
         <div class="present">
-            <div>
-                <ow-radio v-model="radioValue" radioKey="genji" :options="radioOptions">
-                    <ow-icon name="setting"></ow-icon>
-                    GENJI
-                </ow-radio>
-            </div>
-            <div>
-                <ow-radio v-model="radioValue" radioKey="hanzo" :options="radioOptions">HANZO</ow-radio>
-            </div>
-            <div>
-                <ow-radio v-model="radioValue" radioKey="widowmaker" :options="radioOptions">WIDOWMAKER</ow-radio>
-            </div>
+            <ow-button @click="checkboxValue = !checkboxValue">Toggle</ow-button>
+            <ow-checkbox v-model="checkboxValue"></ow-checkbox>
         </div>
         <past></past>
     </div>
@@ -25,18 +15,7 @@
         name: 'app',
         data() {
             return {
-                radioValue: 'genji',
-                radioOptions: [
-                    {
-                        value: 'genji'
-                    },
-                    {
-                        value: 'hanzo'
-                    },
-                    {
-                        value: 'widowmaker'
-                    }
-                ]
+                checkboxValue: true
             }
         },
         methods: {
