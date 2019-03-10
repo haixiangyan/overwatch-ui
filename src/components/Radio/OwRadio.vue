@@ -38,6 +38,7 @@
 .ow-radio {
     display: inline-flex;
     align-items: center;
+    vertical-align: top;
     &:hover {
         .ow-radio-item {
             border-color: $--radio-input-border-color-hover;

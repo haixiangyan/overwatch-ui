@@ -2,7 +2,7 @@
     <div id="app">
         <div class="present">
             <ow-button @click="checkboxValue = !checkboxValue">Toggle</ow-button>
-            <ow-checkbox v-model="checkboxValue"></ow-checkbox>
+            <ow-checkbox v-model="checkboxValue">DPS</ow-checkbox>
         </div>
         <past></past>
     </div>

@@ -30,6 +30,7 @@
 .ow-checkbox {
     display: inline-flex;
     align-items: center;
+    vertical-align: top;
 
     &:hover {
         .ow-checkbox-item {
@@ -39,7 +40,6 @@
 
     &-item {
         display: inline-block;
-        vertical-align: middle;
         height: $--checkbox-input-height;
         width: $--checkbox-input-width;
         position: relative;
@@ -55,7 +55,7 @@
             transform: translate(-50%, -50%);
             height: 12px;
             width: 12px;
-            background: $--radio-checked-input-fill;
+            background: $--checkbox-checked-input-fill;
             border-radius: $--checkbox-input-border-radius;
         }
     }
@@ -63,7 +63,6 @@
     &-label {
         color: $--checkbox-color;
         display: inline-flex;
-        vertical-align: middle;
         align-items: center;
     }
 }
