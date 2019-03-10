@@ -11,7 +11,7 @@
                 <ow-switch :width="300" v-model="labelValue3" :options="labelOptions3"></ow-switch>
             </ow-label>
             <ow-label :wrappable="true" title="NAME">
-                <ow-input></ow-input>
+                <ow-input :width="300"></ow-input>
             </ow-label>
         </div>
         <past></past>
