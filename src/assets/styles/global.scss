@@ -572,6 +572,12 @@ $--modal-uppper-background: #263249;
 $--modal-lower-background: #1F2734;
 $--modal-text-color: $--color-text-shallow;
 
+/* Label
+--------------------------*/
+$--label-height: $--input-height;
+$--label-background: lighten($--color-opacity-bg-shallow, 10);
+$--label-text-color: $--color-text-shallow;
+
 /* Select
 -------------------------- */
 $--select-border-color-hover: $--color-white !default;

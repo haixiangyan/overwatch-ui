@@ -62,15 +62,15 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    height: $--input-height;
+    height: $--label-height;
     &-title {
         flex-grow: 1;
         display: flex;
         align-items: center;
         padding-left: 16px;
         height: 100%;
-        background: lighten($--color-opacity-bg-shallow, 10);
-        color: white;
+        background: $--label-background;
+        color: $--label-text-color;
     }
     &-item {
         margin-left: 8px;
@@ -88,7 +88,7 @@
             height: 24px;
             vertical-align: top;
             line-height: 24px;
-            color: white;
+            color: $--label-text-color;
         }
         &-input {
             width: 24px;
@@ -97,7 +97,6 @@
             border: none;
             outline: none;
             margin-right: 32px;
-            color: 1em;
         }
     }
     & + & {
