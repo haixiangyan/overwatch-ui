@@ -1,18 +1,18 @@
 <template>
     <div id="app">
         <div class="present">
-            <ow-label title="GRAPHICS QUALITY">
-                <ow-select :width="300" v-model="labelValue1" :options="labelOptions1"></ow-select>
-            </ow-label>
-            <ow-label v-model="labelValue2" :wrappable="true" title="FIELD OF VIEW">
-                <ow-slider :width="300" v-model="labelValue2"></ow-slider>
-            </ow-label>
-            <ow-label :wrappable="true" title="DISPLAY MODE">
-                <ow-switch :width="300" v-model="labelValue3" :options="labelOptions3"></ow-switch>
-            </ow-label>
-            <ow-label :wrappable="true" title="NAME">
-                <ow-input rect :width="300"></ow-input>
-            </ow-label>
+            <ow-button @click="isOpen = true">Open</ow-button>
+            <ow-modal :is-open="isOpen">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <p style="font-size: 3em">ADD A NEW FRIEND</p>
+                    <p style="margin: 12px">INPUT A GAME ID OR EMAIL ADDRESS</p>
+                    <ow-input placeholder="Game ID or Email Address" :width="300"></ow-input>
+                </div>
+                <template slot="footer">
+                    <ow-button>BACK</ow-button>
+                    <ow-button type="warning">SEND REQUEST</ow-button>
+                </template>
+            </ow-modal>
         </div>
         <past></past>
     </div>
@@ -25,30 +25,7 @@
         name: 'app',
         data() {
             return {
-                labelValue1: 'tracer',
-                labelOptions1: [
-                    { value: 'genji', label: 'Genji', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/genji/icon-portrait.png', },
-                    { value: 'hanzo', label: 'Hanzo', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png', },
-                    { value: 'mccree', label: 'McCree', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/mccree/icon-portrait.png', },
-                    { value: 'tracer', label: 'Tracer', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/tracer/icon-portrait.png', },
-                    { value: 'zarya', label: 'Zarya', img: 'https://d1u1mce87gyfbn.cloudfront.net/hero/zarya/icon-portrait.png', }
-                ],
-                labelValue2: 18,
-                labelValue3: 'medium',
-                labelOptions3: [
-                    {
-                        label: 'EPIC',
-                        value: 'epic'
-                    },
-                    {
-                        label: 'MEDIUM',
-                        value: 'medium'
-                    },
-                    {
-                        label: 'LOW',
-                        value: 'low'
-                    }
-                ]
+                isOpen: true
             }
         },
         methods: {
@@ -60,6 +37,9 @@
 </script>
 
 <style lang="scss">
+    * {
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+    }
     #app {
         position: relative;
         padding: 100px 100px;
