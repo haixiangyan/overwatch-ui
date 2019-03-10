@@ -56,7 +56,7 @@
             }
         },
         beforeDestroy() {
-            enableScroll()
+            Utils.enableScroll()
         }
     }
 </script>
