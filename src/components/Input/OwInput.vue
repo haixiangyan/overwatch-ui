@@ -1,6 +1,7 @@
 <template>
     <div class="ow-input-wrapper" :class="wrapperClasses">
         <input
+            class="ow-input-inner"
             :value="value"
             :disabled="disabled"
             :readonly="readonly"
@@ -57,6 +58,10 @@
         width: {
             type: Number,
             default: 200
+        },
+        rect: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -67,7 +72,8 @@
         },
         inputStyles() {
             return {
-                width: this.width + 'px'
+                width: this.width + 'px',
+                borderRadius: this.rect ? '0' : '2px'
             }
         },
         iconColor() {
@@ -88,26 +94,25 @@
 
 <style scoped lang="scss">
 .ow-input {
+    &-inner {
+        padding: $--input-padding-horizontal;
+        height: $--input-height;
+        outline: none;
+        border: 1px solid $--input-border-color;
+        transition: background-color .3s;
+        background: rgba(255, 255, 255, 0.9);
+        font-size: 1em;
+
+        &:hover, &:active, &:focus {
+            background: rgba(255, 255, 255, 1);
+            z-index: 1;
+        }
+        &[disabled] {
+            background: $--input-disabled-fill;
+        }
+    }
     &-wrapper {
         display: inline-block;
-        > input {
-            padding: $--input-padding-horizontal;
-            height: $--input-height;
-            outline: none;
-            border: 1px solid $--input-border-color;
-            border-radius: $--border-radius-base;
-            transition: background-color .3s;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 1em;
-
-            &:hover, &:active, &:focus {
-                background: rgba(255, 255, 255, 1);
-                z-index: 1;
-            }
-            &[disabled] {
-                background: $--input-disabled-fill;
-            }
-        }
 
         &-danger  {
             > input { border-color: $--color-danger; }
