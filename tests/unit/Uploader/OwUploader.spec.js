@@ -8,7 +8,23 @@ import Utils from '../../../src/assets/scripts/utils'
 
 describe('OwUploader.vue', () => {
     it('exists', () => {
-        expect(OwUploader).to.exist
+        const OwUploaderWrapper = mount(OwUploader, {
+            propsData: {
+                name: 'file',
+                method: 'post',
+                action: '/upload',
+                accept: 'image/*',
+                getPreviewUrl: (response) => {
+                    let responseJson = JSON.parse(response)
+                    return `/preview/${responseJson.filename}`
+                },
+                fileList: [],
+                slots: {
+                    default: `<button id="uploadBtn">Upload</button>`
+                },
+            }
+        })
+        expect(OwUploaderWrapper).to.exist
     })
 
     xit('can upload a file', (done) => {
@@ -46,9 +62,7 @@ describe('OwUploader.vue', () => {
             }
         })
         OwUploaderWrapper.find('#uploadBtn').trigger('click')
-        Vue.nextTick(() => {
-            const inputWrapper = OwUploaderWrapper.find('input[type="file"]')
-            const inputEl = initFiles(inputWrapper.element)
-        })
+        const inputWrapper = OwUploaderWrapper.find('input[type="file"]')
+        const inputEl = initFiles(inputWrapper.element)
     })
 })
