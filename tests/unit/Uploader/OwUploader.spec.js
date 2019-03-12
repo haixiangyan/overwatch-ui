@@ -33,7 +33,7 @@ describe('OwUploader.vue', () => {
                 options.success('{"filename": "123123"}')
                 expect(OwUploaderWrapper.find('.ow-upload-item-loading').exists()).to.equal(false)
                 done()
-            }, 800)
+            }, 600)
         })
 
         const OwUploaderWrapper = mount(OwUploader, {
