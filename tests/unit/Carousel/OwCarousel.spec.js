@@ -6,7 +6,22 @@ import sinon from "sinon"
 
 describe('OwCarousel.vue', () => {
     it('exists', () => {
-        const OwCarouselWrapper = shallowMount(OwCarousel)
+        const OwCarouselWrapper = shallowMount(OwCarousel, {
+            propsData: {isAutoPlay: false},
+            slots: {
+                default: `
+                    <ow-carousel-item name="1">
+                        <div class="box1">1</div>
+                    </ow-carousel-item>
+                    <ow-carousel-item name="2">
+                        <div class="box2">2</div>
+                    </ow-carousel-item>
+                    <ow-carousel-item name="3">
+                        <div class="box3">3</div>
+                    </ow-carousel-item>`,
+            },
+            stubs: { OwCarouselItem }
+        })
         expect(OwCarouselWrapper).to.exist
     })
 
