@@ -147,104 +147,27 @@ $--disabled-border-base: $--border-color-light !default;
 $--icon-color: #2E3852 !default;
 $--icon-color-base: $--color-info !default;
 
-/* Checkbox
--------------------------- */
-$--checkbox-font-size: 14px !default;
-$--checkbox-font-weight: $--font-weight-primary !default;
-$--checkbox-color: $--color-text-regular !default;
-$--checkbox-input-height: 14px !default;
-$--checkbox-input-width: 14px !default;
-$--checkbox-input-border-radius: $--border-radius-small !default;
-$--checkbox-input-fill: $--color-white !default;
-$--checkbox-input-border: $--border-base !default;
-$--checkbox-input-border-color: $--border-color-base !default;
-$--checkbox-icon-color: $--color-white !default;
-
-$--checkbox-disabled-input-border-color: $--border-color-base !default;
-$--checkbox-disabled-input-fill: #edf2fc !default;
-$--checkbox-disabled-icon-color: $--color-text-placeholder !default;
-
-$--checkbox-disabled-checked-input-fill: $--border-color-extra-light !default;
-$--checkbox-disabled-checked-input-border-color: $--border-color-base !default;
-$--checkbox-disabled-checked-icon-color: $--color-text-placeholder !default;
-
-$--checkbox-checked-text-color: $--color-primary !default;
-$--checkbox-checked-input-border-color: $--color-primary !default;
-$--checkbox-checked-input-fill: $--color-primary !default;
-$--checkbox-checked-icon-color: $--fill-base !default;
-
-$--checkbox-input-border-color-hover: $--color-primary !default;
-
-$--checkbox-bordered-height: 40px !default;
-$--checkbox-bordered-padding: 9px 20px 9px 10px !default;
-$--checkbox-bordered-medium-padding: 7px 20px 7px 10px !default;
-$--checkbox-bordered-small-padding: 5px 15px 5px 10px !default;
-$--checkbox-bordered-mini-padding: 3px 15px 3px 10px !default;
-$--checkbox-bordered-medium-input-height: 14px !default;
-$--checkbox-bordered-medium-input-width: 14px !default;
-$--checkbox-bordered-medium-height: 36px !default;
-$--checkbox-bordered-small-input-height: 12px !default;
-$--checkbox-bordered-small-input-width: 12px !default;
-$--checkbox-bordered-small-height: 32px !default;
-$--checkbox-bordered-mini-input-height: 12px !default;
-$--checkbox-bordered-mini-input-width: 12px !default;
-$--checkbox-bordered-mini-height: 28px !default;
-
-$--checkbox-button-font-size: $--font-size-base !default;
-$--checkbox-button-checked-fill: $--color-primary !default;
-$--checkbox-button-checked-color: $--color-white !default;
-$--checkbox-button-checked-border-color: $--color-primary !default;
-
-
-
 /* Radio
 -------------------------- */
-$--radio-font-size: 14px !default;
-$--radio-font-weight: $--font-weight-primary !default;
-$--radio-color: $--color-text-regular !default;
-$--radio-input-height: 14px !default;
-$--radio-input-width: 14px !default;
-$--radio-input-border-radius: $--border-radius-circle !default;
 $--radio-input-fill: $--color-white !default;
-$--radio-input-border: $--border-base !default;
-$--radio-input-border-color: $--border-color-base !default;
-$--radio-icon-color: $--color-white !default;
-
-$--radio-disabled-input-border-color: $--disabled-border-base !default;
-$--radio-disabled-input-fill: $--disabled-fill-base !default;
-$--radio-disabled-icon-color: $--disabled-fill-base !default;
-
-$--radio-disabled-checked-input-border-color: $--disabled-border-base !default;
-$--radio-disabled-checked-input-fill: $--disabled-fill-base !default;
-$--radio-disabled-checked-icon-color: $--color-text-placeholder !default;
-
-$--radio-checked-text-color: $--color-primary !default;
-$--radio-checked-input-border-color: $--color-primary !default;
-$--radio-checked-input-fill: $--color-white !default;
-$--radio-checked-icon-color: $--color-primary !default;
-
+$--radio-checked-input-fill: $--color-bg !default;
+$--radio-input-height: 16px !default;
+$--radio-input-width: 16px !default;
+$--radio-input-border-radius: $--border-radius-circle !default;
+$--radio-input-border: 1px solid $--color-bg !default;
+$--radio-color: $--color-bg !default;
 $--radio-input-border-color-hover: $--color-primary !default;
 
-$--radio-bordered-height: 40px !default;
-$--radio-bordered-padding: 12px 20px 0 10px !default;
-$--radio-bordered-medium-padding: 10px 20px 0 10px !default;
-$--radio-bordered-small-padding: 8px 15px 0 10px !default;
-$--radio-bordered-mini-padding: 6px 15px 0 10px !default;
-$--radio-bordered-medium-input-height: 14px !default;
-$--radio-bordered-medium-input-width: 14px !default;
-$--radio-bordered-medium-height: 36px !default;
-$--radio-bordered-small-input-height: 12px !default;
-$--radio-bordered-small-input-width: 12px !default;
-$--radio-bordered-small-height: 32px !default;
-$--radio-bordered-mini-input-height: 12px !default;
-$--radio-bordered-mini-input-width: 12px !default;
-$--radio-bordered-mini-height: 28px !default;
-
-$--radio-button-font-size: $--font-size-base !default;
-$--radio-button-checked-fill: $--color-primary !default;
-$--radio-button-checked-color: $--color-white !default;
-$--radio-button-checked-border-color: $--color-primary !default;
-$--radio-button-disabled-checked-fill: $--border-color-extra-light !default;
+/* Checkbox
+-------------------------- */
+$--checkbox-input-fill: $--color-white !default;
+$--checkbox-checked-input-fill: $--color-bg !default;
+$--checkbox-input-height: 1em !default;
+$--checkbox-input-width: 1em !default;
+$--checkbox-input-border-radius: $--border-radius-small !default;
+$--checkbox-input-border: 1px solid $--color-bg !default;
+$--checkbox-color: $--color-bg !default;
+$--checkbox-input-border-color-hover: $--color-primary !default;
 
 /* Alert
 -------------------------- */
@@ -604,19 +527,28 @@ $--badge-line-height: 14px;
 $--badge-font-size: .8em;
 $--badge-background: rgba(0, 0, 0, 0.2);
 
+/* Modal
+--------------------------*/
+$--modal-uppper-background: #263249;
+$--modal-lower-background: #1F2734;
+$--modal-text-color: $--color-text-shallow;
+
+/* Label
+--------------------------*/
+$--label-height: $--input-height;
+$--label-background: lighten($--color-opacity-bg-shallow, 10);
+$--label-text-color: $--color-text-shallow;
+
 /* Select
 -------------------------- */
 $--select-border-color-hover: $--color-white !default;
-
 $--select-input-color: $--color-white !default;
 $--select-input-font-size: 1em !default;
-
 $--select-option-color: $--color-white !default;
 $--select-option-disabled-color: $--color-text-placeholder !default;
 $--select-option-height: $--input-height;
 $--select-option-hover-background: $--color-primary !default;
 $--select-option-selected: $--color-primary !default;
-
 $--select-dropdown-background: $--color-bg-dark !default;
 $--select-dropdown-max-height: 274px !default;
 $--select-dropdown-padding: 8px 8px !default;
