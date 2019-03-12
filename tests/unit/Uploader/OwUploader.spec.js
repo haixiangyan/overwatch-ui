@@ -11,7 +11,7 @@ describe('OwUploader.vue', () => {
         expect(OwUploader).to.exist
     })
 
-    it('can upload a file', (done) => {
+    xit('can upload a file', (done) => {
         let stub = sinon.stub(Utils.ajax, 'post').callsFake((url, options) => {
             setTimeout(() => {
                 options.success('{"filename": "123123"}')
