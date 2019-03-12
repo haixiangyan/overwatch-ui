@@ -6,7 +6,7 @@
 ![](https://img.shields.io/npm/dw/overwatch-ui.svg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A UI library of game Overwatch, built with Vue.js.
+Overwatch UI library for Web APP, built with Vue.js.
 
 ## Documentation
 
