@@ -90,7 +90,7 @@ describe('OwCarousel.vue', () => {
     it('can auto play', (done) => {
         const eventHandler = sinon.stub()
         const OwCarouselWrapper = mount(OwCarousel, {
-            propsData: {isAutoPlay: true, autoPlayDelay: 500, selected: '1'},
+            propsData: {isAutoPlay: true, autoPlayDelay: 100, selected: '1'},
             slots: {
                 default: `
                     <ow-carousel-item name="1">
@@ -112,6 +112,6 @@ describe('OwCarousel.vue', () => {
         setTimeout(() => {
             expect(eventHandler.called).to.equal(true)
             done()
-        }, 600)
+        }, 110)
     })
 })
