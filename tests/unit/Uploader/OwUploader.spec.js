@@ -28,11 +28,7 @@ describe('OwUploader.vue', () => {
 
     it('can upload a file', (done) => {
         let stub = sinon.stub(Utils.ajax, 'post').callsFake((url, options) => {
-            setTimeout(() => {
-                options.success('{"filename": "123123"}')
-                expect(OwUploaderWrapper.find('.ow-upload-item-loading').exists()).to.equal(false)
-                done()
-            }, 500)
+            done()
         })
 
         const OwUploaderWrapper = mount(OwUploader, {
