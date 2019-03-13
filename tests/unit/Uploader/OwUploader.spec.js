@@ -1,6 +1,5 @@
 import {expect} from 'chai'
 import {mount} from '@vue/test-utils'
-import Vue from 'vue'
 import OwUploader from '../../../src/components/Uploader/OwUploader.vue'
 
 import {initFiles} from "../../utils"
@@ -33,7 +32,7 @@ describe('OwUploader.vue', () => {
                 options.success('{"filename": "123123"}')
                 expect(OwUploaderWrapper.find('.ow-upload-item-loading').exists()).to.equal(false)
                 done()
-            }, 300)
+            }, 500)
         })
 
         const OwUploaderWrapper = mount(OwUploader, {
