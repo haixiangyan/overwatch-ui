@@ -77,3 +77,7 @@ I strongly recommend you to add these styles to all of your projects for saving 
     box-sizing: border-box;
 }
 ```
+
+## Statement
+
+This UI library is for learning purposes only, not for commercial use. Some design ideas are from Overwatch made by Blizzard Entertainment and the implemenatations are developed by me.
