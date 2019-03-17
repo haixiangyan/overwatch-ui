@@ -80,7 +80,7 @@ I strongly recommend you to add these styles to all of your projects for saving 
 
 ## Copyright Statement
 
-I love to play Overwatch, so I built this just for fun. But, I am not sure if this will cause a Copyright problem of using font sytles, logo, images made by Bailzzard. So for now, I have to temporarily add a [CC BY-NC-ND 4.0 Licence](https://creativecommons.org/licenses/by-nc-nd/4.0/) and some statements as follow:
+I love to play Overwatch, so I built this just for fun. But, I am not sure if this will cause a Copyright problem of using font styles, logo, images made by Blizzard Entertainment. So for now, I have to temporarily add a [CC BY-NC-ND 4.0 Licence](https://creativecommons.org/licenses/by-nc-nd/4.0/) and some statements as follow:
 
 * This UI library is for learning purposes only, not for commercial use.
 
