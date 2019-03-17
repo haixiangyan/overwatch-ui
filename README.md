@@ -79,5 +79,5 @@ I strongly recommend you to add these styles to all of your projects for saving 
 ```
 
 ## Statement
-
-This UI library is for learning purposes only, not for commercial use. Some design ideas are from Overwatch made by Blizzard Entertainment and the implementations are developed by me.
+This UI library is for learning purposes only, not for commercial use.
+Font Styles, Logo and some component designs are from Video Game Overwatch, made by Blizzard Entertainment.

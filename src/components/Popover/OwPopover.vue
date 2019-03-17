@@ -50,6 +50,7 @@
             this.bindTrigger()
         },
         beforeDestroy() {
+            this.close()
             if (this.trigger === 'click') {
                 this.$refs.popover.removeEventListener('click', this.onPopoverClick)
             }
