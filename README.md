@@ -80,12 +80,4 @@ I strongly recommend you to add these styles to all of your projects for saving 
 
 ## Copyright Statement
 
-I love to play Overwatch, so I built this just for fun. But, I am not sure if this will cause a Copyright problem of using font styles, logo, images made by Blizzard Entertainment. So for now, I have to temporarily add a [CC BY-NC-ND 4.0 Licence](https://creativecommons.org/licenses/by-nc-nd/4.0/) and some statements as follow:
-
-* **This UI library is for learning purposes only, not for commercial use.**
-
-* Font Styles, Logo, images and some component designs are from Video Game Overwatch, made by Blizzard Entertainment. They are all used by Activision Blizzard for much of Overwatch's design. For components to match the Overwatch design, including the font is required.
-
-* This repo also follows [CC BY-NC-ND 4.0 Licence](https://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-I also really want my library to help out some front-end developers, so if you have any Copyright suggestions for me, feel free to place an Issue or contact me directly [haixiang6123@gmail.com](haixiang6123@gmail.com) :)
+I love to play Overwatch, so I built this just for fuu but not for commerical purpose. **Please note: some images, logos are from Overwatch made by Blizzard Entertainment. If you want to use this lib for commercial purpose, you have to obey those licences and place a proper licence for your project.**
