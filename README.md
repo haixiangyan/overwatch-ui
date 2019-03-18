@@ -80,4 +80,4 @@ I strongly recommend you to add these styles to all of your projects for saving 
 
 ## Copyright Statement
 
-I love to play Overwatch, so I built this just for fuu but not for commerical purpose. **Please note: some images, logos are from Overwatch made by Blizzard Entertainment. If you want to use this lib for commercial purpose, you have to obey those licences and place a proper licence for your project.**
+I love to play Overwatch, so I built this just for fuu but not for commercial purpose. **Please note: some images, logos are from Overwatch made by Blizzard Entertainment. If you want to use this lib for commercial purpose, you have to obey those licences and place a proper licence for your project.**
