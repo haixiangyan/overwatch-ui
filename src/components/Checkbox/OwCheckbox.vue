@@ -61,6 +61,7 @@
     }
 
     &-label {
+        margin-left: 4px;
         color: $--checkbox-color;
         display: inline-flex;
         align-items: center;

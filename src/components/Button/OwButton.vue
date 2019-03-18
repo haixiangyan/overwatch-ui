@@ -80,7 +80,7 @@
         // Icon
         &-icon { height: 1em; width: 1em; order: 1}
         // Content
-        &-content { order: 2}
+        &-content { order: 2; margin: 0 4px;}
 
         // Right position
         &-icon-right {

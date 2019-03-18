@@ -3,6 +3,9 @@
         <div class="present">
             <ow-button @click="checkboxValue = !checkboxValue">Toggle</ow-button>
             <ow-checkbox v-model="checkboxValue">DPS</ow-checkbox>
+
+            <ow-button icon-name="up" icon-position="left">Up</ow-button>
+            <ow-button icon-name="down" icon-position="right">Down</ow-button>
         </div>
         <past></past>
     </div>

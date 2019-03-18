@@ -66,6 +66,7 @@
         }
     }
     &-label {
+        margin-left: 4px;
         color: $--radio-color;
         display: inline-flex;
         vertical-align: middle;
