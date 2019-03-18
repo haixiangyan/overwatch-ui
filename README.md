@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/overwatch-ui.svg)](https://badge.fury.io/js/overwatch-ui)
 [![Build Status](https://travis-ci.org/Haixiang6123/overwatch-ui.svg?branch=master)](https://travis-ci.org/Haixiang6123/overwatch-ui)
 ![](https://img.shields.io/npm/dm/overwatch-ui.svg)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![License: MIT](https://img.shields.io/github/stars/Haixiang6123/overwatch-ui.svg?style=social)
 
 Overwatch UI library for Web APP, built with Vue.js.
 
@@ -67,8 +67,8 @@ If you wanna explore more usages, here's a playground on [CodeSandBox.io](https:
 
 ## Note
 
-**This UI library will reset some styles as followed. 
-I strongly recommend you to add these styles to all of your projects for saving time to find CSS bugs :)**
+This UI library will reset some styles as followed. 
+I strongly recommend you to add these styles to all of your projects for saving time to find CSS bugs :)
 
 ```css
 * {
@@ -78,6 +78,6 @@ I strongly recommend you to add these styles to all of your projects for saving 
 }
 ```
 
-## Statement
-This UI library is for learning purposes only, not for commercial use.
-Font Styles, Logo and some component designs are from Video Game Overwatch, made by Blizzard Entertainment.
+## Copyright Statement
+
+I love playing Overwatch, so I built this just for fun but not for commercial purpose. **Please note: some images, logos are from Overwatch made by Blizzard Entertainment. If you want to use this lib for commercial purpose, you have to obey those licences and place a proper licence for your project.**
