@@ -8,7 +8,7 @@
             :is-loading="isLoading"
             :name="iconName">
         </ow-icon>
-        <span class="ow-button-content">
+        <span v-if="$slots.default" class="ow-button-content">
             <slot></slot>
         </span>
     </button>
