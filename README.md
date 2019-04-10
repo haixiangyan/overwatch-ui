@@ -3,8 +3,8 @@
 ![Overwacht](https://img.shields.io/badge/ui--lib-overwatch-FFC429.svg)
 [![npm version](https://badge.fury.io/js/overwatch-ui.svg)](https://badge.fury.io/js/overwatch-ui)
 [![Build Status](https://travis-ci.org/Haixiang6123/overwatch-ui.svg?branch=master)](https://travis-ci.org/Haixiang6123/overwatch-ui)
-![](https://img.shields.io/npm/dm/overwatch-ui.svg)
-![License: MIT](https://img.shields.io/github/stars/Haixiang6123/overwatch-ui.svg?style=social)
+![](https://img.shields.io/npm/l/overwatch-ui.svg)
+![](https://img.shields.io/github/stars/Haixiang6123/overwatch-ui.svg?style=social)
 
 Overwatch UI library for Web APP, built with Vue.js.
 
