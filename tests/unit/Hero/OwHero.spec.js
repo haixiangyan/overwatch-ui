@@ -15,7 +15,7 @@ describe('OwHero.vue', () => {
             }
         })
 
-        expect(OwHeroWrapper.find('.ow-hero-avatar').attributes().style).to.equal('background-image: url("https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png");');
+        expect(OwHeroWrapper.find('.ow-hero-avatar').attributes().style).to.equal('background-image: url(https://d1u1mce87gyfbn.cloudfront.net/hero/hanzo/icon-portrait.png);');
     })
 
     it('receives size props', () => {
@@ -46,6 +46,6 @@ describe('OwHero.vue', () => {
                 url: '/xxx'
             }
         })
-        expect(OwHeroWrapper.find('.ow-hero-avatar').attributes().style).to.equal('background-image: url("/xxx");');
+        expect(OwHeroWrapper.find('.ow-hero-avatar').attributes().style).to.equal('background-image: url(/xxx);');
     })
 })
