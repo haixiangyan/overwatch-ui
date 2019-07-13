@@ -16,7 +16,7 @@ Overwatch UI library for Web APP, built with Vue.js.
 
 ## Install
 ```bash
-$ yarn install overwatch-ui
+$ yarn add overwatch-ui
 
 or
 
