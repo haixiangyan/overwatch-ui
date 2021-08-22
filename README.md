@@ -10,7 +10,7 @@ Overwatch UI library for Web APP, built with Vue.js.
 
 ## Documentation
 
-[Documentation](https://haixiang6123.github.io/overwatch-ui-doc/#/)
+[Documentation](https://github.yanhaixiang.cn/overwatch-ui-doc/#/)
 
 ![Doc](./screenshot/home.png)
 
