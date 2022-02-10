@@ -42,7 +42,7 @@
         "karma-sinon": "^1.0.5",
         "karma-sinon-chai": "^2.0.2",
         "mocha": "^5.0.5",
-        "node-sass": "^4.11.0",
+        "node-sass": "^7.0.0",
         "sass-loader": "^7.1.0",
         "sinon": "^7.3.2",
         "sinon-chai": "^3.3.0",
